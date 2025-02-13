@@ -27,6 +27,104 @@
     <!-- main style file -->
     <link rel="stylesheet" href="styles/main.css">
   </head>
+  <style>
+/* Container des boutons */
+.btngithub_dep {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+/* Style de base commun pour les deux boutons */
+.btngithub_dep a.btngithub,
+.btngithub_dep a.btndep {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style spécifique pour le bouton "View Project" */
+.btngithub_dep a.btngithub {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.btngithub_dep a.btngithub:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btngithub_dep a.btngithub:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+/* Style spécifique pour le bouton "View Code" */
+.btngithub_dep a.btndep {
+    background-color: transparent;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
+}
+
+.btngithub_dep a.btndep:hover {
+    background-color: #3b82f6;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btngithub_dep a.btndep:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+/* Style focus pour l'accessibilité */
+.btngithub_dep a.btngithub:focus,
+.btngithub_dep a.btndep:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+/* Styles responsifs */
+@media (max-width: 640px) {
+    .btngithub_dep {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .btngithub_dep a.btngithub,
+    .btngithub_dep a.btndep {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+/* Styles pour désactiver les transitions sur les appareils qui le préfèrent */
+@media (prefers-reduced-motion: reduce) {
+    .btngithub_dep a.btngithub,
+    .btngithub_dep a.btndep {
+        transition: none;
+    }
+}
+</style>
+
   <body>
     <div id="app">
       <div id="app-inner" ref="appRef"
@@ -183,9 +281,13 @@
                         <a :href="'archive-portfolio.html?tax=tools&tools=' + tool">{{ tool }}</a>
                       </li>
                     </ul>
+
+                    <div class="btngithub_dep">
+                      <a :href="getSinglePortfolioItem.githubLink" class="btngithub" target="_blank" rel="noopener">View Project</a>
+                      <a :href="getSinglePortfolioItem.deploymentLink" class="btndep" target="_blank" rel="noopener">View Code</a>
                   </div>
                 </li>
-
+              
                 <!-- start items list -->
                 <li class="portfolio-item"
                   v-for="screenshot in getSinglePortfolioItem.screenshots"
