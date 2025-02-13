@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Abdellah Ennajari - Portfolio présentant des projets en intelligence artificielle, science des données, compétences et expériences.">
-    <meta name="keywords" content="portfolio, agence, travaux, propre, entreprise, corporatif, créatif, galerie, rtl, moderne, photographie, vue, vuejs, réactif, sass">
+    <meta name="description" content="Portfolio d'Abdellah Ennajari présentant des projets en IA et en science des données, compétences et expériences.">
+    <meta name="keywords" content="portfolio, agence, entreprise, propre, société, corporate, créatif, galerie, rtl, moderne, photographie, vue, vuejs, responsive, sass">
 
-    <!-- Titre de l'onglet du navigateur -->
-    <title>Abdellah Ennajari - Portfolio</title>
+    <!-- titre de l'onglet du navigateur -->
+    <title>Portfolio d'Abdellah Ennajari</title>
 
-    <!-- Favicon du site -->
-    <link rel="icon" href="assets//images/favicon.ico">
+    <!-- favicon -->
+    <link rel="icon" href="assets/images/favicon.ico">
 
-    <!-- Polices -->
+    <!-- polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto&family=Saira+Stencil+One&text=Nafie&display=swap">
 
-    <!-- Fichiers de styles des bibliothèques CSS -->
+    <!-- fichier css des bibliothèques -->
     <link rel="stylesheet" href="styles/libraries.min.css">
 
-    <!-- Fichier CSS pour Bootstrap -->
+    <!-- fichier css bootstrap -->
     <link rel="stylesheet" href="styles/bootstrap.css">
 
-    <!-- Fichier principal de styles -->
+    <!-- fichier de style principal -->
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
@@ -37,7 +37,7 @@
         <div class="circle-cursor circle-cursor-outer" ref="circleCursorOuter"></div>
         <div class="circle-cursor circle-cursor-inner" ref="circleCursorInner"></div>
 
-        <!-- Début de l'écran de préchargement -->
+        <!-- début du préchargeur -->
         <div class="preloader" ref="preloader">
           <div class="preloader-content">
             <div class="logo">
@@ -48,24 +48,24 @@
             </div>
           </div>
         </div>
-        <!-- Fin de l'écran de préchargement -->
+        <!-- fin du préchargeur -->
 
-        <!-- Début de l'en-tête -->
+        <!-- début de l'en-tête -->
         <header class="hide-in-preloading" :class="{
           'big-header': isHeaderBig,
           'small-header': !isHeaderBig,
           'header-hidden': isHeaderHidden
         }">
           <div class="container">
-            <!-- Logo -->
-            <div class="logo" title="Abdellah Ennajari">
-              <h1><a href="rtl-index.html">Abdellah Ennajari</a></h1>
+            <!-- logo -->
+            <div class="logo" title="Ennajari">
+              <h1><a href="index.html">Ennajari</a></h1>
             </div>
 
-            <!-- Liens de navigation -->
+            <!-- liens de navigation -->
             <nav :class="{'menu-open': isNavMenuOpen}" ref="headerNav">
 
-              <!-- Liens de la barre de navigation -->
+              <!-- liens du menu de navigation -->
               <ul class="nav-links">
                 <li v-for="link in navLinks" :key="link.url">
                   <a :href="link.url" @click="closeNavMenu">
@@ -74,23 +74,23 @@
                 </li>
               </ul>
 
-              <!-- Contenu du menu sur les grands appareils (caché sur mobile/tablette) -->
+              <!-- contenu du menu sur les grands appareils (masqué sur mobile/tablette) -->
               <div class="desktop-menu-content" tabindex="-1">
                 <div class="container">
 
-                  <!-- Section À propos -->
+                  <!-- à propos de nous -->
                   <div class="about-us">
                     <p>
-                      Je suis passionné par l'intelligence artificielle et la technologie, et je m'efforce toujours de créer des solutions innovantes et impactantes.
+                      Je suis passionné par l'intelligence artificielle et la technologie, toujours à la recherche de solutions innovantes et impactantes.
                     </p>
                     <h4 class="block-title">
-                      Grâce à une base solide en intelligence artificielle, en informatique et en mathématiques, je suis spécialisé dans le développement d'applications innovantes et la collaboration sur des projets innovants pour repousser les limites de la technologie.
+                      Avec une solide formation en IA, informatique et mathématiques, je me spécialise dans le développement d'applications de pointe et la collaboration sur des projets innovants pour repousser les limites de la technologie.
                     </h4>
                   </div>
 
-                  <!-- Section Informations de contact -->
+                  <!-- informations de contact -->
                   <ul class="contact-info row">
-                    <!-- Informations de l'email -->
+                    <!-- Infos Email -->
                     <li class="col-lg-4">
                       <h4 class="block-title">Email</h4>
                       <ul>
@@ -99,7 +99,7 @@
                       </ul>
                     </li>
 
-                    <!-- Informations de l'adresse -->
+                    <!-- Infos Adresse -->
                     <li class="col-lg-4">
                       <h4 class="block-title">Adresse</h4>
                       <ul>
@@ -109,11 +109,11 @@
                       </ul>
                     </li>
 
-                    <!-- Informations du téléphone -->
+                    <!-- Infos Téléphone -->
                     <li class="col-lg-4">
                       <h4 class="block-title">Téléphone</h4>
                       <ul>
-                        <li><a href="tel:+212655798315">+212 6 55 79 83 15</a></li>
+                        <li><a href="tel:+212655798315">(+212) 655 798 315</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -121,10 +121,10 @@
               </div>
             </nav>
 
-            <!-- Icônes des options -->
+            <!-- icônes des options -->
             <ul class="options-icons">
 
-              <!-- Bouton de changement de langue -->
+              <!-- bouton de sélection de langue -->
               <li class="lang-switcher">
                 <ul class="lang-switcher-menu">
                   <li class="menu-item menu-item-has-children">
@@ -132,26 +132,26 @@
 
                     <ul class="sub-menu">
                       <li class="menu-item">
-                        <a href="rtl-index.html">Fr 🇫🇷</a>
+                        <a href="index.html">En 🇬🇧</a>
                       </li>
                       <li class="menu-item">
-                        <a href="index.html">En 🇬🇧</a>
+                        <a href="rtl-index.html">Fr 🇫🇷</a>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </li>
 
-              <!-- Bouton de changement de thème -->
+              <!-- bouton de sélection de thème -->
               <li class="theme-switcher">
-                <button :class="savedTheme" title="Changer de thème" @click="changeAppTheme"></button>
+                <button :class="savedTheme" title="Changer de Mode" @click="changeAppTheme"></button>
               </li>
 
-              <!-- Bouton du menu hamburger -->
+              <!-- bouton hamburger -->
               <li class="hamburger-btn" :class="{'open': isNavMenuOpen}">
                 <button @click="toggleNavMenu"
-                  title="Basculer le menu latéral"
-                  aria-label="Basculer le menu latéral"
+                  title="Basculer le Menu Latéral"
+                  aria-label="Basculer le Menu Latéral"
                   ref="navMenuToggleBtn">
                   <span></span>
                   <span></span>
@@ -161,17 +161,17 @@
             </ul>
           </div>
         </header>
-        <!-- Fin de l'en-tête -->
+        <!-- fin de l'en-tête -->
 
-        <!-- Début de la page du portfolio -->
+        <!-- début de la page portfolio -->
         <div class="portfolio-page portfolio-section section page">
           <div class="container">
             <div class="section-content">
 
-              <!-- Éléments du portfolio -->
+              <!-- éléments du portfolio -->
               <ul class="portfolio-items has-works" ref="portfolioItems">
                 <li>
-                  <!-- Boîte de texte -->
+                  <!-- boîte de texte -->
                   <div class="text-box-block">
                     <span class="subtitle">
                       <a :href="'rtl-archive-portfolio.html?tax=cat&cat=' + getSinglePortfolioItem.category">{{ getSinglePortfolioItem.category }}</a>
@@ -186,7 +186,7 @@
                   </div>
                 </li>
 
-                <!-- Début de la liste des éléments -->
+                <!-- début de la liste des éléments -->
                 <li class="portfolio-item"
                   v-for="screenshot in getSinglePortfolioItem.screenshots"
                   :key="screenshot.caption.fr">
@@ -195,7 +195,7 @@
                     :href="screenshot.url"
                     :data-glightbox="'title:' + screenshot.caption.fr">
                     <div class="item-img">
-                      <!-- vignettes -->
+                      <!-- miniatures -->
                       <img :src="screenshot.url" :alt="screenshot.caption.fr">
                     </div>
                     <div class="item-details">
@@ -207,16 +207,16 @@
             </div>
           </div>
         </div>
-        <!-- Fin de la page du portfolio -->
+        <!-- fin de la page portfolio -->
 
-        <!-- Début du pied de page -->
+        <!-- début du pied de page -->
         <footer>
           <div class="container">
             <div class="row">
               <div class="col-lg-6">
-                <!-- Logo -->
-                <div class="logo" title="Abdellah Ennajari">
-                  <h1><a href="rtl-index.html">Abdellah Ennajari</a></h1>
+                <!-- logo -->
+                <div class="logo" title="Ennajari">
+                  <h1><a href="index.html">Ennajari</a></h1>
                 </div>
               </div>
               <div class="col-lg-6">
@@ -225,11 +225,11 @@
             </div>
           </div>
         </footer>
-        <!-- Fin du pied de page -->
+        <!-- fin du pied de page -->
 
-        <!-- Bouton de retour en haut -->
+        <!-- bouton de retour en haut -->
         <button class="scroll-to-top" ref="scrollTopBtn"
-          title="Retour en haut"
+          title="Retour en Haut"
           data-show-at="50"
           @click="scrollToTop">
           <svg width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -237,7 +237,7 @@
           </svg>
         </button>
 
-        <!-- Notifications toast -->
+        <!-- notifications toast -->
         <ul class="notifications-container hide-in-preloading">
           <transition-group name="notify">
             <li v-for="notify of notifications"
@@ -254,17 +254,17 @@
           </transition-group>
         </ul>
 
-        <!-- Chargement Ajax -->
+        <!-- chargement ajax -->
         <div class="ajax-loading hide-in-preloading" v-show="isAjaxLoading">
           <span></span>
         </div>
       </div>
     </div>
 
-    <!-- Fichier JavaScript des plugins -->
+    <!-- fichier js des plugins -->
     <script src="scripts/plugins.min.js"></script>
 
-    <!-- Fichier principal JavaScript -->
+    <!-- fichier de script principal -->
     <script src="scripts/main.min.js"></script>
   </body>
 </html>
