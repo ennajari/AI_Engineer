@@ -3805,6 +3805,7 @@ html[dir=rtl] .experience-section .section-content .experience-timeline .timelin
     -webkit-column-count: 3;
        -moz-column-count: 3;
             column-count: 3;
+            margin-top: 3%;
   }
 }
 @media (max-width: 991px) {
