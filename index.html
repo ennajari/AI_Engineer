@@ -1462,10 +1462,9 @@
             background: linear-gradient(90deg, rgba(15,23,42,1) 0%, rgba(15,23,42,0.8) 30%, rgba(15,23,42,0) 100%);
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .hero {
-                min-height: auto;
-                padding: 4rem 0;
+                padding: 5rem 0;
             }
             
             .hero-image {
@@ -1474,7 +1473,23 @@
             }
             
             .hero-content {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .hero-content {
                 text-align: center;
+                padding: 1rem;
             }
             
             .hero h1 {
@@ -1499,8 +1514,200 @@
                 font-size: 1rem;
             }
             
+            .hero-content {
+                padding: 0.5rem;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Enhanced Responsive Styles */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 100%;
+                padding: 0 2rem;
+            }
+            
+            .hero-content {
+                max-width: 80%;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .text-xl {
+                font-size: 1.25rem;
+            }
+            
+            .grid-cols-2, .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .skill-card, .project-card, .testimonial-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .timeline-content {
+                width: 100%;
+                margin-left: 0 !important;
+            }
+            
+            .contact-form {
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .text-xl {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .section {
+                padding: 2rem 0;
+            }
+            
+            .skill-card, .project-card, .testimonial-card {
+                padding: 1rem;
+            }
+            
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info-icon {
+                margin-bottom: 1rem;
+            }
+            
+            .social-icon {
+                margin: 0.5rem;
+            }
+            
+            .navbar {
+                padding: 0.5rem;
+            }
+            
+            .mobile-menu {
+                width: 100%;
+            }
+        }
+        
+        /* Small Phones */
+        @media (max-width: 320px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hero .text-xl {
+                font-size: 0.875rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            .skill-card, .project-card, .testimonial-card {
+                padding: 0.75rem;
+            }
+        }
+        
+        /* Landscape Mode */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+            
+            .section {
+                padding: 2rem 0;
+            }
+            
+            .grid {
+                gap: 1rem;
+            }
+        }
+        
+        /* High DPI Screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
             .hero-image {
-                display: none;
+                background-size: cover;
+            }
+            
+            .skill-card, .project-card, .testimonial-card {
+                box-shadow: var(--shadow-lg);
             }
         }
     </style>
@@ -1514,62 +1721,153 @@
     </div>
 
     <!-- Navigation -->
-    <nav id="navbar" class="navbar fixed top-0 left-0 w-full z-50 py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-primary group">
-                <span class="group-hover:text-primary-dark transition-colors">Ennajari</span>
-            </a>
-            
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#education" class="nav-link">Education</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            
-            <div class="flex items-center space-x-4">
-                <button id="language-toggle" class="theme-toggle group">
-                    <span class="text-sm font-medium">EN</span>
-                    <ion-icon name="language" class="ml-1 group-hover:scale-110 transition-transform"></ion-icon>
-                </button>
-                <a href="https://github.com/ennajari" target="_blank" class="social-icon group">
-                    <ion-icon name="logo-github" class="group-hover:scale-110 transition-transform"></ion-icon>
+    <nav id="navbar" class="navbar fixed top-0 left-0 w-full z-50 py-4 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-primary group relative">
+                    <span class="relative z-10 group-hover:text-primary-dark transition-colors">Ennajari</span>
+                    <span class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></span>
                 </a>
-                <a href="https://www.linkedin.com/in/ennajari-abdellah" target="_blank" class="social-icon group">
-                    <ion-icon name="logo-linkedin" class="group-hover:scale-110 transition-transform"></ion-icon>
-                </a>
-                <button id="theme-toggle" class="theme-toggle group">
-                    <ion-icon name="moon" class="dark:hidden group-hover:scale-110 transition-transform"></ion-icon>
-                    <ion-icon name="sunny" class="hidden dark:block group-hover:scale-110 transition-transform"></ion-icon>
-                </button>
                 
-                <button id="mobile-menu-button" class="md:hidden hamburger">
-                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200 mb-1.5"></span>
-                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200 mb-1.5"></span>
-                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200"></span>
-                </button>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link group">
+                        <span class="relative">
+                            Home
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#about" class="nav-link group">
+                        <span class="relative">
+                            About
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#skills" class="nav-link group">
+                        <span class="relative">
+                            Skills
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#experience" class="nav-link group">
+                        <span class="relative">
+                            Experience
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#education" class="nav-link group">
+                        <span class="relative">
+                            Education
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#contact" class="nav-link group">
+                        <span class="relative">
+                            Contact
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="language-toggle" class="theme-toggle group relative overflow-hidden">
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        <span class="relative flex items-center">
+                            <span class="text-sm font-medium">EN</span>
+                            <ion-icon name="language" class="ml-1 group-hover:scale-110 transition-transform"></ion-icon>
+                        </span>
+                    </button>
+                    
+                    <a href="https://github.com/ennajari" target="_blank" class="social-icon group relative overflow-hidden">
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        <span class="relative">
+                            <ion-icon name="logo-github" class="group-hover:scale-110 transition-transform"></ion-icon>
+                        </span>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/ennajari-abdellah" target="_blank" class="social-icon group relative overflow-hidden">
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        <span class="relative">
+                            <ion-icon name="logo-linkedin" class="group-hover:scale-110 transition-transform"></ion-icon>
+                        </span>
+                    </a>
+                    
+                    <button id="theme-toggle" class="theme-toggle group relative overflow-hidden">
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        <span class="relative">
+                            <ion-icon name="moon" class="dark:hidden group-hover:scale-110 transition-transform"></ion-icon>
+                            <ion-icon name="sunny" class="hidden dark:block group-hover:scale-110 transition-transform"></ion-icon>
+                        </span>
+                    </button>
+                    
+                    <button id="mobile-menu-button" class="md:hidden hamburger relative w-8 h-8 flex flex-col justify-center items-center group">
+                        <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200 mb-1.5 transition-all duration-300 group-hover:bg-primary"></span>
+                        <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200 mb-1.5 transition-all duration-300 group-hover:bg-primary"></span>
+                        <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200 transition-all duration-300 group-hover:bg-primary"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
     
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 p-6 dark:bg-slate-800">
-        <div class="flex justify-between items-center mb-8">
-            <a href="#" class="text-2xl font-bold text-primary">Ennajari</a>
-            <button id="mobile-menu-close" class="text-2xl">
-                <ion-icon name="close"></ion-icon>
-            </button>
-        </div>
-        
-        <div class="flex flex-col space-y-4">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#education" class="nav-link">Education</a>
-            <a href="#contact" class="nav-link">Contact</a>
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-full h-full bg-white dark:bg-slate-900 shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <div class="flex flex-col h-full">
+                <div class="flex justify-between items-center py-6">
+                    <a href="#" class="text-2xl font-bold text-primary">Ennajari</a>
+                    <button id="mobile-menu-close" class="text-2xl text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">
+                        <ion-icon name="close"></ion-icon>
+                    </button>
+                </div>
+                
+                <div class="flex-1 flex flex-col justify-center space-y-8">
+                    <a href="#home" class="nav-link text-2xl font-semibold text-center group">
+                        <span class="relative">
+                            Home
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#about" class="nav-link text-2xl font-semibold text-center group">
+                        <span class="relative">
+                            About
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#skills" class="nav-link text-2xl font-semibold text-center group">
+                        <span class="relative">
+                            Skills
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#experience" class="nav-link text-2xl font-semibold text-center group">
+                        <span class="relative">
+                            Experience
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#education" class="nav-link text-2xl font-semibold text-center group">
+                        <span class="relative">
+                            Education
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#contact" class="nav-link text-2xl font-semibold text-center group">
+                        <span class="relative">
+                            Contact
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="py-6 flex justify-center space-x-6">
+                    <a href="https://github.com/ennajari" target="_blank" class="social-icon group">
+                        <ion-icon name="logo-github" class="group-hover:scale-110 transition-transform"></ion-icon>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ennajari-abdellah" target="_blank" class="social-icon group">
+                        <ion-icon name="logo-linkedin" class="group-hover:scale-110 transition-transform"></ion-icon>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
