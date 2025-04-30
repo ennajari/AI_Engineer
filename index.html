@@ -1155,6 +1155,278 @@
                 display: none;
             }
         }
+
+        /* Add these new responsive styles */
+        @media (max-width: 1024px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .hero-content {
+                padding: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero .text-2xl {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .grid {
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding: 6rem 0 4rem;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .section-title {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .flex-col {
+                gap: 2rem;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-container {
+                padding: 1rem;
+            }
+            
+            .timeline-content {
+                width: 100%;
+                margin-left: 0 !important;
+            }
+            
+            .timeline-dot {
+                left: 0;
+            }
+            
+            .timeline-year {
+                display: none;
+            }
+            
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info-icon {
+                margin-bottom: 1rem;
+            }
+            
+            .social-icon {
+                margin: 0.5rem;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .mobile-menu {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .text-2xl {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .skill-card {
+                padding: 1rem;
+            }
+            
+            .project-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .testimonial-card {
+                padding: 1rem;
+            }
+            
+            .contact-form {
+                padding: 1rem;
+            }
+            
+            .footer {
+                text-align: center;
+            }
+            
+            .footer .flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        /* Add these new styles for better mobile navigation */
+        @media (max-width: 768px) {
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                padding: 1rem;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--light);
+                z-index: 1001;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .mobile-menu.open {
+                transform: translateX(0);
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger span {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background: var(--dark);
+                margin-bottom: 4px;
+            }
+            
+            .hamburger.open span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.open span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+        
+        /* Add these styles for better tablet experience */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-content {
+                max-width: 90%;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .timeline-content {
+                width: 80%;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+        
+        /* Add these styles for better desktop experience */
+        @media (min-width: 1025px) {
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .hero-content {
+                max-width: 50%;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .timeline-content {
+                width: 45%;
+            }
+        }
+        
+        /* Add these styles for better touch interactions on mobile */
+        @media (hover: none) {
+            .btn:hover {
+                transform: none;
+            }
+            
+            .skill-card:hover {
+                transform: none;
+            }
+            
+            .project-card:hover {
+                transform: none;
+            }
+            
+            .social-icon:hover {
+                transform: none;
+            }
+            
+            .timeline-dot:hover {
+                transform: none;
+            }
+        }
+        
+        /* Add these styles for better accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-slate-800">
