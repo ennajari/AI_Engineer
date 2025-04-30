@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Abdellah Ennajari - AI Engineer specializing in Machine Learning, Deep Learning, and Generative AI">
     <meta name="keywords" content="AI Engineer, Machine Learning, Deep Learning, Generative AI, Data Science, Python, TensorFlow, PyTorch">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Abdellah Ennajari | AI Engineer</title>
     <link rel="icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" type="module"></script>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" nomodule></script>
@@ -22,19 +26,35 @@
         :root {
             --primary: #3b82f6;
             --primary-dark: #2563eb;
+            --primary-light: #60a5fa;
             --secondary: #10b981;
+            --secondary-dark: #059669;
+            --secondary-light: #34d399;
             --dark: #1e293b;
+            --dark-light: #334155;
             --light: #f8fafc;
+            --light-dark: #e2e8f0;
             --gray: #64748b;
             --gray-light: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --border-radius: 0.5rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--light);
             color: var(--dark);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         body.dark {
@@ -45,6 +65,35 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
         
         .section {
@@ -52,85 +101,35 @@
             position: relative;
         }
         
-        .section-title {
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title .subtitle {
-            display: inline-block;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.875rem;
-        }
-        
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-image {
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 100%;
-            width: 50%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.5s;
-        }
-        
-        .hero-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(248,250,252,1) 0%, rgba(248,250,252,0.8) 30%, rgba(248,250,252,0) 100%);
-        }
-        
-        body.dark .hero-image::after {
-            background: linear-gradient(90deg, rgba(15,23,42,1) 0%, rgba(15,23,42,0.8) 30%, rgba(15,23,42,0) 100%);
-        }
-        
-        .typed-text {
-            color: var(--primary);
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
         }
         
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
+            border-radius: var(--border-radius);
             font-weight: 600;
             text-align: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            outline: none;
         }
         
         .btn-primary {
             background-color: var(--primary);
             color: white;
-            border: 2px solid var(--primary);
         }
         
         .btn-primary:hover {
             background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: var(--shadow);
         }
         
         .btn-outline {
@@ -1427,6 +1426,83 @@
                 transition: none !important;
             }
         }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 0;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.5s;
+        }
+        
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(248,250,252,1) 0%, rgba(248,250,252,0.8) 30%, rgba(248,250,252,0) 100%);
+        }
+        
+        body.dark .hero-image::after {
+            background: linear-gradient(90deg, rgba(15,23,42,1) 0%, rgba(15,23,42,0.8) 30%, rgba(15,23,42,0) 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+            
+            .hero-image {
+                width: 100%;
+                opacity: 0.3;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .text-xl {
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .text-xl {
+                font-size: 1rem;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-slate-800">
@@ -1500,29 +1576,30 @@
     <!-- Hero Section -->
     <section id="home" class="hero relative overflow-hidden min-h-screen flex items-center">
         <div class="absolute inset-0 z-0">
-            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent dark:from-slate-900/90"></div>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent dark:from-slate-900/90"></div>
+            </div>
         </div>
         
         <div class="container mx-auto px-6 relative z-10">
-            <div class="hero-content max-w-2xl">
+            <div class="hero-content max-w-2xl mx-auto text-center md:text-left">
                 <div class="mb-6">
                     <span class="text-primary font-semibold tracking-wider animate-fade-in">AI & DEEP LEARNING ENGINEER</span>
                 </div>
-                
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-slide-up" data-aos="fade-up">
+
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 animate-slide-up" data-aos="fade-up">
                     Hi, I'm <span class="text-primary">Abdellah Ennajari</span>
                 </h1>
                 
-                <div class="text-2xl md:text-4xl font-bold mb-6 animate-slide-up" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-xl md:text-2xl lg:text-4xl font-bold mb-6 animate-slide-up" data-aos="fade-up" data-aos-delay="100">
                     <span id="typed" class="typed-text"></span>
                 </div>
                 
-                <p class="text-xl mb-8 text-gray-600 dark:text-gray-300 animate-slide-up" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 animate-slide-up" data-aos="fade-up" data-aos-delay="200">
                     AI Engineer specializing in Deep Learning, Computer Vision, and Generative AI. Currently pursuing my degree at ENIAD, developing advanced AI systems that bridge computer vision and natural language processing.
                 </p>
                 
-                <div class="flex flex-wrap gap-4 animate-slide-up" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start animate-slide-up" data-aos="fade-up" data-aos-delay="300">
                     <a href="#contact" class="btn btn-primary group">
                         <span class="flex items-center">
                             Let's Connect
@@ -1536,8 +1613,8 @@
                         </span>
                     </a>
                 </div>
-
-                <div class="mt-12 flex items-center space-x-6 animate-fade-in" data-aos="fade-up" data-aos-delay="400">
+                
+                <div class="mt-12 flex flex-wrap items-center justify-center md:justify-start space-x-6 animate-fade-in" data-aos="fade-up" data-aos-delay="400">
                     <div class="flex items-center space-x-2">
                         <ion-icon name="location" class="text-primary"></ion-icon>
                         <span class="text-gray-600 dark:text-gray-300">Morocco</span>
