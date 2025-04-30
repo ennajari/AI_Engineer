@@ -1,1274 +1,2338 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Abdellah Ennajari - Portfolio showcasing AI and Data Science projects, skills, and experiences.">
-    <meta name="keywords" content="portfolio, agency, business, clean, company, corporate, creative, gallery, rtl, modern, photography, vue, vuejs, responsive, sass">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- title of the browser tab -->
-    <title>Ennajari Abdellah Portfolio</title>
-
-    <!-- favicon -->
-    <link rel="icon" href="assets//images/favicon.ico">
-    <!-- fonts -->
+    <meta name="description" content="Abdellah Ennajari - AI Engineer specializing in Machine Learning, Deep Learning, and Generative AI">
+    <meta name="keywords" content="AI Engineer, Machine Learning, Deep Learning, Generative AI, Data Science, Python, TensorFlow, PyTorch">
+    <title>Abdellah Ennajari | AI Engineer</title>
+    <link rel="icon" href="assets/images/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" type="module"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" nomodule></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto&family=Saira+Stencil+One&text=Nafie&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- css libraries file -->
-    <link rel="stylesheet" href="styles/libraries.min.css">
-<!-- Include Vue.js -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-<!-- Include GSAP for animations -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-<!-- Include ScrollTrigger for scroll animations -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-<!-- Include VanillaTilt for tilt effects -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
-    <!-- bootstrap css file -->
-    <link rel="stylesheet" href="styles/bootstrap.css">
-
-    <!-- main style file -->
-    <link rel="stylesheet" href="styles/main.css">
-  </head>
-  <body>
-    <div id="app">
-      <div id="app-inner" ref="appRef"
-        :class="[savedTheme, {'enable-focus-style': isAnyFocus}]"
-        @click="isAnyFocus = false"
-        @keyup.tab="isAnyFocus = true">
-
-        <div class="circle-cursor circle-cursor-outer" ref="circleCursorOuter"></div>
-        <div class="circle-cursor circle-cursor-inner" ref="circleCursorInner"></div>
-
-        <!-- start preloader-->
-        <div class="preloader" ref="preloader">
-          <div class="preloader-content">
-            <div class="logo">
-              <img src="assets/images/favicon.gif" alt="Your Logo">
-            </div>
-            <div class="loading-bar">
-              <span class="loading-bar-progress"></span>
-            </div>
-          </div>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        body.dark {
+            background-color: #0f172a;
+            color: var(--gray-light);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title .subtitle {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.5s;
+        }
+        
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(248,250,252,1) 0%, rgba(248,250,252,0.8) 30%, rgba(248,250,252,0) 100%);
+        }
+        
+        body.dark .hero-image::after {
+            background: linear-gradient(90deg, rgba(15,23,42,1) 0%, rgba(15,23,42,0.8) 30%, rgba(15,23,42,0) 100%);
+        }
+        
+        .typed-text {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .nav-link {
+            color: var(--gray-light);
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .skill-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        body.dark .skill-card {
+            background-color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        body.dark .skill-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-card {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        body.dark .project-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        body.dark .project-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .tech-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .tech-icon {
+            background-color: #1e293b;
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .social-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--gray-light);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .social-icon {
+            background-color: #334155;
+            color: var(--gray-light);
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .theme-toggle {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--gray-light);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        body.dark .theme-toggle {
+            background-color: #334155;
+            color: var(--gray-light);
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-down-arrow {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-right: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
+            transform: rotate(45deg);
+            margin: 0 auto;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .counter {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .counter-label {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        body.dark .counter-label {
+            color: var(--gray-light);
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            background-color: transparent;
+            color: var(--gray);
+            border: 1px solid var(--gray-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        body.dark .filter-btn {
+            border-color: #334155;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+        
+        body.dark .testimonial-card {
+            background-color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: serif;
+        }
+        
+        .testimonial-avatar {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(248, 250, 252, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .navbar {
+            background-color: rgba(15, 23, 42, 0.8);
+        }
+        
+        .navbar.scrolled {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        body.dark .navbar.scrolled {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .hamburger span {
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .hero-image {
+                width: 100%;
+                opacity: 0.3;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding-top: 6rem;
+                padding-bottom: 4rem;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+        }
+        
+        /* Animation classes */
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 1s ease forwards;
+        }
+        
+        .animate-slide-right {
+            animation: slideRight 1s ease forwards;
+        }
+        
+        .animate-slide-left {
+            animation: slideLeft 1s ease forwards;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        body.dark .preloader {
+            background-color: #0f172a;
+        }
+        
+        .preloader.fade-out {
+            opacity: 0;
+        }
+        
+        .preloader-logo {
+            width: 100px;
+            height: 100px;
+            animation: pulse 1.5s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.75rem;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        body.dark .tooltip .tooltip-text {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        /* Add these new styles */
+        .tech-icon {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .tech-icon:hover::after {
+            left: 100%;
+        }
+        
+        .skill-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .skill-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .skill-progress {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: progress-shine 2s infinite;
+        }
+        
+        @keyframes progress-shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .skill-tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        
+        .skill-card:hover .skill-tooltip {
+            opacity: 1;
+            bottom: -40px;
+        }
+        
+        /* Add these new styles for timeline */
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+            opacity: 0.2;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .timeline-dot:hover {
+            transform: translateX(-50%) scale(1.2);
+            box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.3);
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: calc(50% - 2rem);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: calc(100% + 1rem);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year {
+            left: calc(100% + 1rem);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 1.5rem;
+            }
+            
+            .timeline-dot {
+                left: 1.5rem;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 4rem);
+                margin-left: 3rem !important;
+            }
+            
+            .timeline-year {
+                display: none;
+            }
+        }
+        
+        /* Add these new styles for projects */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-image {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .project-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        
+        /* Enhanced Timeline Styles */
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        
+        .timeline-dot:hover {
+            transform: translateX(-50%) scale(1.2);
+            box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.3);
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: calc(50% - 2rem);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: calc(100% + 1.5rem);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year {
+            left: calc(100% + 1.5rem);
+        }
+        
+        /* Animation Classes */
+        .animate-slide-up {
+            animation: slideUp 1s ease forwards;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 1.5rem;
+            }
+            
+            .timeline-dot {
+                left: 1.5rem;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 4rem);
+                margin-left: 3rem !important;
+            }
+            
+            .timeline-year {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800">
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <img src="https://img.icons8.com/color/96/000000/artificial-intelligence.png" alt="AI Logo" class="preloader-logo">
         </div>
-        <!-- end preloader-->
+    </div>
 
-        <!-- start of header -->
-        <header class="hide-in-preloading" :class="{
-          'big-header': isHeaderBig,
-          'small-header': !isHeaderBig,
-          'header-hidden': isHeaderHidden
-        }">
-          <div class="container">
-            <!-- logo -->
-            <div class="logo" title="Ennajari">
-              <h1><a href="index.html">Ennajari</a></h1>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar fixed top-0 left-0 w-full z-50 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary group">
+                <span class="group-hover:text-primary-dark transition-colors">Ennajari</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
-
-            <!-- nav links -->
-            <nav :class="{'menu-open': isNavMenuOpen}" ref="headerNav">
-
-              <!-- nav menu links -->
-              <ul class="nav-links">
-                <li v-for="link in navLinks" :key="link.url">
-                  <a :href="link.url" @click="closeNavMenu">
-                    {{ link.title.en }}
-                  </a>
-                </li>
-              </ul>
-
-              <!-- menu content in big devices (hidden in mobile/tablet) -->
-              <div class="desktop-menu-content" tabindex="-1">
-                <div class="container">
-              
-                  <!-- About Me Section -->
-                  <div class="about-us">
-                    <p>
-                      I am passionate about artificial intelligence and technology, always striving to create innovative and impactful solutions.
-                    </p>
-                    <h4 class="block-title">
-                      With a strong foundation in AI, computer science, and mathematics, I specialize in developing cutting-edge applications and collaborating on innovative projects to push the boundaries of technology.
-                    </h4>
-                  </div>
-              
-                  <!-- Contact Info Section -->
-                  <ul class="contact-info row">
-                    <!-- Email Info -->
-                    <li class="col-lg-4">
-                      <h4 class="block-title">Email</h4>
-                      <ul>
-                        <li><a href="mailto:abdellahennajari2018@gmail.com">abdellahennajari2018@gmail.com</a></li>
-                      </ul>
-                    </li>
-              
-                    <!-- Address Info -->
-                    <li class="col-lg-4">
-                      <h4 class="block-title">Address</h4>
-                      <ul>
-                        <li>
-                          Morocco
-                        </li>
-                      </ul>
-                    </li>
-              
-                    <!-- Phone Info -->
-                    <li class="col-lg-4">
-                      <h4 class="block-title">Phone</h4>
-                      <ul>
-                        <li><a href="tel:+212655798315">+212655 798 315</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>              
-            </nav>
-
-            <!-- options icons -->
-            <ul class="options-icons">
-
-              <!-- lang switcher button -->
-              <li class="lang-switcher">
-                <ul class="lang-switcher-menu">
-                  <li class="menu-item menu-item-has-children">
-                    <a href="#">En 🇬🇧</a>
-
-                    <ul class="sub-menu">
-                      <li class="menu-item">
-                        <a href="index.html">En 🇬🇧</a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="rtl-index.html">Fr 🇫🇷</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-
-              <!-- theme switcher button -->
-              <li class="theme-switcher">
-                <button :class="savedTheme" title="Change Mode" @click="changeAppTheme"></button>
-              </li>
-
-              <!-- hamburger button -->
-              <li class="hamburger-btn" :class="{'open': isNavMenuOpen}">
-                <button @click="toggleNavMenu"
-                  title="Toggle Side Menu"
-                  aria-label="Toggle Side Menu"
-                  ref="navMenuToggleBtn">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+            
+            <div class="flex items-center space-x-4">
+                <button id="language-toggle" class="theme-toggle group">
+                    <span class="text-sm font-medium">EN</span>
+                    <ion-icon name="language" class="ml-1 group-hover:scale-110 transition-transform"></ion-icon>
                 </button>
-              </li>
-            </ul>
-          </div>
-        </header>
-        <!-- end of header -->
-
-        <!-- start of hero section -->
-        <div id="hero"
-          class="hero-section hide-in-preloading"
-          data-paneffect="true"
-          ref="heroSection">
-          <div class="hero-section">
-            <div class="hero-img">
-              <div class="layer"></div>
-              <div class="layer">
-                <img src="assets/images/hero-img1.png" alt="Hero Image">
-              </div>
-            </div>
-            <div class="hero-text">
-              <h2>AI | ML Engineering Student</h2>
-              <h2>Deep Learning & GenAI Enthusiast</h2>
-              <a href="#contact" class="btn">Contact</a>
-              <a href="#portfolio" style="margin-left: 2%;" class="btn">Project</a>
-              <a href="https://github.com/ennajari" style="margin-left: 2%;" class="btn">Github</a>
-            </div>
-          </div>
-
-          <div class="social">
-            <ul>
-              <li>
-                <a href="https://www.instagram.com/abdellah.ennajari/" target="_blank" rel="noreferrer" v-tooltip="{text: 'Instagram', dir: 'right'}">
-                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                <a href="https://github.com/ennajari" target="_blank" class="social-icon group">
+                    <ion-icon name="logo-github" class="group-hover:scale-110 transition-transform"></ion-icon>
                 </a>
-              </li>
-              <li>
-                <a href="https://github.com/ennajari" target="_blank" rel="noreferrer" v-tooltip="{text: 'GitHub', dir: 'right'}">
-                  <i class="fa fa-github" aria-hidden="true"></i>
+                <a href="https://www.linkedin.com/in/ennajari-abdellah" target="_blank" class="social-icon group">
+                    <ion-icon name="logo-linkedin" class="group-hover:scale-110 transition-transform"></ion-icon>
                 </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/ennajari-abdellah" target="_blank" rel="noreferrer" v-tooltip="{text: 'LinkedIn', dir: 'right'}">
-                  <i class="fa fa-linkedin" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-
-          <div class="scroll-down">
-            <a href="#about" title="Scroll Down">Scroll</a>
-          </div>
-        </div>
-        <!-- end of hero section -->
-
-        <!-- start of statistics section -->
-        <div id="statistics" class="statistics-section section">
-          <div class="section-content">
-            <div class="container">
-              <ul class="statistics-items row">
-                <li class="col-sm-12 col-md-6 col-lg-4">
-                  <a href="#experience">
-                    <div class="icon">
-                      <img src="assets/images/icons/emblem.png" alt="Years of Experience">
-                    </div>
-                    <div class="text">
-                      <h3>1+</h3>
-                      <strong>Years of Experience</strong>
-                    </div>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="col-sm-12 col-md-6 col-lg-4">
-                  <a href="#portfolio">
-                    <div class="icon">
-                      <img src="assets/images/icons/check-mark.png" alt="Completed Projects">
-                    </div>
-                    <div class="text">
-                      <h3>87+</h3>
-                      <strong>Completed Projects</strong>
-                    </div>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="col-sm-12 col-md-6 col-lg-4">
-                  <a href="#testimonials">
-                    <div class="icon">
-                      <img src="assets/images/icons/happy.png" alt="Happy Clients">
-                    </div>
-                    <div class="text">
-                      <h3>63+</h3>
-                      <strong>Happy Clients</strong>
-                    </div>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </a>
-                </li>
-              </ul>
+                <button id="theme-toggle" class="theme-toggle group">
+                    <ion-icon name="moon" class="dark:hidden group-hover:scale-110 transition-transform"></ion-icon>
+                    <ion-icon name="sunny" class="hidden dark:block group-hover:scale-110 transition-transform"></ion-icon>
+                </button>
+                
+                <button id="mobile-menu-button" class="md:hidden hamburger">
+                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200 mb-1.5"></span>
+                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200 mb-1.5"></span>
+                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-gray-200"></span>
+                </button>
             </div>
-          </div>
         </div>
-        <!-- end of statistics section -->
-
-        <!-- start of about section -->
-        <div id="about" class="about-section section" tabindex="-1" ref="aboutSection">
-          <div class="container">
-            <div class="section-content row">
-
-              <!-- about image -->
-              <div class="about-img col-lg-6">
-                <div class="layer" v-clone>
-                  <img src="assets/images/hero-img2.png" alt="User Name">
-                </div>
-              </div>
-
-              <!-- text box -->
-              <div class="about-text col-lg-6">
-                <div class="text-box-inline">
-                  <span class="subtitle">About Me</span>
-                  <h2>
-                    Looking for Innovation? 
-                    <br>
-                    Let’s Collaborate!
-                  </h2>
-                  <p>
-                    Hi! I’m Abdellah Ennajari, an AI enthusiast and developer with a strong background in mathematical sciences and computer science. I am passionate about creating impactful technological solutions, specializing in artificial intelligence and innovative projects. I enjoy transforming ideas into reality using advanced algorithms and creative approaches. I am always eager to learn new technologies, tools, and concepts to enhance my expertise. Beyond working on individual AI-focused projects, I thrive in collaborative environments that value teamwork and innovation.
-                  </p>
-                  <div class="btns-container">
-                    <a href="#contact" class="btn btn-primary">Hire Me</a>
-                    <a download href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" class="btn btn-outline-light">Download CV</a>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <!-- end of about section -->
-
-        <!-- start of skills section -->
-        <div id="skills" class="skills-section section" tabindex="-1">
-          <div class="container">
-            <div class="section-content row">
-        
-              <!-- text box -->
-              <div class="skills-text col-lg-6">
-                <div class="text-box-inline">
-                  <span class="subtitle">My Skills</span>
-                  <h2>
-                    Expertise That Drives 
-                    <br>
-                    Technological Innovation
-                  </h2>
-                  <p>
-                    I possess a robust set of skills in AI Engineering, software engineering, and problem-solving, which enable me to design innovative solutions tailored to complex challenges. I excel in working with advanced technologies, leveraging my knowledge of programming and analytical tools.
-                  </p>
-                  <div ref="skillsSwitchBtn" class="toggle-switch-btn">
-                    <input id="skills-list" type="radio" value="skills" v-model="skillsType" checked>
-                    <label for="skills-list" class="link-hover">Skills</label>
-                    <input id="tools-list" type="radio" value="tools" v-model="skillsType">
-                    <label for="tools-list" class="link-hover">Tools</label>
-                    <span class="switcher-toggle" style="width: calc((100% - 8px) / 2);"></span>
-                  </div>
-                </div>
-              </div>
-        
-              <!-- skills items -->
-              <div class="skills-items col-lg-6">
-        
-<!-- skills list -->
-<ul v-staggerdelay="50" v-show="skillsType === 'skills'">
-  <li tabindex="0" v-tooltip="{text: 'Python Programming', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/python-icon.png" alt="Python">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Machine Learning Engineering', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/ml-icon.png" alt="Machine Learning">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Deep Learning', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/deep-learning-icon.png" alt="Deep Learning">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Data Analysis', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/data-analysis-icon.png" alt="Data Analysis">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Natural Language Processing', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/nlp.png" alt="NLP">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Computer Vision', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/comp.png" alt="Computer Vision">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Data Science', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/data.png" alt="Data Science">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Statistical Analysis & Data Visualization', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/data-analysis-icon.png" alt="Data Analysis">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'ML Pipeline Automation & Deployment', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/mlops.png" alt="MLOps">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Text Processing & Language Models', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/nlp.png" alt="Natural Language Processing">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Image Processing & Visual AI Systems', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/comp.png" alt="Computer Vision">
-    </div>
-  </li>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Scalable AI System Architecture', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/sys.png" alt="System Design">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Java Programming', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/java-logo.png" alt="logo">
-    </div>
-  </li>
-</ul>
- <!-- tools list -->
- <ul v-staggerdelay="50" v-show="skillsType === 'tools'">
-  <li tabindex="0" v-tooltip="{text: 'Jupyter Notebook for Interactive Engineering', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/jupyter-icon.png" alt="Jupyter Notebook">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Git for Version Control & Collaboration', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/git-icon.png" alt="Git">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'TensorFlow for Building AI Models', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/tensorflow-icon.png" alt="TensorFlow">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'PyTorch for Advanced Neural Networks', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/pytorch-icon.png" alt="PyTorch">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'VS Code for Development', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/VS Code.png" alt="VS Code">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'MySQL for Database Management', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/MySQL.png" alt="MySQL">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Environment Management & Package Distribution', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/anaconda-icon.png" alt="Anaconda">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Interactive Development & Experimentation', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/jupyter-icon.png" alt="Jupyter Notebook">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Production-Grade ML Model Development', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/tensorflow-icon.png" alt="TensorFlow">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Research-Oriented Deep Learning', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/pytorch-icon.png" alt="PyTorch">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Container Orchestration & Deployment', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/Docker.png" alt="Docker">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'ML Lifecycle Management', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/MLflow.png" alt="MLflow">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'ML Experiment Tracking', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/Weights.svg" alt="Weights & Biases">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'State-of-the-Art NLP Models', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/hug.png" alt="Hugging Face">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Data Version Control', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/dvc.png" alt="DVC">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Scikit-learn for Machine Learning', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/Scikit-learn.png" alt="Scikit-learn">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'NumPy for Numerical Computing', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/NumPy.png" alt="NumPy">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Pandas for Data Manipulation', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/pandas.png" alt="Pandas">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Matplotlib for Data Visualization', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/Matplotlib.png" alt="Matplotlib">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Seaborn for Statistical Data Visualization', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/seaborn.png" alt="Seaborn">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'SQL Developer for Database Management', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/SQL.png" alt="SQL Developer">
-    </div>
-  </li>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'GitHub for Version Control & Collaboration', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/github.jpg" alt="GitHub">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Jira for Project Management', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/Jira.png" alt="Jira">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'StarUML for Modeling', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/staruml.png" alt="StarUML">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Linux (Ubuntu) for Operating System', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/linux.png" alt="Linux">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Windows (10, 11) for Operating System', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/Windows.png" alt="Windows">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Web Development', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/HTML5.png" alt="HTML5">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Scrum for Agile Methodology', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/scrum.png" alt="Scrum">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'UML for Modeling', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/UML.png" alt="UML">
-    </div>
-  </li>
-  <li tabindex="0" v-tooltip="{text: 'Merise for Modeling', dir: 'top'}">
-    <div class="skill-icon">
-      <img src="assets/images/Merise.png" alt="Merise">
-    </div>
-  </li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<!-- end of skills section -->
-
-        <!-- start of experience section -->
-        <div id="experience" class="experience-section section" tabindex="-1">
-          <div class="container">
-            <div class="section-content row">
-
-              <!-- timeline -->
-              <div class="col-lg-6">
-                <div class="experience-timeline">
-                  <div class="timepath" ref="experienceTimepath">
-                    <span class="line"></span>
-                    <template v-for="line in experienceChunks">
-                      <span class="semicircle"></span>
-                      <span class="line"></span>
-                    </template>
-                  </div>
-
-                  <ul class="timeline-items">
-                    <li class="has-ultimate-tooltip" tabindex="0" v-for="item in experienceItems">
-                      <template v-if="Object.keys(item).length > 0">
-                        <h3>{{ item.date }}</h3>
-                        <div class="ultimate-tooltip">
-                          <h4 class="ultimate-tooltip-title">{{ item.companyName.en }}</h4>
-                          <h5 class="ultimate-tooltip-subtitle">{{ item.jobTitle.en }}</h5>
-                          <p>{{ item.desc.en }}</p>
-                        </div>
-                        <div class="ultimate-tooltip-arrow"></div>
-                      </template>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <!-- text box -->
-              <div class="experience-text col-lg-6">
-                <div class="text-box-inline">
-                  <span class="subtitle">experience</span>
-                  <h2>
-                    1+ Years of Experience
-                    <br>
-                    With Innovative Projects!
-                  </h2>
-                  <p>
-                    I have been working on AI-driven applications and 3D modeling for over 2 years, focusing on creating solutions that are both innovative and user-friendly. From designing intuitive applications to developing interactive 360-degree product views, I aim to deliver impactful results by leveraging advanced technologies and creativity.
-                  </p>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <!-- end of experience section -->
-
-        <!-- start of portfolio section -->
-        <div id="portfolio" class="portfolio-section section" tabindex="-1">
-          <div class="container">
-            <div class="section-content">
-
-              <!-- portfolio items -->
-              <ul class="portfolio-items has-works" ref="portfolioItems" data-no-works-msg="No works to load">
-                <li>
-                  <!-- Introduction Section -->
-                  <div class="text-box-inline">
-                    <span class="subtitle">My Portfolio</span>
-                    <h2>
-                      Explore My Projects in AI, Machine Learning, Deep Learning & GenAI
-                    </h2>
-                    <p>
-                      As an AI engineering student with a focus on Machine Learning, Data Science, and Deep Learning, I am passionate about applying my knowledge to innovative projects. Check out my works that showcase my technical expertise and creativity.
-                    </p>
-                    <ul class="works-filter">
-                      <li v-for="filter in filters" :key="filter">
-                        <button :class="{'active': currentFilter === filter}" @click="filterPortfolioItems(filter)">
-                          {{ filter }}
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              
-                <!-- Portfolio Items List -->
-                <li class="portfolio-item" v-for="work in filteredPortfolioItems" :key="work.title.en">
-                  <a :href="work.url" target="_blank" rel="noopener">
-                    <div class="item-img">
-                      <img :src="work.imgUrl" :alt="work.title.en" />
-                    </div>
-                    <div class="item-details">
-                      <h3 class="title">{{ work.title.en }}</h3>
-                      <div class="date">{{ work.date.en }}</div>
-                      <p class="description">{{ work.description }}</p>
-                      <div class="tags">
-                        <span v-for="tag in work.tags" :key="tag" class="tag">{{ tag }}</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              
-                <!-- Load More Button -->
-                <li>
-                  <button class="more" @click="getPortfolioItems">Load more works</button>
-                </li>
-              </ul>
-              
-            </div>
-          </div>
-        </div>
-        <!-- end of portfolio section -->
-    <!--  Education Section -->
-    <section id="education" class="section" tabindex="-1">
-      <div class="container">
-          <div class="section-title">
-              <span class="subtitle">📚 Education Journey</span>
-              <h2 class="title">Educational Background</h2>
-          </div>
-          <div class="section-content">
-              <ul class="education-items">
-                  <li>
-                      <div class="education-item">
-                          <button class="education-btn" onclick="toggleDetails('eniad')">
-                              <div class="education-header">
-                                  <span class="year">2023 – Present</span>
-                                  <span class="title">National School of Artificial Intelligence and Digitization (ENIAD)</span>
-                                  <span class="emoji">🎓</span>
-                              </div>
-                          </button>
-                          <div id="eniad" class="education-details">
-                              <p class="degree">Engineering Degree in Artificial Intelligence</p>
-                              <ul class="achievements">
-                                  <li>🤖 Specialization in Artificial Intelligence and Data Science</li>
-                                  <li>📊 Advanced coursework in Machine Learning, Deep Learning, and Data Science</li>
-                                  <li>👁️ Practical projects in Computer Vision, Natural Language Processing (NLP), and image classification</li>
-                                  <li>🔬 Research focus on AI applications and innovative technologies</li>
-                                  <li>👥 Active member of the AI student association, participating in hackathons and data science competitions</li>
-                                  <li>🏆 Developed a real-time flower recognition system with 95% accuracy using TensorFlow and Streamlit</li>
-                              </ul>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="education-item">
-                          <button class="education-btn" onclick="toggleDetails('ibn-zohr')">
-                              <div class="education-header">
-                                  <span class="year">2021 – 2023</span>
-                                  <span class="title">Ibn Zohr University, Ouarzazate</span>
-                                  <span class="emoji">🏛️</span>
-                              </div>
-                          </button>
-                          <div id="ibn-zohr" class="education-details">
-                              <p class="degree">Bachelor's Degree in Mathematics and Computer Science</p>
-                              <ul class="achievements">
-                                  <li>📐 Advanced Mathematics and Algorithmic courses</li>
-                                  <li>💻 Computer Science Fundamentals, including programming and software engineering</li>
-                                  <li>🔧 Software Engineering Principles and project management</li>
-                                  <li>🏆 Top of the class with a final project on automated timetable generation using genetic algorithms</li>
-                              </ul>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="education-item">
-                          <button class="education-btn" onclick="toggleDetails('french-cert')">
-                              <div class="education-header">
-                                  <span class="year">2023</span>
-                                  <span class="title">French Language Proficiency Certificate</span>
-                                  <span class="emoji">🇫🇷</span>
-                              </div>
-                          </button>
-                          <div id="french-cert" class="education-details">
-                              <p class="degree">Campus France</p>
-                              <ul class="achievements">
-                                  <li>🗣️ Advanced French Language Skills (B2 Level)</li>
-                                  <li>✍️ Professional Writing Competency</li>
-                                  <li>🎯 Business Communication Focus</li>
-                              </ul>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                    <div class="education-item">
-                        <button class="education-btn" onclick="toggleDetails('youcode')">
-                            <div class="education-header">
-                                <span class="year">July 2023</span>
-                                <span class="title">YouCode, Youssoufia</span>
-                                <span class="emoji">💻</span>
-                            </div>
-                        </button>
-                        <div id="youcode" class="education-details">
-                            <p class="degree">Intensive Training in Full-Stack Web Development</p>
-                            <ul class="achievements">
-                                <li>Mastered modern web technologies and frameworks</li>
-                                <li>Completed practical projects using HTML5, CSS3, JavaScript, and PHP</li>
-                                <li>Gained experience with agile development methodologies</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                  <li>
-                      <div class="education-item">
-                          <button class="education-btn" onclick="toggleDetails('high-school')">
-                              <div class="education-header">
-                                  <span class="year">2020</span>
-                                  <span class="title">El Ouroud High School, Kelaat M’gouna</span>
-                                  <span class="emoji">🏫</span>
-                              </div>
-                          </button>
-                          <div id="high-school" class="education-details">
-                              <p class="degree">Baccalaureate in Physical and Chemical Sciences</p>
-                              <ul class="achievements">
-                                  <li>🔬 Strong foundation in Physics and Chemistry</li>
-                                  <li>📚 Comprehensive education in Mathematics and Sciences</li>
-                                  <li>🏆 Excellent academic performance</li>
-                              </ul>
-                          </div>
-                      </div>
-                  </li>
-                  
-              </ul>
-          </div>
-      </div>
-    </section>
+    </nav>
     
-
-<!-- Recent Articles Section -->
-<section id="recent-articles" class="section" tabindex="-1">
-  <div class="container">
-      <div class="section-title">
-          <span class="subtitle">📝 Latest Insights</span>
-          <h2 class="title">Recent Articles</h2>
-      </div>
-      <div class="section-content">
-          <ul class="articles-items">
-              <li class="article-item">
-                  <a href="article1.html" class="article-link">
-                      <span class="emoji">🤖</span>
-                      <h3 class="article-title">The Future of Artificial Intelligence</h3>
-                      <p class="article-date">January 2025</p>
-                      <p class="article-snippet">Discover how AI is reshaping industries and redefining innovation.</p>
-                      <span class="read-more">Read More →</span>
-                  </a>
-              </li>
-              <li class="article-item">
-                  <a href="article2.html" class="article-link">
-                      <span class="emoji">📊</span>
-                      <h3 class="article-title">Big Data Analytics: Unlocking Hidden Insights</h3>
-                      <p class="article-date">December 2024</p>
-                      <p class="article-snippet">Learn about the latest techniques in big data analysis.</p>
-                      <span class="read-more">Read More →</span>
-                  </a>
-              </li>
-              <li class="article-item">
-                  <a href="article3.html" class="article-link">
-                      <span class="emoji">💊</span>
-                      <h3 class="article-title">Machine Learning in Healthcare</h3>
-                      <p class="article-date">November 2024</p>
-                      <p class="article-snippet">Explore how ML is revolutionizing medical diagnostics.</p>
-                      <span class="read-more">Read More →</span>
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-</section>
-
-<script>
-  // Education Details Toggle
-  function toggleDetails(id) {
-      const details = document.getElementById(id);
-      const allDetails = document.querySelectorAll('.education-details');
-      const currentButton = details.previousElementSibling;
-      const allButtons = document.querySelectorAll('.education-btn');
-
-      // Close all other details
-      allDetails.forEach(detail => {
-          if (detail.id !== id && detail.style.display === 'block') {
-              detail.style.display = 'none';
-              detail.previousElementSibling.classList.remove('active');
-          }
-      });
-
-      // Toggle current details
-      if (details.style.display === 'block') {
-          details.style.display = 'none';
-          currentButton.classList.remove('active');
-      } else {
-          details.style.display = 'block';
-          currentButton.classList.add('active');
-          // Smooth scroll to the details
-          details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-  }
-
-  // Article Animation
-  function handleArticleAnimation() {
-      const articles = document.querySelectorAll('.article-item');
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  setTimeout(() => {
-                      entry.target.style.opacity = '1';
-                      entry.target.style.transform = 'translateY(0)';
-                  }, entry.target.dataset.delay || 0);
-              }
-          });
-      }, { threshold: 0.1 });
-
-      articles.forEach((article, index) => {
-          article.dataset.delay = index * 150; // Stagger the animations
-          observer.observe(article);
-      });
-  }
-
-  // Initialize Theme based on system preference
-  function initializeTheme() {
-      // Check if user has a saved preference
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-          document.documentElement.setAttribute('data-theme', savedTheme);
-          return;
-      }
-
-      // Check system preference
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-          document.documentElement.setAttribute('data-theme', 'light');
-      }
-  }
-
-  // Handle system theme changes
-  function handleSystemThemeChange() {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-          if (!localStorage.getItem('theme')) { // Only change if user hasn't set a preference
-              document.documentElement.setAttribute('data-theme', event.matches ? 'dark' : 'light');
-          }
-      });
-  }
-
-  // Add smooth scrolling to all internal links
-  function initializeSmoothScroll() {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-              e.preventDefault();
-              const targetId = this.getAttribute('href');
-              if (targetId === '#') return;
-
-              const target = document.querySelector(targetId);
-              if (target) {
-                  target.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start'
-                  });
-              }
-          });
-      });
-  }
-
-  // Add intersection observer for fade-in animations
-  function initializeScrollAnimations() {
-      const elements = document.querySelectorAll('.section');
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  entry.target.classList.add('visible');
-                  observer.unobserve(entry.target); // Only animate once
-              }
-          });
-      }, {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-      });
-
-      elements.forEach(element => observer.observe(element));
-  }
-
-  // Handle mobile menu if exists
-  function initializeMobileMenu() {
-      const menuButton = document.querySelector('.mobile-menu-button');
-      const mobileMenu = document.querySelector('.mobile-menu');
-
-      if (menuButton && mobileMenu) {
-          menuButton.addEventListener('click', () => {
-              const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-              menuButton.setAttribute('aria-expanded', !isExpanded);
-              mobileMenu.classList.toggle('active');
-          });
-      }
-  }
-
-  // Add resize observer for height animations
-  function initializeHeightAnimations() {
-      const resizeObserver = new ResizeObserver(entries => {
-          entries.forEach(entry => {
-              const element = entry.target;
-              if (element.classList.contains('education-details')) {
-                  element.style.maxHeight = element.style.display === 'block'
-                      ? `${element.scrollHeight}px`
-                      : '0px';
-              }
-          });
-      });
-
-      document.querySelectorAll('.education-details').forEach(detail => {
-          resizeObserver.observe(detail);
-      });
-  }
-
-  // Initialize everything when DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
-      initializeTheme();
-      handleSystemThemeChange();
-      initializeSmoothScroll();
-      initializeScrollAnimations();
-      initializeMobileMenu();
-      initializeHeightAnimations();
-      handleArticleAnimation();
-  });
-
-  // Handle scroll events efficiently
-  let scrollTimeout;
-  window.addEventListener('scroll', () => {
-      if (!scrollTimeout) {
-          scrollTimeout = setTimeout(() => {
-              scrollTimeout = null;
-              handleArticleAnimation();
-          }, 20);
-      }
-  });
-
-  // Handle page visibility changes
-  document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-          // Reinitialize animations for visible elements
-          handleArticleAnimation();
-      }
-  });
-
-  // Export functions for potential module usage
-  if (typeof module !== 'undefined' && module.exports) {
-      module.exports = {
-          toggleDetails,
-          handleArticleAnimation,
-          initializeTheme,
-          handleSystemThemeChange,
-          initializeSmoothScroll,
-          initializeScrollAnimations,
-          initializeMobileMenu,
-          initializeHeightAnimations
-      };
-  }
-</script>
-
-<!-- /////////////////////////////////////////////////////////////////////////////////// -->
- <!-- start of testimonials section -->
-<div id="testimonials" class="testimonials-section section" tabindex="-1" ref="testimonialsSection">
-  <div class="container">
-    <div class="section-title">
-      <span class="subtitle">Testimonials</span>
-      <h2 class="title">
-        What People
-        <br>
-        Say About My Work?
-      </h2>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 p-6 dark:bg-slate-800">
+        <div class="flex justify-between items-center mb-8">
+            <a href="#" class="text-2xl font-bold text-primary">Ennajari</a>
+            <button id="mobile-menu-close" class="text-2xl">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </div>
+        
+        <div class="flex flex-col space-y-4">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
     </div>
-    <div class="section-content">
-      <ul class="testimonials-items" v-staggerdelay="500">
-        <li class="has-ultimate-tooltip"
-            tabindex="0"
-            v-for="item in testimonialsItems"
-            :key="item.quoteAuthor.en">
-          <div class="testimonials-item">
-            <div class="testimonial-author-img">
-              <img :src="item.imgUrl || 'assets/images/testimonials/anonymous-user.png'" :alt="item.quoteAuthor.en">
-            </div>
-            <div class="ultimate-tooltip">
-              <p>{{ item.quoteContent.en }}</p>
-              <h4 class="ultimate-tooltip-title">{{ item.quoteAuthor.en }}</h4>
-              <h5 class="ultimate-tooltip-subtitle">{{ item.jobTitle.en }}</h5>
-            </div>
-            <div class="ultimate-tooltip-arrow"></div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<!-- end of testimonials section -->
 
-<!-- start of contact section -->
-<!-- start of contact section -->
-<div id="contact" class="contact-section section" tabindex="-1">
-  <div class="container">
-    <div class="section-content row">
-      <!-- text box -->
-      <div class="contact-text col-lg-6">
-        <div class="text-box-inline">
-          <span class="subtitle">contact</span>
-          <h2>
-            Have You Any Project?
-            <br>
-            Please Drop a Message
-          </h2>
-          <p>
-            Get in touch and let me know how I can help. Fill out the form and I’ll be in touch as soon as possible.
-          </p>
+    <!-- Hero Section -->
+    <section id="home" class="hero relative overflow-hidden min-h-screen flex items-center">
+        <div class="absolute inset-0 z-0">
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent dark:from-slate-900/90"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="hero-content max-w-2xl">
+                <div class="mb-6">
+                    <span class="text-primary font-semibold tracking-wider animate-fade-in">AI & DEEP LEARNING ENGINEER</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-slide-up" data-aos="fade-up">
+                    Hi, I'm <span class="text-primary">Abdellah Ennajari</span>
+                </h1>
+                
+                <div class="text-2xl md:text-4xl font-bold mb-6 animate-slide-up" data-aos="fade-up" data-aos-delay="100">
+                    <span id="typed" class="typed-text"></span>
+                </div>
+                
+                <p class="text-xl mb-8 text-gray-600 dark:text-gray-300 animate-slide-up" data-aos="fade-up" data-aos-delay="200">
+                    AI Engineer specializing in Deep Learning, Computer Vision, and Generative AI. Currently pursuing my degree at ENIAD, developing advanced AI systems that bridge computer vision and natural language processing.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 animate-slide-up" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#contact" class="btn btn-primary group">
+                        <span class="flex items-center">
+                            Let's Connect
+                            <ion-icon name="arrow-forward" class="ml-2 group-hover:translate-x-1 transition-transform"></ion-icon>
+                        </span>
+                    </a>
+                    <a href="#projects" class="btn btn-outline group">
+                        <span class="flex items-center">
+                            View My Work
+                            <ion-icon name="arrow-down" class="ml-2 group-hover:translate-y-1 transition-transform"></ion-icon>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="mt-12 flex items-center space-x-6 animate-fade-in" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center space-x-2">
+                        <ion-icon name="location" class="text-primary"></ion-icon>
+                        <span class="text-gray-600 dark:text-gray-300">Morocco</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <ion-icon name="mail" class="text-primary"></ion-icon>
+                        <a href="mailto:abdellahennajari2018@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">abdellahennajari2018@gmail.com</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <ion-icon name="call" class="text-primary"></ion-icon>
+                        <a href="tel:+212655798315" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">+212 6 5579-8315</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- contact info -->
-        <ul class="contact-info">
-          <li>
-            <img src="assets/images/icons/address.png" alt="Address">
-            <div>
-              <strong>Address:</strong>
-              Morocco
-            </div>
-          </li>
-          <li>
-            <img src="assets/images/icons/phone.png" alt="Phone">
-            <div>
-              <strong>Phone:</strong>
-              <ul>
-                <li><a href="tel:+212655798315" class="ltr-dir">(+212) 655 798 315</a></li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <img src="assets/images/icons/email.png" alt="Email">
-            <div>
-              <strong>Email:</strong>
-              <ul>
-                <li><a href="mailto:abdellahennajari2018@gmail.com">abdellahennajari2018@gmail.com</a></li>
-                <li><a href="mailto:abdellah.ennajari.23@ump.ac.ma">abdellah.ennajari.23@ump.ac.ma</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-
-       
- <!-- social links -->
- <div class="social d-flex">
-  <ul class="list-unstyled d-flex">
-    <li class="social-icon me-3">
-      <a href="https://www.instagram.com/abdellah.ennajari/" target="_blank" rel="noreferrer">
-        <i class="fa fa-instagram" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-icon me-3">
-      <a href="https://github.com/ennajari" target="_blank" rel="noreferrer">
-        <i class="fa fa-github" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-icon">
-      <a href="https://www.linkedin.com/in/ennajari-abdellah" target="_blank" rel="noreferrer">
-        <i class="fa fa-linkedin" aria-hidden="true"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-</div>
-
-      <!-- contact form -->
-      <div class="col-lg-6">
-        <form ref="contactForm"
-              class="contact-form form-styled"
-              action="https://formspree.io/f/mdkkqlyy"
-              method="POST"
-              data-success-msg="Message sent successfully!"
-              data-err-msg="Oops! something went wrong, please try again.">
-          <div class="group">
-            <label>Name</label>
-            <div class="control has-prefix-icon">
-              <input type="text"
-                     name="name"
-                     placeholder="e.g. John Doe"
-                     minlength="3"
-                     required>
-              <i class="fa fa-user-circle prefix-icon" aria-hidden="true"></i>
-
-              <!-- validation errors messages -->
-              <div class="errors-msgs">
-                <input class="required" type="hidden" value="Name is required">
-                <input class="minLength" type="hidden" value="Name must be at least 3 characters">
-              </div>
-            </div>
-          </div>
-          <div class="group">
-            <label>Email</label>
-            <div class="control has-prefix-icon">
-              <input class="ltr-dir"
-                     type="email"
-                     inputmode="email"
-                     name="email"
-                     placeholder="e.g. john.doe@gmail.com"
-                     required>
-              <i class="fa fa-envelope prefix-icon" aria-hidden="true"></i>
-
-              <!-- validation errors messages -->
-              <div class="errors-msgs">
-                <input class="required" type="hidden" value="Email is required">
-                <input class="invalid" type="hidden" value="Please enter a valid email address">
-              </div>
-            </div>
-          </div>
-          <div class="group phone-number">
-            <label>Phone <span class="optional">(Optional)</span></label>
-            <div class="control has-prefix-icon">
-              <input type="tel"
-                     inputmode="tel"
-                     name="phone"
-                     placeholder="Phone Number">
-              <i class="fa fa-phone prefix-icon" aria-hidden="true"></i>
-
-              <!-- validation errors messages -->
-              <div class="errors-msgs">
-                <input class="invalid" type="hidden" value="Please enter a valid Phone Number">
-              </div>
-            </div>
-          </div>
-          <div class="group">
-            <label>Message</label>
-            <div class="control has-prefix-icon">
-              <textarea name="message" placeholder="Write message..." required></textarea>
-              <i class="fa fa-comments prefix-icon" aria-hidden="true"></i>
-
-              <!-- validation errors messages -->
-              <div class="errors-msgs">
-                <input class="required" type="hidden" value="Message is required">
-              </div>
-            </div>
-          </div>
-          <div class="group">
-            <div class="control">
-              <button class="submit-btn btn btn-dark" type="submit">Send</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end of contact section -->
-
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <!-- logo -->
-        <div class="logo" title="Ennajari">
-          <h1><a href="index.html">Ennajari</a></h1>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="scroll-down-arrow"></a>
         </div>
-      </div>
-      <div class="col-lg-6">
-        &copy; {{ copyrightDate }} All rights reserved.
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- end of footer -->
+    </section>
 
-<!-- scroll to top button -->
-<button class="scroll-to-top" ref="scrollTopBtn"
-  title="Back To Top"
-  data-show-at="50"
-  @click="scrollToTop">
-  <svg width="100%" height="100%" viewBox="-1 -1 102 102">
-    <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-  </svg>
-</button>
+    <!-- About Section -->
+    <section id="about" class="section bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Abdellah Ennajari" 
+                                 class="rounded-lg shadow-xl transform transition duration-500 group-hover:scale-105">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <div class="section-title">
+                        <span class="subtitle">About Me</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">AI & Deep Learning Engineer</h2>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        I'm a dedicated AI Engineer currently pursuing my degree at ENIAD (École Nationale d'Intelligence Artificielle et de Digital) in Berkane, Morocco. My expertise spans across Deep Learning, Computer Vision, and Generative AI, with a focus on developing innovative solutions that bridge the gap between research and real-world applications.
+                    </p>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        My work focuses on building scalable AI systems that combine computer vision and natural language processing. I specialize in developing advanced deep learning models, particularly in 3D vision and multimodal learning, to solve complex real-world challenges.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center p-4 bg-gray-50 dark:bg-slate-800 rounded-lg group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                            <ion-icon name="code-slash" class="text-primary text-2xl mr-3 group-hover:scale-110 transition-transform"></ion-icon>
+                            <div>
+                                <h4 class="font-semibold">Deep Learning</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Neural Networks & AI Models</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-gray-50 dark:bg-slate-800 rounded-lg group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                            <ion-icon name="eye" class="text-primary text-2xl mr-3 group-hover:scale-110 transition-transform"></ion-icon>
+                            <div>
+                                <h4 class="font-semibold">Computer Vision</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">3D Vision & Image Processing</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-gray-50 dark:bg-slate-800 rounded-lg group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                            <ion-icon name="cube" class="text-primary text-2xl mr-3 group-hover:scale-110 transition-transform"></ion-icon>
+                            <div>
+                                <h4 class="font-semibold">Generative AI</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Diffusion Models & LLMs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-gray-50 dark:bg-slate-800 rounded-lg group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                            <ion-icon name="analytics" class="text-primary text-2xl mr-3 group-hover:scale-110 transition-transform"></ion-icon>
+                            <div>
+                                <h4 class="font-semibold">MLOps</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Deployment & Monitoring</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="btn btn-primary group">
+                            <span class="flex items-center">
+                                Hire Me
+                                <ion-icon name="arrow-forward" class="ml-2 group-hover:translate-x-1 transition-transform"></ion-icon>
+                            </span>
+                        </a>
+                        <a href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" 
+                           class="btn btn-outline group" 
+                           download>
+                            <span class="flex items-center">
+                                Download CV
+                                <ion-icon name="download" class="ml-2 group-hover:translate-y-1 transition-transform"></ion-icon>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- toast notifications -->
-<ul class="notifications-container hide-in-preloading">
-  <transition-group name="notify">
-    <li v-for="notify of notifications"
-      :key="notify.id"
-      :id="notify.id"
-      :class="['notification', 'show', notify.className, notify.time && 'timer']"
-    >
-      {{ notify.msg }}
-      <i class="fa fa-times link-hover" aria-hidden="true" @click="dismissNotify(notify.id)"></i>
-      <span v-if="notify.time"
-        class="disappearing-time"
-        :style="{ 'animation-duration': notify.time + 'ms' }"></span>
-    </li>
-  </transition-group>
-</ul>
+    <!-- Stats Section -->
+    <section class="section bg-gray-100 dark:bg-slate-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="counter mb-2" data-count="87">0</div>
+                    <div class="counter-label">Projects Completed</div>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="counter mb-2" data-count="63">0</div>
+                    <div class="counter-label">Happy Clients</div>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="counter mb-2" data-count="2">0</div>
+                    <div class="counter-label">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ajax loading -->
-<div class="ajax-loading hide-in-preloading" v-show="isAjaxLoading">
-  <span></span>
-</div>
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-gray-100 dark:bg-slate-800">
+        <div class="container mx-auto px-6">
+            <div class="section-title text-center">
+                <span class="subtitle">Technical Expertise</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">My Skills</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    A comprehensive overview of my technical capabilities and proficiency levels in various AI and development domains.
+                </p>
+            </div>
+            
+            <div class="flex justify-center mb-8">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button type="button" class="filter-btn active" data-filter="all">All</button>
+                    <button type="button" class="filter-btn" data-filter="deep-learning">Deep Learning</button>
+                    <button type="button" class="filter-btn" data-filter="computer-vision">Computer Vision</button>
+                    <button type="button" class="filter-btn" data-filter="nlp">NLP & GenAI</button>
+                    <button type="button" class="filter-btn" data-filter="mlops">MLOps</button>
+                </div>
+            </div>
+              
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Deep Learning Skills -->
+                <div class="skill-card group" data-category="deep-learning" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">TensorFlow</h3>
+                        <div class="skill-tooltip">Expert Level - 95%</div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Expert</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="skill-progress bg-primary h-2 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Advanced TensorFlow for building and deploying deep learning models, including custom architectures and optimization techniques.
+                    </p>
+                </div>
+                
+                <div class="skill-card group" data-category="deep-learning" data-aos="fade-up" data-aos-delay="50">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">PyTorch</h3>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Expert</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Research-oriented deep learning framework for cutting-edge AI models and custom architectures.
+                    </p>
+                </div>
+                
+                <!-- Computer Vision Skills -->
+                <div class="skill-card group" data-category="computer-vision" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">OpenCV</h3>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Expert</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Advanced computer vision techniques for image processing, feature extraction, and real-time applications.
+                    </p>
+                </div>
+                
+                <div class="skill-card group" data-category="computer-vision" data-aos="fade-up" data-aos-delay="50">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch3D" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">PyTorch3D</h3>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Advanced</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        3D deep learning and computer vision for mesh processing, point clouds, and 3D reconstruction.
+                    </p>
+                </div>
+                
+                <!-- NLP & Generative AI Skills -->
+                <div class="skill-card group" data-category="nlp" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/huggingface/huggingface-original.svg" alt="Hugging Face" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">Hugging Face</h3>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Advanced</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Transformer models, fine-tuning, and deployment of state-of-the-art language models.
+                    </p>
+                </div>
+                
+                <div class="skill-card group" data-category="nlp" data-aos="fade-up" data-aos-delay="50">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="LangChain" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">LangChain</h3>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Advanced</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Building and deploying LLM applications with RAG architectures and agent-based systems.
+                    </p>
+                </div>
+                
+                <!-- MLOps Skills -->
+                <div class="skill-card group" data-category="mlops" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">Docker</h3>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Advanced</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Containerization and deployment of AI models with Docker and Kubernetes.
+                    </p>
+                </div>
+                
+                <div class="skill-card group" data-category="mlops" data-aos="fade-up" data-aos-delay="50">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">Kubernetes</h3>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Intermediate</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Orchestration and scaling of AI applications in production environments.
+                    </p>
+                </div>
+                
+                <div class="skill-card group" data-category="mlops" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="tech-icon group-hover:bg-primary group-hover:text-white transition-colors">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="MLflow" class="w-6 h-6">
+                        </div>
+                        <h3 class="font-bold ml-3">MLflow</h3>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span>Advanced</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        Model tracking, versioning, and deployment pipeline management.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- js plugins file -->
-<script src="scripts/plugins.min.js"></script>
-<script>
-  new Vue({
-    el: '#app',
-    data: {
-      notifications: [
-        { id: 1, msg: 'Notification 1', className: 'success', time: 3000 },
-        { id: 2, msg: 'Notification 2', className: 'danger', time: 5000 },
-        { id: 3, msg: 'Notification 3', className: 'info', time: 2000 }
-      ]
-    },
-    methods: {
-      dismissNotify(id) {
-        this.notifications = this.notifications.filter(notify => notify.id !== id);
-      }
-    }
-  });
-</script>
-<!-- main script file -->
-<script src="scripts/main.min.js"></script>
-      </div>
-    </div>
-  </body>
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="section-title text-center">
+                <span class="subtitle">My Work</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    A showcase of my most impactful AI and machine learning projects, demonstrating my technical expertise and problem-solving abilities.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <!-- Project 1 -->
+                <div class="project-card group" data-aos="fade-up">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1655720828012-585b4249d0a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Flower Recognition System" 
+                             class="w-full h-64 object-cover">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">TensorFlow</span>
+                            <span class="project-tag">Computer Vision</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Flower Recognition System</h3>
+                        <p class="text-gray-200 mb-4">Real-time flower classification with 95% accuracy using TensorFlow and Streamlit.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <ion-icon name="logo-github"></ion-icon>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <ion-icon name="link"></ion-icon>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Sentiment Analysis Tool" 
+                             class="w-full h-64 object-cover">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Transformers</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Sentiment Analysis Tool</h3>
+                        <p class="text-gray-200 mb-4">NLP application for analyzing customer reviews with BERT and Hugging Face.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <ion-icon name="logo-github"></ion-icon>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <ion-icon name="link"></ion-icon>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Stock Market Predictor" 
+                             class="w-full h-64 object-cover">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">LSTM</span>
+                            <span class="project-tag">Time Series</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Stock Market Predictor</h3>
+                        <p class="text-gray-200 mb-4">LSTM-based model for stock price forecasting with 85% accuracy.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <ion-icon name="logo-github"></ion-icon>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="project-link">
+                                <ion-icon name="link"></ion-icon>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="https://github.com/ennajari" 
+                   class="btn btn-primary group" 
+                   target="_blank">
+                    <span class="flex items-center">
+                        View All Projects
+                        <ion-icon name="arrow-forward" class="ml-2 group-hover:translate-x-1 transition-transform"></ion-icon>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="section-title text-center" data-aos="fade-up">
+                <span class="subtitle animate-pulse">My Education</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800 dark:text-white animate-slide-up">Academic Journey</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 animate-fade-in">
+                    My educational background in the field of AI and Data Science.
+                </p>
+            </div>
+            
+            <div class="timeline-container mt-12 relative">
+                <!-- Timeline Line -->
+                <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary to-secondary opacity-20"></div>
+                
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item group" data-aos="fade-right">
+                    <div class="timeline-dot group-hover:scale-110 transition-transform duration-300">
+                        <ion-icon name="school" class="text-white animate-bounce"></ion-icon>
+                    </div>
+                    <span class="timeline-year text-primary dark:text-primary animate-pulse">2023 - Present</span>
+                    <div class="timeline-content bg-white dark:bg-slate-800 shadow-lg transform transition-all duration-500 group-hover:scale-105 group-hover:shadow-xl">
+                        <div class="relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                            <div class="relative p-6">
+                                <h3 class="font-bold text-lg text-slate-800 dark:text-white transform transition-transform duration-300 group-hover:translate-x-2">National School of Artificial Intelligence and Digitization (ENIAD)</h3>
+                                <h4 class="text-primary dark:text-primary mb-2 transform transition-transform duration-300 group-hover:translate-x-2">Engineering Degree in Artificial Intelligence</h4>
+                                <p class="text-gray-600 dark:text-gray-300 transform transition-transform duration-300 group-hover:translate-x-2">
+                                    Specializing in Artificial Intelligence and Data Science with advanced coursework in Machine Learning, Deep Learning, and Data Science. Practical projects in Computer Vision, Natural Language Processing (NLP), and image classification.
+                                </p>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm transform transition-transform duration-300 group-hover:translate-y-1">Machine Learning</span>
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm transform transition-transform duration-300 group-hover:translate-y-1">Deep Learning</span>
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm transform transition-transform duration-300 group-hover:translate-y-1">Computer Vision</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item group" data-aos="fade-left">
+                    <div class="timeline-dot group-hover:scale-110 transition-transform duration-300">
+                        <ion-icon name="school" class="text-white animate-bounce"></ion-icon>
+                    </div>
+                    <span class="timeline-year text-primary dark:text-primary animate-pulse">2021 - 2023</span>
+                    <div class="timeline-content bg-white dark:bg-slate-800 shadow-lg transform transition-all duration-500 group-hover:scale-105 group-hover:shadow-xl">
+                        <div class="relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                            <div class="relative p-6">
+                                <h3 class="font-bold text-lg text-slate-800 dark:text-white transform transition-transform duration-300 group-hover:translate-x-2">Ibn Zohr University</h3>
+                                <h4 class="text-primary dark:text-primary mb-2 transform transition-transform duration-300 group-hover:translate-x-2">Bachelor's Degree in Mathematics and Computer Science</h4>
+                                <p class="text-gray-600 dark:text-gray-300 transform transition-transform duration-300 group-hover:translate-x-2">
+                                    Advanced Mathematics and Algorithmic courses. Computer Science Fundamentals, including programming and software engineering. Top of the class with a final project on automated timetable generation using genetic algorithms.
+                                </p>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm transform transition-transform duration-300 group-hover:translate-y-1">Mathematics</span>
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm transform transition-transform duration-300 group-hover:translate-y-1">Algorithms</span>
+                                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm transform transition-transform duration-300 group-hover:translate-y-1">Programming</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section bg-gray-100 dark:bg-slate-800">
+        <div class="container mx-auto px-6">
+            <div class="section-title text-center">
+                <span class="subtitle">Professional Journey</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    My professional experience in Machine Learning and Computer Vision.
+                </p>
+            </div>
+            
+            <div class="mt-12">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot">
+                        <ion-icon name="briefcase"></ion-icon>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-lg group hover:shadow-xl transition-shadow">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-lg group-hover:text-primary transition-colors">Machine Learning Intern</h3>
+                            <span class="bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded-full">2024</span>
+                        </div>
+                        <h4 class="text-primary mb-2">3D Smart Factory, Casablanca</h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Developed a 3D classification system achieving 97% accuracy using TensorFlow, Keras, and PyTorch3D. Implemented advanced computer vision techniques for industrial applications.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">TensorFlow</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Keras</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">PyTorch3D</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-dot">
+                        <ion-icon name="briefcase"></ion-icon>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-lg group hover:shadow-xl transition-shadow">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-lg group-hover:text-primary transition-colors">Computer Vision Intern</h3>
+                            <span class="bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded-full">2024</span>
+                        </div>
+                        <h4 class="text-primary mb-2">HGS-Hightech, Remote</h4>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Created a 360° visualization system using Deep Learning techniques. Developed a web interface for real-time image processing and visualization.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Deep Learning</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Web Development</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Computer Vision</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Real-time Processing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section bg-gray-100 dark:bg-slate-800">
+        <div class="container mx-auto px-6">
+            <div class="section-title text-center">
+                <span class="subtitle">Testimonials</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What People Say</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    Feedback from colleagues, professors, and clients I've worked with.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="mb-4">
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Professor Ahmed" class="testimonial-avatar mr-4">
+                            <div>
+                                <h4 class="font-bold">Professor Ahmed</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">AI Professor at ENIAD</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        "Abdellah is one of the most talented students I've had the pleasure to teach. His deep understanding of machine learning concepts and ability to apply them to real-world problems is exceptional."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah" class="testimonial-avatar mr-4">
+                            <div>
+                                <h4 class="font-bold">Sarah</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Data Science Team Lead</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        "Working with Abdellah on our fraud detection project was a great experience. His innovative approach to problem-solving and attention to detail significantly improved our model's performance."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4">
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael" class="testimonial-avatar mr-4">
+                            <div>
+                                <h4 class="font-bold">Michael</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Startup Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        "Abdellah developed an AI solution for our business that exceeded our expectations. His technical expertise combined with his ability to understand business needs makes him a valuable asset to any team."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="section-title text-center">
+                <span class="subtitle">Get In Touch</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Me</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row mt-12">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12" data-aos="fade-right">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4">Let's Talk About Your Project</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            I'm currently available for freelance work, internships, and full-time positions. If you have a project that needs creative solutions, I'd love to hear about it.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <ion-icon name="mail"></ion-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <a href="mailto:abdellahennajari2018@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-primary">abdellahennajari2018@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <ion-icon name="call"></ion-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Phone</h4>
+                                <a href="tel:+212655798315" class="text-gray-600 dark:text-gray-300 hover:text-primary">+212 655 798 315</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <ion-icon name="location"></ion-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Location</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Morocco</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold mb-4">Follow Me</h4>
+                        <div class="flex">
+                            <a href="https://github.com/ennajari" class="social-icon" target="_blank" rel="noopener noreferrer">
+                                <ion-icon name="logo-github"></ion-icon>
+                            </a>
+                            <a href="https://www.linkedin.com/in/ennajari-abdellah" class="social-icon" target="_blank" rel="noopener noreferrer">
+                                <ion-icon name="logo-linkedin"></ion-icon>
+                            </a>
+                            <a href="https://www.instagram.com/abdellah.ennajari/" class="social-icon" target="_blank" rel="noopener noreferrer">
+                                <ion-icon name="logo-instagram"></ion-icon>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-slate-800">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-slate-800">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-slate-800">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-slate-800"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-slate-800 py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-2xl font-bold text-primary">Ennajari</a>
+                </div>
+                
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary">Home</a>
+                    <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary">About</a>
+                    <a href="#skills" class="text-gray-600 dark:text-gray-300 hover:text-primary">Skills</a>
+                    <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-primary">Projects</a>
+                    <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary">Contact</a>
+                </div>
+                
+                <div class="text-gray-600 dark:text-gray-300">
+                    &copy; <span id="year"></span> Abdellah Ennajari. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary text-white shadow-lg hidden items-center justify-center">
+        <ion-icon name="arrow-up" class="text-xl"></ion-icon>
+    </button>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme');
+        
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            document.body.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark');
+            const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            this.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+        
+        mobileMenuClose.addEventListener('click', function() {
+            mobileMenuButton.classList.remove('open');
+            mobileMenu.classList.remove('open');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuButton.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Typed.js Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const typed = new Typed('#typed', {
+                strings: [
+                    'AI Engineer',
+                    'Machine Learning Specialist',
+                    'Deep Learning Enthusiast',
+                    'Generative AI Developer',
+                    'Data Scientist'
+                ],
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: true
+            });
+        });
+
+        // AOS Animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+                backToTopButton.classList.add('flex');
+            } else {
+                backToTopButton.classList.add('hidden');
+                backToTopButton.classList.remove('flex');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        
+        function animateCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+        
+        // Start counter animation when section is in view
+        const statsSection = document.querySelector('.bg-gray-100');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(statsSection);
+
+        // Filter Projects
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const skillCards = document.querySelectorAll('.skill-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                // Filter skill cards
+                skillCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            // For now, we'll just show a success message
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Add this before the closing </body> tag -->
+    <script>
+        // Language Toggle
+        const languageToggle = document.getElementById('language-toggle');
+        const currentLanguage = localStorage.getItem('language') || 'en';
+        
+        // Language content
+        const content = {
+            en: {
+                title: "Hi, I'm Abdellah Ennajari",
+                subtitle: "AI ENGINEER & RESEARCHER",
+                description: "AI student at ENIAD, motivated to contribute to innovative projects in Machine Learning, Deep Learning, Computer Vision and NLP. Looking for a 2-3 month internship (July 2025).",
+                // Add more translations as needed
+            },
+            fr: {
+                title: "Bonjour, je suis Abdellah Ennajari",
+                subtitle: "INGÉNIEUR IA & CHERCHEUR",
+                description: "Étudiant en IA à l'ENIAD, motivé à contribuer à des projets innovants en Machine Learning, Deep Learning, Computer Vision et NLP. À la recherche d'un stage de 2-3 mois (juillet 2025).",
+                // Add more translations as needed
+            }
+        };
+        
+        function updateLanguage(lang) {
+            document.documentElement.lang = lang;
+            localStorage.setItem('language', lang);
+            
+            // Update text content
+            document.querySelector('.hero-content h1').textContent = content[lang].title;
+            document.querySelector('.hero-content .text-primary').textContent = content[lang].subtitle;
+            document.querySelector('.hero-content p').textContent = content[lang].description;
+            
+            // Update language toggle text
+            languageToggle.querySelector('span').textContent = lang.toUpperCase();
+        }
+        
+        languageToggle.addEventListener('click', function() {
+            const newLang = currentLanguage === 'en' ? 'fr' : 'en';
+            updateLanguage(newLang);
+        });
+        
+        // Initialize language
+        updateLanguage(currentLanguage);
+    </script>
+
+    <!-- Add this script for timeline animations -->
+    <script>
+        // Timeline Animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        function checkTimelineItems() {
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (itemTop < windowHeight * 0.8) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkTimelineItems);
+        window.addEventListener('load', checkTimelineItems);
+    </script>
+
+    <!-- Add this script for project interactions -->
+    <script>
+        // Project Modal
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const modal = document.createElement('div');
+                modal.className = 'project-modal';
+                
+                const content = `
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <h2 class="text-2xl font-bold mb-4">${this.querySelector('h3').textContent}</h2>
+                        <img src="${this.querySelector('img').src}" alt="${this.querySelector('img').alt}" class="w-full h-64 object-cover mb-4">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">${this.querySelector('p').textContent}</p>
+                        <div class="project-tags mb-4">
+                            ${Array.from(this.querySelectorAll('.project-tag')).map(tag => tag.outerHTML).join('')}
+                        </div>
+                        <div class="project-links">
+                            ${Array.from(this.querySelectorAll('.project-link')).map(link => link.outerHTML).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                modal.innerHTML = content;
+                document.body.appendChild(modal);
+                
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+                
+                const closeBtn = modal.querySelector('.modal-close');
+                closeBtn.addEventListener('click', function() {
+                    modal.classList.remove('active');
+                    setTimeout(() => {
+                        modal.remove();
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
 </html>
