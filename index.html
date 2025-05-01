@@ -1011,7 +1011,6 @@
 
         .testimonials-wrapper {
             position: relative;
-            padding: 0 40px;
         }
 
         .testimonials-container {
@@ -1360,6 +1359,245 @@
                 padding-bottom: 1rem;
             }
         }
+
+        /* Update section spacing */
+        .section {
+            padding: 3rem 0; /* Reduced from 6rem */
+        }
+
+        @media (max-width: 640px) {
+            .section {
+                padding: 2rem 0; /* Even smaller padding on mobile */
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+                line-height: 1.2;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+            
+            .mb-12 {
+                margin-bottom: 1.5rem;
+            }
+            
+            .gap-12 {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .section {
+                padding: 2.5rem 0;
+            }
+            
+            .container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        /* Improved responsive grid layouts */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Optimize spacing for text elements */
+        .text-center {
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Adjust card spacing */
+        .project-card, .testimonial-card, .skill-card {
+            margin-bottom: 1rem;
+        }
+
+        /* Optimize section margins */
+        section:not(:first-child) {
+            margin-top: -1px; /* Remove double borders between sections */
+        }
+
+        /* Responsive container max-width */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        /* Optimize spacing for mobile navigation */
+        .nav-menu {
+            padding: 1rem;
+        }
+
+        /* Adjust button spacing */
+        .btn-primary, .btn-outline {
+            padding: 0.75rem 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .btn-primary, .btn-outline {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Optimize form spacing */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        /* Adjust testimonials spacing */
+        .testimonials-track {
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .testimonials-track {
+                gap: 0.75rem;
+            }
+        }
+
+        /* Optimize footer spacing */
+        footer {
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 640px) {
+            footer {
+                padding: 1.5rem 0;
+            }
+        }
+
+        /* Improve spacing for skill buttons */
+        .skill-buttons {
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Optimize hero section spacing */
+        #home {
+            min-height: 90vh;
+        }
+
+        /* Adjust timeline spacing */
+        .timeline-item {
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .timeline-item {
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Optimize card layouts */
+        .card {
+            padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Improve spacing for contact section */
+        .contact-form input,
+        .contact-form textarea {
+            margin-bottom: 1rem;
+        }
+
+        /* Optimize portfolio grid */
+        .portfolio-grid {
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .portfolio-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Custom padding with negative margin */
+        .testimonials-container.px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            margin-bottom: -35%;
+        }
+
+        @media (max-width: 640px) {
+            .testimonials-container.px-2 {
+                margin-bottom: -25%; /* Slightly less negative margin on mobile */
+            }
+        }
+
+        /* Ensure proper spacing for the container */
+        .testimonials-wrapper {
+            position: relative;
+            max-width: 7xl;
+            padding-bottom: 35%; /* Add padding to compensate for negative margin */
+        }
+
+        @media (max-width: 640px) {
+            .testimonials-wrapper {
+                padding-bottom: 25%;
+            }
+        }
+
+        /* Custom max-width with negative margin */
+        .max-w-7xl {
+            max-width: 80rem;
+            margin-bottom: -25%;
+        }
+
+        @media (max-width: 640px) {
+            .max-w-7xl {
+                margin-bottom: -20%; /* Slightly less negative margin on mobile */
+            }
+        }
+
+        /* Ensure proper spacing for parent container */
+        #testimonials {
+            padding-bottom: 25%; /* Add padding to compensate for negative margin */
+        }
+
+        @media (max-width: 640px) {
+            #testimonials {
+                padding-bottom: 20%;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -1458,7 +1696,7 @@
         </div>
 
         <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <section id="home" class="min-h-[90vh] flex items-center justify-center relative overflow-hidden pt-16">
             <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 dark:from-blue-900/20 dark:to-emerald-900/20 animate-pulse-slow"></div>
             
             <!-- Animated Background Elements -->
@@ -1517,7 +1755,7 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="section bg-gray-50 dark:bg-gray-900/50">
+        <section id="about" class="section bg-gray-50 dark:bg-gray-900/50 -mt-1">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col lg:flex-row items-center gap-12">
                     <!-- About Image -->
@@ -1595,7 +1833,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="section bg-white dark:bg-gray-800">
+        <section id="experience" class="section bg-white dark:bg-gray-800 -mt-1">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
                     <span class="subtitle">{{ currentLanguage === 'en' ? 'Experience' : 'Expérience' }}</span>
@@ -1762,7 +2000,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="section bg-gray-50 dark:bg-gray-900/50">
+        <section id="skills" class="section bg-gray-50 dark:bg-gray-900/50 -mt-1">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <span class="subtitle">{{ currentLanguage === 'en' ? 'Skills' : 'Compétences' }}</span>
@@ -1810,97 +2048,99 @@
                             </div>
             </div>
         </section>
- <!-- Skills Section -->
- <section id="portfolio" class="section bg-white dark:bg-gray-800">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
-            <span class="subtitle">{{ currentLanguage === 'en' ? 'Portfolio' : 'Portefeuille' }}</span>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                {{ currentLanguage === 'en' ? 'Featured' : 'Projets' }} <span class="text-blue-500 dark:text-blue-400">{{ currentLanguage === 'en' ? 'Projects' : 'Mis en Avant' }}</span>
-            </h2>
-            <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                {{ currentLanguage === 'en' ? 
-                    'Explore my collection of AI and data science projects that demonstrate my technical capabilities.' : 
-                    'Découvrez ma collection de projets d\'IA et de science des données qui démontrent mes capacités techniques.' }}
-            </p>
-        </div>
-        
-        <!-- Featured Projects Grid -->
-        <div class="relative">
-            <div class="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12 overflow-x-auto sm:overflow-x-visible pb-6 sm:pb-0 hide-scrollbar">
-                <div v-for="(project, index) in highlightedProjects" 
-                     class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 w-[85vw] sm:w-auto flex-shrink-0">
-                    <!-- Project Image with Overlay -->
-                    <div class="relative overflow-hidden h-48 group">
-                        <img :src="project.imgUrl" :alt="project.title[currentLanguage]" 
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
-                            <div>
-                                <h3 class="text-white font-bold text-xl mb-1">{{ project.title[currentLanguage] }}</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span v-for="tag in project.tags" 
-                                          class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">
-                                        {{ tag }}
-                                    </span>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section bg-white dark:bg-gray-800 -mt-1">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
+                    <span class="subtitle">{{ currentLanguage === 'en' ? 'Portfolio' : 'Portefeuille' }}</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+                        {{ currentLanguage === 'en' ? 'Featured' : 'Projets' }} <span class="text-blue-500 dark:text-blue-400">{{ currentLanguage === 'en' ? 'Projects' : 'Mis en Avant' }}</span>
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        {{ currentLanguage === 'en' ? 
+                            'Explore my collection of AI and data science projects that demonstrate my technical capabilities.' : 
+                            'Découvrez ma collection de projets d\'IA et de science des données qui démontrent mes capacités techniques.' }}
+                    </p>
+                </div>
+                
+                <!-- Featured Projects Grid -->
+                <div class="relative">
+                    <div class="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12 overflow-x-auto sm:overflow-x-visible pb-6 sm:pb-0 hide-scrollbar">
+                        <div v-for="(project, index) in highlightedProjects" 
+                             class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 w-[85vw] sm:w-auto flex-shrink-0">
+                            <!-- Project Image with Overlay -->
+                            <div class="relative overflow-hidden h-48 group">
+                                <img :src="project.imgUrl" :alt="project.title[currentLanguage]" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
+                                    <div>
+                                        <h3 class="text-white font-bold text-xl mb-1">{{ project.title[currentLanguage] }}</h3>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span v-for="tag in project.tags" 
+                                                  class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">
+                                                {{ tag }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Hover Overlay -->
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <a :href="project.url" target="_blank" 
+                                           class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-2">
+                                            {{ currentLanguage === 'en' ? 'View Project' : 'Voir le Projet' }} <i class="fas fa-arrow-right ml-2"></i>
+                                        </a>
+                                        <div class="flex justify-center space-x-4">
+                                            <a v-if="project.githubUrl" :href="project.githubUrl" target="_blank" 
+                                               class="text-white hover:text-blue-400 transition-colors">
+                                                <i class="fab fa-github text-xl"></i>
+                                            </a>
+                                            <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" 
+                                               class="text-white hover:text-blue-400 transition-colors">
+                                                <i class="fas fa-external-link-alt text-xl"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Hover Overlay -->
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div class="text-center">
-                                <a :href="project.url" target="_blank" 
-                                   class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-2">
-                                    {{ currentLanguage === 'en' ? 'View Project' : 'Voir le Projet' }} <i class="fas fa-arrow-right ml-2"></i>
-                                </a>
-                                <div class="flex justify-center space-x-4">
-                                    <a v-if="project.githubUrl" :href="project.githubUrl" target="_blank" 
-                                       class="text-white hover:text-blue-400 transition-colors">
-                                        <i class="fab fa-github text-xl"></i>
-                                    </a>
-                                    <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" 
-                                       class="text-white hover:text-blue-400 transition-colors">
-                                        <i class="fas fa-external-link-alt text-xl"></i>
-                                    </a>
+                            
+                            <!-- Project Details -->
+                            <div class="p-6">
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description[currentLanguage] }}</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">{{ project.date[currentLanguage] }}</span>
+                                    <button @click="openProjectModal(project)" 
+                                            class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center group">
+                                        {{ currentLanguage === 'en' ? 'View Details' : 'Voir Détails' }}
+                                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Project Details -->
-                    <div class="p-6">
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description[currentLanguage] }}</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">{{ project.date[currentLanguage] }}</span>
-                            <button @click="openProjectModal(project)" 
-                                    class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center group">
-                                {{ currentLanguage === 'en' ? 'View Details' : 'Voir Détails' }}
-                                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                            </button>
+                    <!-- Mobile Swipe Indicator -->
+                    <div class="mt-6 flex justify-center items-center gap-2 sm:hidden">
+                        <div class="text-sm text-gray-600 dark:text-gray-400">
+                            {{ currentLanguage === 'en' ? 'Swipe to see more' : 'Glissez pour voir plus' }}
+                            <i class="fas fa-arrow-right ml-2 animate-pulse"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Mobile Swipe Indicator -->
-            <div class="mt-6 flex justify-center items-center gap-2 sm:hidden">
-                <div class="text-sm text-gray-600 dark:text-gray-400">
-                    {{ currentLanguage === 'en' ? 'Swipe to see more' : 'Glissez pour voir plus' }}
-                    <i class="fas fa-arrow-right ml-2 animate-pulse"></i>
+                
+                <!-- View All Projects Button -->
+                <div class="text-center">
+                    <button @click="showAllProjects = true" 
+                            class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
+                        {{ currentLanguage === 'en' ? 'View All Projects' : 'Voir Tous les Projets' }}
+                    </button>
                 </div>
             </div>
-        </div>
-        
-        <!-- View All Projects Button -->
-        <div class="text-center">
-            <button @click="showAllProjects = true" 
-                    class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
-                {{ currentLanguage === 'en' ? 'View All Projects' : 'Voir Tous les Projets' }}
-            </button>
-        </div>
-    </div>
-</section>
+        </section>
+
         <!-- Education Section -->
-        <section id="education" class="section bg-gray-50 dark:bg-gray-900/50">
+        <section id="education" class="section bg-gray-50 dark:bg-gray-900/50 -mt-1">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-8 lg:mb-12">
                     <span class="subtitle">{{ currentLanguage === 'en' ? 'Education' : 'Formation' }}</span>
@@ -2026,7 +2266,7 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="section bg-[#1e2937] dark:bg-[#1e2937] overflow-x-hidden py-16 sm:py-20">
+        <section id="testimonials" class="section bg-[#1e2937] dark:bg-[#1e2937] overflow-x-hidden py-8 sm:py-12 -mt-1">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-8 sm:mb-12">
                     <span class="subtitle text-[#3b82f6] uppercase tracking-wider text-sm sm:text-base">
@@ -2056,8 +2296,8 @@
                     </button>
 
                     <!-- Testimonials Track -->
-                    <div class="testimonials-container overflow-x-auto overflow-y-hidden px-4 -mx-4">
-                        <div class="testimonials-track flex gap-4 sm:gap-6 py-4">
+                    <div class="testimonials-container overflow-x-auto overflow-y-hidden px-2 -mx-4 mb-0">
+                        <div class="testimonials-track flex gap-2 sm:gap-4 py-1" style="scroll-behavior: smooth;">
                             <div v-for="(testimonial, index) in testimonialsItems" 
                                  :key="index"
                                  class="testimonial-card min-w-[280px] sm:w-[350px] flex-shrink-0">
@@ -2105,147 +2345,19 @@
                         </div>
                     </div>
 
-                    <!-- Scroll Indicator -->
-                    <div class="mt-6 flex justify-center items-center gap-2 sm:hidden">
-                        <div class="text-sm text-gray-400">
+                    <!-- Mobile Swipe Indicator -->
+                    <div class="mt-0 flex justify-center items-center gap-1 sm:hidden">
+                        <div class="text-xs text-gray-400">
                             {{ currentLanguage === 'en' ? 'Swipe to see more' : 'Glissez pour voir plus' }}
-                            <i class="fas fa-arrow-right ml-2 animate-pulse"></i>
+                            <i class="fas fa-arrow-right ml-1 animate-pulse"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-<style>
-/* Mobile-first styles */
-.testimonials-container {
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.testimonials-container::-webkit-scrollbar {
-    display: none;
-}
-
-.testimonials-track {
-    width: fit-content;
-    padding-bottom: 10px; /* Space for potential scroll bar */
-}
-
-/* Card styles */
-.testimonial-card {
-    scroll-snap-align: start;
-}
-
-@media (max-width: 640px) {
-    .testimonial-card {
-        width: calc(100vw - 3rem);
-        min-width: 280px;
-    }
-
-    .testimonials-container {
-        scroll-snap-type: x mandatory;
-        padding: 0 1rem;
-    }
-
-    .testimonial-card .text-gray-300 {
-        max-height: 150px;
-        overflow-y: auto;
-    }
-}
-
-/* Gradient indicators for scroll */
-.testimonials-container::before,
-.testimonials-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.testimonials-container::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(30, 41, 55, 0.9), rgba(30, 41, 55, 0));
-}
-
-.testimonials-container::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(30, 41, 55, 0.9), rgba(30, 41, 55, 0));
-}
-
-/* Animation for scroll indicator */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-.animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-</style>
-
-<script>
-// Add to your Vue instance data
-data: {
-    isMobile: window.innerWidth < 640,
-    // ... existing data
-},
-
-// Add to your Vue instance methods
-methods: {
-    checkMobile() {
-        this.isMobile = window.innerWidth < 640;
-    },
-
-    initializeTestimonials() {
-        const container = document.querySelector('.testimonials-container');
-        if (container) {
-            // Add touch event listeners for better mobile scrolling
-            let startX, isDragging = false;
-
-            container.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].pageX - container.offsetLeft;
-                isDragging = true;
-            }, { passive: true });
-
-            container.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                const x = e.touches[0].pageX - container.offsetLeft;
-                const walk = (x - startX) * 2;
-                container.scrollLeft = container.scrollLeft - walk;
-                startX = x;
-            });
-
-            container.addEventListener('touchend', () => {
-                isDragging = false;
-            });
-        }
-    }
-},
-
-// Update mounted
-mounted() {
-    // ... existing mounted code
-    window.addEventListener('resize', this.checkMobile);
-    this.checkMobile();
-    this.initializeTestimonials();
-},
-
-// Update beforeDestroy
-beforeDestroy() {
-    // ... existing beforeDestroy code
-    window.removeEventListener('resize', this.checkMobile);
-}
-</script>
-
         <!-- Contact Section -->
-        <section id="contact" class="section bg-gray-50 dark:bg-gray-900/50">
+        <section id="contact" class="section bg-gray-50 dark:bg-gray-900/50 -mt-1">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col lg:flex-row gap-12">
                     <!-- Contact Info -->
@@ -2845,11 +2957,11 @@ beforeDestroy() {
                     {
                         year: '2024',
                         title: {
-                            en: '3D Vision & Multimodal AI',
-                            fr: 'Vision 3D & IA Multimodale'
+                            en: '3D Vision & Multi-agent systemAI',
+                            fr: 'Vision 3D & IA Multi-agent system'
                         },
                         description: {
-                            en: 'Advanced research in 3D Vision and development of multimodal RAG systems with 97% accuracy in dental modeling.',
+                            en: 'Advanced research in 3D Vision and development of Multi-agent system RAG systems with 97% accuracy in dental modeling.',
                             fr: 'Recherche avancée en Vision 3D et développement de systèmes RAG multimodaux avec 97% de précision dans la modélisation dentaire.'
                         },
                         achievements: [
@@ -2858,7 +2970,7 @@ beforeDestroy() {
                                 fr: 'Atteint 97% de précision dans la modélisation dentaire 3D'
                             },
                             {
-                                en: 'Developed multimodal RAG systems',
+                                en: 'Developed Multi-agent system RAG systems',
                                 fr: 'Développé des systèmes RAG multimodaux'
                             },
                             {
@@ -3038,8 +3150,7 @@ beforeDestroy() {
                     }
                 ],
                 currentLanguage: 'en',
-                currentSlide: 0,
-                autoplayInterval: null
+                currentSlide: 0
             },
             computed: {
                 filteredPortfolioItems() {
@@ -3166,16 +3277,6 @@ beforeDestroy() {
                     const totalSlides = Math.ceil(this.testimonialsItems.length / 3);
                     this.currentSlide = (this.currentSlide - 1 + totalSlides) % totalSlides;
                     this.goToSlide(this.currentSlide);
-                },
-                startAutoplay() {
-                    this.autoplayInterval = setInterval(() => {
-                        this.nextSlide();
-                    }, 5000); // Change slide every 5 seconds
-                },
-                stopAutoplay() {
-                    if (this.autoplayInterval) {
-                        clearInterval(this.autoplayInterval);
-                    }
                 }
             },
             mounted() {
@@ -3254,7 +3355,7 @@ beforeDestroy() {
                         'Computer Vision Specialist',
                         'Generative AI Researcher',
                         'LLM Prompt Engineer',
-                        'Multimodal Systems Developer',
+                        'Multi-agent Systems Developer',
                         'AI Research Enthusiast'
                     ],
                     typeSpeed: 50,
@@ -3307,20 +3408,9 @@ beforeDestroy() {
                 document.querySelectorAll('.testimonial-card').forEach(el => {
                     testimonialObserver.observe(el);
                 });
-
-                // Initialize testimonials autoplay
-                this.startAutoplay();
-
-                // Pause autoplay on hover
-                const testimonialsWrapper = document.querySelector('.testimonials-wrapper');
-                if (testimonialsWrapper) {
-                    testimonialsWrapper.addEventListener('mouseenter', this.stopAutoplay);
-                    testimonialsWrapper.addEventListener('mouseleave', this.startAutoplay);
-                }
             },
             beforeDestroy() {
                 window.removeEventListener('scroll', this.handleScroll);
-                this.stopAutoplay();
             }
         });
 
