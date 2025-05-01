@@ -176,6 +176,163 @@
             .section {
                 padding: 3rem 0;
             }
+
+            .hero-content {
+                text-align: center;
+                padding: 2rem 1rem;
+            }
+
+            .hero-image {
+                margin-top: 2rem;
+            }
+
+            .skill-grid {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 1rem;
+            }
+
+            .project-card {
+                margin-bottom: 2rem;
+            }
+
+            .testimonial-card {
+                min-width: 100%;
+                margin: 0 0.5rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--bg-primary);
+                padding: 2rem;
+                transition: 0.3s;
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+
+            .skill-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .testimonial-card {
+                min-width: calc(50% - 1rem);
+                margin: 0 0.5rem;
+            }
+
+            .hero-content {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+            
+            .skill-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .testimonial-card {
+                min-width: calc(33.333% - 1rem);
+                margin: 0 0.5rem;
+            }
+
+            .hero-content {
+                padding: 4rem 3rem;
+            }
+        }
+
+        /* Common Responsive Utilities */
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .skill-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .testimonial-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .testimonial-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+
+        /* Responsive Images */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 640px) {
+            p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+        }
+
+        @media (min-width: 641px) {
+            p {
+                font-size: 1.125rem;
+                line-height: 1.7;
+            }
         }
         
         .hero-gradient {
@@ -1449,172 +1606,79 @@
                             </div>
             </div>
         </section>
-<!-- Portfolio Section -->
-<section id="portfolio" class="section bg-white dark:bg-gray-800">
+ <!-- Skills Section -->
+ <section id="portfolio" class="section bg-white dark:bg-gray-800">
     <div class="container mx-auto px-4">
         <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
-            <span class="subtitle">Portfolio</span>
+            <span class="subtitle">{{ currentLanguage === 'en' ? 'Portfolio' : 'Portefeuille' }}</span>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                Featured <span class="text-blue-500 dark:text-blue-400">Projects</span>
+                {{ currentLanguage === 'en' ? 'Featured' : 'Projets' }} <span class="text-blue-500 dark:text-blue-400">{{ currentLanguage === 'en' ? 'Projects' : 'Mis en Avant' }}</span>
             </h2>
             <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Explore my collection of AI and data science projects that demonstrate my technical capabilities.
+                {{ currentLanguage === 'en' ? 'Explore my collection of AI and data science projects that demonstrate my technical capabilities.' : 'Découvrez ma collection de projets d\'IA et de science des données qui démontrent mes capacités techniques.' }}
             </p>
         </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 lg:mb-12">
-            <!-- Project Card 1: Automated Article Generation -->
-            <div class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative overflow-hidden h-52 group">
-                    <img src="assets/images/projects/article_generation.jpg" alt="Automated Article Generation" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-4">
+        
+        <!-- Featured Projects Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12">
+            <div v-for="(project, index) in highlightedProjects" 
+                 class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+                <!-- Project Image with Overlay -->
+                <div class="relative overflow-hidden h-48 group">
+                    <img :src="project.imgUrl" :alt="project.title[currentLanguage]" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
                         <div>
-                            <h3 class="text-white font-bold text-lg mb-2">Automated Article Generation with CrewAI & RAG</h3>
-                            <div class="flex flex-wrap gap-1">
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">CrewAI</span>
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">RAG</span>
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">LangChain</span>
+                            <h3 class="text-white font-bold text-xl mb-1">{{ project.title[currentLanguage] }}</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span v-for="tag in project.tags" 
+                                      class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">
+                                    {{ tag }}
+                                </span>
                             </div>
                         </div>
                     </div>
+                    <!-- Hover Overlay -->
                     <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div class="text-center">
-                            <a href="https://github.com/yourusername/article-generation-rag" target="_blank" class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-3">
-                                View Project <i class="fas fa-arrow-right ml-2"></i>
+                            <a :href="project.url" target="_blank" 
+                               class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-2">
+                                {{ currentLanguage === 'en' ? 'View Project' : 'Voir le Projet' }} <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                             <div class="flex justify-center space-x-4">
-                                <a href="https://github.com/yourusername/article-generation-rag" target="_blank" class="text-white hover:text-blue-400 transition-colors">
+                                <a v-if="project.githubUrl" :href="project.githubUrl" target="_blank" 
+                                   class="text-white hover:text-blue-400 transition-colors">
                                     <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" 
+                                   class="text-white hover:text-blue-400 transition-colors">
+                                    <i class="fas fa-external-link-alt text-xl"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="p-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm text-gray-500">Research Project • 2025</span>
+                
+                <!-- Project Details -->
+                <div class="p-6">
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description[currentLanguage] }}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">{{ project.date[currentLanguage] }}</span>
+                        <button @click="openProjectModal(project)" 
+                                class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center group">
+                            {{ currentLanguage === 'en' ? 'View Details' : 'Voir Détails' }}
+                            <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">
-                        This project explores the integration of RAG and vector databases using the CrewAI framework to automate high-quality article creation.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Project Card 2: BI System -->
-            <div class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative overflow-hidden h-52 group">
-                    <img src="assets/images/BI.png" alt="BI System" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-4">
-                        <div>
-                            <h3 class="text-white font-bold text-lg mb-2">BI System for Vehicle Sales Monitoring</h3>
-                            <div class="flex flex-wrap gap-1">
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">BI</span>
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">Power BI</span>
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">Data Analysis</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div class="text-center">
-                            <a href="#" target="_blank" class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-3">
-                                View Project <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                            <div class="flex justify-center space-x-4">
-                                <a href="#" target="_blank" class="text-white hover:text-blue-400 transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm text-gray-500">Academic Project • 2023</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">
-                        Developed a Business Intelligence system for monitoring vehicle sales. Integrated dashboards, KPIs, and interactive visualizations.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Project Card 3: Sentiment Analysis -->
-            <div class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative overflow-hidden h-52 group">
-                    <img src="assets/images/testimonials/sentimentanalys.jpg" alt="Sentiment Analysis Tool" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-4">
-                        <div>
-                            <h3 class="text-white font-bold text-lg mb-2">Sentiment Analysis Tool</h3>
-                            <div class="flex flex-wrap gap-1">
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">NLP</span>
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">PyTorch</span>
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">BERT</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div class="text-center">
-                            <a href="https://github.com/ennajari/Customer-Reviews-Classification" target="_blank" class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-3">
-                                View Project <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                            <div class="flex justify-center space-x-4">
-                                <a href="https://github.com/ennajari/Customer-Reviews-Classification" target="_blank" class="text-white hover:text-blue-400 transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm text-gray-500">2023</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">
-                        NLP application for analyzing customer reviews using RoBERTa and XLNet transformer models.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Project Card 4: Flower Recognition -->
-            <div class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative overflow-hidden h-52 group">
-                    <img src="assets/images/projects/flower-recognition.jpg" alt="Flower Recognition System" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-4">
-                        <div>
-                            <h3 class="text-white font-bold text-lg mb-2">Flower Recognition System</h3>
-                            <div class="flex flex-wrap gap-1">
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">Deep Learning</span>
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">Computer Vision</span>
-                                <span class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">CNN</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div class="text-center">
-                            <a href="#" target="_blank" class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-3">
-                                View Project <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                            <div class="flex justify-center space-x-4">
-                                <a href="#" target="_blank" class="text-white hover:text-blue-400 transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm text-gray-500">2023</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">
-                        A real-time flower classification system using CNN with 95% accuracy.
-                    </p>
                 </div>
             </div>
         </div>
-
+        
+        <!-- View All Projects Button -->
         <div class="text-center">
-            <button class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
-                View All Projects
+            <button @click="showAllProjects = true" 
+                    class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
+                {{ currentLanguage === 'en' ? 'View All Projects' : 'Voir Tous les Projets' }}
             </button>
         </div>
     </div>
@@ -2177,7 +2241,10 @@
                         { name: 'GitHub', level: 90, icon: 'assets/images/gitHub.jpg' },
                         { name: 'Anaconda', level: 85, icon: 'assets/images/anaconda-icon.png' },
                         { name: 'Jupyter', level: 90, icon: 'assets/images/Jupyter-icon.png' },
-                        { name: 'Google Colab', level: 85, icon: 'assets/images/colab-icon.png' }
+                        { name: 'Google Colab', level: 85, icon: 'assets/images/colab-icon.png' },
+                        { name: 'Talend', level: 85, icon: 'assets/images/talend.png' },
+                        { name: 'Docker', level: 85, icon: 'assets/images/docker.png' },
+                        { name: 'Power BI', level: 85, icon: 'assets/images/Power-BI-Logo.png' }                        
                     ],
                     mlops: [
                         { name: 'MLflow', level: 80, icon: 'assets/images/MLflow.png' },
@@ -2263,88 +2330,7 @@
                     }
                 ],
                 filters: ['All', 'AI', 'Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Computer Vision'],
-                portfolioItems: [
-                    {
-                                title: { 
-                                    en: 'Intelligent Chatbot for ENIAD' 
-                                },
-                                date: { 
-                                    en: 'April 30, 2025' 
-                                },
-                                location: 'ENIAD (AI & Digital School)',
-                                imgUrl: 'assets/images/chatbot_eniad.png',
-                                description: {
-                                    en: 'A smart chatbot designed for ENIAD students to improve academic communication. The project explores modern NLP and ML techniques including RAG, fine-tuning, HiFT, and Q-LoRA, with a detailed architecture and deployment strategy.'
-                                },
-                                tags: ['Chatbot', 'NLP', 'Machine Learning', 'RAG', 'HiFT', 'Q-LoRA']
-                                },
-                    {
-                            title: { en: 'Customer Reviews Classification' },
-                            imgUrl: 'assets/images/testimonials/sentimentanalys.jpg',
-                            url: 'https://github.com/ennajari/Customer-Reviews-Classification',
-                        date: { en: '2023' },
-                            description: { 
-                                en: 'Natural Language Processing (NLP) project for classifying customer reviews using RoBERTa and XLNet transformer models.' 
-                            },
-                            tags: ['NLP', 'Machine Learning', 'Transformers', 'RoBERTa', 'XLNet', 'NLTK']
-                  },
-                  {
-                    title: {
-                        en: 'Automated Article Generation with CrewAI & RAG'
-                    },
-                    date: {
-                        en: '2025'
-                    },
-                    location: 'Research Project',
-                    imgUrl: 'assets/images/Automated Article Generation with CrewAI & RAG.png',
-                    url: 'https://github.com/yourusername/article-generation-rag',
-                    description: {
-                        en: 'This project explores the integration of Retrieval-Augmented Generation (RAG) and vector databases using the CrewAI framework to automate high-quality article creation with context-aware content generation.'
-                    },
-                    tags: [
-                        'CrewAI', 'RAG', 'Vector Databases', 'LangChain', 'LLMs', 'AI Automation'
-                    ]
-                    },
-                    {
-                        title: { en: 'Developed a Web Application' },
-                        imgUrl: 'assets/images/emploi3.png',
-                        date: { en: '2022 - 2023' },
-                        location: 'FPO - Ouarzazate',
-                    description: {
-                        en: 'Developed a web application for time management, utilizing the Laravel framework and optimizing schedules through genetic algorithms.'
-                    }
-                    },
-                    {
-                    title: { 
-                        en: 'Real-Time Flower Recognition System' 
-                    },
-                    date: { 
-                        en: '2023' 
-                    },
-                    location: 'Personal Project',
-                    imgUrl: 'assets/images/Real-Time Flower Recognition System.png',
-                    description: {
-                        en: 'Built a CNN model achieving 89% accuracy for real-time flower classification. Developed an interactive web interface with Streamlit and applied data augmentation techniques to improve model robustness.'
-                    },
-                    tags: ['CNN', 'Computer Vision', 'Streamlit', 'Data Augmentation', 'Real-Time']
-                    },
-
-                    {
-                title: { 
-                    en: 'BI System for Vehicle Sales Monitoring' 
-                },
-                date: { 
-                    en: '2023' 
-                },
-                location: 'Academic Project',
-                imgUrl: 'assets/images/BI.png',
-                description: {
-                    en: 'Developed a Business Intelligence system for monitoring vehicle sales. Integrated dashboards, KPIs, and interactive visualizations to assist in data-driven decision making.'
-                },
-                tags: ['BI', 'Data Visualization', 'Dashboards', 'KPI', 'Power BI', 'Data Analysis']
-                }
-
-                ],
+                
                 educationItems: [
                     {
                         institution: 'National School of Artificial Intelligence and Digitization (ENIAD)',
@@ -2645,37 +2631,21 @@
                     }
                 ],
                 highlightedProjects: [
-                    {
-                        title: { 
-                            en: 'Flower Recognition System',
-                            fr: 'Système de Reconnaissance de Fleurs'
-                        },
-                        imgUrl: 'assets/images/projects/flower-recognition.jpg',
-                        url: '#',
-                        githubUrl: 'https://github.com/yourusername/flower-recognition',
-                        demoUrl: 'https://your-demo-url.com',
-                        date: { en: '2023', fr: '2023' },
-                        description: {
-                            en: 'A real-time flower classification system using CNN with 95% accuracy.',
-                            fr: 'Un système de classification de fleurs en temps réel utilisant CNN avec une précision de 95%.'
-                        },
-                        tags: ['Deep Learning', 'Computer Vision', 'TensorFlow']
+                {
+                    title: { 
+                        en: 'Intelligent Chatbot for ENIAD' 
                     },
-                    {
-                        title: { 
-                            en: 'Sentiment Analysis Tool',
-                            fr: 'Outil d\'Analyse de Sentiments'
-                        },
-                        imgUrl: 'assets/images/projects/sentiment-analysis.jpg',
-                        url: '#',
-                        githubUrl: 'https://github.com/yourusername/sentiment-analysis',
-                        demoUrl: 'https://your-demo-url.com',
-                        date: { en: '2023', fr: '2023' },
-                        description: {
-                            en: 'NLP application for analyzing customer reviews with BERT model.',
-                            fr: 'Application NLP pour l\'analyse des avis clients avec le modèle BERT.'
-                        },
-                        tags: ['NLP', 'Machine Learning', 'PyTorch']
+                    githubUrl: 'https://github.com/yourusername/flower-recognition',
+                    demoUrl: 'https://your-demo-url.com',
+                    date: { 
+                        en: 'April 30, 2025' 
+                    },
+                    location: 'ENIAD (AI & Digital School)',
+                    imgUrl: 'assets/images/chatbot_eniad.png', 
+                    description: {
+                        en: 'A smart chatbot designed for ENIAD students to improve academic communication. The project explores modern NLP and ML techniques including RAG, fine-tuning, HiFT, and Q-LoRA, with a detailed architecture and deployment strategy.'
+                    },
+                    tags: ['Chatbot', 'NLP', 'Machine Learning', 'RAG', 'HiFT', 'Q-LoRA']
                     },
                     {
                 title: {
@@ -2684,9 +2654,11 @@
                 date: {
                     en: '2025'
                 },
-                location: 'Research Project',
-                imgUrl: 'assets/images/projects/article_generation.jpg', // Replace with your actual image path
-                url: 'https://github.com/yourusername/article-generation-rag', // Replace with the actual GitHub link
+                githubUrl: 'https://github.com/yourusername/flower-recognition',
+                demoUrl: 'https://your-demo-url.com',
+                location: 'Academic Project',
+                imgUrl: 'assets/images/Automated Article Generation with CrewAI & RAG.png', 
+                url: 'https://github.com/yourusername/article-generation-rag', 
                 description: {
                     en: 'This project explores the integration of Retrieval-Augmented Generation (RAG) and vector databases using the CrewAI framework to automate high-quality article creation with context-aware content generation.'
                 },
@@ -2698,18 +2670,66 @@
                 title: { 
                     en: 'BI System for Vehicle Sales Monitoring' 
                 },
+                githubUrl: 'https://github.com/yourusername/flower-recognition',
+                demoUrl: 'https://your-demo-url.com',
                 date: { 
-                    en: '2023' 
+                    en: '2025' 
                 },
                 location: 'Academic Project',
-                imgUrl: 'assets/images/projects/vehicle_sales_bi.jpg', // Replace with your actual image path
+                imgUrl: 'assets/images/BI.png',
                 description: {
                     en: 'Developed a Business Intelligence system for monitoring vehicle sales. Integrated dashboards, KPIs, and interactive visualizations to assist in data-driven decision making.'
                 },
                 tags: ['BI', 'Data Visualization', 'Dashboards', 'KPI', 'Power BI', 'Data Analysis']
-                }
-
-
+                },
+                {
+                        title: { 
+                            en: 'Sentiment Analysis Tool',
+                            fr: 'Outil d\'Analyse de Sentiments'
+                        },
+                        imgUrl: 'assets/images/Sentiment Analysis.png',
+                        url: '#',
+                        githubUrl: 'https://github.com/yourusername/sentiment-analysis',
+                        demoUrl: 'https://customer-reviews-classification-az8wv9ajwr8ecea2taqzcl.streamlit.app/',
+                        date: { en: '2024', fr: '2024' },
+                        description: {
+                            en: 'NLP application for analyzing customer reviews with BERT model.',
+                            fr: 'Application NLP pour l\'analyse des avis clients avec le modèle BERT.'
+                        },
+                        tags: ['NLP', 'Machine Learning', 'PyTorch']
+                    },
+                {
+                        title: { 
+                            en: 'Flower Recognition System',
+                            fr: 'Système de Reconnaissance de Fleurs'
+                        },
+                        imgUrl: 'assets/images/Real-Time Flower Recognition System.png',
+                        url: '#',
+                        githubUrl: 'https://github.com/yourusername/flower-recognition',
+                        demoUrl: 'https://your-demo-url.com',
+                        date: { en: '2024', fr: '2024' },
+                        description: {
+                            en: 'A real-time flower classification system using CNN with 95% accuracy.',
+                            fr: 'Un système de classification de fleurs en temps réel utilisant CNN avec une précision de 95%.'
+                        },
+                        tags: ['Deep Learning', 'Computer Vision', 'TensorFlow']
+                    },
+                    {
+                    title: {
+                        en: 'Time Management Web Application'
+                    },
+                    githubUrl: 'https://github.com/yourusername/flower-recognition',
+                    demoUrl: 'https://your-demo-url.com',
+                    date: {
+                        en: '2023'
+                    },
+                    location: 'BootCamp YouCode',
+                    imgUrl: 'assets/images/emploi.png',
+                    description: {
+                        en: 'Developed a web application for time management, utilizing the Laravel framework and optimizing schedules through genetic algorithms. The system aimed to improve productivity by intelligently organizing tasks and schedules.'
+                    },
+                    tags: ['Laravel', 'Genetic Algorithms', 'Web Development', 'Optimization', 'Time Management']
+                    },
                 ],
                 currentLanguage: 'en',
                 currentSlide: 0,
