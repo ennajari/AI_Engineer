@@ -3,1036 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Abdellah Ennajari - AI & Data Science Portfolio showcasing innovative projects and expertise">
-    <meta name="keywords" content="AI, Machine Learning, Data Science, Deep Learning, Portfolio, Python, TensorFlow, PyTorch">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abdellah Ennajari - AI Engineer specializing in Deep Learning, Computer Vision, and Machine Learning. View my portfolio of innovative AI projects.">
+    <meta name="keywords" content="AI Engineer, Deep Learning, Computer Vision, Machine Learning, Neural Networks, Python, TensorFlow, PyTorch">
+    <meta name="author" content="Abdellah Ennajari">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Abdellah Ennajari | AI Engineer Portfolio">
+    <meta property="og:description" content="AI Engineer specializing in Deep Learning, Computer Vision, and Machine Learning. View my innovative AI projects.">
+    <meta property="og:image" content="assets/images/hero-img1.png">
+    <meta property="og:url" content="https://your-portfolio-url.com">
+    <meta name="theme-color" content="#ffffff">
     <title>Abdellah Ennajari | AI Engineer Portfolio</title>
     <link rel="icon" href="assets/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.css">
-</head>
-<body class="antialiased">
-    <div id="app">
-        <!-- Preloader -->
-        <div class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900 transition-all duration-500" v-if="!isLoaded">
-            <div class="text-center">
-                <div class="w-24 h-24 mx-auto mb-6">
-                    <img src="assets/images/favicon.gif" alt="Loading" class="w-full h-full object-contain">
-                </div>
-                <div class="w-64 h-1 bg-gray-200 rounded-full overflow-hidden mx-auto">
-                    <div class="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full" :style="{width: loadingProgress + '%'}"></div>
-                </div>
-                <p class="mt-4 text-gray-600 dark:text-gray-300">Loading Portfolio...</p>
-            </div>
-        </div>
-
-        <!-- Header -->
-        <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm transition-all duration-300" :class="{'py-2': !isHeaderBig, 'py-4': isHeaderBig}">
-            <div class="container mx-auto px-6">
-                <div class="flex items-center justify-between">
-                    <!-- Logo -->
-                    <div class="text-2xl font-bold text-gray-800 dark:text-white">
-                        <a href="#" class="flex items-center">
-                            <span class="text-blue-500">Ennajari</span>
-                        </a>
-                    </div>
-
-                    <!-- Navigation -->
-                    <nav class="hidden md:flex items-center space-x-8">
-                        <a v-for="link in navLinks" :href="link.url" 
-                           class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors"
-                           :class="{'text-blue-500 dark:text-blue-400': currentSection === link.url.substring(1)}">
-                            {{ link.title.en }}
-                        </a>
-                    </nav>
-
-                    <!-- Theme Toggle & Mobile Menu Button -->
-                    <div class="flex items-center space-x-4">
-                        <!-- Language Switcher -->
-                        <button @click="toggleLanguage" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                            <i :class="{'fas fa-globe': true}"></i>
-                        </button>
-                        <!-- Theme Toggle -->
-                        <button @click="toggleTheme" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                            <i :class="{'fas fa-moon': isDarkMode, 'fas fa-sun': !isDarkMode}"></i>
-                        </button>
-                        <!-- Mobile Menu Button -->
-                        <button @click="toggleMobileMenu" class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Mobile Menu -->
-        <div class="fixed inset-0 z-30 bg-white dark:bg-gray-900 transform transition-all duration-300 ease-in-out" 
-             :class="{'translate-x-0': isMobileMenuOpen, '-translate-x-full': !isMobileMenuOpen}"
-             v-if="isMobileMenuOpen">
-            <div class="container mx-auto px-6 py-20">
-                <button @click="toggleMobileMenu" class="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                    <i class="fas fa-times"></i>
-                </button>
-                
-                <nav class="flex flex-col space-y-6">
-                    <a v-for="link in navLinks" :href="link.url" 
-                       class="text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                       @click="toggleMobileMenu">
-                        {{ link.title.en }}
-                    </a>
-                </nav>
-                
-                <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-                    <h3 class="text-lg font-medium text-gray-600 dark:text-gray-400 mb-4">Contact Info</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope text-blue-500 mr-3"></i>
-                            <a href="mailto:abdellahennajari2018@gmail.com" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                                abdellahennajari2018@gmail.com
-                            </a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone text-blue-500 mr-3"></i>
-                            <a href="tel:+212655798315" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                                +212 655 798 315
-                            </a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-map-marker-alt text-blue-500 mr-3"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Morocco</span>
-                        </li>
-                    </ul>
-                    
-                    <div class="flex space-x-4 mt-6">
-                        <a v-for="social in socialLinks" :href="social.url" target="_blank" class="social-icon w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white transition-colors">
-                            <i :class="social.icon"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 dark:from-blue-900/20 dark:to-emerald-900/20"></div>
-            
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="flex flex-col lg:flex-row items-center gap-12">
-                    <!-- Hero Text -->
-                    <div class="lg:w-1/2 mb-12 lg:mb-0">
-                        <div class="relative">
-                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
-                            <div class="relative">
-                                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                                    <span class="hero-gradient animate-gradient">Abdellah Ennajari</span>
-                                    <br>
-                                    <div class="typing-container h-16">
-                                        <span class="text-gray-700 dark:text-gray-300" id="typed"></span>
-                                    </div>
-                                </h1>
-                                <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg animate-fade-in-up">
-                                    {{ currentLanguage === 'en' ? 'I build intelligent systems that solve complex problems using cutting-edge AI and machine learning technologies.' : 'Je construis des systèmes intelligents qui résolvent des problèmes complexes en utilisant les technologies de pointe en IA et en apprentissage automatique.' }}
-                                </p>
-                                <div class="flex flex-wrap gap-4 animate-fade-in-up">
-                                    <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
-                                        {{ currentLanguage === 'en' ? 'Contact Me' : 'Contactez-moi' }}
-                                    </a>
-                                    <a href="#portfolio" class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
-                                        {{ currentLanguage === 'en' ? 'View Projects' : 'Voir les Projets' }}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Hero Image -->
-                    <div class="lg:w-1/2 flex justify-center">
-                        <div class="relative w-full max-w-md">
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full blur-3xl opacity-20 dark:opacity-30 animate-pulse"></div>
-                            <div class="relative z-10">
-                                <img src="assets/images/hero-img1.png" alt="Abdellah Ennajari" class="w-full h-auto floating">
-                                <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full blur-2xl opacity-20 dark:opacity-30 animate-pulse-slow"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Scroll Down Indicator -->
-            <a href="#about" class="scroll-down absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors animate-bounce">
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </a>
-            
-            <!-- Social Links -->
-            <div class="hidden md:flex flex-col items-center fixed left-8 bottom-0 space-y-6">
-                <a v-for="social in socialLinks" :href="social.url" target="_blank" 
-                   class="social-icon text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors hover:scale-110">
-                    <i :class="social.icon + ' text-xl'"></i>
-                </a>
-                <div class="w-px h-16 bg-gray-300 dark:bg-gray-700"></div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="section bg-gray-50 dark:bg-gray-900/50">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col lg:flex-row items-center gap-12">
-                    
-                    <!-- About Text -->
-                    <div class="lg:w-1/2">
-                        <span class="subtitle">About Me</span>
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                            Innovating with AI to 
-                            <span class="text-blue-500 dark:text-blue-400">Solve Real-World Problems</span>
-                        </h2>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">
-                            Hi! I'm Abdellah Ennajari, an AI Engineering student specializing in Machine Learning and Data Science. With a strong foundation in mathematics and computer science, I'm passionate about developing intelligent systems that make a real impact.
-                        </p>
-                        <p class="text-gray-600 dark:text-gray-400 mb-8">
-                            My expertise spans across deep learning, natural language processing, computer vision, and data analysis. I thrive on transforming complex problems into elegant AI solutions through innovative thinking and technical excellence.
-                        </p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center text-blue-500 mr-4">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Education</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">ENIAD, AI Engineering</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-500 mr-4">
-                                    <i class="fas fa-briefcase"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Experience</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">1+ Years</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-full bg-purple-500/10 dark:bg-purple-500/20 flex items-center justify-center text-purple-500 mr-4">
-                                    <i class="fas fa-project-diagram"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Projects</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">87+ Completed</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-full bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center text-amber-500 mr-4">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Clients</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">63+ Happy Clients</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium">Hire Me</a>
-                            <a href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" download class="btn-outline px-8 py-3 rounded-full font-medium">Download CV</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="section bg-white dark:bg-gray-800">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <span class="subtitle">My Skills</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        Technical <span class="text-blue-500 dark:text-blue-400">Expertise</span>
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        I've mastered a diverse set of technologies and methodologies to build robust AI solutions.
-                    </p>
-                </div>
-                
-                <!-- Skills Tabs -->
-                <div class="max-w-2xl mx-auto mb-12">
-                    <div class="flex justify-center">
-                        <div class="inline-flex bg-gray-100 dark:bg-gray-700 rounded-full p-1">
-                            <button @click="activeSkillTab = 'languages'" 
-                                    class="px-6 py-2 rounded-full font-medium transition-all duration-300"
-                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm transform scale-105': activeSkillTab === 'languages', 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600': activeSkillTab !== 'languages'}">
-                                Languages
-                            </button>
-                            <button @click="activeSkillTab = 'frameworks'" 
-                                    class="px-6 py-2 rounded-full font-medium transition-all duration-300"
-                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm transform scale-105': activeSkillTab === 'frameworks', 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600': activeSkillTab !== 'frameworks'}">
-                                Frameworks
-                            </button>
-                            <button @click="activeSkillTab = 'tools'" 
-                                    class="px-6 py-2 rounded-full font-medium transition-all duration-300"
-                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm transform scale-105': activeSkillTab === 'tools', 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600': activeSkillTab !== 'tools'}">
-                                Tools
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Skills Grid -->
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    <div v-for="skill in skills[activeSkillTab]" 
-                         class="skill-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl flex flex-col items-center text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                        <div class="w-16 h-16 mb-4 flex items-center justify-center">
-                            <img :src="skill.icon" :alt="skill.name" class="max-h-full max-w-full">
-                        </div>
-                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">{{ skill.name }}</h4>
-                        <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2 overflow-hidden">
-                            <div class="bg-gradient-to-r from-blue-500 to-emerald-500 h-1.5 rounded-full transition-all duration-1000" 
-                                 :style="{width: skill.level + '%'}"></div>
-                        </div>
-                        <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ skill.level }}%</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="section bg-gray-50 dark:bg-gray-900/50">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col lg:flex-row gap-12">
-                    <!-- Experience Text -->
-                    <div class="lg:w-1/2">
-                        <span class="subtitle">Experience</span>
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                            My <span class="text-blue-500 dark:text-blue-400">Professional Journey</span>
-                        </h2>
-                        <p class="text-gray-600 dark:text-gray-400 mb-8">
-                            Over the past year, I've worked on diverse AI projects, from computer vision applications to natural language processing systems. Each experience has contributed to my growth as an AI engineer.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#portfolio" class="btn-primary px-8 py-3 rounded-full font-medium">View Projects</a>
-                            <a href="#testimonials" class="btn-outline px-8 py-3 rounded-full font-medium">See Testimonials</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline -->
-                    <div class="lg:w-1/2">
-                        <div class="space-y-8">
-                            <div v-for="(item, index) in experienceItems" class="timeline-item">
-                                <div class="timeline-dot">
-                                    <i class="fas fa-briefcase text-xs"></i>
-                                </div>
-                                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
-                                    <h3 class="font-bold text-lg text-gray-800 dark:text-gray-200 mb-1">{{ item.jobTitle.en }}</h3>
-                                    <div class="text-sm text-blue-500 dark:text-blue-400 mb-2">{{ item.companyName.en }} • {{ item.date }}</div>
-                                    <p class="text-gray-600 dark:text-gray-400">{{ item.desc.en }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="section bg-white dark:bg-gray-800">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <span class="subtitle">My Portfolio</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        Featured <span class="text-blue-500 dark:text-blue-400">Projects</span>
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Explore my collection of AI and data science projects that demonstrate my technical capabilities.
-                    </p>
-                </div>
-                
-                <!-- Portfolio Filter -->
-                <div class="flex justify-center mb-12">
-                    <div class="inline-flex flex-wrap justify-center gap-2">
-                        <button v-for="filter in filters" 
-                                @click="filterPortfolioItems(filter)"
-                                class="px-4 py-2 rounded-full font-medium transition-all duration-300"
-                                :class="{'bg-blue-500 text-white transform scale-105 shadow-md': currentFilter === filter, 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600': currentFilter !== filter}">
-                            {{ filter }}
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div v-for="project in filteredPortfolioItems" 
-                         class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
-                        <div class="relative overflow-hidden h-48 group">
-                            <img :src="project.imgUrl" :alt="project.title.en" 
-                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
-                                <div>
-                                    <h3 class="text-white font-bold text-xl mb-1">{{ project.title.en }}</h3>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span v-for="tag in project.tags" 
-                                              class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">
-                                            {{ tag }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <a :href="project.url" target="_blank" 
-                                   class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    View Project <i class="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description }}</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-500">{{ project.date.en }}</span>
-                                <a :href="project.url" target="_blank" 
-                                   class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center group">
-                                    View Project 
-                                    <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Load More Button -->
-                <div class="text-center mt-12">
-                    <button @click="loadMoreProjects" 
-                            class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
-                        Load More Projects
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="section bg-gray-50 dark:bg-gray-900/50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <span class="subtitle">Education</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        My <span class="text-blue-500 dark:text-blue-400">Academic Journey</span>
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        My educational background has provided me with a strong foundation in mathematics, computer science, and artificial intelligence.
-                    </p>
-                </div>
-                
-                <div class="max-w-4xl mx-auto">
-                    <div class="space-y-8">
-                        <div v-for="edu in educationItems" class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                <h3 class="font-bold text-xl text-gray-800 dark:text-gray-200">{{ edu.institution }}</h3>
-                                <span class="text-blue-500 dark:text-blue-400 font-medium">{{ edu.period }}</span>
-                            </div>
-                            <div class="text-gray-600 dark:text-gray-400 mb-4">
-                                <span class="font-medium">{{ edu.degree }}</span>
-                                <span class="mx-2">•</span>
-                                <span>{{ edu.location }}</span>
-                            </div>
-                            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
-                                <li v-for="point in edu.points" class="flex">
-                                    <i class="fas fa-check text-emerald-500 mr-3 mt-1"></i>
-                                    <span>{{ point }}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="section bg-white dark:bg-gray-800">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <span class="subtitle">Testimonials</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        What People <span class="text-blue-500 dark:text-blue-400">Say</span>
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Feedback from clients and colleagues about my work and professional approach.
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div v-for="testimonial in testimonialsItems" 
-                         class="testimonial-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                                <img :src="testimonial.imgUrl || 'assets/images/testimonials/anonymous-user.png'" :alt="testimonial.quoteAuthor.en" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800 dark:text-gray-200">{{ testimonial.quoteAuthor.en }}</h4>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">{{ testimonial.jobTitle.en }}</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400 italic mb-6">"{{ testimonial.quoteContent.en }}"</p>
-                        <div class="flex text-yellow-400">
-                            <i v-for="i in 5" class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section bg-gray-50 dark:bg-gray-900/50">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col lg:flex-row gap-12">
-                    <!-- Contact Info -->
-                    <div class="lg:w-1/2">
-                        <div class="relative">
-                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
-                            <div class="relative">
-                                <span class="subtitle">Get In Touch</span>
-                                <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                                    Let's <span class="text-blue-500 dark:text-blue-400">Collaborate</span>
-                                </h2>
-                                <p class="text-gray-600 dark:text-gray-400 mb-8">
-                                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out. I'm always open to interesting collaborations and challenges.
-                                </p>
-                                
-                                <div class="space-y-6 mb-8">
-                                    <div class="flex items-start group">
-                                        <div class="w-10 h-10 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center text-blue-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
-                                            <i class="fas fa-envelope"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Email</h4>
-                                            <a href="mailto:abdellahennajari2018@gmail.com" 
-                                               class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                                                abdellahennajari2018@gmail.com
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start group">
-                                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
-                                            <i class="fas fa-phone"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Phone</h4>
-                                            <a href="tel:+212655798315" 
-                                               class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                                                +212 655 798 315
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start group">
-                                        <div class="w-10 h-10 rounded-full bg-purple-500/10 dark:bg-purple-500/20 flex items-center justify-center text-purple-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Location</h4>
-                                            <p class="text-gray-600 dark:text-gray-400">Morocco</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Follow Me</h4>
-                                    <div class="flex space-x-4">
-                                        <a v-for="social in socialLinks" :href="social.url" target="_blank" 
-                                           class="social-icon w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110">
-                                            <i :class="social.icon"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Contact Form -->
-                    <div class="lg:w-1/2">
-                        <form @submit.prevent="submitContactForm" 
-                              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm relative">
-                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
-                            <div class="relative">
-                                <div class="mb-6">
-                                    <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Name</label>
-                                    <input type="text" id="name" v-model="contactForm.name" required 
-                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
-                                           placeholder="John Doe">
-                                </div>
-                                <div class="mb-6">
-                                    <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email Address</label>
-                                    <input type="email" id="email" v-model="contactForm.email" required 
-                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
-                                           placeholder="john.doe@example.com">
-                                </div>
-                                <div class="mb-6">
-                                    <label for="subject" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Subject</label>
-                                    <input type="text" id="subject" v-model="contactForm.subject" 
-                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
-                                           placeholder="Project Inquiry">
-                                </div>
-                                <div class="mb-6">
-                                    <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Message</label>
-                                    <textarea id="message" v-model="contactForm.message" required rows="5"
-                                              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
-                                              placeholder="Tell me about your project..."></textarea>
-                                </div>
-                                <button type="submit" 
-                                        class="btn-primary w-full py-3 rounded-lg font-medium hover:scale-105 transition-transform">
-                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-gray-800 dark:bg-gray-900 py-12">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="mb-6 md:mb-0">
-                        <div class="text-2xl font-bold text-white mb-2">Ennajari</div>
-                        <p class="text-gray-400">Building intelligent solutions with AI and machine learning.</p>
-                    </div>
-                    <div class="flex space-x-6">
-                        <a v-for="social in socialLinks" :href="social.url" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                            <i :class="social.icon + ' text-xl'"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">&copy; {{ new Date().getFullYear() }} Abdellah Ennajari. All rights reserved.</p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Back to Top Button -->
-        <button v-show="showBackToTop" @click="scrollToTop" 
-                class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition-colors">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-
-        <!-- Notification Toast -->
-        <div v-if="notification.show" 
-             class="fixed bottom-8 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg text-white flex items-center"
-             :class="{'bg-green-500': notification.type === 'success', 'bg-red-500': notification.type === 'error'}">
-            <span>{{ notification.message }}</span>
-            <button @click="notification.show = false" class="ml-4">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                isLoaded: false,
-                loadingProgress: 0,
-                isDarkMode: false,
-                isMobileMenuOpen: false,
-                isHeaderBig: true,
-                currentSection: 'home',
-                showBackToTop: false,
-                activeSkillTab: 'languages',
-                currentFilter: 'All',
-                notification: {
-                    show: false,
-                    type: 'success',
-                    message: ''
-                },
-                contactForm: {
-                    name: '',
-                    email: '',
-                    subject: '',
-                    message: ''
-                },
-                navLinks: [
-                    { url: '#home', title: { en: 'Home' } },
-                    { url: '#about', title: { en: 'About' } },
-                    { url: '#skills', title: { en: 'Skills' } },
-                    { url: '#experience', title: { en: 'Experience' } },
-                    { url: '#portfolio', title: { en: 'Portfolio' } },
-                    { url: '#education', title: { en: 'Education' } },
-                    { url: '#contact', title: { en: 'Contact' } }
-                ],
-                socialLinks: [
-                    { url: 'https://github.com/ennajari', icon: 'fab fa-github' },
-                    { url: 'https://www.linkedin.com/in/ennajari-abdellah', icon: 'fab fa-linkedin-in' },
-                    { url: 'https://www.instagram.com/abdellah.ennajari/', icon: 'fab fa-instagram' }
-                ],
-                skills: {
-                    languages: [
-                        { name: 'Python', icon: 'assets/images/python-icon.png', level: 95 },
-                        { name: 'Java', icon: 'assets/images/java-logo.png', level: 85 },
-                        { name: 'SQL', icon: 'assets/images/SQL.png', level: 90 },
-                        { name: 'JavaScript', icon: 'assets/images/javascript.png', level: 75 }
-                    ],
-                    frameworks: [
-                        { name: 'TensorFlow', icon: 'assets/images/tensorflow-icon.png', level: 90 },
-                        { name: 'PyTorch', icon: 'assets/images/pytorch-icon.png', level: 85 },
-                        { name: 'Scikit-learn', icon: 'assets/images/Scikit-learn.png', level: 88 },
-                        { name: 'Keras', icon: 'assets/images/keras.png', level: 82 }
-                    ],
-                    tools: [
-                        { name: 'Git', icon: 'assets/images/git-icon.png', level: 92 },
-                        { name: 'Docker', icon: 'assets/images/Docker.png', level: 80 },
-                        { name: 'Jupyter', icon: 'assets/images/jupyter-icon.png', level: 95 },
-                        { name: 'VS Code', icon: 'assets/images/VS Code.png', level: 90 }
-                    ]
-                },
-                experienceItems: [
-                    {
-                        date: '2023 - Present',
-                        companyName: { en: 'Freelance AI Engineer' },
-                        jobTitle: { en: 'AI & Machine Learning Specialist' },
-                        desc: { en: 'Developed custom AI solutions for clients including computer vision systems, NLP applications, and predictive analytics models.' }
-                    },
-                    {
-                        date: '2022 - 2023',
-                        companyName: { en: 'University Projects' },
-                        jobTitle: { en: 'AI Research Assistant' },
-                        desc: { en: 'Conducted research on deep learning applications and implemented various machine learning algorithms for academic projects.' }
-                    },
-                    {
-                        date: '2021 - 2022',
-                        companyName: { en: 'Open Source Contributor' },
-                        jobTitle: { en: 'Open Source Developer' },
-                        desc: { en: 'Contributed to several open-source AI projects, focusing on improving documentation and implementing new features.' }
-                    }
-                ],
-                filters: ['All', 'AI', 'Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Computer Vision'],
-                portfolioItems: [
-                    {
-                        title: { en: 'Flower Recognition System' },
-                        imgUrl: 'assets/images/projects/flower-recognition.jpg',
-                        url: '#',
-                        date: { en: '2023' },
-                        description: 'A real-time flower classification system using CNN with 95% accuracy.',
-                        tags: ['Deep Learning', 'Computer Vision', 'TensorFlow']
-                    },
-                    {
-                        title: { en: 'Sentiment Analysis Tool' },
-                        imgUrl: 'assets/images/projects/sentiment-analysis.jpg',
-                        url: '#',
-                        date: { en: '2023' },
-                        description: 'NLP application for analyzing customer reviews with BERT model.',
-                        tags: ['NLP', 'Machine Learning', 'PyTorch']
-                    },
-                    {
-                        title: { en: 'Stock Price Predictor' },
-                        imgUrl: 'assets/images/projects/stock-prediction.jpg',
-                        url: '#',
-                        date: { en: '2022' },
-                        description: 'LSTM neural network for predicting stock market trends.',
-                        tags: ['Deep Learning', 'Time Series', 'TensorFlow']
-                    },
-                    {
-                        title: { en: 'Customer Segmentation' },
-                        imgUrl: 'assets/images/projects/customer-segmentation.jpg',
-                        url: '#',
-                        date: { en: '2022' },
-                        description: 'Unsupervised learning model for market segmentation using K-means.',
-                        tags: ['Machine Learning', 'Data Science', 'Scikit-learn']
-                    },
-                    {
-                        title: { en: 'Fake News Detector' },
-                        imgUrl: 'assets/images/projects/fake-news.jpg',
-                        url: '#',
-                        date: { en: '2022' },
-                        description: 'NLP model to classify news articles as real or fake using TF-IDF and SVM.',
-                        tags: ['NLP', 'Machine Learning', 'Scikit-learn']
-                    },
-                    {
-                        title: { en: 'Image Caption Generator' },
-                        imgUrl: 'assets/images/projects/image-captioning.jpg',
-                        url: '#',
-                        date: { en: '2021' },
-                        description: 'CNN-LSTM model that generates captions for images automatically.',
-                        tags: ['Deep Learning', 'Computer Vision', 'NLP']
-                    }
-                ],
-                educationItems: [
-                    {
-                        institution: 'National School of Artificial Intelligence and Digitization (ENIAD)',
-                        degree: 'Engineering Degree in Artificial Intelligence',
-                        period: '2023 – Present',
-                        location: 'Morocco',
-                        points: [
-                            'Specialization in Artificial Intelligence and Data Science',
-                            'Advanced coursework in Machine Learning, Deep Learning, and Data Science',
-                            'Practical projects in Computer Vision, NLP, and image classification',
-                            'Research focus on AI applications and innovative technologies',
-                            'Developed a real-time flower recognition system with 95% accuracy'
-                        ]
-                    },
-                    {
-                        institution: 'Ibn Zohr University',
-                        degree: "Bachelor's Degree in Mathematics and Computer Science",
-                        period: '2021 – 2023',
-                        location: 'Ouarzazate, Morocco',
-                        points: [
-                            'Advanced Mathematics and Algorithmic courses',
-                            'Computer Science Fundamentals, including programming and software engineering',
-                            'Software Engineering Principles and project management',
-                            'Top of the class with a final project on automated timetable generation'
-                        ]
-                    },
-                    {
-                        institution: 'El Ouroud High School',
-                        degree: 'Baccalaureate in Physical and Chemical Sciences',
-                        period: '2020',
-                        location: 'Kelaat M\'gouna, Morocco',
-                        points: [
-                            'Strong foundation in Physics and Chemistry',
-                            'Comprehensive education in Mathematics and Sciences',
-                            'Excellent academic performance'
-                        ]
-                    }
-                ],
-                testimonialsItems: [
-                    {
-                        quoteAuthor: { en: 'Dr. Ahmed Benani' },
-                        jobTitle: { en: 'Professor of Computer Science' },
-                        quoteContent: { en: 'Abdellah demonstrated exceptional skills in implementing complex machine learning algorithms during our research project. His attention to detail and problem-solving abilities are remarkable.' },
-                        imgUrl: 'assets/images/testimonials/professor.jpg'
-                    },
-                    {
-                        quoteAuthor: { en: 'Sarah Johnson' },
-                        jobTitle: { en: 'CEO, TechSolutions Inc.' },
-                        quoteContent: { en: 'The AI system Abdellah developed for our company exceeded our expectations. He delivered the project ahead of schedule while maintaining excellent quality.' },
-                        imgUrl: 'assets/images/testimonials/ceo.jpg'
-                    },
-                    {
-                        quoteAuthor: { en: 'Mohammed El Kadi' },
-                        jobTitle: { en: 'Senior Data Scientist' },
-                        quoteContent: { en: 'Working with Abdellah on the NLP project was a pleasure. His deep understanding of transformer models and ability to optimize them was impressive.' },
-                        imgUrl: 'assets/images/testimonials/data-scientist.jpg'
-                    }
-                ],
-                currentLanguage: 'en',
-                typingStrings: {
-                    en: [
-                        'AI & Deep Learning Engineer',
-                        'Computer Vision Specialist',
-                        'Generative AI Researcher',
-                        'LLM Prompt Engineer',
-                        'Multimodal Systems Developer',
-                        'AI Research Enthusiast'
-                    ],
-                    fr: [
-                        'Ingénieur en IA & Deep Learning',
-                        'Spécialiste en Vision par Ordinateur',
-                        'Chercheur en IA Générative',
-                        'Ingénieur en Prompt LLM',
-                        'Développeur de Systèmes Multimodaux',
-                        'Passionné de Recherche en IA'
-                    ]
-                }
-            },
-            computed: {
-                filteredPortfolioItems() {
-                    if (this.currentFilter === 'All') return this.portfolioItems;
-                    return this.portfolioItems.filter(item => 
-                        item.tags.some(tag => tag.toLowerCase().includes(this.currentFilter.toLowerCase()))
-                    );
-                }
-            },
-            methods: {
-                toggleTheme() {
-                    this.isDarkMode = !this.isDarkMode;
-                    document.body.classList.toggle('dark');
-                    localStorage.setItem('darkMode', this.isDarkMode);
-                },
-                toggleMobileMenu() {
-                    this.isMobileMenuOpen = !this.isMobileMenuOpen;
-                },
-                filterPortfolioItems(filter) {
-                    this.currentFilter = filter;
-                },
-                loadMoreProjects() {
-                    // In a real app, this would load more projects from an API
-                    this.showNotification('Loaded more projects', 'success');
-                },
-                scrollToTop() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                },
-                submitContactForm() {
-                    // In a real app, this would send the form data to a server
-                    console.log('Form submitted:', this.contactForm);
-                    this.showNotification('Message sent successfully!', 'success');
-                    this.contactForm = {
-                        name: '',
-                        email: '',
-                        subject: '',
-                        message: ''
-                    };
-                },
-                showNotification(message, type) {
-                    this.notification = {
-                        show: true,
-                        type,
-                        message
-                    };
-                    setTimeout(() => {
-                        this.notification.show = false;
-                    }, 5000);
-                },
-                handleScroll() {
-                    // Header size effect
-                    this.isHeaderBig = window.scrollY < 100;
-                    
-                    // Back to top button visibility
-                    this.showBackToTop = window.scrollY > 300;
-                    
-                    // Current section detection for active nav link
-                    const sections = document.querySelectorAll('section');
-                    sections.forEach(section => {
-                        const sectionTop = section.offsetTop;
-                        const sectionHeight = section.clientHeight;
-                        if (window.scrollY >= sectionTop - 300 && window.scrollY < sectionTop + sectionHeight - 300) {
-                            this.currentSection = section.id;
-                        }
-                    });
-                },
-                toggleLanguage() {
-                    this.currentLanguage = this.currentLanguage === 'en' ? 'fr' : 'en';
-                    localStorage.setItem('language', this.currentLanguage);
-                    this.initializeTyped();
-                },
-                initializeTyped() {
-                    if (this.typed) {
-                        this.typed.destroy();
-                    }
-                    this.typed = new Typed('#typed', {
-                        strings: this.typingStrings[this.currentLanguage],
-                        typeSpeed: 50,
-                        backSpeed: 30,
-                        backDelay: 2000,
-                        loop: true,
-                        showCursor: true,
-                        cursorChar: '|'
-                    });
-                }
-            },
-            mounted() {
-                // Simulate loading
-                const interval = setInterval(() => {
-                    this.loadingProgress += 10;
-                    if (this.loadingProgress >= 100) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            this.isLoaded = true;
-                            document.body.classList.add('loaded');
-                            
-                            // Initialize animations
-                            gsap.utils.toArray('.fade-in').forEach(el => {
-                                ScrollTrigger.create({
-                                    trigger: el,
-                                    start: "top 80%",
-                                    onEnter: () => el.classList.add('visible')
-                                });
-                            });
-                            
-                            // Add tilt effect to project cards
-                            VanillaTilt.init(document.querySelectorAll(".project-card"), {
-                                max: 5,
-                                speed: 400,
-                                glare: true,
-                                "max-glare": 0.2,
-                            });
-                        }, 500);
-                    }
-                }, 200);
-                
-                // Check for saved theme preference
-                if (localStorage.getItem('darkMode') === 'true') {
-                    this.isDarkMode = true;
-                    document.body.classList.add('dark');
-                } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    this.isDarkMode = true;
-                    document.body.classList.add('dark');
-                }
-                
-                // Set up scroll event listener
-                window.addEventListener('scroll', this.handleScroll);
-                this.handleScroll();
-                
-                // Initialize GSAP animations
-                gsap.registerPlugin(ScrollTrigger);
-                
-                // Animate hero text
-                gsap.from(".hero-gradient", {
-                    duration: 1,
-                    y: 50,
-                    opacity: 0,
-                    ease: "power3.out"
-                });
-                
-                // Animate hero buttons
-                gsap.from(".btn-primary, .btn-outline", {
-                    duration: 1,
-                    y: 50,
-                    opacity: 0,
-                    ease: "power3.out",
-                    stagger: 0.2,
-                    delay: 0.3
-                });
-                
-                // Initialize language
-                this.currentLanguage = localStorage.getItem('language') || 'en';
-                
-                // Initialize typed.js
-                this.initializeTyped();
-                
-                // Add custom cursor
-                const cursor = document.createElement('div');
-                cursor.className = 'custom-cursor';
-                document.body.appendChild(cursor);
-                
-                document.addEventListener('mousemove', (e) => {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-                });
-            },
-            beforeDestroy() {
-                window.removeEventListener('scroll', this.handleScroll);
-            }
-        });
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
         :root {
             --primary: #3b82f6;
             --primary-dark: #2563eb;
             --secondary: #10b981;
+            --accent: #8b5cf6;
             --dark: #1e293b;
             --light: #f8fafc;
             --gray: #64748b;
+            
+            /* Light theme colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --hover-bg: #f1f5f9;
+            --card-bg: #ffffff;
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             transition: all 0.3s ease;
+            scroll-behavior: smooth;
         }
         
-        .dark {
-            background-color: #0f172a;
-            color: #f8fafc;
+        body.dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --hover-bg: #1e293b;
+            --card-bg: #1e293b;
         }
+
+        /* Enhanced Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.025em;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Enhanced Animations */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 8s linear infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Enhanced Card Hover Effects */
+        .hover-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Enhanced Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn-primary:hover::after {
+            transform: translateX(100%);
+        }
+
+        /* Enhanced Timeline */
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .timeline-dot:hover::before {
+            opacity: 0.2;
+        }
+
+        /* Responsive Design Improvements */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+                line-height: 1.3;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+        }
+
         
         .hero-gradient {
             background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
@@ -1126,6 +264,7 @@
         
         .project-card {
             position: relative;
+            overflow: hidden;
         }
         
         .project-card::before {
@@ -1373,11 +512,13 @@
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                line-height: 1.2;
             }
             
             h2 {
-                font-size: 2rem;
+                font-size: 1.75rem;
+                line-height: 1.3;
             }
             
             .hero-section {
@@ -1465,37 +606,1573 @@
             pointer-events: none;
             z-index: 9999;
             transition: transform 0.2s ease;
-            transform: translate(-50%, -50%);
         }
         
-        .custom-cursor::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 4px;
-            height: 4px;
+        .custom-cursor-dot {
+            width: 6px;
+            height: 6px;
             background-color: var(--primary);
             border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
         }
         
-        .typing-container {
-            min-height: 3rem;
-            display: flex;
-            align-items: center;
+        .profile-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         
-        .typed-cursor {
-            color: var(--primary);
-            font-weight: 100;
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        @media (max-width: 640px) {
-            .typing-container {
-                min-height: 2.5rem;
+        .profile-image:hover::before {
+            opacity: 0.1;
+        }
+        
+        .profile-image img {
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn-hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .btn-hover-effect:hover::after {
+            transform: translateX(100%);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+        }
+        
+        @keyframes float-delayed {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, -20px); }
+        }
+        
+        .animate-float {
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .animate-float-delayed {
+            animation: float-delayed 8s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+        
+        .btn-hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .btn-hover-effect:hover::after {
+            transform: translateX(100%);
+        }
     </style>
+</head>
+<body class="antialiased">
+    <div id="app">
+        <!-- Preloader -->
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900 transition-all duration-500" v-if="!isLoaded">
+            <div class="text-center">
+                <div class="w-24 h-24 mx-auto mb-6">
+                    <img src="assets/images/favicon.gif" alt="Loading" class="w-full h-full object-contain">
+                </div>
+                <div class="w-64 h-1 bg-gray-200 rounded-full overflow-hidden mx-auto">
+                    <div class="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full" :style="{width: loadingProgress + '%'}"></div>
+                </div>
+                <p class="mt-4 text-gray-600 dark:text-gray-300">Loading Portfolio...</p>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm transition-all duration-300" :class="{'py-2': !isHeaderBig, 'py-4': isHeaderBig}">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <div class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">
+                        <a href="#" class="flex items-center">
+                            <span class="text-blue-500">Ennajari</span>
+                        </a>
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav class="hidden md:flex items-center space-x-8">
+                        <a v-for="link in navLinks" :href="link.url" 
+                           class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors"
+                           :class="{'text-blue-500 dark:text-blue-400': currentSection === link.url.substring(1)}">
+                            {{ link.title.en }}
+                        </a>
+                    </nav>
+
+                    <!-- Theme Toggle & Mobile Menu Button -->
+                    <div class="flex items-center space-x-4">
+                        <button @click="toggleTheme" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <i :class="{'fas fa-moon': isDarkMode, 'fas fa-sun': !isDarkMode}" class="text-lg"></i>
+                        </button>
+                        
+                        <button @click="toggleLanguage" 
+                                class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <span class="text-sm font-medium">{{ currentLanguage === 'en' ? 'FR' : 'EN' }}</span>
+                        </button>
+                        
+                        <button @click="toggleMobileMenu" class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div class="fixed inset-0 z-30 bg-white dark:bg-gray-900 transform transition-all duration-300 ease-in-out" 
+             :class="{'translate-x-0': isMobileMenuOpen, '-translate-x-full': !isMobileMenuOpen}"
+             v-if="isMobileMenuOpen">
+            <div class="container mx-auto px-6 py-20">
+                <button @click="toggleMobileMenu" class="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <nav class="flex flex-col space-y-6">
+                    <a v-for="link in navLinks" :href="link.url" 
+                       class="text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                       @click="toggleMobileMenu">
+                        {{ link.title.en }}
+                    </a>
+                </nav>
+                
+                <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+                    <h3 class="text-lg font-medium text-gray-600 dark:text-gray-400 mb-4">Contact Info</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-500 mr-3"></i>
+                            <a href="mailto:abdellahennajari2018@gmail.com" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                                abdellahennajari2018@gmail.com
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-500 mr-3"></i>
+                            <a href="tel:+212655798315" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                                +212 655 798 315
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-500 mr-3"></i>
+                            <span class="text-gray-700 dark:text-gray-300">Morocco</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="flex space-x-4 mt-6">
+                        <a v-for="social in socialLinks" :href="social.url" target="_blank" class="social-icon w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white transition-colors">
+                            <i :class="social.icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 dark:from-blue-900/20 dark:to-emerald-900/20 animate-pulse-slow"></div>
+            
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl animate-float"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl animate-float-delayed"></div>
+            </div>
+            
+            <!-- Custom cursor elements -->
+            <div class="custom-cursor"></div>
+            <div class="custom-cursor-dot"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                    <!-- Hero Text -->
+                    <div class="w-full lg:w-1/2 mb-8 lg:mb-0 text-center lg:text-left animate-fade-in-up">
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl opacity-20 dark:opacity-30 animate-gradient"></div>
+                            <div class="relative">
+                                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 lg:mb-6">
+                                    <span class="hero-gradient animate-gradient">Abdellah Ennajari</span>
+                                    <br>
+                                    <div id="typed-text" class="text-xl sm:text-2xl md:text-3xl text-gray-700 dark:text-gray-300 mt-2"></div>
+                                </h1>
+                                <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 lg:mb-8 max-w-lg mx-auto lg:mx-0">
+                                    {{ currentLanguage === 'en' ? 'I build intelligent systems that solve complex problems using cutting-edge AI and machine learning technologies.' : 'Je construis des systèmes intelligents qui résolvent des problèmes complexes en utilisant les technologies d\'IA et d\'apprentissage automatique de pointe.' }}
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                    <a href="#contact" class="btn-primary px-6 sm:px-8 py-3 rounded-full font-medium btn-hover-effect transform hover:scale-105 transition-all duration-300">
+                                        {{ currentLanguage === 'en' ? 'Contact Me' : 'Contactez-moi' }}
+                                    </a>
+                                    <a href="#portfolio" class="btn-outline px-6 sm:px-8 py-3 rounded-full font-medium btn-hover-effect transform hover:scale-105 transition-all duration-300">
+                                        {{ currentLanguage === 'en' ? 'View Projects' : 'Voir les Projets' }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Image -->
+                    <div class="w-full lg:w-1/2 flex justify-center animate-fade-in-up" style="animation-delay: 0.2s">
+                    <div class="w-full lg:w-1/2 flex justify-center">
+                        <div class="profile-image w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-md h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px]">
+                            <img src="assets/images/hero-img1.png" alt="Abdellah Ennajari" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section bg-gray-50 dark:bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <!-- About Image -->
+                    <div class="lg:w-1/2">
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
+                            <img src="assets/images/hero-img2.png" alt="About Abdellah" class="relative rounded-2xl w-full max-w-md mx-auto">
+                        </div>
+                    </div>
+                    
+                    <!-- About Text -->
+                    <div class="lg:w-1/2">
+                        <span class="subtitle">About Me</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                            Innovating with AI to 
+                            <span class="text-blue-500 dark:text-blue-400">Solve Real-World Problems</span>
+                        </h2>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">
+                            Hi! I'm Abdellah Ennajari, an AI Engineering student specializing in Machine Learning and Data Science. With a strong foundation in mathematics and computer science, I'm passionate about developing intelligent systems that make a real impact.
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-8">
+                            My expertise spans across deep learning, natural language processing, computer vision, and data analysis. I thrive on transforming complex problems into elegant AI solutions through innovative thinking and technical excellence.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center text-blue-500 mr-4">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Education</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">ENIAD, AI Engineering</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-500 mr-4">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Experience</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">1+ Years</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-purple-500/10 dark:bg-purple-500/20 flex items-center justify-center text-purple-500 mr-4">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Projects</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">87+ Completed</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center text-amber-500 mr-4">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Clients</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">63+ Happy Clients</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium">Hire Me</a>
+                            <a href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" download class="btn-outline px-8 py-3 rounded-full font-medium">Download CV</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
+                    <span class="subtitle">{{ currentLanguage === 'en' ? 'Experience' : 'Expérience' }}</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+                        {{ currentLanguage === 'en' ? 'AI Engineering' : 'Ingénierie IA' }} <span class="text-blue-500 dark:text-blue-400">{{ currentLanguage === 'en' ? 'Journey' : 'Parcours' }}</span>
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        {{ currentLanguage === 'en' ? 'My professional journey in AI and deep learning, showcasing key projects and achievements.' : 'Mon parcours professionnel en IA et deep learning, mettant en avant les projets clés et les réalisations.' }}
+                    </p>
+                    <button @click="showAITimeline = true" 
+                            class="mt-4 inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300">
+                        <i class="fas fa-history mr-2"></i>
+                        {{ currentLanguage === 'en' ? 'View Detailed AI Journey' : 'Voir le Parcours IA Détaillé' }}
+                    </button>
+                </div>
+
+                <!-- AI Journey Timeline Modal -->
+                <div v-if="showAITimeline" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                        <div class="relative">
+                            <button @click="showAITimeline = false" 
+                                    class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            
+                            <div class="p-6 lg:p-8">
+                                <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
+                                    {{ currentLanguage === 'en' ? 'AI Engineering Journey' : 'Parcours en Ingénierie IA' }}
+                                </h3>
+                                
+                                <div class="relative">
+                                    <!-- Timeline Line -->
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-emerald-500 rounded-full"></div>
+                                    
+                                    <!-- Timeline Items -->
+                                    <div class="space-y-8">
+                                        <div v-for="(milestone, index) in aiJourney" 
+                                             class="relative pl-8 group">
+                                            <!-- Timeline Dot -->
+                                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-500 transform -translate-x-1/2 group-hover:scale-150 transition-transform"></div>
+                                            
+                                            <!-- Milestone Card -->
+                                            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                                    <h4 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-200">{{ milestone.year }}</h4>
+                                                    <span class="text-sm lg:text-base text-blue-500 dark:text-blue-400 font-medium">{{ milestone.title[currentLanguage] }}</span>
+                                                </div>
+                                                
+                                                <div class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-4">
+                                                    {{ milestone.description[currentLanguage] }}
+                                                </div>
+                                                
+                                                <!-- Key Achievements -->
+                                                <div v-if="milestone.achievements" class="mt-4">
+                                                    <h5 class="text-base lg:text-lg font-bold text-gray-700 dark:text-gray-300 mb-2">
+                                                        {{ currentLanguage === 'en' ? 'Key Achievements' : 'Réalisations Clés' }}
+                                                    </h5>
+                                                    <ul class="space-y-2">
+                                                        <li v-for="achievement in milestone.achievements" class="flex items-start">
+                                                            <i class="fas fa-check text-emerald-500 mr-3 mt-1"></i>
+                                                            <span>{{ achievement[currentLanguage] }}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                
+                                                <!-- Technologies -->
+                                                <div v-if="milestone.technologies" class="mt-4">
+                                                    <h5 class="text-base lg:text-lg font-bold text-gray-700 dark:text-gray-300 mb-2">
+                                                        {{ currentLanguage === 'en' ? 'Technologies' : 'Technologies' }}
+                                                    </h5>
+                                                    <div class="flex flex-wrap gap-2">
+                                                        <span v-for="tech in milestone.technologies" 
+                                                              class="text-xs px-2 py-1 bg-blue-500/10 text-blue-500 rounded-full">
+                                                            {{ tech }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Timeline -->
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative">
+                        <!-- Timeline Line -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-emerald-500 rounded-full"></div>
+                        
+                        <!-- Timeline Items -->
+                        <div class="space-y-6 lg:space-y-8">
+                            <div v-for="(exp, index) in experienceItems" 
+                                 class="relative pl-6 lg:pl-8 group">
+                                <!-- Timeline Dot -->
+                                <div class="absolute left-0 top-0 w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-blue-500 transform -translate-x-1/2 group-hover:scale-150 transition-transform"></div>
+                                
+                                <!-- Experience Card -->
+                                <div class="bg-gray-50 dark:bg-gray-700 p-4 lg:p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-200">{{ exp.companyName[currentLanguage] }}</h3>
+                                        <span class="text-sm lg:text-base text-blue-500 dark:text-blue-400 font-medium">{{ exp.date }}</span>
+                                    </div>
+                                    <div class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-4">
+                                        <span class="font-medium">{{ exp.jobTitle[currentLanguage] }}</span>
+                                    </div>
+                                    
+                                    <!-- Expandable Content -->
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between">
+                                            <h4 class="text-base lg:text-lg font-bold text-gray-700 dark:text-gray-300">
+                                                {{ currentLanguage === 'en' ? 'Experience Details' : 'Détails de l\'Expérience' }}
+                                            </h4>
+                                            <button @click="toggleExperienceDetails(index)" 
+                                                    class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                                <i :class="{'fas fa-chevron-down': !exp.showDetails, 'fas fa-chevron-up': exp.showDetails}" 
+                                                   class="transform transition-transform duration-300"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <div v-if="exp.showDetails" class="space-y-2 text-sm lg:text-base text-gray-600 dark:text-gray-400 animate-fade-in">
+                                            <div class="mb-4">
+                                                {{ exp.desc[currentLanguage] }}
+                                            </div>
+                                            
+                                            <!-- Key Projects -->
+                                            <div v-if="exp.projects" class="mt-4">
+                                                <h5 class="text-base lg:text-lg font-bold text-gray-700 dark:text-gray-300 mb-2">
+                                                    {{ currentLanguage === 'en' ? 'Key Projects' : 'Projets Clés' }}
+                                                </h5>
+                                                <ul class="space-y-2">
+                                                    <li v-for="project in exp.projects" class="flex items-start">
+                                                        <i class="fas fa-check text-emerald-500 mr-3 mt-1"></i>
+                                                        <div>
+                                                            <span class="font-medium">{{ project.title[currentLanguage] }}</span>
+                                                            <p class="text-sm text-gray-500 dark:text-gray-400">{{ project.description[currentLanguage] }}</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <!-- Technologies Used -->
+                                            <div v-if="exp.technologies" class="mt-4">
+                                                <h5 class="text-base lg:text-lg font-bold text-gray-700 dark:text-gray-300 mb-2">
+                                                    {{ currentLanguage === 'en' ? 'Technologies Used' : 'Technologies Utilisées' }}
+                                                </h5>
+                                                <div class="flex flex-wrap gap-2">
+                                                    <span v-for="tech in exp.technologies" 
+                                                          class="text-xs px-2 py-1 bg-blue-500/10 text-blue-500 rounded-full">
+                                                        {{ tech }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
+                    <span class="subtitle">{{ currentLanguage === 'en' ? 'Portfolio' : 'Portefeuille' }}</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+                        {{ currentLanguage === 'en' ? 'Featured' : 'Projets' }} <span class="text-blue-500 dark:text-blue-400">{{ currentLanguage === 'en' ? 'Projects' : 'Mis en Avant' }}</span>
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        {{ currentLanguage === 'en' ? 'Explore my collection of AI and data science projects that demonstrate my technical capabilities.' : 'Découvrez ma collection de projets d\'IA et de science des données qui démontrent mes capacités techniques.' }}
+                    </p>
+                </div>
+                
+                <!-- Featured Projects Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12">
+                    <div v-for="(project, index) in highlightedProjects" 
+                         class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+                        <!-- Project Image with Overlay -->
+                        <div class="relative overflow-hidden h-48 group">
+                            <img :src="project.imgUrl" :alt="project.title[currentLanguage]" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
+                                <div>
+                                    <h3 class="text-white font-bold text-xl mb-1">{{ project.title[currentLanguage] }}</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span v-for="tag in project.tags" 
+                                              class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">
+                                            {{ tag }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hover Overlay -->
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-center">
+                                    <a :href="project.url" target="_blank" 
+                                       class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-2">
+                                        {{ currentLanguage === 'en' ? 'View Project' : 'Voir le Projet' }} <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                    <div class="flex justify-center space-x-4">
+                                        <a v-if="project.githubUrl" :href="project.githubUrl" target="_blank" 
+                                           class="text-white hover:text-blue-400 transition-colors">
+                                            <i class="fab fa-github text-xl"></i>
+                                        </a>
+                                        <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" 
+                                           class="text-white hover:text-blue-400 transition-colors">
+                                            <i class="fas fa-external-link-alt text-xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Details -->
+                        <div class="p-6">
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description[currentLanguage] }}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">{{ project.date[currentLanguage] }}</span>
+                                <button @click="openProjectModal(project)" 
+                                        class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center group">
+                                    {{ currentLanguage === 'en' ? 'View Details' : 'Voir Détails' }}
+                                    <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- View All Projects Button -->
+                <div class="text-center">
+                    <button @click="showAllProjects = true" 
+                            class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
+                        {{ currentLanguage === 'en' ? 'View All Projects' : 'Voir Tous les Projets' }}
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section bg-gray-50 dark:bg-gray-900/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8 lg:mb-12">
+                    <span class="subtitle">{{ currentLanguage === 'en' ? 'Education' : 'Formation' }}</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+                        {{ currentLanguage === 'en' ? 'My' : 'Mon' }} <span class="text-blue-500 dark:text-blue-400">{{ currentLanguage === 'en' ? 'Academic Journey' : 'Parcours Académique' }}</span>
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        {{ currentLanguage === 'en' ? 'My educational background has provided me with a strong foundation in mathematics, computer science, and artificial intelligence.' : 'Mon parcours éducatif m\'a fourni une solide base en mathématiques, informatique et intelligence artificielle.' }}
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <!-- Education Timeline -->
+                    <div class="relative">
+                        <!-- Timeline Line -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-emerald-500 rounded-full"></div>
+                        
+                        <!-- Timeline Items -->
+                        <div class="space-y-6 lg:space-y-8">
+                            <div v-for="(edu, index) in educationItems" 
+                                 class="relative pl-6 lg:pl-8 group">
+                                <!-- Timeline Dot -->
+                                <div class="absolute left-0 top-0 w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-blue-500 transform -translate-x-1/2 group-hover:scale-150 transition-transform"></div>
+                                
+                                <!-- Education Card -->
+                                <div class="bg-white dark:bg-gray-800 p-4 lg:p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-200">{{ edu.institution }}</h3>
+                                        <span class="text-sm lg:text-base text-blue-500 dark:text-blue-400 font-medium">{{ edu.period }}</span>
+                                    </div>
+                                    <div class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-4">
+                                        <span class="font-medium">{{ edu.degree }}</span>
+                                        <span class="mx-2">•</span>
+                                        <span>{{ edu.location }}</span>
+                                    </div>
+                                    
+                                    <!-- Expandable Content -->
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between">
+                                            <h4 class="text-base lg:text-lg font-bold text-gray-700 dark:text-gray-300">
+                                                {{ currentLanguage === 'en' ? 'Key Achievements' : 'Réalisations Clés' }}
+                                            </h4>
+                                            <button @click="toggleEducationDetails(index)" 
+                                                    class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                                <i :class="{'fas fa-chevron-down': !edu.showDetails, 'fas fa-chevron-up': edu.showDetails}" 
+                                                   class="transform transition-transform duration-300"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <div v-if="edu.showDetails" class="space-y-2 text-sm lg:text-base text-gray-600 dark:text-gray-400 animate-fade-in">
+                                            <ul class="space-y-2">
+                                                <li v-for="point in edu.points" class="flex">
+                                                    <i class="fas fa-check text-emerald-500 mr-3 mt-1"></i>
+                                                    <span>{{ point }}</span>
+                                                </li>
+                                            </ul>
+                                            
+                                            <!-- Additional Details -->
+                                            <div v-if="edu.additionalDetails" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div v-for="(detail, key) in edu.additionalDetails" class="space-y-2">
+                                                        <h5 class="text-sm lg:text-base font-medium text-gray-700 dark:text-gray-300">
+                                                            {{ currentLanguage === 'en' ? key : detail.fr.label }}
+                                                        </h5>
+                                                        <p class="text-xs lg:text-sm">{{ currentLanguage === 'en' ? detail.en : detail.fr.value }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- View Full Education Button -->
+                    <div class="text-center mt-8 lg:mt-12">
+                        <button @click="showEducationModal = true" 
+                                class="btn-outline px-6 sm:px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
+                            {{ currentLanguage === 'en' ? 'View Full Education History' : 'Voir l\'Historique Complet' }}
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Education Modal -->
+                <div v-if="showEducationModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                        <div class="relative">
+                            <button @click="showEducationModal = false" 
+                                    class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            
+                            <div class="p-6 lg:p-8">
+                                <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
+                                    {{ currentLanguage === 'en' ? 'Complete Education History' : 'Historique Complet de Formation' }}
+                                </h3>
+                                
+                                <div class="space-y-6 lg:space-y-8">
+                                    <div v-for="edu in educationItems" class="bg-gray-50 dark:bg-gray-700 p-4 lg:p-6 rounded-xl">
+                                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                            <h4 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-200">{{ edu.institution }}</h4>
+                                            <span class="text-sm lg:text-base text-blue-500 dark:text-blue-400">{{ edu.period }}</span>
+                                        </div>
+                                        <div class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-4">
+                                            <span class="font-medium">{{ edu.degree }}</span>
+                                            <span class="mx-2">•</span>
+                                            <span>{{ edu.location }}</span>
+                                        </div>
+                                        <ul class="space-y-2 text-sm lg:text-base text-gray-600 dark:text-gray-400">
+                                            <li v-for="point in edu.points" class="flex">
+                                                <i class="fas fa-check text-emerald-500 mr-3 mt-1"></i>
+                                                <span>{{ point }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <span class="subtitle">Testimonials</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        What People <span class="text-blue-500 dark:text-blue-400">Say</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Feedback from clients and colleagues about my work and professional approach.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div v-for="testimonial in testimonialsItems" 
+                         class="testimonial-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                                <img :src="testimonial.imgUrl || 'assets/images/testimonials/anonymous-user.png'" :alt="testimonial.quoteAuthor.en" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 dark:text-gray-200">{{ testimonial.quoteAuthor.en }}</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">{{ testimonial.jobTitle.en }}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 italic mb-6">"{{ testimonial.quoteContent.en }}"</p>
+                        <div class="flex text-yellow-400">
+                            <i v-for="i in 5" class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-gray-50 dark:bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <!-- Contact Info -->
+                    <div class="lg:w-1/2">
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
+                            <div class="relative">
+                                <span class="subtitle">Get In Touch</span>
+                                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                                    Let's <span class="text-blue-500 dark:text-blue-400">Collaborate</span>
+                                </h2>
+                                <p class="text-gray-600 dark:text-gray-400 mb-8">
+                                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out. I'm always open to interesting collaborations and challenges.
+                                </p>
+                                
+                                <div class="space-y-6 mb-8">
+                                    <div class="flex items-start group">
+                                        <div class="w-10 h-10 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center text-blue-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Email</h4>
+                                            <a href="mailto:abdellahennajari2018@gmail.com" 
+                                               class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                                                abdellahennajari2018@gmail.com
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start group">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Phone</h4>
+                                            <a href="tel:+212655798315" 
+                                               class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                                                +212 655 798 315
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start group">
+                                        <div class="w-10 h-10 rounded-full bg-purple-500/10 dark:bg-purple-500/20 flex items-center justify-center text-purple-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Location</h4>
+                                            <p class="text-gray-600 dark:text-gray-400">Morocco</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Follow Me</h4>
+                                    <div class="flex space-x-4">
+                                        <a v-for="social in socialLinks" :href="social.url" target="_blank" 
+                                           class="social-icon w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110">
+                                            <i :class="social.icon"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="lg:w-1/2">
+                        <form @submit.prevent="submitContactForm" 
+                              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm relative">
+                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
+                            <div class="relative">
+                                <div class="mb-6">
+                                    <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Name</label>
+                                    <input type="text" id="name" v-model="contactForm.name" required 
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
+                                           placeholder="John Doe">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email Address</label>
+                                    <input type="email" id="email" v-model="contactForm.email" required 
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
+                                           placeholder="john.doe@example.com">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="subject" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Subject</label>
+                                    <input type="text" id="subject" v-model="contactForm.subject" 
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
+                                           placeholder="Project Inquiry">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Message</label>
+                                    <textarea id="message" v-model="contactForm.message" required rows="5"
+                                              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
+                                              placeholder="Tell me about your project..."></textarea>
+                                </div>
+                                <button type="submit" 
+                                        class="btn-primary w-full py-3 rounded-lg font-medium hover:scale-105 transition-transform">
+                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 dark:bg-gray-900 py-12">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <div class="text-2xl font-bold text-white mb-2">Ennajari</div>
+                        <p class="text-gray-400">Building intelligent solutions with AI and machine learning.</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a v-for="social in socialLinks" :href="social.url" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i :class="social.icon + ' text-xl'"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; {{ new Date().getFullYear() }} Abdellah Ennajari. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button v-show="showBackToTop" @click="scrollToTop" 
+                class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition-colors">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <!-- Notification Toast -->
+        <div v-if="notification.show" 
+             class="fixed bottom-8 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg text-white flex items-center"
+             :class="{'bg-green-500': notification.type === 'success', 'bg-red-500': notification.type === 'error'}">
+            <span>{{ notification.message }}</span>
+            <button @click="notification.show = false" class="ml-4">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isLoaded: false,
+                loadingProgress: 0,
+                isDarkMode: false,
+                isMobileMenuOpen: false,
+                isHeaderBig: true,
+                currentSection: 'home',
+                showBackToTop: false,
+                activeSkillTab: 'languages',
+                currentFilter: 'All',
+                notification: {
+                    show: false,
+                    type: 'success',
+                    message: ''
+                },
+                contactForm: {
+                    name: '',
+                    email: '',
+                    subject: '',
+                    message: ''
+                },
+                navLinks: [
+                    { url: '#home', title: { en: 'Home', fr: 'Accueil' } },
+                    { url: '#about', title: { en: 'About', fr: 'À Propos' } },
+                    { url: '#skills', title: { en: 'Skills', fr: 'Compétences' } },
+                    { url: '#experience', title: { en: 'Experience', fr: 'Expérience' } },
+                    { url: '#portfolio', title: { en: 'Portfolio', fr: 'Portefeuille' } },
+                    { url: '#education', title: { en: 'Education', fr: 'Formation' } },
+                    { url: '#contact', title: { en: 'Contact', fr: 'Contact' } }
+                ],
+                socialLinks: [
+                    { url: 'https://github.com/ennajari', icon: 'fab fa-github' },
+                    { url: 'https://www.linkedin.com/in/ennajari-abdellah', icon: 'fab fa-linkedin-in' },
+                    { url: 'https://www.instagram.com/abdellah.ennajari/', icon: 'fab fa-instagram' }
+                ],
+                skills: {
+                    languages: [
+                        { name: 'Python', icon: 'assets/images/python-icon.png', level: 95 },
+                        { name: 'Java', icon: 'assets/images/java-logo.png', level: 85 },
+                        { name: 'SQL', icon: 'assets/images/SQL.png', level: 90 },
+                        { name: 'JavaScript', icon: 'assets/images/javascript.png', level: 75 }
+                    ],
+                    frameworks: [
+                        { name: 'TensorFlow', icon: 'assets/images/tensorflow-icon.png', level: 90 },
+                        { name: 'PyTorch', icon: 'assets/images/pytorch-icon.png', level: 85 },
+                        { name: 'Scikit-learn', icon: 'assets/images/Scikit-learn.png', level: 88 },
+                        { name: 'Keras', icon: 'assets/images/keras.png', level: 82 }
+                    ],
+                    tools: [
+                        { name: 'Git', icon: 'assets/images/git-icon.png', level: 92 },
+                        { name: 'Docker', icon: 'assets/images/Docker.png', level: 80 },
+                        { name: 'Jupyter', icon: 'assets/images/jupyter-icon.png', level: 95 },
+                        { name: 'VS Code', icon: 'assets/images/VS Code.png', level: 90 }
+                    ]
+                },
+                experienceItems: [
+                    {
+                        date: '2023 - Present',
+                        companyName: { en: 'ENIAD (École Nationale d\'Intelligence Artificielle et de Digital)', fr: 'ENIAD (École Nationale d\'Intelligence Artificielle et de Digital)' },
+                        jobTitle: { en: 'AI & Deep Learning Engineer', fr: 'Ingénieur IA & Deep Learning' },
+                        desc: { 
+                            en: 'Specializing in developing advanced Deep Learning models, Computer Vision systems, and Generative AI applications. Expertise in the complete AI development lifecycle.',
+                            fr: 'Spécialisé dans le développement de modèles avancés de Deep Learning, de systèmes de vision par ordinateur et d\'applications d\'IA générative. Expertise dans le cycle de vie complet du développement de l\'IA.'
+                        },
+                        showDetails: false,
+                        projects: [
+                            {
+                                title: { 
+                                    en: '3D Dental Classification System',
+                                    fr: 'Système de Classification Dentaire 3D'
+                                },
+                                description: {
+                                    en: 'Implemented a hybrid 3D classification architecture combining PointNet++ and 3D ConvNets, achieving 97% accuracy in dental classification.',
+                                    fr: 'Implémentation d\'une architecture de classification 3D hybride combinant PointNet++ et ConvNets 3D, atteignant 97% de précision dans la classification dentaire.'
+                                }
+                            },
+                            {
+                                title: {
+                                    en: 'Multimodal RAG Chatbot',
+                                    fr: 'Chatbot RAG Multimodal'
+                                },
+                                description: {
+                                    en: 'Developed a multimodal retrieval system processing text, images, and PDFs using CLIP embeddings and hybrid search.',
+                                    fr: 'Développement d\'un système de récupération multimodal traitant le texte, les images et les PDF en utilisant les embeddings CLIP et la recherche hybride.'
+                                }
+                            }
+                        ],
+                        technologies: ['TensorFlow', 'PyTorch', 'OpenCV', 'PyTorch3D', 'Transformers', 'CLIP', 'Docker', 'Kubernetes']
+                    },
+                    {
+                        date: '2022 - 2023',
+                        companyName: { en: 'AI Research & Development', fr: 'Recherche & Développement IA' },
+                        jobTitle: { en: 'AI Research Assistant', fr: 'Assistant de Recherche IA' },
+                        desc: {
+                            en: 'Conducted research on deep learning applications and implemented various machine learning algorithms for academic projects.',
+                            fr: 'Recherche sur les applications du deep learning et implémentation de divers algorithmes d\'apprentissage automatique pour des projets académiques.'
+                        },
+                        showDetails: false,
+                        projects: [
+                            {
+                                title: {
+                                    en: 'Vision-Language Foundation Model',
+                                    fr: 'Modèle Fondamental Vision-Langage'
+                                },
+                                description: {
+                                    en: 'Developed a foundation model connecting visual, textual, and 3D understanding with transformer architecture.',
+                                    fr: 'Développement d\'un modèle fondamental connectant la compréhension visuelle, textuelle et 3D avec une architecture de transformateur.'
+                                }
+                            }
+                        ],
+                        technologies: ['PyTorch', 'Transformers', 'Open3D', 'NeRF', 'MLflow', 'DVC']
+                    },
+                    {
+                        date: '2021 - 2022',
+                        companyName: { en: 'Open Source AI Community', fr: 'Communauté Open Source IA' },
+                        jobTitle: { en: 'Open Source Contributor', fr: 'Contributeur Open Source' },
+                        desc: {
+                            en: 'Contributed to several open-source AI projects, focusing on improving documentation and implementing new features.',
+                            fr: 'Contribution à plusieurs projets d\'IA open source, en se concentrant sur l\'amélioration de la documentation et l\'implémentation de nouvelles fonctionnalités.'
+                        },
+                        showDetails: false,
+                        technologies: ['Python', 'Git', 'Jupyter', 'Scikit-learn', 'NumPy', 'Pandas']
+                    }
+                ],
+                filters: ['All', 'AI', 'Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Computer Vision'],
+                portfolioItems: [
+                    {
+                        title: { en: 'Flower Recognition System' },
+                        imgUrl: 'assets/images/projects/flower-recognition.jpg',
+                        url: '#',
+                        date: { en: '2023' },
+                        description: 'A real-time flower classification system using CNN with 95% accuracy.',
+                        tags: ['Deep Learning', 'Computer Vision', 'TensorFlow']
+                    },
+                    {
+                        title: { en: 'Sentiment Analysis Tool' },
+                        imgUrl: 'assets/images/projects/sentiment-analysis.jpg',
+                        url: '#',
+                        date: { en: '2023' },
+                        description: 'NLP application for analyzing customer reviews with BERT model.',
+                        tags: ['NLP', 'Machine Learning', 'PyTorch']
+                    },
+                    {
+                        title: { en: 'Stock Price Predictor' },
+                        imgUrl: 'assets/images/projects/stock-prediction.jpg',
+                        url: '#',
+                        date: { en: '2022' },
+                        description: 'LSTM neural network for predicting stock market trends.',
+                        tags: ['Deep Learning', 'Time Series', 'TensorFlow']
+                    },
+                    {
+                        title: { en: 'Customer Segmentation' },
+                        imgUrl: 'assets/images/projects/customer-segmentation.jpg',
+                        url: '#',
+                        date: { en: '2022' },
+                        description: 'Unsupervised learning model for market segmentation using K-means.',
+                        tags: ['Machine Learning', 'Data Science', 'Scikit-learn']
+                    },
+                    {
+                        title: { en: 'Fake News Detector' },
+                        imgUrl: 'assets/images/projects/fake-news.jpg',
+                        url: '#',
+                        date: { en: '2022' },
+                        description: 'NLP model to classify news articles as real or fake using TF-IDF and SVM.',
+                        tags: ['NLP', 'Machine Learning', 'Scikit-learn']
+                    },
+                    {
+                        title: { en: 'Image Caption Generator' },
+                        imgUrl: 'assets/images/projects/image-captioning.jpg',
+                        url: '#',
+                        date: { en: '2021' },
+                        description: 'CNN-LSTM model that generates captions for images automatically.',
+                        tags: ['Deep Learning', 'Computer Vision', 'NLP']
+                    }
+                ],
+                educationItems: [
+                    {
+                        institution: 'National School of Artificial Intelligence and Digitization (ENIAD)',
+                        degree: 'Engineering Degree in Artificial Intelligence',
+                        period: '2023 – Present',
+                        location: 'Morocco',
+                        showDetails: false,
+                        points: [
+                            'Specialization in Artificial Intelligence and Data Science',
+                            'Advanced coursework in Machine Learning, Deep Learning, and Data Science',
+                            'Practical projects in Computer Vision, NLP, and image classification',
+                            'Research focus on AI applications and innovative technologies',
+                            'Developed a real-time flower recognition system with 95% accuracy'
+                        ],
+                        additionalDetails: {
+                            'GPA': {
+                                en: '3.8/4.0',
+                                fr: '3.8/4.0'
+                            },
+                            'Relevant Courses': {
+                                en: 'Deep Learning, Computer Vision, NLP, Data Mining',
+                                fr: 'Deep Learning, Vision par Ordinateur, NLP, Data Mining'
+                            },
+                            'Research Projects': {
+                                en: '3 published papers in AI conferences',
+                                fr: '3 articles publiés dans des conférences d\'IA'
+                            }
+                        }
+                    },
+                    {
+                        institution: 'Ibn Zohr University',
+                        degree: "Bachelor's Degree in Mathematics and Computer Science",
+                        period: '2021 – 2023',
+                        location: 'Ouarzazate, Morocco',
+                        showDetails: false,
+                        points: [
+                            'Advanced Mathematics and Algorithmic courses',
+                            'Computer Science Fundamentals, including programming and software engineering',
+                            'Software Engineering Principles and project management',
+                            'Top of the class with a final project on automated timetable generation'
+                        ],
+                        additionalDetails: {
+                            'GPA': {
+                                en: '3.7/4.0',
+                                fr: '3.7/4.0'
+                            },
+                            'Relevant Courses': {
+                                en: 'Mathematics, Computer Science, Algorithms',
+                                fr: 'Mathématiques, Informatique, Algorithmes'
+                            },
+                            'Research Projects': {
+                                en: '1 published paper in a computer science journal',
+                                fr: '1 article publié dans une revue scientifique d\'informatique'
+                            }
+                        }
+                    },
+                    {
+                        institution: 'El Ouroud High School',
+                        degree: 'Baccalaureate in Physical and Chemical Sciences',
+                        period: '2020',
+                        location: 'Kelaat M\'gouna, Morocco',
+                        showDetails: false,
+                        points: [
+                            'Strong foundation in Physics and Chemistry',
+                            'Comprehensive education in Mathematics and Sciences',
+                            'Excellent academic performance'
+                        ],
+                        additionalDetails: {
+                            'GPA': {
+                                en: '4.0/4.0',
+                                fr: '4.0/4.0'
+                            },
+                            'Relevant Courses': {
+                                en: 'Physics, Chemistry, Mathematics',
+                                fr: 'Physique, Chimie, Mathématiques'
+                            },
+                            'Extra-Curricular Activities': {
+                                en: 'Participation in science fairs and robotics competitions',
+                                fr: 'Participation à des foires scientifiques et compétitions de robotique'
+                            }
+                        }
+                    }
+                ],
+                testimonialsItems: [
+                    {
+                        quoteAuthor: { en: 'Dr. Ahmed Benani' },
+                        jobTitle: { en: 'Professor of Computer Science' },
+                        quoteContent: { en: 'Abdellah demonstrated exceptional skills in implementing complex machine learning algorithms during our research project. His attention to detail and problem-solving abilities are remarkable.' },
+                        imgUrl: 'assets/images/testimonials/professor.jpg'
+                    },
+                    {
+                        quoteAuthor: { en: 'Sarah Johnson' },
+                        jobTitle: { en: 'CEO, TechSolutions Inc.' },
+                        quoteContent: { en: 'The AI system Abdellah developed for our company exceeded our expectations. He delivered the project ahead of schedule while maintaining excellent quality.' },
+                        imgUrl: 'assets/images/testimonials/ceo.jpg'
+                    },
+                    {
+                        quoteAuthor: { en: 'Mohammed El Kadi' },
+                        jobTitle: { en: 'Senior Data Scientist' },
+                        quoteContent: { en: 'Working with Abdellah on the NLP project was a pleasure. His deep understanding of transformer models and ability to optimize them was impressive.' },
+                        imgUrl: 'assets/images/testimonials/data-scientist.jpg'
+                    }
+                ],
+                showEducationModal: false,
+                showAllProjects: false,
+                selectedProject: null,
+                showAITimeline: false,
+                aiJourney: [
+                    {
+                        year: '2025',
+                        title: {
+                            en: 'Advanced AI Research & Development',
+                            fr: 'Recherche & Développement IA Avancé'
+                        },
+                        description: {
+                            en: 'Researching foundation models for 3D understanding and building MLOps infrastructure for AI deployment.',
+                            fr: 'Recherche sur les modèles fondamentaux pour la compréhension 3D et construction d\'infrastructure MLOps pour le déploiement de l\'IA.'
+                        },
+                        achievements: [
+                            {
+                                en: 'Researching foundation models for 3D understanding',
+                                fr: 'Recherche sur les modèles fondamentaux pour la compréhension 3D'
+                            },
+                            {
+                                en: 'Building MLOps infrastructure for AI deployment',
+                                fr: 'Construction d\'infrastructure MLOps pour le déploiement de l\'IA'
+                            },
+                            {
+                                en: 'Exploring neural rendering for interactive applications',
+                                fr: 'Exploration du rendu neuronal pour les applications interactives'
+                            }
+                        ],
+                        technologies: ['PyTorch', 'TensorFlow', 'Kubernetes', 'MLflow', 'NeRF', '3D Vision']
+                    },
+                    {
+                        year: '2024',
+                        title: {
+                            en: '3D Vision & Multimodal AI',
+                            fr: 'Vision 3D & IA Multimodale'
+                        },
+                        description: {
+                            en: 'Advanced research in 3D Vision and development of multimodal RAG systems with 97% accuracy in dental modeling.',
+                            fr: 'Recherche avancée en Vision 3D et développement de systèmes RAG multimodaux avec 97% de précision dans la modélisation dentaire.'
+                        },
+                        achievements: [
+                            {
+                                en: 'Achieved 97% accuracy in dental 3D modeling',
+                                fr: 'Atteint 97% de précision dans la modélisation dentaire 3D'
+                            },
+                            {
+                                en: 'Developed multimodal RAG systems',
+                                fr: 'Développé des systèmes RAG multimodaux'
+                            },
+                            {
+                                en: 'Applied diffusion models to medical imaging',
+                                fr: 'Appliqué des modèles de diffusion à l\'imagerie médicale'
+                            }
+                        ],
+                        technologies: ['PyTorch3D', 'Open3D', 'CLIP', 'Transformers', 'Diffusion Models', 'RAG']
+                    },
+                    {
+                        year: '2023',
+                        title: {
+                            en: 'AI Specialization at ENIAD',
+                            fr: 'Spécialisation en IA à l\'ENIAD'
+                        },
+                        description: {
+                            en: 'Specialized in AI & Data Science, implementing Computer Vision for dental classification and building first end-to-end ML pipeline.',
+                            fr: 'Spécialisé en IA & Science des Données, implémentation de la Vision par Ordinateur pour la classification dentaire et construction du premier pipeline ML end-to-end.'
+                        },
+                        achievements: [
+                            {
+                                en: 'Implemented Computer Vision for dental classification',
+                                fr: 'Implémenté la Vision par Ordinateur pour la classification dentaire'
+                            },
+                            {
+                                en: 'Built first end-to-end ML pipeline',
+                                fr: 'Construit le premier pipeline ML end-to-end'
+                            },
+                            {
+                                en: 'Specialized in AI & Data Science',
+                                fr: 'Spécialisé en IA & Science des Données'
+                            }
+                        ],
+                        technologies: ['TensorFlow', 'PyTorch', 'OpenCV', 'Scikit-learn', 'Docker', 'MLflow']
+                    },
+                    {
+                        year: '2022',
+                        title: {
+                            en: 'Foundation in AI & Deep Learning',
+                            fr: 'Fondations en IA & Deep Learning'
+                        },
+                        description: {
+                            en: 'Established foundation in Mathematics & Computer Science, completed first deep learning projects with TensorFlow.',
+                            fr: 'Établi les fondations en Mathématiques & Informatique, complété les premiers projets de deep learning avec TensorFlow.'
+                        },
+                        achievements: [
+                            {
+                                en: 'Completed first deep learning projects with TensorFlow',
+                                fr: 'Complété les premiers projets de deep learning avec TensorFlow'
+                            },
+                            {
+                                en: 'Established foundation in Mathematics & Computer Science',
+                                fr: 'Établi les fondations en Mathématiques & Informatique'
+                            }
+                        ],
+                        technologies: ['Python', 'TensorFlow', 'NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn']
+                    }
+                ],
+                highlightedProjects: [
+                    {
+                        title: { 
+                            en: 'Flower Recognition System',
+                            fr: 'Système de Reconnaissance de Fleurs'
+                        },
+                        imgUrl: 'assets/images/projects/flower-recognition.jpg',
+                        url: '#',
+                        githubUrl: 'https://github.com/yourusername/flower-recognition',
+                        demoUrl: 'https://your-demo-url.com',
+                        date: { en: '2023', fr: '2023' },
+                        description: {
+                            en: 'A real-time flower classification system using CNN with 95% accuracy.',
+                            fr: 'Un système de classification de fleurs en temps réel utilisant CNN avec une précision de 95%.'
+                        },
+                        tags: ['Deep Learning', 'Computer Vision', 'TensorFlow']
+                    },
+                    {
+                        title: { 
+                            en: 'Sentiment Analysis Tool',
+                            fr: 'Outil d\'Analyse de Sentiments'
+                        },
+                        imgUrl: 'assets/images/projects/sentiment-analysis.jpg',
+                        url: '#',
+                        githubUrl: 'https://github.com/yourusername/sentiment-analysis',
+                        demoUrl: 'https://your-demo-url.com',
+                        date: { en: '2023', fr: '2023' },
+                        description: {
+                            en: 'NLP application for analyzing customer reviews with BERT model.',
+                            fr: 'Application NLP pour l\'analyse des avis clients avec le modèle BERT.'
+                        },
+                        tags: ['NLP', 'Machine Learning', 'PyTorch']
+                    },
+                    {
+                        title: { 
+                            en: 'Stock Price Predictor',
+                            fr: 'Prédicteur de Prix d\'Actions'
+                        },
+                        imgUrl: 'assets/images/projects/stock-prediction.jpg',
+                        url: '#',
+                        githubUrl: 'https://github.com/yourusername/stock-predictor',
+                        demoUrl: 'https://your-demo-url.com',
+                        date: { en: '2022', fr: '2022' },
+                        description: {
+                            en: 'LSTM neural network for predicting stock market trends.',
+                            fr: 'Réseau de neurones LSTM pour prédire les tendances du marché boursier.'
+                        },
+                        tags: ['Deep Learning', 'Time Series', 'TensorFlow']
+                    }
+                ],
+                currentLanguage: 'en'
+            },
+            computed: {
+                filteredPortfolioItems() {
+                    if (this.currentFilter === 'All') return this.portfolioItems;
+                    return this.portfolioItems.filter(item => 
+                        item.tags.some(tag => tag.toLowerCase().includes(this.currentFilter.toLowerCase()))
+                    );
+                }
+            },
+            methods: {
+                toggleTheme() {
+                    this.isDarkMode = !this.isDarkMode;
+                    document.body.classList.toggle('dark');
+                    localStorage.setItem('darkMode', this.isDarkMode);
+                    
+                    // Update meta theme-color
+                    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+                    if (metaThemeColor) {
+                        metaThemeColor.setAttribute('content', this.isDarkMode ? '#0f172a' : '#ffffff');
+                    }
+                },
+                toggleMobileMenu() {
+                    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+                },
+                filterPortfolioItems(filter) {
+                    this.currentFilter = filter;
+                },
+                loadMoreProjects() {
+                    // In a real app, this would load more projects from an API
+                    this.showNotification('Loaded more projects', 'success');
+                },
+                scrollToTop() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                },
+                submitContactForm() {
+                    // In a real app, this would send the form data to a server
+                    console.log('Form submitted:', this.contactForm);
+                    this.showNotification('Message sent successfully!', 'success');
+                    this.contactForm = {
+                        name: '',
+                        email: '',
+                        subject: '',
+                        message: ''
+                    };
+                },
+                showNotification(message, type) {
+                    this.notification = {
+                        show: true,
+                        type,
+                        message
+                    };
+                    setTimeout(() => {
+                        this.notification.show = false;
+                    }, 5000);
+                },
+                handleScroll() {
+                    // Header size effect
+                    this.isHeaderBig = window.scrollY < 100;
+                    
+                    // Back to top button visibility
+                    this.showBackToTop = window.scrollY > 300;
+                    
+                    // Current section detection for active nav link
+                    const sections = document.querySelectorAll('section');
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (window.scrollY >= sectionTop - 300 && window.scrollY < sectionTop + sectionHeight - 300) {
+                            this.currentSection = section.id;
+                        }
+                    });
+                },
+                toggleEducationDetails(index) {
+                    this.educationItems[index].showDetails = !this.educationItems[index].showDetails;
+                },
+                openProjectModal(project) {
+                    this.selectedProject = project;
+                    document.body.style.overflow = 'hidden';
+                },
+                closeProjectModal() {
+                    this.selectedProject = null;
+                    document.body.style.overflow = '';
+                },
+                toggleLanguage() {
+                    this.currentLanguage = this.currentLanguage === 'en' ? 'fr' : 'en';
+                    localStorage.setItem('language', this.currentLanguage);
+                },
+                toggleExperienceDetails(index) {
+                    Vue.set(this.experienceItems[index], 'showDetails', !this.experienceItems[index].showDetails);
+                }
+            },
+            mounted() {
+                // Simulate loading
+                const interval = setInterval(() => {
+                    this.loadingProgress += 10;
+                    if (this.loadingProgress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            this.isLoaded = true;
+                            document.body.classList.add('loaded');
+                            
+                            // Initialize animations
+                            gsap.utils.toArray('.fade-in').forEach(el => {
+                                ScrollTrigger.create({
+                                    trigger: el,
+                                    start: "top 80%",
+                                    onEnter: () => el.classList.add('visible')
+                                });
+                            });
+                            
+                            // Add tilt effect to project cards
+                            VanillaTilt.init(document.querySelectorAll(".project-card"), {
+                                max: 5,
+                                speed: 400,
+                                glare: true,
+                                "max-glare": 0.2,
+                            });
+                        }, 500);
+                    }
+                }, 200);
+                
+                // Check for saved theme preference
+                const savedTheme = localStorage.getItem('darkMode');
+                if (savedTheme === 'true' || (savedTheme === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    this.isDarkMode = true;
+                    document.body.classList.add('dark');
+                }
+                
+                // Set up scroll event listener
+                window.addEventListener('scroll', this.handleScroll);
+                this.handleScroll();
+                
+                // Initialize GSAP animations
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Animate hero text
+                gsap.from(".hero-gradient", {
+                    duration: 1,
+                    y: 50,
+                    opacity: 0,
+                    ease: "power3.out"
+                });
+                
+                // Animate hero buttons
+                gsap.from(".btn-primary, .btn-outline", {
+                    duration: 1,
+                    y: 50,
+                    opacity: 0,
+                    ease: "power3.out",
+                    stagger: 0.2,
+                    delay: 0.3
+                });
+                
+                // Check for saved language preference
+                if (localStorage.getItem('language')) {
+                    this.currentLanguage = localStorage.getItem('language');
+                } else if (navigator.language.startsWith('fr')) {
+                    this.currentLanguage = 'fr';
+                }
+                
+                // Initialize Typed.js
+                new Typed('#typed-text', {
+                    strings: [
+                        'AI & Deep Learning Engineer',
+                        'Computer Vision Specialist',
+                        'Generative AI Researcher',
+                        'LLM Prompt Engineer',
+                        'Multimodal Systems Developer',
+                        'AI Research Enthusiast'
+                    ],
+                    typeSpeed: 50,
+                    backSpeed: 30,
+                    backDelay: 2000,
+                    loop: true,
+                    showCursor: true,
+                    cursorChar: '|'
+                });
+                
+                // Custom cursor
+                const cursor = document.querySelector('.custom-cursor');
+                const cursorDot = document.querySelector('.custom-cursor-dot');
+                
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX - 10 + 'px';
+                    cursor.style.top = e.clientY - 10 + 'px';
+                    cursorDot.style.left = e.clientX - 3 + 'px';
+                    cursorDot.style.top = e.clientY - 3 + 'px';
+                });
+                
+                // Scroll animations
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+                
+                document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+            },
+            beforeDestroy() {
+                window.removeEventListener('scroll', this.handleScroll);
+            }
+        });
+    </script>
 </body>
 </html>
