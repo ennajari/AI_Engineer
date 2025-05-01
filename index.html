@@ -1371,7 +1371,7 @@
                         <a v-for="link in navLinks" :href="link.url" 
                            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors"
                            :class="{'text-blue-500 dark:text-blue-400': currentSection === link.url.substring(1)}">
-                            {{ link.title.en }}
+                            {{ link.title[currentLanguage] }}
                         </a>
                     </nav>
 
@@ -1407,12 +1407,12 @@
                     <a v-for="link in navLinks" :href="link.url" 
                        class="text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                        @click="toggleMobileMenu">
-                        {{ link.title.en }}
+                        {{ link.title[currentLanguage] }}
                     </a>
                 </nav>
                 
                 <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-                    <h3 class="text-lg font-medium text-gray-600 dark:text-gray-400 mb-4">Contact Info</h3>
+                    <h3 class="text-lg font-medium text-gray-600 dark:text-gray-400 mb-4">{{ currentLanguage === 'en' ? 'Contact Info' : 'Coordonnées' }}</h3>
                     <ul class="space-y-3">
                         <li class="flex items-center">
                             <i class="fas fa-envelope text-blue-500 mr-3"></i>
@@ -1428,15 +1428,9 @@
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-map-marker-alt text-blue-500 mr-3"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Morocco</span>
+                            <span class="text-gray-700 dark:text-gray-300">{{ currentLanguage === 'en' ? 'Morocco' : 'Maroc' }}</span>
                         </li>
                     </ul>
-                    
-                    <div class="flex space-x-4 mt-6">
-                        <a v-for="social in socialLinks" :href="social.url" target="_blank" class="social-icon w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white transition-colors">
-                            <i :class="social.icon"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1470,9 +1464,10 @@
                                 <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 lg:mb-8 max-w-lg mx-auto lg:mx-0">
                                     {{ currentLanguage === 'en' ? 'I build intelligent systems that solve complex problems using cutting-edge AI and machine learning technologies.' : 'Je construis des systèmes intelligents qui résolvent des problèmes complexes en utilisant les technologies d\'IA et d\'apprentissage automatique de pointe.' }}
                                 </p>
+                                <!-- Hero Section Buttons -->
                                 <div class="hero-buttons">
                                     <a href="#contact" class="bg-[#6366F1] hover:bg-[#4F46E5] text-white px-8 py-3 rounded-[30px] font-medium transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center w-[140px]">
-                                        {{ currentLanguage === 'en' ? 'Hire Me' : 'Hire Me' }}
+                                        {{ currentLanguage === 'en' ? 'Hire Me' : 'Engagez-moi' }}
                                     </a>
                                     <a href="#portfolio" class="bg-transparent border-2 border-[#6366F1] text-[#6366F1] hover:bg-[#6366F1] hover:text-white px-8 py-3 rounded-[30px] font-medium transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center">
                                         {{ currentLanguage === 'en' ? 'View Projects' : 'Voir les Projets' }}
@@ -1481,7 +1476,7 @@
                                         {{ currentLanguage === 'en' ? 'Download CV' : 'Télécharger CV' }}
                                     </a>
                                     <a href="https://github.com/ennajari" target="_blank" class="bg-transparent border-2 border-[#6366F1] text-[#6366F1] hover:bg-[#6366F1] hover:text-white px-8 py-3 rounded-[30px] font-medium transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center">
-                                        {{ currentLanguage === 'en' ? 'GitHub' : 'GitHub' }}
+                                        GitHub
                                     </a>
                                 </div>
                             </div>
@@ -1513,16 +1508,20 @@
                     
                     <!-- About Text -->
                     <div class="lg:w-1/2">
-                        <span class="subtitle">About Me</span>
+                        <span class="subtitle">{{ currentLanguage === 'en' ? 'About Me' : 'À Propos de Moi' }}</span>
                         <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                            Innovating with AI to 
-                            <span class="text-blue-500 dark:text-blue-400">Solve Real-World Problems</span>
+                            {{ currentLanguage === 'en' ? 'Innovating with AI to' : 'Innover avec l\'IA pour' }}
+                            <span class="text-blue-500 dark:text-blue-400">{{ currentLanguage === 'en' ? 'Solve Real-World Problems' : 'Résoudre des Problèmes Réels' }}</span>
                         </h2>
                         <p class="text-gray-600 dark:text-gray-400 mb-6">
-                            Hi! I'm Abdellah Ennajari, an AI Engineering student specializing in Machine Learning and Data Science. With a strong foundation in mathematics and computer science, I'm passionate about developing intelligent systems that make a real impact.
+                            {{ currentLanguage === 'en' ? 
+                                'Hi! I\'m Abdellah Ennajari, an AI Engineering student specializing in Machine Learning and Data Science. With a strong foundation in mathematics and computer science, I\'m passionate about developing intelligent systems that make a real impact.' : 
+                                'Bonjour! Je suis Abdellah Ennajari, étudiant en ingénierie IA spécialisé en Machine Learning et Data Science. Avec une solide formation en mathématiques et en informatique, je suis passionné par le développement de systèmes intelligents qui ont un impact réel.' }}
                         </p>
                         <p class="text-gray-600 dark:text-gray-400 mb-8">
-                            My expertise spans across deep learning, natural language processing, computer vision, and data analysis. I thrive on transforming complex problems into elegant AI solutions through innovative thinking and technical excellence.
+                            {{ currentLanguage === 'en' ? 
+                                'My expertise spans across deep learning, natural language processing, computer vision, and data analysis. I thrive on transforming complex problems into elegant AI solutions through innovative thinking and technical excellence.' : 
+                                'Mon expertise s\'étend au deep learning, au traitement du langage naturel, à la vision par ordinateur et à l\'analyse de données. J\'excelle à transformer des problèmes complexes en solutions IA élégantes grâce à une pensée innovante et une excellence technique.' }}
                         </p>
                         
                         <div class="grid grid-cols-2 gap-4 mb-8">
@@ -1531,8 +1530,8 @@
                                     <i class="fas fa-graduation-cap"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Education</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">ENIAD, AI Engineering</p>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">{{ currentLanguage === 'en' ? 'Education' : 'Formation' }}</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">ENIAD, {{ currentLanguage === 'en' ? 'AI Engineering' : 'Ingénierie IA' }}</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
@@ -1540,8 +1539,8 @@
                                     <i class="fas fa-briefcase"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Experience</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">1+ Years</p>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">{{ currentLanguage === 'en' ? 'Experience' : 'Expérience' }}</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">1+ {{ currentLanguage === 'en' ? 'Years' : 'Ans' }}</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
@@ -1549,8 +1548,8 @@
                                     <i class="fas fa-project-diagram"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Projects</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">87+ Completed</p>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">{{ currentLanguage === 'en' ? 'Projects' : 'Projets' }}</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">87+ {{ currentLanguage === 'en' ? 'Completed' : 'Réalisés' }}</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
@@ -1558,15 +1557,15 @@
                                     <i class="fas fa-users"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">Clients</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">63+ Happy Clients</p>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200">{{ currentLanguage === 'en' ? 'Clients' : 'Clients' }}</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">63+ {{ currentLanguage === 'en' ? 'Happy Clients' : 'Clients Satisfaits' }}</p>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="flex flex-wrap gap-4">
-                            <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium">Hire Me</a>
-                            <a href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" download class="btn-outline px-8 py-3 rounded-full font-medium">Download CV</a>
+                            <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium">{{ currentLanguage === 'en' ? 'Hire Me' : 'Engagez-moi' }}</a>
+                            <a href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" download class="btn-outline px-8 py-3 rounded-full font-medium">{{ currentLanguage === 'en' ? 'Download CV' : 'Télécharger CV' }}</a>
                         </div>
                     </div>
                 </div>
@@ -1798,7 +1797,9 @@
                 {{ currentLanguage === 'en' ? 'Featured' : 'Projets' }} <span class="text-blue-500 dark:text-blue-400">{{ currentLanguage === 'en' ? 'Projects' : 'Mis en Avant' }}</span>
             </h2>
             <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                {{ currentLanguage === 'en' ? 'Explore my collection of AI and data science projects that demonstrate my technical capabilities.' : 'Découvrez ma collection de projets d\'IA et de science des données qui démontrent mes capacités techniques.' }}
+                {{ currentLanguage === 'en' ? 
+                    'Explore my collection of AI and data science projects that demonstrate my technical capabilities.' : 
+                    'Découvrez ma collection de projets d\'IA et de science des données qui démontrent mes capacités techniques.' }}
             </p>
         </div>
         
@@ -1993,45 +1994,55 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="section bg-[#1e2937] dark:bg-[#1e2937] overflow-x-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <span class="subtitle text-[#3b82f6] uppercase tracking-wider">TESTIMONIALS</span>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-                        What People <span class="text-[#3b82f6]">Say</span>
+        <section id="testimonials" class="section bg-[#1e2937] dark:bg-[#1e2937] overflow-x-hidden py-16 sm:py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8 sm:mb-12">
+                    <span class="subtitle text-[#3b82f6] uppercase tracking-wider text-sm sm:text-base">
+                        {{ currentLanguage === 'en' ? 'TESTIMONIALS' : 'TÉMOIGNAGES' }}
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white">
+                        {{ currentLanguage === 'en' ? 'What People' : 'Ce Que Les Gens' }} 
+                        <span class="text-[#3b82f6]">{{ currentLanguage === 'en' ? 'Say' : 'Disent' }}</span>
                     </h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">
-                        Feedback from clients and colleagues about my work and professional approach.
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+                        {{ currentLanguage === 'en' ? 
+                            'Feedback from clients and colleagues about my work and professional approach.' : 
+                            'Retours de clients et collègues sur mon travail et mon approche professionnelle.' }}
                     </p>
                 </div>
                 
                 <!-- Testimonials Gallery -->
                 <div class="testimonials-wrapper relative max-w-7xl mx-auto">
-                    <!-- Navigation Arrows -->
+                    <!-- Navigation Arrows - Hidden on mobile -->
                     <button @click="prevSlide" 
-                            class="carousel-control left-4 absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-gray-800/80 hover:bg-gray-700 flex items-center justify-center text-gray-400 hover:text-white transition-colors backdrop-blur-sm">
+                            class="carousel-control hidden sm:flex left-4 absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-gray-800/80 hover:bg-gray-700 items-center justify-center text-gray-400 hover:text-white transition-colors backdrop-blur-sm">
                         <i class="fas fa-chevron-left"></i>
                     </button>
                     <button @click="nextSlide"
-                            class="carousel-control right-4 absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-gray-800/80 hover:bg-gray-700 flex items-center justify-center text-gray-400 hover:text-white transition-colors backdrop-blur-sm">
+                            class="carousel-control hidden sm:flex right-4 absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-gray-800/80 hover:bg-gray-700 items-center justify-center text-gray-400 hover:text-white transition-colors backdrop-blur-sm">
                         <i class="fas fa-chevron-right"></i>
                     </button>
 
                     <!-- Testimonials Track -->
-                    <div class="testimonials-container overflow-hidden px-4">
-                        <div class="testimonials-track flex gap-6 transition-transform duration-500 ease-out">
+                    <div class="testimonials-container overflow-x-auto overflow-y-hidden px-4 -mx-4">
+                        <div class="testimonials-track flex gap-4 sm:gap-6 py-4">
                             <div v-for="(testimonial, index) in testimonialsItems" 
                                  :key="index"
-                                 class="testimonial-card w-[300px] md:w-[350px] flex-shrink-0">
+                                 class="testimonial-card min-w-[280px] sm:w-[350px] flex-shrink-0">
                                 <div class="bg-[#1e2937] border border-gray-700 rounded-xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-[#3b82f6] h-full">
-                                    <div class="p-6 flex flex-col h-full">
-                                        <div class="flex items-start gap-4 mb-4">
-                                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#10b981] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                                    <div class="p-4 sm:p-6 flex flex-col h-full">
+                                        <!-- Card Content -->
+                                        <div class="flex items-start gap-3 sm:gap-4 mb-4">
+                                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#10b981] flex items-center justify-center text-white text-base sm:text-lg font-bold flex-shrink-0">
                                                 {{ testimonial.quoteAuthor[currentLanguage].charAt(0) }}
                             </div>
                                             <div class="flex-1 min-w-0">
-                                                <h4 class="text-lg font-bold text-white truncate">{{ testimonial.quoteAuthor[currentLanguage] }}</h4>
-                                                <p class="text-sm text-gray-400 truncate">{{ testimonial.jobTitle[currentLanguage] }}</p>
+                                                <h4 class="text-base sm:text-lg font-bold text-white truncate">
+                                                    {{ testimonial.quoteAuthor[currentLanguage] }}
+                                                </h4>
+                                                <p class="text-xs sm:text-sm text-gray-400 truncate">
+                                                    {{ testimonial.jobTitle[currentLanguage] }}
+                                                </p>
                                                 <div class="flex items-center text-xs text-gray-500 mt-1">
                                                     <span class="truncate">{{ testimonial.relationship }}</span>
                                                     <span class="mx-2">•</span>
@@ -2040,20 +2051,20 @@
                         </div>
                                         </div>
                                         <div class="relative flex-grow">
-                                            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
                                                 "{{ testimonial.quoteContent[currentLanguage] }}"
                                             </p>
-                                            <div class="absolute bottom-0 right-0 w-24 h-24 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
-                                                <i class="fas fa-quote-right text-6xl text-[#3b82f6]"></i>
+                                            <div class="absolute bottom-0 right-0 w-16 sm:w-24 h-16 sm:h-24 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+                                                <i class="fas fa-quote-right text-4xl sm:text-6xl text-[#3b82f6]"></i>
                                             </div>
                                         </div>
                                         <div class="flex items-center justify-between pt-4 border-t border-gray-700 mt-auto">
-                        <div class="flex text-yellow-400">
-                                                <i v-for="i in 5" :key="i" class="fas fa-star text-sm"></i>
+                        <div class="flex text-yellow-400 text-xs sm:text-sm">
+                                                <i v-for="i in 5" :key="i" class="fas fa-star"></i>
                         </div>
-                                            <div class="text-[#3b82f6] text-sm font-medium">
+                                            <div class="text-[#3b82f6] text-xs sm:text-sm font-medium">
                                                 <i class="fas fa-check-circle mr-1"></i>
-                                                Verified
+                                                {{ currentLanguage === 'en' ? 'Verified' : 'Vérifié' }}
                                             </div>
                                         </div>
                                     </div>
@@ -2062,163 +2073,144 @@
                         </div>
                     </div>
 
-                    <!-- Navigation Dots -->
-                    <div class="flex justify-center mt-8 gap-2">
-                        <button v-for="index in Math.ceil(testimonialsItems.length / 3)" 
-                                :key="index"
-                                @click="goToSlide(index - 1)"
-                                class="w-2.5 h-2.5 rounded-full transition-colors"
-                                :class="[currentSlide === (index - 1) ? 'bg-[#3b82f6]' : 'bg-gray-600 hover:bg-[#3b82f6]']">
-                        </button>
+                    <!-- Scroll Indicator -->
+                    <div class="mt-6 flex justify-center items-center gap-2">
+                        <div class="text-sm text-gray-400">
+                            {{ currentLanguage === 'en' ? 'Swipe to see more' : 'Glissez pour voir plus' }}
+                            <i class="fas fa-arrow-right ml-2 animate-pulse"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <style>
-        /* Testimonials Styles */
-        .testimonials-wrapper {
-            position: relative;
-            padding: 0 20px;
-        }
+<style>
+/* Mobile-first styles */
+.testimonials-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
 
-        .testimonials-container {
-            overflow: hidden;
-            margin: 0 -20px;
-        }
+.testimonials-container::-webkit-scrollbar {
+    display: none;
+}
 
-        .testimonials-track {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 0 20px;
-        }
+.testimonials-track {
+    width: fit-content;
+    padding-bottom: 10px; /* Space for potential scroll bar */
+}
 
-        .testimonial-card {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s forwards;
-            height: 100%;
-        }
+/* Card styles */
+.testimonial-card {
+    scroll-snap-align: start;
+}
 
-        .testimonial-card .text-gray-300 {
-            display: -webkit-box;
-            -webkit-line-clamp: 6;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            min-height: 144px;
-        }
+@media (max-width: 640px) {
+    .testimonial-card {
+        width: calc(100vw - 3rem);
+        min-width: 280px;
+    }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .testimonials-container {
+        scroll-snap-type: x mandatory;
+        padding: 0 1rem;
+    }
 
-        /* Carousel Controls */
-        .carousel-control {
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
+    .testimonial-card .text-gray-300 {
+        max-height: 150px;
+        overflow-y: auto;
+    }
+}
 
-        .carousel-control:hover {
-            opacity: 1;
-            transform: translateY(-50%) scale(1.1);
-        }
+/* Gradient indicators for scroll */
+.testimonials-container::before,
+.testimonials-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    pointer-events: none;
+    z-index: 1;
+}
 
-        /* Tablet and Mobile Styles */
-        @media (max-width: 1024px) {
-            .testimonial-card {
-                width: calc(50% - 1rem);
-            }
-            
-            .testimonial-card:active {
-                transform: scale(0.98);
-                transition: transform 0.2s ease;
-            }
-            
-            .carousel-control {
-                opacity: 1;
-                width: 40px;
-                height: 40px;
-            }
-            
-            .testimonials-track {
-                scroll-padding-left: 1.5rem;
-                touch-action: pan-x;
-                -webkit-overflow-scrolling: touch;
-            }
-        }
+.testimonials-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(30, 41, 55, 0.9), rgba(30, 41, 55, 0));
+}
 
-        @media (max-width: 640px) {
-            .testimonial-card {
-                width: 100%;
-            }
-            
-            .testimonial-card .text-gray-300 {
-                min-height: 120px;
-            }
-            
-            .testimonials-track {
-                scroll-padding-left: 1rem;
-            }
-        }
+.testimonials-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(30, 41, 55, 0.9), rgba(30, 41, 55, 0));
+}
 
-        .testimonials-track {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            scroll-behavior: smooth;
-        }
+/* Animation for scroll indicator */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
 
-        .testimonials-track::-webkit-scrollbar {
-            display: none;
-        }
-        </style>
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+</style>
 
-        <script>
-        // Add to your Vue instance
-        methods: {
-            prevSlide() {
-                const container = document.querySelector('.testimonials-track');
-                const cards = document.querySelectorAll('.testimonial-card');
-                if (container && cards.length > 0) {
-                    const cardWidth = cards[0].offsetWidth + 24;
-                    const currentTransform = this.getCurrentTransform(container);
-                    const targetTransform = Math.min(0, currentTransform + (cardWidth * 3));
-                    container.style.transform = `translateX(${targetTransform}px)`;
-                    this.currentSlide = Math.max(0, this.currentSlide - 1);
-                }
-            },
-            nextSlide() {
-                const container = document.querySelector('.testimonials-track');
-                const cards = document.querySelectorAll('.testimonial-card');
-                if (container && cards.length > 0) {
-                    const cardWidth = cards[0].offsetWidth + 24;
-                    const maxScroll = -((Math.ceil(cards.length / 3) - 1) * cardWidth * 3);
-                    const currentTransform = this.getCurrentTransform(container);
-                    const targetTransform = Math.max(maxScroll, currentTransform - (cardWidth * 3));
-                    container.style.transform = `translateX(${targetTransform}px)`;
-                    this.currentSlide = Math.min(Math.ceil(cards.length / 3) - 1, this.currentSlide + 1);
-                }
-            },
-            goToSlide(index) {
-                const container = document.querySelector('.testimonials-track');
-                const cards = document.querySelectorAll('.testimonial-card');
-                if (container && cards.length > 0) {
-                    const cardWidth = cards[0].offsetWidth + 24;
-                    const targetTransform = -(cardWidth * index * 3);
-                    container.style.transform = `translateX(${targetTransform}px)`;
-                    this.currentSlide = index;
-                }
-            },
-            getCurrentTransform(element) {
-                const style = window.getComputedStyle(element);
-                const matrix = new WebKitCSSMatrix(style.transform);
-                return matrix.m41 || 0;
-            }
+<script>
+// Add to your Vue instance data
+data: {
+    isMobile: window.innerWidth < 640,
+    // ... existing data
+},
+
+// Add to your Vue instance methods
+methods: {
+    checkMobile() {
+        this.isMobile = window.innerWidth < 640;
+    },
+
+    initializeTestimonials() {
+        const container = document.querySelector('.testimonials-container');
+        if (container) {
+            // Add touch event listeners for better mobile scrolling
+            let startX, isDragging = false;
+
+            container.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - container.offsetLeft;
+                isDragging = true;
+            }, { passive: true });
+
+            container.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - container.offsetLeft;
+                const walk = (x - startX) * 2;
+                container.scrollLeft = container.scrollLeft - walk;
+                startX = x;
+            });
+
+            container.addEventListener('touchend', () => {
+                isDragging = false;
+            });
         }
-        </script>
+    }
+},
+
+// Update mounted
+mounted() {
+    // ... existing mounted code
+    window.addEventListener('resize', this.checkMobile);
+    this.checkMobile();
+    this.initializeTestimonials();
+},
+
+// Update beforeDestroy
+beforeDestroy() {
+    // ... existing beforeDestroy code
+    window.removeEventListener('resize', this.checkMobile);
+}
+</script>
 
         <!-- Contact Section -->
         <section id="contact" class="section bg-gray-50 dark:bg-gray-900/50">
@@ -2293,32 +2285,40 @@
                             <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
                             <div class="relative">
                                 <div class="mb-6">
-                                    <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Name</label>
+                                    <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                                        {{ currentLanguage === 'en' ? 'Your Name' : 'Votre Nom' }}
+                                    </label>
                                     <input type="text" id="name" v-model="contactForm.name" required 
                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
-                                           placeholder="John Doe">
+                                           :placeholder="currentLanguage === 'en' ? 'John Doe' : 'Jean Dupont'">
                                 </div>
                                 <div class="mb-6">
-                                    <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email Address</label>
+                                    <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                                        {{ currentLanguage === 'en' ? 'Email Address' : 'Adresse Email' }}
+                                    </label>
                                     <input type="email" id="email" v-model="contactForm.email" required 
                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
-                                           placeholder="john.doe@example.com">
+                                           :placeholder="currentLanguage === 'en' ? 'john.doe@example.com' : 'jean.dupont@exemple.com'">
                                 </div>
                                 <div class="mb-6">
-                                    <label for="subject" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Subject</label>
+                                    <label for="subject" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                                        {{ currentLanguage === 'en' ? 'Subject' : 'Sujet' }}
+                                    </label>
                                     <input type="text" id="subject" v-model="contactForm.subject" 
                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
-                                           placeholder="Project Inquiry">
+                                           :placeholder="currentLanguage === 'en' ? 'Project Inquiry' : 'Demande de Projet'">
                                 </div>
                                 <div class="mb-6">
-                                    <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Message</label>
+                                    <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                                        {{ currentLanguage === 'en' ? 'Your Message' : 'Votre Message' }}
+                                    </label>
                                     <textarea id="message" v-model="contactForm.message" required rows="5"
                                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
-                                              placeholder="Tell me about your project..."></textarea>
+                                              :placeholder="currentLanguage === 'en' ? 'Tell me about your project...' : 'Parlez-moi de votre projet...'"></textarea>
                                 </div>
                                 <button type="submit" 
                                         class="btn-primary w-full py-3 rounded-lg font-medium hover:scale-105 transition-transform">
-                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                                    {{ currentLanguage === 'en' ? 'Send Message' : 'Envoyer le Message' }} <i class="fas fa-paper-plane ml-2"></i>
                                 </button>
                             </div>
                         </form>
@@ -2333,7 +2333,9 @@
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="mb-6 md:mb-0">
                         <div class="text-2xl font-bold text-white mb-2">Ennajari</div>
-                        <p class="text-gray-400">Building intelligent solutions with AI and machine learning.</p>
+                        <p class="text-gray-400">
+                            {{ currentLanguage === 'en' ? 'Building intelligent solutions with AI and machine learning.' : 'Création de solutions intelligentes avec l\'IA et le machine learning.' }}
+                        </p>
                     </div>
                     <div class="flex space-x-6">
                         <a v-for="social in socialLinks" :href="social.url" target="_blank" class="text-gray-400 hover:text-white transition-colors">
@@ -2342,10 +2344,14 @@
                     </div>
                 </div>
                 <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">&copy; {{ new Date().getFullYear() }} Abdellah Ennajari. All rights reserved.</p>
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; {{ new Date().getFullYear() }} Abdellah Ennajari. {{ currentLanguage === 'en' ? 'All rights reserved.' : 'Tous droits réservés.' }}</p>
                     <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            {{ currentLanguage === 'en' ? 'Privacy Policy' : 'Politique de Confidentialité' }}
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            {{ currentLanguage === 'en' ? 'Terms of Service' : 'Conditions d\'Utilisation' }}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -2880,58 +2886,65 @@
                     }
                 ],
                 highlightedProjects: [
-                {
-                    title: { 
-                        en: 'Intelligent Chatbot for ENIAD' 
-                    },
-                    githubUrl: 'https://github.com/yourusername/flower-recognition',
-                    demoUrl: 'https://your-demo-url.com',
-                    date: { 
-                        en: 'April 30, 2025' 
-                    },
-                    location: 'ENIAD (AI & Digital School)',
-                    imgUrl: 'assets/images/chatbot_eniad.png', 
-                    description: {
-                        en: 'A smart chatbot designed for ENIAD students to improve academic communication. The project explores modern NLP and ML techniques including RAG, fine-tuning, HiFT, and Q-LoRA, with a detailed architecture and deployment strategy.'
-                    },
-                    tags: ['Chatbot', 'NLP', 'Machine Learning', 'RAG', 'HiFT', 'Q-LoRA']
+                    {
+                        title: { 
+                            en: 'Intelligent Chatbot for ENIAD',
+                            fr: 'Chatbot Intelligent pour ENIAD'
+                        },
+                        githubUrl: 'https://github.com/yourusername/flower-recognition',
+                        demoUrl: 'https://your-demo-url.com',
+                        date: { 
+                            en: 'April 30, 2025',
+                            fr: '30 Avril 2025'
+                        },
+                        location: 'ENIAD (AI & Digital School)',
+                        imgUrl: 'assets/images/chatbot_eniad.png',
+                        description: {
+                            en: 'A smart chatbot designed for ENIAD students to improve academic communication. The project explores modern NLP and ML techniques including RAG, fine-tuning, HiFT, and Q-LoRA, with a detailed architecture and deployment strategy.',
+                            fr: 'Un chatbot intelligent conçu pour les étudiants de l\'ENIAD pour améliorer la communication académique. Le projet explore les techniques modernes de NLP et ML, notamment RAG, fine-tuning, HiFT et Q-LoRA, avec une architecture détaillée et une stratégie de déploiement.'
+                        },
+                        tags: ['Chatbot', 'NLP', 'Machine Learning', 'RAG', 'HiFT', 'Q-LoRA']
                     },
                     {
-                title: {
-                    en: 'Automated Article Generation with CrewAI & RAG'
-                },
-                date: {
-                    en: '2025'
-                },
-                githubUrl: 'https://github.com/yourusername/flower-recognition',
-                demoUrl: 'https://your-demo-url.com',
-                location: 'Academic Project',
-                imgUrl: 'assets/images/Automated Article Generation with CrewAI & RAG.png', 
-                url: 'https://github.com/yourusername/article-generation-rag', 
-                description: {
-                    en: 'This project explores the integration of Retrieval-Augmented Generation (RAG) and vector databases using the CrewAI framework to automate high-quality article creation with context-aware content generation.'
-                },
-                tags: [
-                    'CrewAI', 'RAG', 'Vector Databases', 'LangChain', 'LLMs', 'AI Automation'
-                ]
-                },
-                {
-                title: { 
-                    en: 'BI System for Vehicle Sales Monitoring' 
-                },
-                githubUrl: 'https://github.com/yourusername/flower-recognition',
-                demoUrl: 'https://your-demo-url.com',
-                date: { 
-                    en: '2025' 
-                },
-                location: 'Academic Project',
-                imgUrl: 'assets/images/BI.png',
-                description: {
-                    en: 'Developed a Business Intelligence system for monitoring vehicle sales. Integrated dashboards, KPIs, and interactive visualizations to assist in data-driven decision making.'
-                },
-                tags: ['BI', 'Data Visualization', 'Dashboards', 'KPI', 'Power BI', 'Data Analysis']
-                },
-                {
+                        title: {
+                            en: 'Automated Article Generation with CrewAI & RAG',
+                            fr: 'Génération Automatique d\'Articles avec CrewAI & RAG'
+                        },
+                        date: {
+                            en: '2025',
+                            fr: '2025'
+                        },
+                        githubUrl: 'https://github.com/yourusername/flower-recognition',
+                        demoUrl: 'https://your-demo-url.com',
+                        location: 'Academic Project',
+                        imgUrl: 'assets/images/Automated Article Generation with CrewAI & RAG.png',
+                        url: 'https://github.com/yourusername/article-generation-rag',
+                        description: {
+                            en: 'This project explores the integration of Retrieval-Augmented Generation (RAG) and vector databases using the CrewAI framework to automate high-quality article creation with context-aware content generation.',
+                            fr: 'Ce projet explore l\'intégration de la Génération Augmentée par Récupération (RAG) et des bases de données vectorielles en utilisant le framework CrewAI pour automatiser la création d\'articles de haute qualité avec une génération de contenu contextuelle.'
+                        },
+                        tags: ['CrewAI', 'RAG', 'Vector Databases', 'LangChain', 'LLMs', 'AI Automation']
+                    },
+                    {
+                        title: { 
+                            en: 'BI System for Vehicle Sales Monitoring',
+                            fr: 'Système BI pour le Suivi des Ventes de Véhicules'
+                        },
+                        githubUrl: 'https://github.com/yourusername/flower-recognition',
+                        demoUrl: 'https://your-demo-url.com',
+                        date: { 
+                            en: '2025',
+                            fr: '2025'
+                        },
+                        location: 'Academic Project',
+                        imgUrl: 'assets/images/BI.png',
+                        description: {
+                            en: 'Developed a Business Intelligence system for monitoring vehicle sales. Integrated dashboards, KPIs, and interactive visualizations to assist in data-driven decision making.',
+                            fr: 'Développement d\'un système de Business Intelligence pour le suivi des ventes de véhicules. Intégration de tableaux de bord, KPIs et visualisations interactives pour faciliter la prise de décision basée sur les données.'
+                        },
+                        tags: ['BI', 'Data Visualization', 'Dashboards', 'KPI', 'Power BI', 'Data Analysis']
+                    },
+                    {
                         title: { 
                             en: 'Sentiment Analysis Tool',
                             fr: 'Outil d\'Analyse de Sentiments'
@@ -2940,14 +2953,17 @@
                         url: '#',
                         githubUrl: 'https://github.com/yourusername/sentiment-analysis',
                         demoUrl: 'https://customer-reviews-classification-az8wv9ajwr8ecea2taqzcl.streamlit.app/',
-                        date: { en: '2024', fr: '2024' },
+                        date: { 
+                            en: '2024',
+                            fr: '2024'
+                        },
                         description: {
                             en: 'NLP application for analyzing customer reviews with BERT model.',
                             fr: 'Application NLP pour l\'analyse des avis clients avec le modèle BERT.'
                         },
                         tags: ['NLP', 'Machine Learning', 'PyTorch']
                     },
-                {
+                    {
                         title: { 
                             en: 'Flower Recognition System',
                             fr: 'Système de Reconnaissance de Fleurs'
@@ -2956,7 +2972,10 @@
                         url: '#',
                         githubUrl: 'https://github.com/yourusername/flower-recognition',
                         demoUrl: 'https://your-demo-url.com',
-                        date: { en: '2024', fr: '2024' },
+                        date: { 
+                            en: '2024',
+                            fr: '2024'
+                        },
                         description: {
                             en: 'A real-time flower classification system using CNN with 95% accuracy.',
                             fr: 'Un système de classification de fleurs en temps réel utilisant CNN avec une précision de 95%.'
@@ -2964,21 +2983,24 @@
                         tags: ['Deep Learning', 'Computer Vision', 'TensorFlow']
                     },
                     {
-                    title: {
-                        en: 'Time Management Web Application'
-                    },
-                    githubUrl: 'https://github.com/yourusername/flower-recognition',
-                    demoUrl: 'https://your-demo-url.com',
-                    date: {
-                        en: '2023'
-                    },
-                    location: 'BootCamp YouCode',
-                    imgUrl: 'assets/images/emploi.png',
-                    description: {
-                        en: 'Developed a web application for time management, utilizing the Laravel framework and optimizing schedules through genetic algorithms. The system aimed to improve productivity by intelligently organizing tasks and schedules.'
-                    },
-                    tags: ['Laravel', 'Genetic Algorithms', 'Web Development', 'Optimization', 'Time Management']
-                    },
+                        title: {
+                            en: 'Time Management Web Application',
+                            fr: 'Application Web de Gestion du Temps'
+                        },
+                        githubUrl: 'https://github.com/yourusername/flower-recognition',
+                        demoUrl: 'https://your-demo-url.com',
+                        date: {
+                            en: '2023',
+                            fr: '2023'
+                        },
+                        location: 'BootCamp YouCode',
+                        imgUrl: 'assets/images/emploi.png',
+                        description: {
+                            en: 'Developed a web application for time management, utilizing the Laravel framework and optimizing schedules through genetic algorithms. The system aimed to improve productivity by intelligently organizing tasks and schedules.',
+                            fr: 'Développement d\'une application web de gestion du temps, utilisant le framework Laravel et optimisant les emplois du temps grâce aux algorithmes génétiques. Le système vise à améliorer la productivité en organisant intelligemment les tâches et les horaires.'
+                        },
+                        tags: ['Laravel', 'Genetic Algorithms', 'Web Development', 'Optimization', 'Time Management']
+                    }
                 ],
                 currentLanguage: 'en',
                 currentSlide: 0,
