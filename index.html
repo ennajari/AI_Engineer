@@ -760,26 +760,72 @@
             }
         }
         
+        /* Custom cursor styles */
+        .custom-cursor,
+        .custom-cursor-dot {
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+
         .custom-cursor {
             width: 20px;
             height: 20px;
             border: 2px solid var(--primary);
             border-radius: 50%;
             position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.2s ease;
         }
-        
+
         .custom-cursor-dot {
             width: 6px;
             height: 6px;
             background-color: var(--primary);
             border-radius: 50%;
             position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
+        }
+
+        /* Hide custom cursor on mobile and tablet devices */
+        @media (max-width: 1024px) {
+            .custom-cursor,
+            .custom-cursor-dot {
+                display: none;
+            }
+            
+            /* Reset cursor styles for touch devices */
+            * {
+                cursor: auto !important;
+            }
+            
+            /* Add touch feedback for interactive elements */
+            a, button, [role="button"], input, select, textarea {
+                -webkit-tap-highlight-color: rgba(99, 102, 241, 0.2);
+                touch-action: manipulation;
+            }
+        }
+
+        /* Specific adjustments for tablets (768px - 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            a:hover, button:hover, [role="button"]:hover {
+                transform: scale(1.02);
+                transition: transform 0.2s ease;
+            }
+            
+            .interactive-element {
+                transition: all 0.2s ease;
+            }
+            
+            .interactive-element:active {
+                transform: scale(0.98);
+                opacity: 0.8;
+            }
+        }
+
+        /* Specific adjustments for phones (max-width: 767px) */
+        @media (max-width: 767px) {
+            a:active, button:active, [role="button"]:active {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
         }
         
         .profile-image {
@@ -2421,7 +2467,7 @@
                         },
                         "description": {
                             "en": "Designed a deep learning model to reconstruct 3D dental surfaces from 2D X-ray inputs using encoder-decoder architecture and volumetric rendering techniques. Deployed a demo with interactive 3D visualization.",
-                            "fr": "Conception d’un modèle de deep learning pour reconstruire des surfaces dentaires 3D à partir d’images de radiographie 2D en utilisant une architecture encodeur-décodeur et des techniques de rendu volumétrique. Déploiement d’une démo avec visualisation 3D interactive."
+                            "fr": "Conception d'un modèle de deep learning pour reconstruire des surfaces dentaires 3D à partir d'images de radiographie 2D en utilisant une architecture encodeur-décodeur et des techniques de rendu volumétrique. Déploiement d'une démo avec visualisation 3D interactive."
                         }
                         },
                         {
@@ -2431,7 +2477,7 @@
                         },
                         "description": {
                             "en": "Built and trained a CNN-based classifier to identify tooth types from 3D dental scans. Achieved over 95% accuracy on a custom-labeled dataset. Integrated results into a Streamlit dashboard for real-time inference.",
-                            "fr": "Création et entraînement d’un classificateur basé sur un CNN pour identifier les types de dents à partir de scans dentaires 3D. Précision supérieure à 95 % sur un jeu de données annoté manuellement. Intégration des résultats dans un tableau de bord Streamlit pour une inférence en temps réel."
+                            "fr": "Création et entraînement d'un classificateur basé sur un CNN pour identifier les types de dents à partir de scans dentaires 3D. Précision supérieure à 95 % sur un jeu de données annoté manuellement. Intégration des résultats dans un tableau de bord Streamlit pour une inférence en temps réel."
                         }
                         }
                     ],
