@@ -1338,6 +1338,28 @@
                 font-size: 0.875rem;
             }
         }
+
+        /* Add these styles to your existing CSS */
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .project-card {
+                scroll-snap-align: start;
+            }
+            
+            .flex.gap-6 {
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -1804,56 +1826,66 @@
         </div>
         
         <!-- Featured Projects Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12">
-            <div v-for="(project, index) in highlightedProjects" 
-                 class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
-                <!-- Project Image with Overlay -->
-                <div class="relative overflow-hidden h-48 group">
-                    <img :src="project.imgUrl" :alt="project.title[currentLanguage]" 
-                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
-                        <div>
-                            <h3 class="text-white font-bold text-xl mb-1">{{ project.title[currentLanguage] }}</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span v-for="tag in project.tags" 
-                                      class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">
-                                    {{ tag }}
-                                </span>
+        <div class="relative">
+            <div class="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12 overflow-x-auto sm:overflow-x-visible pb-6 sm:pb-0 hide-scrollbar">
+                <div v-for="(project, index) in highlightedProjects" 
+                     class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 w-[85vw] sm:w-auto flex-shrink-0">
+                    <!-- Project Image with Overlay -->
+                    <div class="relative overflow-hidden h-48 group">
+                        <img :src="project.imgUrl" :alt="project.title[currentLanguage]" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
+                            <div>
+                                <h3 class="text-white font-bold text-xl mb-1">{{ project.title[currentLanguage] }}</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span v-for="tag in project.tags" 
+                                          class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">
+                                        {{ tag }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Hover Overlay -->
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <a :href="project.url" target="_blank" 
+                                   class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-2">
+                                    {{ currentLanguage === 'en' ? 'View Project' : 'Voir le Projet' }} <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                                <div class="flex justify-center space-x-4">
+                                    <a v-if="project.githubUrl" :href="project.githubUrl" target="_blank" 
+                                       class="text-white hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-github text-xl"></i>
+                                    </a>
+                                    <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" 
+                                       class="text-white hover:text-blue-400 transition-colors">
+                                        <i class="fas fa-external-link-alt text-xl"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Hover Overlay -->
-                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div class="text-center">
-                            <a :href="project.url" target="_blank" 
-                               class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 inline-block mb-2">
-                                {{ currentLanguage === 'en' ? 'View Project' : 'Voir le Projet' }} <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                            <div class="flex justify-center space-x-4">
-                                <a v-if="project.githubUrl" :href="project.githubUrl" target="_blank" 
-                                   class="text-white hover:text-blue-400 transition-colors">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                                <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" 
-                                   class="text-white hover:text-blue-400 transition-colors">
-                                    <i class="fas fa-external-link-alt text-xl"></i>
-                                </a>
-                            </div>
+                    
+                    <!-- Project Details -->
+                    <div class="p-6">
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description[currentLanguage] }}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">{{ project.date[currentLanguage] }}</span>
+                            <button @click="openProjectModal(project)" 
+                                    class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center group">
+                                {{ currentLanguage === 'en' ? 'View Details' : 'Voir Détails' }}
+                                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project Details -->
-                <div class="p-6">
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description[currentLanguage] }}</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">{{ project.date[currentLanguage] }}</span>
-                        <button @click="openProjectModal(project)" 
-                                class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center group">
-                            {{ currentLanguage === 'en' ? 'View Details' : 'Voir Détails' }}
-                            <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                        </button>
-                    </div>
+            </div>
+            
+            <!-- Mobile Swipe Indicator -->
+            <div class="mt-6 flex justify-center items-center gap-2 sm:hidden">
+                <div class="text-sm text-gray-600 dark:text-gray-400">
+                    {{ currentLanguage === 'en' ? 'Swipe to see more' : 'Glissez pour voir plus' }}
+                    <i class="fas fa-arrow-right ml-2 animate-pulse"></i>
                 </div>
             </div>
         </div>
@@ -2074,7 +2106,7 @@
                     </div>
 
                     <!-- Scroll Indicator -->
-                    <div class="mt-6 flex justify-center items-center gap-2">
+                    <div class="mt-6 flex justify-center items-center gap-2 sm:hidden">
                         <div class="text-sm text-gray-400">
                             {{ currentLanguage === 'en' ? 'Swipe to see more' : 'Glissez pour voir plus' }}
                             <i class="fas fa-arrow-right ml-2 animate-pulse"></i>
@@ -2459,11 +2491,11 @@ beforeDestroy() {
                     { name: 'Docker', level: 90, icon: 'assets/images/Docker.png' }
                 ],
                 mlops: [
-                    { name: 'MLflow', level: 85, icon: 'assets/images/mlflow-icon.png' },
+                    { name: 'MLflow', level: 85, icon: 'assets/images/MLflow.png' },
                     { name: 'CI/CD', level: 75, icon: 'assets/images/cicd-icon.png' },
                     { name: 'Model Deployment', level: 80, icon: 'assets/images/deployment-icon.png' },
                     { name: 'Model Monitoring', level: 75, icon: 'assets/images/monitoring-icon.png' },
-                    { name: 'Kubernetes', level: 85, icon: 'assets/images/Kubernetes-icon.png' },
+                    { name: 'Kubernetes', level: 85, icon: 'assets/images/Kubernetes.png' },
                     { name: 'DVC', level: 80, icon: 'assets/images/dvc.png' },
                     { name: 'W&B', level: 85, icon: 'assets/images/Weights.svg' }
                 ],
