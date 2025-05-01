@@ -87,25 +87,83 @@
         }
         
         .skill-card {
-            transition: all 0.3s ease;
-            border-radius: 0.5rem;
+            position: relative;
             overflow: hidden;
         }
         
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .skill-card img {
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .skill-card .bg-gradient-to-r {
+            background-size: 200% 100%;
+            animation: gradient-shift 2s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .project-card {
-            transition: all 0.3s ease;
-            border-radius: 0.5rem;
-            overflow: hidden;
+            position: relative;
         }
         
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0.5rem;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .project-card img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-card .tag {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover .tag {
+            background-color: var(--primary);
+            color: white;
         }
         
         .timeline-item {
@@ -210,6 +268,197 @@
             mask-composite: exclude;
             pointer-events: none;
         }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 8s ease infinite;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .contact-form button:hover::after {
+            transform: translateX(100%);
+        }
+
+        .social-icon {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icon:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-section {
+                padding-top: 6rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .flex-col {
+                flex-direction: column;
+            }
+            
+            .lg\:w-1\/2 {
+                width: 100%;
+            }
+            
+            .text-4xl {
+                font-size: 1.875rem;
+            }
+            
+            .text-3xl {
+                font-size: 1.5rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            .p-8 {
+                padding: 1.5rem;
+            }
+            
+            .gap-12 {
+                gap: 2rem;
+            }
+            
+            .mb-12 {
+                margin-bottom: 2rem;
+            }
+            
+            .space-y-6 {
+                gap: 1rem;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .lg\:w-1\/2 {
+                width: 100%;
+            }
+            
+            .text-4xl {
+                font-size: 2.25rem;
+            }
+            
+            .text-3xl {
+                font-size: 1.875rem;
+            }
+            
+            .gap-12 {
+                gap: 3rem;
+            }
+        }
+        
     </style>
 </head>
 <body class="antialiased">
@@ -313,41 +562,50 @@
             <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 dark:from-blue-900/20 dark:to-emerald-900/20"></div>
             
             <div class="container mx-auto px-6 relative z-10">
-                <div class="flex flex-col lg:flex-row items-center">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
                     <!-- Hero Text -->
                     <div class="lg:w-1/2 mb-12 lg:mb-0">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                            <span class="hero-gradient">Abdellah Ennajari</span>
-                            <br>
-                            <span class="text-gray-700 dark:text-gray-300">AI & Data Science Engineer</span>
-                        </h1>
-                        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg">
-                            I build intelligent systems that solve complex problems using cutting-edge AI and machine learning technologies.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium">Contact Me</a>
-                            <a href="#portfolio" class="btn-outline px-8 py-3 rounded-full font-medium">View Projects</a>
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
+                            <div class="relative">
+                                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                                    <span class="hero-gradient animate-gradient">Abdellah Ennajari</span>
+                                    <br>
+                                    <span class="text-gray-700 dark:text-gray-300 animate-fade-in">AI & Data Science Engineer</span>
+                                </h1>
+                                <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg animate-fade-in-up">
+                                    I build intelligent systems that solve complex problems using cutting-edge AI and machine learning technologies.
+                                </p>
+                                <div class="flex flex-wrap gap-4 animate-fade-in-up">
+                                    <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">Contact Me</a>
+                                    <a href="#portfolio" class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">View Projects</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Hero Image -->
                     <div class="lg:w-1/2 flex justify-center">
                         <div class="relative w-full max-w-md">
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full blur-3xl opacity-20 dark:opacity-30"></div>
-                            <img src="assets/images/hero-img1.png" alt="Abdellah Ennajari" class="relative z-10 w-full h-auto floating">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full blur-3xl opacity-20 dark:opacity-30 animate-pulse"></div>
+                            <div class="relative z-10">
+                                <img src="assets/images/hero-img1.png" alt="Abdellah Ennajari" class="w-full h-auto floating">
+                                <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full blur-2xl opacity-20 dark:opacity-30 animate-pulse-slow"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Scroll Down Indicator -->
-            <a href="#about" class="scroll-down absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+            <a href="#about" class="scroll-down absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors animate-bounce">
                 <i class="fas fa-chevron-down text-2xl"></i>
             </a>
             
             <!-- Social Links -->
             <div class="hidden md:flex flex-col items-center fixed left-8 bottom-0 space-y-6">
-                <a v-for="social in socialLinks" :href="social.url" target="_blank" class="social-icon text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                <a v-for="social in socialLinks" :href="social.url" target="_blank" 
+                   class="social-icon text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors hover:scale-110">
                     <i :class="social.icon + ' text-xl'"></i>
                 </a>
                 <div class="w-px h-16 bg-gray-300 dark:bg-gray-700"></div>
@@ -446,18 +704,18 @@
                     <div class="flex justify-center">
                         <div class="inline-flex bg-gray-100 dark:bg-gray-700 rounded-full p-1">
                             <button @click="activeSkillTab = 'languages'" 
-                                    class="px-6 py-2 rounded-full font-medium transition-colors"
-                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm': activeSkillTab === 'languages', 'text-gray-600 dark:text-gray-400': activeSkillTab !== 'languages'}">
+                                    class="px-6 py-2 rounded-full font-medium transition-all duration-300"
+                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm transform scale-105': activeSkillTab === 'languages', 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600': activeSkillTab !== 'languages'}">
                                 Languages
                             </button>
                             <button @click="activeSkillTab = 'frameworks'" 
-                                    class="px-6 py-2 rounded-full font-medium transition-colors"
-                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm': activeSkillTab === 'frameworks', 'text-gray-600 dark:text-gray-400': activeSkillTab !== 'frameworks'}">
+                                    class="px-6 py-2 rounded-full font-medium transition-all duration-300"
+                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm transform scale-105': activeSkillTab === 'frameworks', 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600': activeSkillTab !== 'frameworks'}">
                                 Frameworks
                             </button>
                             <button @click="activeSkillTab = 'tools'" 
-                                    class="px-6 py-2 rounded-full font-medium transition-colors"
-                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm': activeSkillTab === 'tools', 'text-gray-600 dark:text-gray-400': activeSkillTab !== 'tools'}">
+                                    class="px-6 py-2 rounded-full font-medium transition-all duration-300"
+                                    :class="{'bg-white dark:bg-gray-900 text-blue-500 dark:text-blue-400 shadow-sm transform scale-105': activeSkillTab === 'tools', 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600': activeSkillTab !== 'tools'}">
                                 Tools
                             </button>
                         </div>
@@ -467,14 +725,16 @@
                 <!-- Skills Grid -->
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <div v-for="skill in skills[activeSkillTab]" 
-                         class="skill-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl flex flex-col items-center text-center">
+                         class="skill-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl flex flex-col items-center text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                         <div class="w-16 h-16 mb-4 flex items-center justify-center">
                             <img :src="skill.icon" :alt="skill.name" class="max-h-full max-w-full">
                         </div>
                         <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">{{ skill.name }}</h4>
-                        <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2">
-                            <div class="bg-gradient-to-r from-blue-500 to-emerald-500 h-1.5 rounded-full" :style="{width: skill.level + '%'}"></div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2 overflow-hidden">
+                            <div class="bg-gradient-to-r from-blue-500 to-emerald-500 h-1.5 rounded-full transition-all duration-1000" 
+                                 :style="{width: skill.level + '%'}"></div>
                         </div>
+                        <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ skill.level }}%</div>
                     </div>
                 </div>
             </div>
@@ -536,8 +796,8 @@
                     <div class="inline-flex flex-wrap justify-center gap-2">
                         <button v-for="filter in filters" 
                                 @click="filterPortfolioItems(filter)"
-                                class="px-4 py-2 rounded-full font-medium transition-colors"
-                                :class="{'bg-blue-500 text-white': currentFilter === filter, 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400': currentFilter !== filter}">
+                                class="px-4 py-2 rounded-full font-medium transition-all duration-300"
+                                :class="{'bg-blue-500 text-white transform scale-105 shadow-md': currentFilter === filter, 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600': currentFilter !== filter}">
                             {{ filter }}
                         </button>
                     </div>
@@ -546,24 +806,36 @@
                 <!-- Portfolio Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div v-for="project in filteredPortfolioItems" 
-                         class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                        <div class="relative overflow-hidden h-48">
-                            <img :src="project.imgUrl" :alt="project.title.en" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                         class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="relative overflow-hidden h-48 group">
+                            <img :src="project.imgUrl" :alt="project.title.en" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-6">
                                 <div>
                                     <h3 class="text-white font-bold text-xl mb-1">{{ project.title.en }}</h3>
                                     <div class="flex flex-wrap gap-2">
-                                        <span v-for="tag in project.tags" class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">{{ tag }}</span>
+                                        <span v-for="tag in project.tags" 
+                                              class="text-xs px-2 py-1 bg-blue-500/20 text-blue-500 rounded-full">
+                                            {{ tag }}
+                                        </span>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <a :href="project.url" target="_blank" 
+                                   class="text-white bg-blue-500 px-4 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    View Project <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-600 dark:text-gray-400 mb-4">{{ project.description }}</p>
                             <div class="flex justify-between items-center">
                                 <span class="text-sm text-gray-500">{{ project.date.en }}</span>
-                                <a :href="project.url" target="_blank" class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center">
-                                    View Project <i class="fas fa-arrow-right ml-2"></i>
+                                <a :href="project.url" target="_blank" 
+                                   class="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center group">
+                                    View Project 
+                                    <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                                 </a>
                             </div>
                         </div>
@@ -572,7 +844,8 @@
                 
                 <!-- Load More Button -->
                 <div class="text-center mt-12">
-                    <button @click="loadMoreProjects" class="btn-outline px-8 py-3 rounded-full font-medium">
+                    <button @click="loadMoreProjects" 
+                            class="btn-outline px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform">
                         Load More Projects
                     </button>
                 </div>
@@ -656,88 +929,101 @@
                 <div class="flex flex-col lg:flex-row gap-12">
                     <!-- Contact Info -->
                     <div class="lg:w-1/2">
-                        <span class="subtitle">Get In Touch</span>
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                            Let's <span class="text-blue-500 dark:text-blue-400">Collaborate</span>
-                        </h2>
-                        <p class="text-gray-600 dark:text-gray-400 mb-8">
-                            Have a project in mind or want to discuss potential opportunities? Feel free to reach out. I'm always open to interesting collaborations and challenges.
-                        </p>
-                        
-                        <div class="space-y-6 mb-8">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center text-blue-500 mr-4 mt-1">
-                                    <i class="fas fa-envelope"></i>
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
+                            <div class="relative">
+                                <span class="subtitle">Get In Touch</span>
+                                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                                    Let's <span class="text-blue-500 dark:text-blue-400">Collaborate</span>
+                                </h2>
+                                <p class="text-gray-600 dark:text-gray-400 mb-8">
+                                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out. I'm always open to interesting collaborations and challenges.
+                                </p>
+                                
+                                <div class="space-y-6 mb-8">
+                                    <div class="flex items-start group">
+                                        <div class="w-10 h-10 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center text-blue-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Email</h4>
+                                            <a href="mailto:abdellahennajari2018@gmail.com" 
+                                               class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                                                abdellahennajari2018@gmail.com
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start group">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Phone</h4>
+                                            <a href="tel:+212655798315" 
+                                               class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                                                +212 655 798 315
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start group">
+                                        <div class="w-10 h-10 rounded-full bg-purple-500/10 dark:bg-purple-500/20 flex items-center justify-center text-purple-500 mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Location</h4>
+                                            <p class="text-gray-600 dark:text-gray-400">Morocco</p>
+                                        </div>
+                                    </div>
                                 </div>
+                                
                                 <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Email</h4>
-                                    <a href="mailto:abdellahennajari2018@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                                        abdellahennajari2018@gmail.com
-                                    </a>
+                                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Follow Me</h4>
+                                    <div class="flex space-x-4">
+                                        <a v-for="social in socialLinks" :href="social.url" target="_blank" 
+                                           class="social-icon w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110">
+                                            <i :class="social.icon"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-500 mr-4 mt-1">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Phone</h4>
-                                    <a href="tel:+212655798315" class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                                        +212 655 798 315
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-purple-500/10 dark:bg-purple-500/20 flex items-center justify-center text-purple-500 mr-4 mt-1">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-1">Location</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">Morocco</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Follow Me</h4>
-                            <div class="flex space-x-4">
-                                <a v-for="social in socialLinks" :href="social.url" target="_blank" class="social-icon w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white transition-colors">
-                                    <i :class="social.icon"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Contact Form -->
                     <div class="lg:w-1/2">
-                        <form @submit.prevent="submitContactForm" class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm">
-                            <div class="mb-6">
-                                <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Name</label>
-                                <input type="text" id="name" v-model="contactForm.name" required 
-                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
-                                       placeholder="John Doe">
+                        <form @submit.prevent="submitContactForm" 
+                              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm relative">
+                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
+                            <div class="relative">
+                                <div class="mb-6">
+                                    <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Name</label>
+                                    <input type="text" id="name" v-model="contactForm.name" required 
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
+                                           placeholder="John Doe">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email Address</label>
+                                    <input type="email" id="email" v-model="contactForm.email" required 
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
+                                           placeholder="john.doe@example.com">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="subject" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Subject</label>
+                                    <input type="text" id="subject" v-model="contactForm.subject" 
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
+                                           placeholder="Project Inquiry">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Message</label>
+                                    <textarea id="message" v-model="contactForm.message" required rows="5"
+                                              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-all duration-300"
+                                              placeholder="Tell me about your project..."></textarea>
+                                </div>
+                                <button type="submit" 
+                                        class="btn-primary w-full py-3 rounded-lg font-medium hover:scale-105 transition-transform">
+                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                                </button>
                             </div>
-                            <div class="mb-6">
-                                <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email Address</label>
-                                <input type="email" id="email" v-model="contactForm.email" required 
-                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
-                                       placeholder="john.doe@example.com">
-                            </div>
-                            <div class="mb-6">
-                                <label for="subject" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Subject</label>
-                                <input type="text" id="subject" v-model="contactForm.subject" 
-                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
-                                       placeholder="Project Inquiry">
-                            </div>
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Your Message</label>
-                                <textarea id="message" v-model="contactForm.message" required rows="5"
-                                          class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
-                                          placeholder="Tell me about your project..."></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary w-full py-3 rounded-lg font-medium">
-                                Send Message <i class="fas fa-paper-plane ml-2"></i>
-                            </button>
                         </form>
                     </div>
                 </div>
@@ -944,7 +1230,7 @@
                         institution: 'El Ouroud High School',
                         degree: 'Baccalaureate in Physical and Chemical Sciences',
                         period: '2020',
-                        location: 'Kelaat M’gouna, Morocco',
+                        location: 'Kelaat M\'gouna, Morocco',
                         points: [
                             'Strong foundation in Physics and Chemistry',
                             'Comprehensive education in Mathematics and Sciences',
