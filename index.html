@@ -1155,6 +1155,143 @@
                 min-height: 120px;
             }
         }
+
+        /* Button Container Styles */
+        .hero-buttons {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .hero-buttons::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .hero-buttons a, 
+        .hero-buttons button {
+            flex-shrink: 0;
+            white-space: nowrap;
+            min-width: fit-content;
+            padding: 0.75rem 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .hero-buttons {
+                justify-content: flex-start;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .hero-buttons a,
+            .hero-buttons button {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Button styles for single line layout */
+        .skill-buttons {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+        }
+
+        .skill-buttons::-webkit-scrollbar {
+            display: none;
+        }
+
+        .skill-buttons button {
+            flex: 0 0 auto;
+            white-space: nowrap;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 30px;
+        }
+
+        @media (max-width: 640px) {
+            .skill-buttons {
+                padding: 0 1rem;
+            }
+            
+            .skill-buttons button {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Update the existing button container styles */
+        .flex.flex-wrap.gap-4.justify-center.mb-8 {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .flex.flex-wrap.gap-4.justify-center.mb-8::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Ensure buttons stay in a single line */
+        .skill-category-buttons {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .skill-category-buttons button {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: fit-content;
+        }
+
+        @media (max-width: 640px) {
+            .skill-category-buttons {
+                gap: 0.5rem;
+                padding: 0 1rem 1rem 1rem;
+            }
+
+            .skill-category-buttons button {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -1287,7 +1424,7 @@
                                 <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 lg:mb-8 max-w-lg mx-auto lg:mx-0">
                                     {{ currentLanguage === 'en' ? 'I build intelligent systems that solve complex problems using cutting-edge AI and machine learning technologies.' : 'Je construis des systèmes intelligents qui résolvent des problèmes complexes en utilisant les technologies d\'IA et d\'apprentissage automatique de pointe.' }}
                                 </p>
-                                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                <div class="hero-buttons">
                                     <a href="#contact" class="bg-[#6366F1] hover:bg-[#4F46E5] text-white px-8 py-3 rounded-[30px] font-medium transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center w-[140px]">
                                         {{ currentLanguage === 'en' ? 'Hire Me' : 'Hire Me' }}
                                     </a>
@@ -1571,16 +1708,16 @@
                 </div>
                 
                 <!-- Skills Categories -->
-                <div class="flex flex-wrap gap-4 justify-center mb-8">
+                <div class="skill-category-buttons hide-scrollbar">
                     <button v-for="(skills, category) in skills" 
                             @click="activeSkillTab = category"
                             :key="category"
                             :class="{'bg-[#6366F1] text-white': activeSkillTab === category, 'bg-transparent border-2 border-[#6366F1] text-[#6366F1]': activeSkillTab !== category}"
-                            class="px-6 py-2 rounded-[30px] font-medium transition-all duration-300 hover:scale-105">
+                            class="flex-shrink-0 px-6 py-2 rounded-[30px] font-medium transition-all duration-300 hover:scale-105">
                         {{ formatCategory(category) }}
                     </button>
-                        </div>
-                        
+                </div>
+                
                 <!-- Skills Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <div v-for="skill in skills[activeSkillTab]" 
@@ -3022,3 +3159,4 @@
     </script>
 </body>
 </html>
+
