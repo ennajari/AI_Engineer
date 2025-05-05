@@ -25,11 +25,10 @@ def chat():
         return jsonify({'error': 'Aucun message fourni'}), 400
     
     try:
-        # Récupérer la réponse du chatbot
         response, _ = chatbot.get_answer(data['message'])
         return jsonify({'response': response})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5000)  
