@@ -1,0 +1,23 @@
+Projet : Chatbot RAG avec LangChain et Gemini
+
+Ce projet a pour but de construire un chatbot intelligent basé sur la technologie RAG (Retrieval-Augmented Generation).
+Il utilise LangChain pour orchestrer le pipeline, FAISS comme base vectorielle pour la recherche, et Gemini de Google pour le raisonnement et la génération de texte.
+
+Fonctionnalités principales :
+- Ingestion de documents stockés dans chatbot/docs/
+- Génération de vecteurs d'embedding avec GoogleGenerativeAIEmbeddings
+- Recherche d'informations pertinentes via FAISS
+- Génération de réponses via ChatGoogleGenerativeAI (modèle : gemini-2.0)
+- Interface utilisateur via Streamlit
+
+Structure du projet :
+- chatbot/rag_pipeline.py : génère la base vectorielle FAISS
+- chatbot/chatbot_logic.py : contient la logique de réponse
+- web/app.py : interface Streamlit
+- .env : contient la clé API de Google
+
+Technologies :
+- LangChain
+- FAISS
+- Gemini (Google Generative AI)
+- Streamlit
