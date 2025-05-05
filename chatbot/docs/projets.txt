@@ -1,23 +1,59 @@
-Projet : Chatbot RAG avec LangChain et Gemini
+Projet 1 : Développement d'une application de reconnaissance d'images dentaires  
+- Description : Création d’un modèle de deep learning pour détecter et classer les dents à partir d’images médicales.  
+- Technologies : Python, TensorFlow, OpenCV  
+- Résultat : Précision élevée sur un dataset annoté, interface utilisateur pour visualisation.
 
-Ce projet a pour but de construire un chatbot intelligent basé sur la technologie RAG (Retrieval-Augmented Generation).
-Il utilise LangChain pour orchestrer le pipeline, FAISS comme base vectorielle pour la recherche, et Gemini de Google pour le raisonnement et la génération de texte.
+Projet 2 : Création d'un chatbot intelligent pour portfolio (LLM + RAG)  
+- Description : Agent conversationnel basé sur un LLM combiné à RAG pour répondre aux questions des recruteurs et utilisateurs.  
+- Technologies : LangChain, Hugging Face, FAISS, Streamlit  
+- Fonctionnalités : Recherche documentaire sur mes projets, réponses contextuelles, intégration GitHub.
 
-Fonctionnalités principales :
-- Ingestion de documents stockés dans chatbot/docs/
-- Génération de vecteurs d'embedding avec GoogleGenerativeAIEmbeddings
-- Recherche d'informations pertinentes via FAISS
-- Génération de réponses via ChatGoogleGenerativeAI (modèle : gemini-2.0)
-- Interface utilisateur via Streamlit
+Projet 3 : Classification 3D d’objets à partir d’images  
+- Description : Analyse et classification d’objets 3D à partir d’images multi-vues.  
+- Technologies : PyTorch3D, Keras, OpenCV  
+- Résultat : Précision de 97%, utilisée pour l’inspection industrielle.
 
-Structure du projet :
-- chatbot/rag_pipeline.py : génère la base vectorielle FAISS
-- chatbot/chatbot_logic.py : contient la logique de réponse
-- web/app.py : interface Streamlit
-- .env : contient la clé API de Google
+Projet 4 : Visualisation interactive 360° d’objets  
+- Description : Interface web pour l’exploration d’un objet via une rotation fluide.  
+- Technologies : JavaScript, Flask, HTML/CSS, Deep Learning  
+- Cas d’usage : Présentation interactive de produits ou objets médicaux.
 
-Technologies :
-- LangChain
-- FAISS
-- Gemini (Google Generative AI)
-- Streamlit
+Projet 5 : Génération d’emplois du temps avec algorithmes génétiques  
+- Description : Système automatisé pour la création d’emplois du temps optimisés.  
+- Technologies : Python, Algorithmes génétiques  
+- Objectif : Respect des contraintes pédagogiques et logistiques.
+
+Projet 6 : Article Generator avec Data Flywheel et Multi-Agent System  
+- Description : Système de génération d’articles basé sur une architecture multi-agent et un data flywheel.  
+- Technologies : NLP, Semantic Search, Generative AI, Streamlit  
+- Objectif : Amélioration continue de la qualité des contenus par retour utilisateur.
+
+Projet 7 : Intelligent Chatbot pour ENIAD  
+- Description : Chatbot intelligent pour faciliter la communication académique des étudiants d’ENIAD.  
+- Technologies : RAG, HiFT, Q-LoRA, NLP, Machine Learning  
+- Particularité : Architecture fine-tunée avec génération augmentée par récupération.
+
+Projet 8 : Génération automatisée d’articles avec CrewAI et RAG  
+- Description : Intégration de CrewAI, LLMs et vector databases pour une génération contextuelle automatisée.  
+- Technologies : LangChain, RAG, CrewAI, FAISS  
+- Objectif : Automatiser la création de contenu pertinent et structuré.
+
+Projet 9 : Système BI pour la surveillance des ventes de véhicules  
+- Description : Système de Business Intelligence pour analyser les ventes de véhicules.  
+- Technologies : Power BI, Data Analysis, Dashboards, KPIs  
+- Objectif : Aider à la prise de décision grâce à des visualisations interactives.
+
+Projet 10 : Outil d’analyse de sentiments  
+- Description : Application de NLP pour classifier les sentiments dans les avis clients.  
+- Technologies : RoBERTa, XLNet, PyTorch, Streamlit  
+- Objectif : Comprendre l’opinion client avec des modèles de pointe.
+
+Projet 11 : Système de reconnaissance de fleurs  
+- Description : Classificateur d’images temps réel pour fleurs basé sur des CNN.  
+- Technologies : TensorFlow, Computer Vision, Deep Learning  
+- Résultat : Précision de 95%, application éducative et botanique.
+
+Projet 12 : Application web de gestion du temps  
+- Description : Outil d’optimisation de tâches via algorithmes génétiques et Laravel.  
+- Technologies : Laravel, Genetic Algorithms, Web Development  
+- Objectif : Améliorer la productivité personnelle par organisation intelligente.
