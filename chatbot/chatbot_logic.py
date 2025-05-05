@@ -18,9 +18,31 @@ class PortfolioChatbot:
             model="models/embedding-001",
             google_api_key=self.api_key
         )
-        self.vectorstore = FAISS.load_local(
-            self.vectorstore_path, embeddings, allow_dangerous_deserialization=True
-        )
+
+        index_path = os.path.join(self.vectorstore_path, "index.faiss")
+
+        # Vérifie si l'index existe
+        if os.path.exists(index_path):
+            print("[INFO] FAISS index found. Loading it...")
+            self.vectorstore = FAISS.load_local(
+                self.vectorstore_path,
+                embeddings,
+                allow_dangerous_deserialization=True
+            )
+        else:
+            print("[WARNING] FAISS index not found. Rebuilding the vectorstore...")
+            pipeline = RAGPipeline(openai_api_key=self.api_key)
+            pipeline.build_vectorstore()
+
+            # Recharge après génération
+            if os.path.exists(index_path):
+                self.vectorstore = FAISS.load_local(
+                    self.vectorstore_path,
+                    embeddings,
+                    allow_dangerous_deserialization=True
+                )
+            else:
+                raise RuntimeError("Failed to create FAISS index. Ensure your pipeline works correctly.")
 
         self.llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash",
@@ -38,7 +60,8 @@ class PortfolioChatbot:
         return result["result"], []
 
     def reset_conversation(self):
-        pass  # Gemini ne gère pas l'historique côté client dans cette config
+        # Aucun historique à gérer pour Gemini dans cette config
+        pass
 
     def update_knowledge_base(self) -> bool:
         pipeline = RAGPipeline(openai_api_key=self.api_key)
