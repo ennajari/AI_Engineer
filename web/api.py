@@ -12,9 +12,7 @@ from chatbot.chatbot_logic import PortfolioChatbot
 load_dotenv()
 
 app = Flask(__name__)
-
-# Permet les requêtes cross-origin depuis le domaine de votre frontend (ex: votre portfolio sur Railway)
-CORS(app, origins=["https://vigilant-motivation-production.up.railway.app"])  # Update to the correct frontend URL if needed
+CORS(app)  # Permet les requêtes cross-origin
 
 # Initialiser le chatbot
 api_key = os.getenv("GOOGLE_API_KEY", "")
@@ -34,5 +32,4 @@ def chat():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    # Listen on all available IP addresses, which is required for public access
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, port=5000)
