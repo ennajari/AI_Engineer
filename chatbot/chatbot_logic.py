@@ -31,7 +31,7 @@ class PortfolioChatbot:
             )
         else:
             print("[WARNING] FAISS index not found. Rebuilding the vectorstore...")
-            pipeline = RAGPipeline(openai_api_key=self.api_key)
+            pipeline = RAGPipeline(google_api_key=self.api_key)
             pipeline.build_vectorstore()
 
             # Recharge après génération
@@ -64,5 +64,5 @@ class PortfolioChatbot:
         pass
 
     def update_knowledge_base(self) -> bool:
-        pipeline = RAGPipeline(openai_api_key=self.api_key)
+        pipeline = RAGPipeline(google_api_key=self.api_key)
         return pipeline.build_vectorstore()
