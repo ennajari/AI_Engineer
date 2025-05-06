@@ -19,4 +19,4 @@ ENV PORT=5000
 EXPOSE $PORT
 
 # Démarrer l'application
-CMD gunicorn --chdir web -b 0.0.0.0:$PORT api:app
+CMD gunicorn --chdir web -b 0.0.0.0:$PORT api:api
