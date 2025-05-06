@@ -2,7 +2,7 @@
 FROM python:3.12-slim
 
 # Mise à jour et installation de swig pour la compilation de faiss-cpu
-RUN apt-get update && apt-get install -y swig
+RUN apt-get update && apt-get install -y swig build-essential
 
 # Création d'un environnement virtuel
 RUN python -m venv /opt/venv
