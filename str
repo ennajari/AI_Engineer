@@ -1,0 +1,284 @@
+le voila la structeur de project :
+D:\AI_Engineer
+├── .env
+├── .gitignore
+├── index.html
+├── Procfile
+├── README.md
+├── str
+├── .github/
+│   └── workflows/
+│       ├── jekyll-docker.yml
+│       ├── jekyll-gh-pages.yml
+│       └── static.yml
+├── .vscode/
+│   └── settings.json
+├── assets/
+│   ├── fonts/
+│   │   ├── fontawesome-webfont.eot
+│   │   ├── fontawesome-webfont.svg
+│   │   ├── fontawesome-webfont.ttf
+│   │   ├── fontawesome-webfont.woff
+│   │   ├── fontawesome-webfont.woff2
+│   │   └── FontAwesome.otf
+│   └── images/
+│       ├── acc.png
+│       ├── agile.png
+│       ├── anaconda-icon.png
+│       └── ...
+├── chatbot/
+│   ├── __init__.py
+│   ├── chatbot_logic.py
+│   ├── rag_pipeline.py
+│   ├── __pycache__/
+│   ├── docs/
+│   │   └── Abdellah_Cv.pdf
+│   │   └── projets.txt
+│   │   └── README.md 
+│   └── vectorstore/
+└── web/
+    ├── api.py
+    └── requirements.txt
+le voila le code de chaque fichier :
+.env:
+GOOGLE_API_KEY=AIzaSyCa09ycr-awLJcbrlKMcQZQoC9Lfj34JC4
+# models/gemini-2.0-flash
+chatbot_logic.py:
+import os
+from dotenv import load_dotenv
+from langchain.chains import RetrievalQA
+from langchain_community.vectorstores import FAISS
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from chatbot.rag_pipeline import RAGPipeline
+
+load_dotenv()
+
+class PortfolioChatbot:
+    def __init__(self, google_api_key=None):
+        self.api_key = google_api_key or os.getenv("GOOGLE_API_KEY")
+        self.vectorstore_path = "chatbot/vectorstore"
+        self._load_vectorstore()
+
+    def _load_vectorstore(self):
+        embeddings = GoogleGenerativeAIEmbeddings(
+            model="models/embedding-001",
+            google_api_key=self.api_key
+        )
+
+        index_path = os.path.join(self.vectorstore_path, "index.faiss")
+
+        # Vérifie si l'index existe
+        if os.path.exists(index_path):
+            print("[INFO] FAISS index found. Loading it...")
+            self.vectorstore = FAISS.load_local(
+                self.vectorstore_path,
+                embeddings,
+                allow_dangerous_deserialization=True
+            )
+        else:
+            print("[WARNING] FAISS index not found. Rebuilding the vectorstore...")
+            pipeline = RAGPipeline(google_api_key=self.api_key)
+            pipeline.build_vectorstore()
+
+            # Recharge après génération
+            if os.path.exists(index_path):
+                self.vectorstore = FAISS.load_local(
+                    self.vectorstore_path,
+                    embeddings,
+                    allow_dangerous_deserialization=True
+                )
+            else:
+                raise RuntimeError("Failed to create FAISS index. Ensure your pipeline works correctly.")
+
+        self.llm = ChatGoogleGenerativeAI(
+            model="gemini-2.0-flash",
+            google_api_key=self.api_key,
+            temperature=0.3
+        )
+
+        self.qa_chain = RetrievalQA.from_chain_type(
+            llm=self.llm,
+            retriever=self.vectorstore.as_retriever()
+        )
+
+    def get_answer(self, query: str):
+        result = self.qa_chain({"query": query})
+        return result["result"], []
+
+    def reset_conversation(self):
+        # Aucun historique à gérer pour Gemini dans cette config
+        pass
+
+    def update_knowledge_base(self) -> bool:
+        pipeline = RAGPipeline(google_api_key=self.api_key)
+        return pipeline.build_vectorstore()
+
+rag_piplines.py:
+import os
+from langchain_community.vectorstores import FAISS
+from langchain_community.document_loaders import TextLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class RAGPipeline:
+    def __init__(self, google_api_key=None):
+        self.api_key = google_api_key or os.getenv("GOOGLE_API_KEY")
+        self.docs_path = "chatbot/docs/projets.txt"  # Chemin vers ton fichier de base de connaissances
+        self.vectorstore_path = "chatbot/vectorstore"
+
+    def build_vectorstore(self) -> bool:
+        if not os.path.exists(self.docs_path):
+            raise FileNotFoundError(f"[ERROR] Document non trouvé : {self.docs_path}")
+
+        # 1. Charger le document
+        loader = TextLoader(self.docs_path, encoding="utf-8")
+        documents = loader.load()
+
+        # 2. Diviser en petits chunks
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+        docs = text_splitter.split_documents(documents)
+
+        # 3. Générer les embeddings avec Gemini
+        embeddings = GoogleGenerativeAIEmbeddings(
+            model="models/embedding-001",
+            google_api_key=self.api_key
+        )
+
+        # 4. Créer et sauvegarder le vectorstore
+        vectorstore = FAISS.from_documents(docs, embeddings)
+        vectorstore.save_local(self.vectorstore_path)
+
+        print(f"[INFO] Vectorstore FAISS généré à : {self.vectorstore_path}")
+        return True
+
+api.py:
+import os
+import sys
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+from dotenv import load_dotenv
+
+# Ajouter le répertoire parent au chemin pour importer le module chatbot
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from chatbot.chatbot_logic import PortfolioChatbot
+
+# Charger les variables d'environnement
+load_dotenv()
+
+app = Flask(__name__)
+CORS(app)  # Permet les requêtes cross-origin
+
+# Initialiser le chatbot
+api_key = os.getenv("GOOGLE_API_KEY", "")
+chatbot = PortfolioChatbot(google_api_key=api_key)
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    data = request.json
+    if not data or 'message' not in data:
+        return jsonify({'error': 'Aucun message fourni'}), 400
+    
+    try:
+        response, _ = chatbot.get_answer(data['message'])
+        return jsonify({'response': response})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)  
+
+code html css js pour le chatbot:
+
+<div id="chatbot-container">
+  <div class="chatbot-header">
+    <span>Assistant</span>
+    <span class="close-btn" id="chatbot-close">&times;</span>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages">
+    <div class="chat-message bot-message">
+      Bonjour ! Posez-moi une question sur le portfolio.
+    </div>
+  </div>
+  <div class="typing-indicator" id="typing-indicator">L'assistant écrit...</div>
+  <div class="chatbot-input">
+    <input type="text" id="user-input" placeholder="Posez votre question..." />
+    <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- Script JS -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('chatbot-toggle');
+    const chatbot = document.getElementById('chatbot-container');
+    const closeBtn = document.getElementById('chatbot-close');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const messagesContainer = document.getElementById('chatbot-messages');
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    const API_URL = 'http://localhost:5000/api/chat';
+
+    toggleBtn.addEventListener('click', () => {
+      chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+      if (chatbot.style.display === 'flex') userInput.focus();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      chatbot.style.display = 'none';
+    });
+
+    sendBtn.addEventListener('click', sendMessage);
+
+    userInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (message.length === 0) return;
+
+      addMessage(message, 'user');
+      userInput.value = '';
+      typingIndicator.style.display = 'block';
+
+      fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          typingIndicator.style.display = 'none';
+          addMessage(data.response || 'Erreur serveur', 'bot');
+        })
+        .catch(() => {
+          typingIndicator.style.display = 'none';
+          addMessage("Erreur de connexion avec le serveur.", 'bot');
+        });
+    }
+
+    function addMessage(message, sender) {
+      const div = document.createElement('div');
+      div.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
+      div.textContent = message;
+      messagesContainer.appendChild(div);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+  });
+</script>
+le voila le rsultat d'execution:
+Assistant
+×
+Bonjour ! Posez-moi une question sur le portfolio.
+hi
+Erreur de connexion avec le serveur.
+
+
+il faut savoire que je le hoster avec railway et j'ai un erreur de connexion avec le serveur
+et je ne sais pas pourquoi
