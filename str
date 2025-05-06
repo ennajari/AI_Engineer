@@ -113,6 +113,7 @@ class PortfolioChatbot:
         pipeline = RAGPipeline(google_api_key=self.api_key)
         return pipeline.build_vectorstore()
 
+
 rag_piplines.py:
 import os
 from langchain_community.vectorstores import FAISS
@@ -155,130 +156,199 @@ class RAGPipeline:
         return True
 
 api.py:
+
 import os
 import sys
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 
-# Ajouter le répertoire parent au chemin pour importer le module chatbot
+# Add parent directory to path to import chatbot module
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from chatbot.chatbot_logic import PortfolioChatbot
 
-# Charger les variables d'environnement
+# Load environment variables
 load_dotenv()
 
-app = Flask(__name__)
-CORS(app)  # Permet les requêtes cross-origin
+app = Flask(__name__, static_folder='../') # Serve static files from parent directory
 
-# Initialiser le chatbot
+# Enable CORS with debugging options
+CORS(app, 
+    origins=["*", "http://localhost", "http://127.0.0.1", "file://"], 
+    supports_credentials=True,
+    allow_headers=["Content-Type", "Authorization"],
+    expose_headers=["Content-Type"],
+    methods=["GET", "POST", "OPTIONS"]
+)
+
+# Initialize chatbot
 api_key = os.getenv("GOOGLE_API_KEY", "")
-chatbot = PortfolioChatbot(google_api_key=api_key)
+chatbot = None
 
-@app.route('/api/chat', methods=['POST'])
+# Try to initialize chatbot or handle errors gracefully
+try:
+    chatbot = PortfolioChatbot(google_api_key=api_key)
+    print("Chatbot initialized successfully!")
+except Exception as e:
+    print(f"Error initializing chatbot: {str(e)}")
+
+@app.route('/api/chat', methods=['POST', 'OPTIONS'])
 def chat():
-    data = request.json
-    if not data or 'message' not in data:
-        return jsonify({'error': 'Aucun message fourni'}), 400
+    # Handle CORS preflight requests
+    if request.method == 'OPTIONS':
+        return '', 204
+        
+    # Debug info
+    print(f"Request received from: {request.remote_addr}")
+    print(f"Request headers: {request.headers}")
     
+    # Process actual request
     try:
+        data = request.json
+        if not data or 'message' not in data:
+            return jsonify({'error': 'No message provided'}), 400
+        
+        if chatbot is None:
+            return jsonify({'error': 'Chatbot not initialized properly'}), 500
+            
+        print(f"Processing message: {data['message']}")
         response, _ = chatbot.get_answer(data['message'])
+        print(f"Response generated: {response[:50]}...")  # Print first 50 chars
+        
         return jsonify({'response': response})
     except Exception as e:
+        print(f"Error processing request: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)  
+# Test endpoint to verify API is working
+@app.route('/api/test', methods=['GET'])
+def test():
+    return jsonify({'status': 'ok', 'message': 'API is working!'})
 
+# Serve index.html at the root path
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path == "" or path == "index.html":
+        return send_from_directory('../', 'index.html')
+    return send_from_directory('../', path)
+
+if __name__ == '__main__':
+    # Use the PORT environment variable provided by Railway or default to 5000
+    port = int(os.environ.get('PORT', 5000))
+    # Print startup information
+    print(f"Starting server on port {port}")
+    print(f"API will be available at http://localhost:{port}/api/chat")
+    print(f"Test endpoint available at http://localhost:{port}/api/test")
+    
+    # Bind to 0.0.0.0 to make accessible from outside the container
+    app.run(host='0.0.0.0', debug=True, port=port)
 code html css js pour le chatbot:
 
+<!-- Chatbot Container -->
 <div id="chatbot-container">
-  <div class="chatbot-header">
-    <span>Assistant</span>
-    <span class="close-btn" id="chatbot-close">&times;</span>
-  </div>
-  <div class="chatbot-messages" id="chatbot-messages">
-    <div class="chat-message bot-message">
-      Bonjour ! Posez-moi une question sur le portfolio.
+    <div class="chatbot-header">
+      <span>Assistant</span>
+      <span class="close-btn" id="chatbot-close">&times;</span>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+      <div class="chat-message bot-message">
+        Bonjour ! Posez-moi une question sur le portfolio.
+      </div>
+    </div>
+    <div class="typing-indicator" id="typing-indicator">L'assistant écrit...</div>
+    <div class="chatbot-input">
+      <input type="text" id="user-input" placeholder="Posez votre question..." />
+      <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
-  <div class="typing-indicator" id="typing-indicator">L'assistant écrit...</div>
-  <div class="chatbot-input">
-    <input type="text" id="user-input" placeholder="Posez votre question..." />
-    <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-  </div>
-</div>
-
-<!-- Script JS -->
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('chatbot-toggle');
-    const chatbot = document.getElementById('chatbot-container');
-    const closeBtn = document.getElementById('chatbot-close');
-    const userInput = document.getElementById('user-input');
-    const sendBtn = document.getElementById('send-btn');
-    const messagesContainer = document.getElementById('chatbot-messages');
-    const typingIndicator = document.getElementById('typing-indicator');
-
-    const API_URL = 'http://localhost:5000/api/chat';
-
-    toggleBtn.addEventListener('click', () => {
-      chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
-      if (chatbot.style.display === 'flex') userInput.focus();
-    });
-
-    closeBtn.addEventListener('click', () => {
-      chatbot.style.display = 'none';
-    });
-
-    sendBtn.addEventListener('click', sendMessage);
-
-    userInput.addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') sendMessage();
-    });
-
-    function sendMessage() {
-      const message = userInput.value.trim();
-      if (message.length === 0) return;
-
-      addMessage(message, 'user');
-      userInput.value = '';
-      typingIndicator.style.display = 'block';
-
-      fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          typingIndicator.style.display = 'none';
-          addMessage(data.response || 'Erreur serveur', 'bot');
-        })
-        .catch(() => {
-          typingIndicator.style.display = 'none';
-          addMessage("Erreur de connexion avec le serveur.", 'bot');
+  
+  <!-- Script JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('chatbot-toggle');
+      const chatbot = document.getElementById('chatbot-container');
+      const closeBtn = document.getElementById('chatbot-close');
+      const userInput = document.getElementById('user-input');
+      const sendBtn = document.getElementById('send-btn');
+      const messagesContainer = document.getElementById('chatbot-messages');
+      const typingIndicator = document.getElementById('typing-indicator');
+  
+      // IMPORTANT: Hard-coded API URL that works in all environments
+      // Change this to your deployed URL when you deploy to Railway
+      const API_URL = 'https://aiengineer-production-7f4a.up.railway.app/api/chat';
+      // For local testing, you might use:
+      // const API_URL = 'http://localhost:5000/api/chat';
+      // For testing on Railway, you might use:
+      // const API_URL = 'https://your-railway-app-name.up.railway.app/api/chat';
+      
+      // When you deploy to Railway, you'd change it to something like:
+      // const API_URL = 'https://your-railway-app-name.up.railway.app/api/chat';
+      
+      // Log the API URL for debugging
+      console.log('Chatbot using API URL:', API_URL);
+  
+      // Check if toggle button exists (it might not in some layouts)
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+          if (chatbot.style.display === 'flex') userInput.focus();
         });
-    }
-
-    function addMessage(message, sender) {
-      const div = document.createElement('div');
-      div.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
-      div.textContent = message;
-      messagesContainer.appendChild(div);
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-  });
-</script>
-le voila le rsultat d'execution:
-Assistant
-×
-Bonjour ! Posez-moi une question sur le portfolio.
-hi
-Erreur de connexion avec le serveur.
-
-
-il faut savoire que je le hoster avec railway et j'ai un erreur de connexion avec le serveur
-et je ne sais pas pourquoi
+      }
+  
+      closeBtn.addEventListener('click', () => {
+        chatbot.style.display = 'none';
+      });
+  
+      sendBtn.addEventListener('click', sendMessage);
+  
+      userInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') sendMessage();
+      });
+  
+      function sendMessage() {
+        const message = userInput.value.trim();
+        if (message.length === 0) return;
+  
+        addMessage(message, 'user');
+        userInput.value = '';
+        typingIndicator.style.display = 'block';
+  
+        // Fetch with specific error handling
+        fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message }),
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            typingIndicator.style.display = 'none';
+            if (data && data.response) {
+              addMessage(data.response, 'bot');
+            } else {
+              addMessage('Désolé, je n\'ai pas pu traiter votre demande.', 'bot');
+            }
+          })
+          .catch(error => {
+            typingIndicator.style.display = 'none';
+            console.error('API connection error:', error);
+            addMessage(`Erreur de connexion: Impossible de contacter le serveur API à ${API_URL}. Vérifiez que le serveur est en cours d'exécution.`, 'bot');
+          });
+      }
+  
+      function addMessage(message, sender) {
+        const div = document.createElement('div');
+        div.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
+        div.textContent = message;
+        messagesContainer.appendChild(div);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    });
+  </script>
