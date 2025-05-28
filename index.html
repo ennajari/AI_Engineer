@@ -1426,6 +1426,7 @@
         /* Optimize spacing for text elements */
         .text-center {
             margin-bottom: 1.5rem;
+            padding: 3%;
         }
 
         .subtitle {
@@ -1590,7 +1591,8 @@
 
         /* Ensure proper spacing for parent container */
         #testimonials {
-            padding-bottom: 25%; /* Add padding to compensate for negative margin */
+            padding-bottom: 25%;
+            margin-top:6% ; /* Add padding to compensate for negative margin */
         }
 
         @media (max-width: 640px) {
@@ -1616,7 +1618,7 @@
         </div>
 
         <!-- Header -->
-        <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm transition-all duration-300" :class="{'py-2': !isHeaderBig, 'py-4': isHeaderBig}">
+        <header class="antialiased" :class="{'py-2': !isHeaderBig, 'py-4': isHeaderBig}">
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between">
                     <!-- Logo -->
@@ -1655,7 +1657,7 @@
         </header>
 
         <!-- Mobile Menu -->
-        <div class="fixed inset-0 z-30 bg-white dark:bg-gray-900 transform transition-all duration-300 ease-in-out" 
+        <div class="antialiased" 
              :class="{'translate-x-0': isMobileMenuOpen, '-translate-x-full': !isMobileMenuOpen}"
              v-if="isMobileMenuOpen">
             <div class="container mx-auto px-6 py-20">
@@ -1755,7 +1757,7 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="section bg-gray-50 dark:bg-gray-900/50 -mt-1">
+        <section id="about" class="antialiased">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col lg:flex-row items-center gap-12">
                     <!-- About Image -->
@@ -1822,18 +1824,13 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium">{{ currentLanguage === 'en' ? 'Hire Me' : 'Engagez-moi' }}</a>
-                            <a href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" download class="btn-outline px-8 py-3 rounded-full font-medium">{{ currentLanguage === 'en' ? 'Download CV' : 'Télécharger CV' }}</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="section bg-white dark:bg-gray-800 -mt-1">
+        <section id="experience" class="antialiased">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
                     <span class="subtitle">{{ currentLanguage === 'en' ? 'Experience' : 'Expérience' }}</span>
@@ -1869,7 +1866,7 @@
                                     <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-emerald-500 rounded-full"></div>
                                     
                                     <!-- Timeline Items -->
-                                    <div class="space-y-8">
+                                    <div class="antialiased">
                                         <div v-for="(milestone, index) in aiJourney" 
                                              class="relative pl-8 group">
                                             <!-- Timeline Dot -->
@@ -2000,7 +1997,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="section bg-gray-50 dark:bg-gray-900/50 -mt-1">
+        <section id="skills" class="antialiased">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <span class="subtitle">{{ currentLanguage === 'en' ? 'Skills' : 'Compétences' }}</span>
@@ -2050,7 +2047,7 @@
         </section>
 
         <!-- Portfolio Section -->
-        <section id="portfolio" class="section bg-white dark:bg-gray-800 -mt-1">
+        <section id="portfolio" class="antialiased">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-8 lg:mb-12 animate-fade-in-up">
                     <span class="subtitle">{{ currentLanguage === 'en' ? 'Portfolio' : 'Portefeuille' }}</span>
@@ -2140,7 +2137,7 @@
         </section>
 
         <!-- Education Section -->
-        <section id="education" class="section bg-gray-50 dark:bg-gray-900/50 -mt-1">
+        <section id="education" class="antialiased">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-8 lg:mb-12">
                     <span class="subtitle">{{ currentLanguage === 'en' ? 'Education' : 'Formation' }}</span>
@@ -2266,16 +2263,22 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="section bg-[#1e2937] dark:bg-[#1e2937] overflow-x-hidden py-8 sm:py-12 -mt-1">
+        <section id="testimonials" class="antialiased">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-8 sm:mb-12">
                     <span class="subtitle text-[#3b82f6] uppercase tracking-wider text-sm sm:text-base">
                         {{ currentLanguage === 'en' ? 'TESTIMONIALS' : 'TÉMOIGNAGES' }}
                     </span>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white">
-                        {{ currentLanguage === 'en' ? 'What People' : 'Ce Que Les Gens' }} 
-                        <span class="text-[#3b82f6]">{{ currentLanguage === 'en' ? 'Say' : 'Disent' }}</span>
-                    </h2>
+                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-[#2563eb] dark:!text-white">
+                        {{ currentLanguage === 'en' ? 'What People' : 'Ce Que Les Gens' }}
+                    </span>
+                    <span class="text-[#3b82f6]">
+                        {{ currentLanguage === 'en' ? 'Say' : 'Disent' }}
+                    </span>
+                    </h3>
+
+
                     <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
                         {{ currentLanguage === 'en' ? 
                             'Feedback from clients and colleagues about my work and professional approach.' : 
@@ -2357,7 +2360,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section bg-gray-50 dark:bg-gray-900/50 -mt-1">
+        <section id="contact" class="antialiased">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col lg:flex-row gap-12">
                     <!-- Contact Info -->
@@ -2472,7 +2475,7 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bg-gray-800 dark:bg-gray-900 py-12">
+        <footer class="antialiased">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="mb-6 md:mb-0">
@@ -2522,592 +2525,592 @@
         new Vue({
             el: '#app',
             data: {
-                isLoaded: false,
-                loadingProgress: 0,
-                isDarkMode: false,
-                isMobileMenuOpen: false,
-                isHeaderBig: true,
-                currentSection: 'home',
-                showBackToTop: false,
-                activeSkillTab: 'languages',
-                currentFilter: 'All',
-                notification: {
-                    show: false,
-                    type: 'success',
-                    message: ''
-                },
-                contactForm: {
-                    name: '',
-                    email: '',
-                    subject: '',
-                    message: ''
-                },
-                navLinks: [
-                    { url: '#home', title: { en: 'Home', fr: 'Accueil' } },
-                    { url: '#about', title: { en: 'About', fr: 'À Propos' } },
-                    { url: '#skills', title: { en: 'Skills', fr: 'Compétences' } },
-                    { url: '#experience', title: { en: 'Experience', fr: 'Expérience' } },
-                    { url: '#portfolio', title: { en: 'Portfolio', fr: 'Portefeuille' } },
-                    { url: '#education', title: { en: 'Education', fr: 'Formation' } },
-                    { url: '#contact', title: { en: 'Contact', fr: 'Contact' } }
-                ],
-                socialLinks: [
-                    { url: 'https://github.com/ennajari', icon: 'fab fa-github' },
-                    { url: 'https://www.linkedin.com/in/ennajari-abdellah', icon: 'fab fa-linkedin-in' },
-                    { url: 'https://www.instagram.com/abdellah.ennajari/', icon: 'fab fa-instagram' }
-                ],
-                        skills : {
-                languages: [
-                    { name: 'Python', level: 95, icon: 'assets/images/python-icon.png', description: 'Advanced' },
-                    { name: 'SQL', level: 90, icon: 'assets/images/SQL.png' },
-                    { name: 'Java', level: 85, icon: 'assets/images/java-logo.png' },
-                    { name: 'C++', level: 80, icon: 'assets/images/cpp.png' },
-                ],
-                frameworks: [
-                    { name: 'TensorFlow', level: 90, icon: 'assets/images/tensorflow-icon.png', description: 'Advanced' },
-                    { name: 'PyTorch', level: 90, icon: 'assets/images/pytorch-icon.png', description: 'Advanced' },
-                    { name: 'Keras', level: 85, icon: 'assets/images/Keras.png' },
-                    { name: 'Scikit-learn', level: 88, icon: 'assets/images/Scikit-learn.png', description: 'Advanced' },
-                    { name: 'HuggingFace', level: 90, icon: 'assets/images/hug.png', description: 'Advanced' },
-                    { name: 'crewAI', level: 90, icon: 'assets/images/crewai-icon.png', description: 'Advanced' },
-                    { name: 'LangChain', level: 85, icon: 'assets/images/langchain-icon.png', description: 'Advanced' },
-                    { name: 'PyTorch3D', level: 90, icon: 'assets/images/pytorch3d-icon.png', description: 'Advanced' },
-                    { name: 'Open3D', level: 85, icon: 'assets/images/open3d-icon.png', description: 'Advanced' },
-                ],
-                aiTools: [
-                    { name: 'OpenCV', level: 90, icon: 'assets/images/OpenCV.png', category: 'Computer Vision' },
-                    { name: 'NLTK', level: 85, icon: 'assets/images/NLTK.png', category: 'NLP' },
-                    { name: 'Transformers', level: 85, icon: 'assets/images/transformers-icon.png', category: 'NLP' },
-                    { name: 'SpaCy', level: 85, icon: 'assets/images/spacy-icon.png', category: 'NLP' },
-                    { name: 'RAG', level: 90, icon: 'assets/images/rag-icon.png', category: 'NLP' }
-                ],
-                dataScience: [
-                    { name: 'NumPy', level: 90, icon: 'assets/images/NumPy.png' },
-                    { name: 'Pandas', level: 90, icon: 'assets/images/pandas.png' },
-                    { name: 'Matplotlib', level: 85, icon: 'assets/images/Matplotlib.png' },
-                    { name: 'Seaborn', level: 85, icon: 'assets/images/seaborn.png' }
-                ],
-                webDev: [
-                    { name: 'HTML5', level: 85, icon: 'assets/images/HTML5.png' },
-                    { name: 'JavaScript', level: 80, icon: 'assets/images/JavaScript.png' },
-                    { name: 'CSS', level: 80, icon: 'assets/images/CSS3.png' },
-                    { name: 'React', level: 85, icon: 'assets/images/React.png' },
-                ],
-                devTools: [
-                    { name: 'Git', level: 90, icon: 'assets/images/git-icon.png' },
-                    { name: 'GitHub', level: 85, icon: 'assets/images/github.jpg' },
-                    { name: 'Anaconda', level: 85, icon: 'assets/images/anaconda-icon.png' },
-                    { name: 'Jupyter', level: 90, icon: 'assets/images/jupyter-icon.png' },
-                    { name: 'Google Colab', level: 85, icon: 'assets/images/colab-icon.png' },
-                    { name: 'Talend', level: 85, icon: 'assets/images/talend.png' },
-                    { name: 'Docker', level: 90, icon: 'assets/images/Docker.png' }
-                ],
-                mlops: [
-                    { name: 'MLflow', level: 85, icon: 'assets/images/MLflow.png' },
-                    { name: 'CI/CD', level: 75, icon: 'assets/images/cicd-icon.png' },
-                    { name: 'Model Deployment', level: 80, icon: 'assets/images/deployment-icon.png' },
-                    { name: 'Model Monitoring', level: 75, icon: 'assets/images/monitoring-icon.png' },
-                    { name: 'Kubernetes', level: 85, icon: 'assets/images/Kubernetes.png' },
-                    { name: 'DVC', level: 80, icon: 'assets/images/dvc.png' },
-                    { name: 'W&B', level: 85, icon: 'assets/images/Weights.svg' }
-                ],
-                other: [
-                    { name: 'Linux (Ubuntu)', level: 80, icon: 'assets/images/linux.png' },
-                    { name: 'Windows', level: 85, icon: 'assets/images/Windows.png' },
-                    { name: 'Agile/Scrum', level: 80, icon: 'assets/images/agile.png' },
-                    { name: 'UML', level: 75, icon: 'assets/images/UML.png' },
-                    { name: 'Merise', level: 75, icon: 'assets/images/Merise.png' },
-                ]
-                },
-                experienceItems: [
-                    {
-                    "date": "2023 - Present",
-                    "companyName": {
-                        "en": "ENIAD (National School of Artificial Intelligence and Digital)",
-                        "fr": "ENIAD (École Nationale de L'Intelligence Artificielle et du Digital)"
+                    isLoaded: false,
+                    loadingProgress: 0,
+                    isDarkMode: false,
+                    isMobileMenuOpen: false,
+                    isHeaderBig: true,
+                    currentSection: 'home',
+                    showBackToTop: false,
+                    activeSkillTab: 'languages',
+                    currentFilter: 'All',
+                    notification: {
+                        show: false,
+                        type: 'success',
+                        message: ''
                     },
-                    "jobTitle": {
-                        "en": "AI and Deep Learning Engineer",
-                        "fr": "Ingénieur en IA et Deep Learning"
+                    contactForm: {
+                        name: '',
+                        email: '',
+                        subject: '',
+                        message: ''
                     },
-                    "desc": {
-                        "en": "Specializing in the design and deployment of advanced Deep Learning models, Computer Vision pipelines, and Generative AI systems. Skilled in the full AI development lifecycle, from data preprocessing to deployment.",
-                        "fr": "Spécialisé dans la conception et le déploiement de modèles avancés de Deep Learning, de pipelines de vision par ordinateur et de systèmes d'IA générative. Maîtrise du cycle complet de développement de l'IA, du prétraitement des données jusqu'au déploiement."
-                    },
-                    "showDetails": false,
-                    "projects": [
-                        {
-                        "title": {
-                            "en": "3D Dental Surface Reconstruction",
-                            "fr": "Reconstruction de Surface Dentaire 3D"
-                        },
-                        "description": {
-                            "en": "Designed a deep learning model to reconstruct 3D dental surfaces from 2D X-ray inputs using encoder-decoder architecture and volumetric rendering techniques. Deployed a demo with interactive 3D visualization.",
-                            "fr": "Conception d'un modèle de deep learning pour reconstruire des surfaces dentaires 3D à partir d'images de radiographie 2D en utilisant une architecture encodeur-décodeur et des techniques de rendu volumétrique. Déploiement d'une démo avec visualisation 3D interactive."
-                        }
-                        },
-                        {
-                        "title": {
-                            "en": "AI-Powered Tooth Type Classifier",
-                            "fr": "Classificateur de Type Dentaire avec IA"
-                        },
-                        "description": {
-                            "en": "Built and trained a CNN-based classifier to identify tooth types from 3D dental scans. Achieved over 95% accuracy on a custom-labeled dataset. Integrated results into a Streamlit dashboard for real-time inference.",
-                            "fr": "Création et entraînement d'un classificateur basé sur un CNN pour identifier les types de dents à partir de scans dentaires 3D. Précision supérieure à 95 % sur un jeu de données annoté manuellement. Intégration des résultats dans un tableau de bord Streamlit pour une inférence en temps réel."
-                        }
-                        }
+                    navLinks: [
+                        { url: '#home', title: { en: 'Home', fr: 'Accueil' } },
+                        { url: '#about', title: { en: 'About', fr: 'À Propos' } },
+                        { url: '#skills', title: { en: 'Skills', fr: 'Compétences' } },
+                        { url: '#experience', title: { en: 'Experience', fr: 'Expérience' } },
+                        { url: '#portfolio', title: { en: 'Portfolio', fr: 'Portefeuille' } },
+                        { url: '#education', title: { en: 'Education', fr: 'Formation' } },
+                        { url: '#contact', title: { en: 'Contact', fr: 'Contact' } }
                     ],
-                    "technologies": [
-                        "TensorFlow",
-                        "PyTorch",
-                        "OpenCV",
-                        "PyTorch3D",
-                        "Transformers",
-                        "CLIP",
-                        "Docker",
-                        "Kubernetes"
+                    socialLinks: [
+                        { url: 'https://github.com/ennajari', icon: 'fab fa-github' },
+                        { url: 'https://www.linkedin.com/in/ennajari-abdellah', icon: 'fab fa-linkedin-in' },
+                        { url: 'https://www.instagram.com/abdellah.ennajari/', icon: 'fab fa-instagram' }
+                    ],
+                            skills : {
+                    languages: [
+                        { name: 'Python', level: 95, icon: 'assets/images/python-icon.png', description: 'Advanced' },
+                        { name: 'SQL', level: 90, icon: 'assets/images/SQL.png' },
+                        { name: 'Java', level: 85, icon: 'assets/images/java-logo.png' },
+                        { name: 'C++', level: 80, icon: 'assets/images/cpp.png' },
+                    ],
+                    frameworks: [
+                        { name: 'TensorFlow', level: 90, icon: 'assets/images/tensorflow-icon.png', description: 'Advanced' },
+                        { name: 'PyTorch', level: 90, icon: 'assets/images/pytorch-icon.png', description: 'Advanced' },
+                        { name: 'Keras', level: 85, icon: 'assets/images/Keras.png' },
+                        { name: 'Scikit-learn', level: 88, icon: 'assets/images/Scikit-learn.png', description: 'Advanced' },
+                        { name: 'HuggingFace', level: 90, icon: 'assets/images/hug.png', description: 'Advanced' },
+                        { name: 'crewAI', level: 90, icon: 'assets/images/crewai-icon.png', description: 'Advanced' },
+                        { name: 'LangChain', level: 85, icon: 'assets/images/langchain-icon.png', description: 'Advanced' },
+                        { name: 'PyTorch3D', level: 90, icon: 'assets/images/pytorch3d-icon.png', description: 'Advanced' },
+                        { name: 'Open3D', level: 85, icon: 'assets/images/open3d-icon.png', description: 'Advanced' },
+                    ],
+                    aiTools: [
+                        { name: 'OpenCV', level: 90, icon: 'assets/images/OpenCV.png', category: 'Computer Vision' },
+                        { name: 'NLTK', level: 85, icon: 'assets/images/NLTK.png', category: 'NLP' },
+                        { name: 'Transformers', level: 85, icon: 'assets/images/transformers-icon.png', category: 'NLP' },
+                        { name: 'SpaCy', level: 85, icon: 'assets/images/spacy-icon.png', category: 'NLP' },
+                        { name: 'RAG', level: 90, icon: 'assets/images/rag-icon.png', category: 'NLP' }
+                    ],
+                    dataScience: [
+                        { name: 'NumPy', level: 90, icon: 'assets/images/NumPy.png' },
+                        { name: 'Pandas', level: 90, icon: 'assets/images/pandas.png' },
+                        { name: 'Matplotlib', level: 85, icon: 'assets/images/Matplotlib.png' },
+                        { name: 'Seaborn', level: 85, icon: 'assets/images/seaborn.png' }
+                    ],
+                    webDev: [
+                        { name: 'HTML5', level: 85, icon: 'assets/images/HTML5.png' },
+                        { name: 'JavaScript', level: 80, icon: 'assets/images/JavaScript.png' },
+                        { name: 'CSS', level: 80, icon: 'assets/images/CSS3.png' },
+                        { name: 'React', level: 85, icon: 'assets/images/React.png' },
+                    ],
+                    devTools: [
+                        { name: 'Git', level: 90, icon: 'assets/images/git-icon.png' },
+                        { name: 'GitHub', level: 85, icon: 'assets/images/github.jpg' },
+                        { name: 'Anaconda', level: 85, icon: 'assets/images/anaconda-icon.png' },
+                        { name: 'Jupyter', level: 90, icon: 'assets/images/jupyter-icon.png' },
+                        { name: 'Google Colab', level: 85, icon: 'assets/images/colab-icon.png' },
+                        { name: 'Talend', level: 85, icon: 'assets/images/talend.png' },
+                        { name: 'Docker', level: 90, icon: 'assets/images/Docker.png' }
+                    ],
+                    mlops: [
+                        { name: 'MLflow', level: 85, icon: 'assets/images/MLflow.png' },
+                        { name: 'CI/CD', level: 75, icon: 'assets/images/cicd-icon.png' },
+                        { name: 'Model Deployment', level: 80, icon: 'assets/images/deployment-icon.png' },
+                        { name: 'Model Monitoring', level: 75, icon: 'assets/images/monitoring-icon.png' },
+                        { name: 'Kubernetes', level: 85, icon: 'assets/images/Kubernetes.png' },
+                        { name: 'DVC', level: 80, icon: 'assets/images/dvc.png' },
+                        { name: 'W&B', level: 85, icon: 'assets/images/Weights.svg' }
+                    ],
+                    other: [
+                        { name: 'Linux (Ubuntu)', level: 80, icon: 'assets/images/linux.png' },
+                        { name: 'Windows', level: 85, icon: 'assets/images/Windows.png' },
+                        { name: 'Agile/Scrum', level: 80, icon: 'assets/images/agile.png' },
+                        { name: 'UML', level: 75, icon: 'assets/images/UML.png' },
+                        { name: 'Merise', level: 75, icon: 'assets/images/Merise.png' },
                     ]
                     },
-                    {
-                        date: '2024',
-                        companyName: {
-                            en: '3D Smart Factory',
-                            fr: '3D Smart Factory'
+                    experienceItems: [
+                        {
+                        "date": "2023 - Present",
+                        "companyName": {
+                            "en": "ENIAD (National School of Artificial Intelligence and Digital)",
+                            "fr": "ENIAD (École Nationale de L'Intelligence Artificielle et du Digital)"
                         },
-                        jobTitle: {
-                            en: 'ML Engineering Intern',
-                            fr: 'Stagiaire en Ingénierie ML'
+                        "jobTitle": {
+                            "en": "AI and Deep Learning Engineer",
+                            "fr": "Ingénieur en IA et Deep Learning"
                         },
-                        desc: {
-                            en: 'Developed a 3D classification solution achieving 97% accuracy, leveraging deep learning and 3D technologies for accurate object classification.',
-                            fr: 'Développement d\'une solution de classification 3D atteignant une précision de 97%, en utilisant le deep learning et des technologies 3D pour une classification précise des objets.'
+                        "desc": {
+                            "en": "Specializing in the design and deployment of advanced Deep Learning models, Computer Vision pipelines, and Generative AI systems. Skilled in the full AI development lifecycle, from data preprocessing to deployment.",
+                            "fr": "Spécialisé dans la conception et le déploiement de modèles avancés de Deep Learning, de pipelines de vision par ordinateur et de systèmes d'IA générative. Maîtrise du cycle complet de développement de l'IA, du prétraitement des données jusqu'au déploiement."
                         },
-                        showDetails: false,
-                        projects: [
+                        "showDetails": false,
+                        "projects": [
                             {
-                                title: {
-                                    en: '3D Classification Solution',
-                                    fr: 'Solution de Classification 3D'
+                            "title": {
+                                "en": "3D Dental Surface Reconstruction",
+                                "fr": "Reconstruction de Surface Dentaire 3D"
+                            },
+                            "description": {
+                                "en": "Designed a deep learning model to reconstruct 3D dental surfaces from 2D X-ray inputs using encoder-decoder architecture and volumetric rendering techniques. Deployed a demo with interactive 3D visualization.",
+                                "fr": "Conception d'un modèle de deep learning pour reconstruire des surfaces dentaires 3D à partir d'images de radiographie 2D en utilisant une architecture encodeur-décodeur et des techniques de rendu volumétrique. Déploiement d'une démo avec visualisation 3D interactive."
+                            }
+                            },
+                            {
+                            "title": {
+                                "en": "AI-Powered Tooth Type Classifier",
+                                "fr": "Classificateur de Type Dentaire avec IA"
+                            },
+                            "description": {
+                                "en": "Built and trained a CNN-based classifier to identify tooth types from 3D dental scans. Achieved over 95% accuracy on a custom-labeled dataset. Integrated results into a Streamlit dashboard for real-time inference.",
+                                "fr": "Création et entraînement d'un classificateur basé sur un CNN pour identifier les types de dents à partir de scans dentaires 3D. Précision supérieure à 95 % sur un jeu de données annoté manuellement. Intégration des résultats dans un tableau de bord Streamlit pour une inférence en temps réel."
+                            }
+                            }
+                        ],
+                        "technologies": [
+                            "TensorFlow",
+                            "PyTorch",
+                            "OpenCV",
+                            "PyTorch3D",
+                            "Transformers",
+                            "CLIP",
+                            "Docker",
+                            "Kubernetes"
+                        ]
+                        },
+                        {
+                            date: '2024',
+                            companyName: {
+                                en: '3D Smart Factory',
+                                fr: '3D Smart Factory'
+                            },
+                            jobTitle: {
+                                en: 'ML Engineering Intern',
+                                fr: 'Stagiaire en Ingénierie ML'
+                            },
+                            desc: {
+                                en: 'Developed a 3D classification solution achieving 97% accuracy, leveraging deep learning and 3D technologies for accurate object classification.',
+                                fr: 'Développement d\'une solution de classification 3D atteignant une précision de 97%, en utilisant le deep learning et des technologies 3D pour une classification précise des objets.'
+                            },
+                            showDetails: false,
+                            projects: [
+                                {
+                                    title: {
+                                        en: '3D Classification Solution',
+                                        fr: 'Solution de Classification 3D'
+                                    },
+                                    description: {
+                                        en: 'Designed and implemented a hybrid 3D classification model using TensorFlow and PyTorch3D, which significantly improved classification accuracy.',
+                                        fr: 'Conception et implémentation d\'un modèle hybride de classification 3D utilisant TensorFlow et PyTorch3D, ce qui a considérablement amélioré la précision de la classification.'
+                                    }
+                                }
+                            ],
+                            technologies: ['TensorFlow', 'Keras', 'PyTorch3D']
+                        },
+                        {
+                            date: '2024',
+                            companyName: {
+                                en: 'HGS-Hightech',
+                                fr: 'HGS-Hightech'
+                            },
+                            jobTitle: {
+                                en: 'Computer Vision Intern',
+                                fr: 'Stagiaire en Vision par Ordinateur'
+                            },
+                            desc: {
+                                en: 'Developed a 360° visualization system using deep learning techniques and a web interface, enabling interactive 3D product visualization.',
+                                fr: 'Développement d\'un système de visualisation à 360° utilisant des techniques de deep learning et une interface web, permettant la visualisation interactive d\'un produit en 3D.'
+                            },
+                            showDetails: false,
+                            projects: [
+                                {
+                                    title: {
+                                        en: '360° Visualization System',
+                                        fr: 'Système de Visualisation à 360°'
+                                    },
+                                    description: {
+                                        en: 'Created an interactive 360° visualization system for product displays using deep learning and computer vision techniques.',
+                                        fr: 'Création d\'un système interactif de visualisation à 360° pour l\'affichage de produits, en utilisant des techniques de deep learning et de vision par ordinateur.'
+                                    }
+                                }
+                            ],
+                            technologies: ['TensorFlow', 'Deep Learning', 'Web Interface']
+                        },
+
+                    ],
+                    filters: ['All', 'AI', 'Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Computer Vision'],
+                    
+                    educationItems: [
+                        {
+                            institution: 'National School of Artificial Intelligence and Digitization (ENIAD)',
+                            degree: 'Engineering Degree in Artificial Intelligence',
+                            period: '2023 – Present',
+                            location: 'Morocco',
+                            showDetails: false,
+                            points: [
+                                'Specialization in Artificial Intelligence and Data Science',
+                                'Advanced coursework in Machine Learning, Deep Learning, and Data Science',
+                                'Practical projects in Computer Vision, NLP, and image classification',
+                                'Research focus on AI applications and innovative technologies',
+                                'Developed a real-time flower recognition system with 95% accuracy'
+                            ],
+                            additionalDetails: {
+                                'GPA': {
+                                    en: '3.8/4.0',
+                                    fr: '3.8/4.0'
                                 },
-                                description: {
-                                    en: 'Designed and implemented a hybrid 3D classification model using TensorFlow and PyTorch3D, which significantly improved classification accuracy.',
-                                    fr: 'Conception et implémentation d\'un modèle hybride de classification 3D utilisant TensorFlow et PyTorch3D, ce qui a considérablement amélioré la précision de la classification.'
+                                'Relevant Courses': {
+                                    en: 'Deep Learning, Computer Vision, NLP, Data Mining',
+                                    fr: 'Deep Learning, Vision par Ordinateur, NLP, Data Mining'
+                                },
+                                'Research Projects': {
+                                    en: '3 published papers in AI conferences',
+                                    fr: '3 articles publiés dans des conférences d\'IA'
                                 }
                             }
-                        ],
-                        technologies: ['TensorFlow', 'Keras', 'PyTorch3D']
-                    },
-                    {
-                        date: '2024',
-                        companyName: {
-                            en: 'HGS-Hightech',
-                            fr: 'HGS-Hightech'
                         },
-                        jobTitle: {
-                            en: 'Computer Vision Intern',
-                            fr: 'Stagiaire en Vision par Ordinateur'
-                        },
-                        desc: {
-                            en: 'Developed a 360° visualization system using deep learning techniques and a web interface, enabling interactive 3D product visualization.',
-                            fr: 'Développement d\'un système de visualisation à 360° utilisant des techniques de deep learning et une interface web, permettant la visualisation interactive d\'un produit en 3D.'
-                        },
-                        showDetails: false,
-                        projects: [
-                            {
-                                title: {
-                                    en: '360° Visualization System',
-                                    fr: 'Système de Visualisation à 360°'
+                        {
+                            institution: 'Ibn Zohr University',
+                            degree: "Bachelor's Degree in Mathematics and Computer Science",
+                            period: '2021 – 2023',
+                            location: 'Ouarzazate, Morocco',
+                            showDetails: false,
+                            points: [
+                                'Advanced Mathematics and Algorithmic courses',
+                                'Computer Science Fundamentals, including programming and software engineering',
+                                'Software Engineering Principles and project management',
+                                'Top of the class with a final project on automated timetable generation'
+                            ],
+                            additionalDetails: {
+                                'GPA': {
+                                    en: '3.7/4.0',
+                                    fr: '3.7/4.0'
                                 },
-                                description: {
-                                    en: 'Created an interactive 360° visualization system for product displays using deep learning and computer vision techniques.',
-                                    fr: 'Création d\'un système interactif de visualisation à 360° pour l\'affichage de produits, en utilisant des techniques de deep learning et de vision par ordinateur.'
+                                'Relevant Courses': {
+                                    en: 'Mathematics, Computer Science, Algorithms',
+                                    fr: 'Mathématiques, Informatique, Algorithmes'
+                                },
+                                'Research Projects': {
+                                    en: '1 published paper in a computer science journal',
+                                    fr: '1 article publié dans une revue scientifique d\'informatique'
                                 }
                             }
-                        ],
-                        technologies: ['TensorFlow', 'Deep Learning', 'Web Interface']
-                    },
+                        },
+                        {
+                            institution: 'El Ouroud High School',
+                            degree: 'Baccalaureate in Physical and Chemical Sciences',
+                            period: '2020',
+                            location: 'Kelaat M\'gouna, Morocco',
+                            showDetails: false,
+                            points: [
+                                'Strong foundation in Physics and Chemistry',
+                                'Comprehensive education in Mathematics and Sciences',
+                                'Excellent academic performance'
+                            ],
+                            additionalDetails: {
+                                'GPA': {
+                                    en: '4.0/4.0',
+                                    fr: '4.0/4.0'
+                                },
+                                'Relevant Courses': {
+                                    en: 'Physics, Chemistry, Mathematics',
+                                    fr: 'Physique, Chimie, Mathématiques'
+                                },
+                                'Extra-Curricular Activities': {
+                                    en: 'Participation in science fairs and robotics competitions',
+                                    fr: 'Participation à des foires scientifiques et compétitions de robotique'
+                                }
+                            }
+                        }
+                    ],
+                    testimonialsItems: [
+                        {
+                            quoteAuthor: { 
+                                en: 'Youssef MELLAH, Ph.D.',
+                                fr: 'Youssef MELLAH, Ph.D.'
+                            },
+                            jobTitle: { 
+                                en: 'Senior Machine Learning Engineer | Data Scientist | AI Ph.D. | AI Assistant Professor | AI Researcher',
+                                fr: 'Senior Machine Learning Engineer | Data Scientist | AI Ph.D. | AI Assistant Professor | AI Researcher'
+                            },
+                            quoteContent: { 
+                                en: 'I had the opportunity to teach Abdellah Ennajari during his academic studies. Throughout the course, he showed consistency, seriousness, and a good understanding of the key concepts covered. He completed his assignments on time and participated regularly in class discussions.\n\nAbdellah has a solid foundation in his field and shows a willingness to learn and improve. He works well both independently and in a team setting, and I believe he has the potential to grow further in a professional environment.\n\nI recommend him for roles or projects where a reliable and motivated team member is needed.',
+                                fr: 'I had the opportunity to teach Abdellah Ennajari during his academic studies. Throughout the course, he showed consistency, seriousness, and a good understanding of the key concepts covered. He completed his assignments on time and participated regularly in class discussions.\n\nAbdellah has a solid foundation in his field and shows a willingness to learn and improve. He works well both independently and in a team setting, and I believe he has the potential to grow further in a professional environment.\n\nI recommend him for roles or projects where a reliable and motivated team member is needed.'
+                            },
+                            relationship: 'First-degree connection',
+                            date: 'April 21, 2025',
+                            context: 'Youssef was Abdellah\'s professor',
+                            imgUrl: 'assets/images/testimonials/professor.jpg'
+                        },
+                        {
+                            quoteAuthor: { 
+                                en: 'Houda Benhar',
+                                fr: 'Houda Benhar'
+                            },
+                            jobTitle: { 
+                                en: 'Machine Learning Ph.D',
+                                fr: 'Machine Learning Ph.D'
+                            },
+                            quoteContent: { 
+                                en: 'Abdellah is a serious student and one of the most dedicated and focused individuals I\'ve come across. His commitment to learning and personal growth is truly admirable. Wishing him all the best in his future endeavors!',
+                                fr: 'Abdellah is a serious student and one of the most dedicated and focused individuals I\'ve come across. His commitment to learning and personal growth is truly admirable. Wishing him all the best in his future endeavors!'
+                            },
+                            relationship: 'First-degree connection',
+                            date: 'April 16, 2025',
+                            context: 'Houda was Abdellah\'s professor',
+                            imgUrl: 'assets/images/testimonials/professor2.jpg'
+                        },
+                        {
+                            quoteAuthor: { 
+                                en: 'Hamza MOUNCIF',
+                                fr: 'Hamza MOUNCIF'
+                            },
+                            jobTitle: { 
+                                en: '3D Computer Vision | PhD Researcher',
+                                fr: '3D Computer Vision | PhD Researcher'
+                            },
+                            quoteContent: { 
+                                en: 'Well skilled, and hard worker',
+                                fr: 'Well skilled, and hard worker'
+                            },
+                            relationship: 'First-degree connection',
+                            date: 'March 31, 2025',
+                            context: 'Hamza was Abdellah\'s direct manager',
+                            imgUrl: 'assets/images/testimonials/manager.jpg'
+                        },
+                        {
+                            quoteAuthor: { 
+                                en: 'Adama Coulibaly',
+                                fr: 'Adama Coulibaly'
+                            },
+                            jobTitle: { 
+                                en: 'Software Developer | DevOps | ML',
+                                fr: 'Développeur Logiciel | DevOps | ML'
+                            },
+                            quoteContent: { 
+                                en: 'In our AI courses, I saw courage and determination in Abdellah. Moreover, we worked on the same project, where he was my scrum master. He worked until the project was completed. I appreciate his analytical mind. I highly recommend him for his seriousness and selflessness.',
+                                fr: 'In our AI courses, I saw courage and determination in Abdellah. Moreover, we worked on the same project, where he was my scrum master. He worked until the project was completed. I appreciate his analytical mind. I highly recommend him for his seriousness and selflessness.'
+                            },
+                            relationship: 'First-degree connection',
+                            date: 'February 6, 2025',
+                            context: 'Adama and Abdellah attended the same school',
+                            imgUrl: 'assets/images/testimonials/colleague1.jpg'
+                        },
+                        {
+                            quoteAuthor: { 
+                                en: 'Yassine Ben Acha',
+                                fr: 'Yassine Ben Acha'
+                            },
+                            jobTitle: { 
+                                en: 'AI Engineering | Machine Learning & Deep Learning Enthusiast',
+                                fr: 'AI Engineering | Machine Learning & Deep Learning Enthusiast'
+                            },
+                            quoteContent: { 
+                                en: 'I had the chance to study with Abdellah at the National School of Artificial Intelligence and Digitization, and he has always impressed with his seriousness, curiosity, and innovative spirit. Not only does he excel technically, but he also knows how to create positive team dynamics. He\'s someone you can always count on, whether it\'s finding creative solutions or motivating colleagues. I recommend him without hesitation for any opportunity - he will make a difference!',
+                                fr: 'J\'ai eu la chance d\'étudier avec Abdellah à la National School of Artificial Intelligence and Digitization, et il a toujours impressionné par son sérieux, sa curiosité et son esprit innovant. Non seulement il excelle techniquement, mais il sait aussi créer une dynamique positive dans une équipe. C\'est quelqu\'un sur qui on peut toujours compter, que ce soit pour trouver des solutions créatives ou pour motiver ses collègues. Je le recommande sans hésiter pour toute opportunité – il saura faire la différence !'
+                            },
+                            relationship: 'First-degree connection',
+                            date: 'February 6, 2025',
+                            context: 'Yassine and Abdellah attended the same school',
+                            imgUrl: 'assets/images/testimonials/colleague2.jpg'
+                        },
+                        {
+                            quoteAuthor: { 
+                                en: 'Oussama ELHADJI',
+                                fr: 'Oussama ELHADJI'
+                            },
+                            jobTitle: { 
+                                en: 'AI Engineering Student | Tech Enthusiast, Innovator & Volunteer 💡',
+                                fr: 'Étudiant en Ingénierie de l\'IA | Passionné de Tech, Innovateur & Bénévole 💡'
+                            },
+                            quoteContent: { 
+                                en: 'I had the pleasure of working with Abdellah Ennajari on the same team, where he showed brilliant expertise in AI and Machine Learning. He was great at organizing such complex informatics projects, developing clear flows and goals. Abdellah would create animated presentations of the most vivid kind and of the highest quality documentation reports; these actually were part of our project deliverables. His problem-solving skills, creativity, and collaborative spirit made him an invaluable team member and an asset for any technical undertaking.',
+                                fr: 'I had the pleasure of working with Abdellah Ennajari on the same team, where he showed brilliant expertise in AI and Machine Learning. He was great at organizing such complex informatics projects, developing clear flows and goals. Abdellah would create animated presentations of the most vivid kind and of the highest quality documentation reports; these actually were part of our project deliverables. His problem-solving skills, creativity, and collaborative spirit made him an invaluable team member and an asset for any technical undertaking.'
+                            },
+                            relationship: 'First-degree connection',
+                            date: 'February 6, 2025',
+                            context: 'Oussama worked with Abdellah on the same team',
+                            imgUrl: 'assets/images/testimonials/teammate.jpg'
+                        }
+                    ],
+                    showEducationModal: false,
+                    showAllProjects: false,
+                    selectedProject: null,
+                    showAITimeline: false,
+                    aiJourney: [
+                        {
+                            year: '2025',
+                            title: {
+                                en: 'Advanced AI Research & Development',
+                                fr: 'Recherche & Développement IA Avancé'
+                            },
+                            description: {
+                                en: 'Researching foundation models for 3D understanding and building MLOps infrastructure for AI deployment.',
+                                fr: 'Recherche sur les modèles fondamentaux pour la compréhension 3D et construction d\'infrastructure MLOps pour le déploiement de l\'IA.'
+                            },
+                            achievements: [
+                                {
+                                    en: 'Researching foundation models for 3D understanding',
+                                    fr: 'Recherche sur les modèles fondamentaux pour la compréhension 3D'
+                                },
+                                {
+                                    en: 'Building MLOps infrastructure for AI deployment',
+                                    fr: 'Construction d\'infrastructure MLOps pour le déploiement de l\'IA'
+                                },
+                                {
+                                    en: 'Exploring neural rendering for interactive applications',
+                                    fr: 'Exploration du rendu neuronal pour les applications interactives'
+                                }
+                            ],
+                            technologies: ['PyTorch', 'TensorFlow', 'Kubernetes', 'MLflow', 'NeRF', '3D Vision']
+                        },
+                        {
+                            year: '2024',
+                            title: {
+                                en: '3D Vision & Multi-agent systemAI',
+                                fr: 'Vision 3D & IA Multi-agent system'
+                            },
+                            description: {
+                                en: 'Advanced research in 3D Vision and development of Multi-agent system RAG systems with 97% accuracy in dental modeling.',
+                                fr: 'Recherche avancée en Vision 3D et développement de systèmes RAG multimodaux avec 97% de précision dans la modélisation dentaire.'
+                            },
+                            achievements: [
+                                {
+                                    en: 'Achieved 97% accuracy in dental 3D modeling',
+                                    fr: 'Atteint 97% de précision dans la modélisation dentaire 3D'
+                                },
+                                {
+                                    en: 'Developed Multi-agent system RAG systems',
+                                    fr: 'Développé des systèmes RAG multimodaux'
+                                },
+                                {
+                                    en: 'Applied diffusion models to medical imaging',
+                                    fr: 'Appliqué des modèles de diffusion à l\'imagerie médicale'
+                                }
+                            ],
+                            technologies: ['PyTorch3D', 'Open3D', 'CLIP', 'Transformers', 'Diffusion Models', 'RAG']
+                        },
+                        {
+                            year: '2023',
+                            title: {
+                                en: 'AI Specialization at ENIAD',
+                                fr: 'Spécialisation en IA à l\'ENIAD'
+                            },
+                            description: {
+                                en: 'Specialized in AI & Data Science, implementing Computer Vision for dental classification and building first end-to-end ML pipeline.',
+                                fr: 'Spécialisé en IA & Science des Données, implémentation de la Vision par Ordinateur pour la classification dentaire et construction du premier pipeline ML end-to-end.'
+                            },
+                            achievements: [
+                                {
+                                    en: 'Implemented Computer Vision for dental classification',
+                                    fr: 'Implémenté la Vision par Ordinateur pour la classification dentaire'
+                                },
+                                {
+                                    en: 'Built first end-to-end ML pipeline',
+                                    fr: 'Construit le premier pipeline ML end-to-end'
+                                },
+                                {
+                                    en: 'Specialized in AI & Data Science',
+                                    fr: 'Spécialisé en IA & Science des Données'
+                                }
+                            ],
+                            technologies: ['TensorFlow', 'PyTorch', 'OpenCV', 'Scikit-learn', 'Docker', 'MLflow']
+                        },
+                        {
+                            year: '2022',
+                            title: {
+                                en: 'Foundation in AI & Deep Learning',
+                                fr: 'Fondations en IA & Deep Learning'
+                            },
+                            description: {
+                                en: 'Established foundation in Mathematics & Computer Science, completed first deep learning projects with TensorFlow.',
+                                fr: 'Établi les fondations en Mathématiques & Informatique, complété les premiers projets de deep learning avec TensorFlow.'
+                            },
+                            achievements: [
+                                {
+                                    en: 'Completed first deep learning projects with TensorFlow',
+                                    fr: 'Complété les premiers projets de deep learning avec TensorFlow'
+                                },
+                                {
+                                    en: 'Established foundation in Mathematics & Computer Science',
+                                    fr: 'Établi les fondations en Mathématiques & Informatique'
+                                }
+                            ],
+                            technologies: ['Python', 'TensorFlow', 'NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn']
+                        }
+                    ],
+                    highlightedProjects: [
+                                        {
+                            title: { 
+                                en: 'Article Generator with Data Flywheel',
+                                fr: 'Générateur d\'Articles avec Data Flywheel'
+                            },
+                            githubUrl: 'https://github.com/ennajari/article_generator',
+                            demoUrl: 'https://articlegenerator-mjivv4cekj2q9mtuud2usy.streamlit.app/',
+                            url: 'https://github.com/ennajari/article_generator',
+                            date: { 
+                                en: 'May 4, 2025',
+                                fr: '4 Mai 2025'
+                            },
+                            location: 'Academic Project',
+                            imgUrl: 'assets/images/dataFlywheel.png',
+                            description: {
+                                en: 'A powerful article generation system using a multi-agent architecture with a data flywheel to continuously improve content quality based on user feedback. The system integrates NLP models, semantic search, and generative AI tools to create high-quality articles.',
+                                fr: 'Un puissant système de génération d\'articles utilisant une architecture multi-agents avec un flywheel de données pour améliorer en continu la qualité du contenu basé sur les retours utilisateurs. Le système intègre des modèles NLP, la recherche sémantique et des outils d\'IA générative pour créer des articles de haute qualité.'
+                            },
+                            tags: ['Article Generation', 'Multi-agent System', 'Data Flywheel', 'NLP', 'AI', 'Streamlit']
+                        },
 
-                ],
-                filters: ['All', 'AI', 'Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Computer Vision'],
-                
-                educationItems: [
-                    {
-                        institution: 'National School of Artificial Intelligence and Digitization (ENIAD)',
-                        degree: 'Engineering Degree in Artificial Intelligence',
-                        period: '2023 – Present',
-                        location: 'Morocco',
-                        showDetails: false,
-                        points: [
-                            'Specialization in Artificial Intelligence and Data Science',
-                            'Advanced coursework in Machine Learning, Deep Learning, and Data Science',
-                            'Practical projects in Computer Vision, NLP, and image classification',
-                            'Research focus on AI applications and innovative technologies',
-                            'Developed a real-time flower recognition system with 95% accuracy'
-                        ],
-                        additionalDetails: {
-                            'GPA': {
-                                en: '3.8/4.0',
-                                fr: '3.8/4.0'
+                        {
+                            title: { 
+                                en: 'Intelligent Chatbot for ENIAD',
+                                fr: 'Chatbot Intelligent pour ENIAD'
                             },
-                            'Relevant Courses': {
-                                en: 'Deep Learning, Computer Vision, NLP, Data Mining',
-                                fr: 'Deep Learning, Vision par Ordinateur, NLP, Data Mining'
+                            githubUrl: 'https://github.com/ennajari/ENIAD-ASSISTANT',
+                            demoUrl: 'https://github.com/ennajari/ENIAD-ASSISTANT',
+                            url: 'https://github.com/ennajari/ENIAD-ASSISTANT',
+                            date: { 
+                                en: 'April 30, 2025',
+                                fr: '30 Avril 2025'
                             },
-                            'Research Projects': {
-                                en: '3 published papers in AI conferences',
-                                fr: '3 articles publiés dans des conférences d\'IA'
-                            }
-                        }
-                    },
-                    {
-                        institution: 'Ibn Zohr University',
-                        degree: "Bachelor's Degree in Mathematics and Computer Science",
-                        period: '2021 – 2023',
-                        location: 'Ouarzazate, Morocco',
-                        showDetails: false,
-                        points: [
-                            'Advanced Mathematics and Algorithmic courses',
-                            'Computer Science Fundamentals, including programming and software engineering',
-                            'Software Engineering Principles and project management',
-                            'Top of the class with a final project on automated timetable generation'
-                        ],
-                        additionalDetails: {
-                            'GPA': {
-                                en: '3.7/4.0',
-                                fr: '3.7/4.0'
+                            location: 'ENIAD (AI & Digital School)',
+                            imgUrl: 'assets/images/chatbot_eniad.png',
+                            description: {
+                                en: 'A smart chatbot designed for ENIAD students to improve academic communication. The project explores modern NLP and ML techniques including RAG, fine-tuning, HiFT, and Q-LoRA, with a detailed architecture and deployment strategy.',
+                                fr: 'Un chatbot intelligent conçu pour les étudiants de l\'ENIAD pour améliorer la communication académique. Le projet explore les techniques modernes de NLP et ML, notamment RAG, fine-tuning, HiFT et Q-LoRA, avec une architecture détaillée et une stratégie de déploiement.'
                             },
-                            'Relevant Courses': {
-                                en: 'Mathematics, Computer Science, Algorithms',
-                                fr: 'Mathématiques, Informatique, Algorithmes'
+                            tags: ['Chatbot', 'NLP', 'Machine Learning', 'RAG', 'HiFT', 'Q-LoRA']
+                        },
+                        {
+                            title: {
+                                en: 'Automated Article Generation with CrewAI & RAG',
+                                fr: 'Génération Automatique d\'Articles avec CrewAI & RAG'
                             },
-                            'Research Projects': {
-                                en: '1 published paper in a computer science journal',
-                                fr: '1 article publié dans une revue scientifique d\'informatique'
-                            }
-                        }
-                    },
-                    {
-                        institution: 'El Ouroud High School',
-                        degree: 'Baccalaureate in Physical and Chemical Sciences',
-                        period: '2020',
-                        location: 'Kelaat M\'gouna, Morocco',
-                        showDetails: false,
-                        points: [
-                            'Strong foundation in Physics and Chemistry',
-                            'Comprehensive education in Mathematics and Sciences',
-                            'Excellent academic performance'
-                        ],
-                        additionalDetails: {
-                            'GPA': {
-                                en: '4.0/4.0',
-                                fr: '4.0/4.0'
+                            date: {
+                                en: '2025',
+                                fr: '2025'
                             },
-                            'Relevant Courses': {
-                                en: 'Physics, Chemistry, Mathematics',
-                                fr: 'Physique, Chimie, Mathématiques'
+                            githubUrl: 'https://github.com/ennajari/AI_Article_Generator',
+                            demoUrl: 'https://github.com/ennajari/AI_Article_Generator',
+                            location: 'Academic Project',
+                            imgUrl: 'assets/images/Automated Article Generation with CrewAI & RAG.png',
+                            url: 'https://github.com/ennajari/AI_Article_Generator',
+                            description: {
+                                en: 'This project explores the integration of Retrieval-Augmented Generation (RAG) and vector databases using the CrewAI framework to automate high-quality article creation with context-aware content generation.',
+                                fr: 'Ce projet explore l\'intégration de la Génération Augmentée par Récupération (RAG) et des bases de données vectorielles en utilisant le framework CrewAI pour automatiser la création d\'articles de haute qualité avec une génération de contenu contextuelle.'
                             },
-                            'Extra-Curricular Activities': {
-                                en: 'Participation in science fairs and robotics competitions',
-                                fr: 'Participation à des foires scientifiques et compétitions de robotique'
-                            }
-                        }
-                    }
-                ],
-                testimonialsItems: [
-                    {
-                        quoteAuthor: { 
-                            en: 'Youssef MELLAH, Ph.D.',
-                            fr: 'Youssef MELLAH, Ph.D.'
+                            tags: ['CrewAI', 'RAG', 'Vector Databases', 'LangChain', 'LLMs', 'AI Automation']
                         },
-                        jobTitle: { 
-                            en: 'Senior Machine Learning Engineer | Data Scientist | AI Ph.D. | AI Assistant Professor | AI Researcher',
-                            fr: 'Senior Machine Learning Engineer | Data Scientist | AI Ph.D. | AI Assistant Professor | AI Researcher'
-                        },
-                        quoteContent: { 
-                            en: 'I had the opportunity to teach Abdellah Ennajari during his academic studies. Throughout the course, he showed consistency, seriousness, and a good understanding of the key concepts covered. He completed his assignments on time and participated regularly in class discussions.\n\nAbdellah has a solid foundation in his field and shows a willingness to learn and improve. He works well both independently and in a team setting, and I believe he has the potential to grow further in a professional environment.\n\nI recommend him for roles or projects where a reliable and motivated team member is needed.',
-                            fr: 'I had the opportunity to teach Abdellah Ennajari during his academic studies. Throughout the course, he showed consistency, seriousness, and a good understanding of the key concepts covered. He completed his assignments on time and participated regularly in class discussions.\n\nAbdellah has a solid foundation in his field and shows a willingness to learn and improve. He works well both independently and in a team setting, and I believe he has the potential to grow further in a professional environment.\n\nI recommend him for roles or projects where a reliable and motivated team member is needed.'
-                        },
-                        relationship: 'First-degree connection',
-                        date: 'April 21, 2025',
-                        context: 'Youssef was Abdellah\'s professor',
-                        imgUrl: 'assets/images/testimonials/professor.jpg'
-                    },
-                    {
-                        quoteAuthor: { 
-                            en: 'Houda Benhar',
-                            fr: 'Houda Benhar'
-                        },
-                        jobTitle: { 
-                            en: 'Machine Learning Ph.D',
-                            fr: 'Machine Learning Ph.D'
-                        },
-                        quoteContent: { 
-                            en: 'Abdellah is a serious student and one of the most dedicated and focused individuals I\'ve come across. His commitment to learning and personal growth is truly admirable. Wishing him all the best in his future endeavors!',
-                            fr: 'Abdellah is a serious student and one of the most dedicated and focused individuals I\'ve come across. His commitment to learning and personal growth is truly admirable. Wishing him all the best in his future endeavors!'
-                        },
-                        relationship: 'First-degree connection',
-                        date: 'April 16, 2025',
-                        context: 'Houda was Abdellah\'s professor',
-                        imgUrl: 'assets/images/testimonials/professor2.jpg'
-                    },
-                    {
-                        quoteAuthor: { 
-                            en: 'Hamza MOUNCIF',
-                            fr: 'Hamza MOUNCIF'
-                        },
-                        jobTitle: { 
-                            en: '3D Computer Vision | PhD Researcher',
-                            fr: '3D Computer Vision | PhD Researcher'
-                        },
-                        quoteContent: { 
-                            en: 'Well skilled, and hard worker',
-                            fr: 'Well skilled, and hard worker'
-                        },
-                        relationship: 'First-degree connection',
-                        date: 'March 31, 2025',
-                        context: 'Hamza was Abdellah\'s direct manager',
-                        imgUrl: 'assets/images/testimonials/manager.jpg'
-                    },
-                    {
-                        quoteAuthor: { 
-                            en: 'Adama Coulibaly',
-                            fr: 'Adama Coulibaly'
-                        },
-                        jobTitle: { 
-                            en: 'Software Developer | DevOps | ML',
-                            fr: 'Développeur Logiciel | DevOps | ML'
-                        },
-                        quoteContent: { 
-                            en: 'In our AI courses, I saw courage and determination in Abdellah. Moreover, we worked on the same project, where he was my scrum master. He worked until the project was completed. I appreciate his analytical mind. I highly recommend him for his seriousness and selflessness.',
-                            fr: 'In our AI courses, I saw courage and determination in Abdellah. Moreover, we worked on the same project, where he was my scrum master. He worked until the project was completed. I appreciate his analytical mind. I highly recommend him for his seriousness and selflessness.'
-                        },
-                        relationship: 'First-degree connection',
-                        date: 'February 6, 2025',
-                        context: 'Adama and Abdellah attended the same school',
-                        imgUrl: 'assets/images/testimonials/colleague1.jpg'
-                    },
-                    {
-                        quoteAuthor: { 
-                            en: 'Yassine Ben Acha',
-                            fr: 'Yassine Ben Acha'
-                        },
-                        jobTitle: { 
-                            en: 'AI Engineering | Machine Learning & Deep Learning Enthusiast',
-                            fr: 'AI Engineering | Machine Learning & Deep Learning Enthusiast'
-                        },
-                        quoteContent: { 
-                            en: 'I had the chance to study with Abdellah at the National School of Artificial Intelligence and Digitization, and he has always impressed with his seriousness, curiosity, and innovative spirit. Not only does he excel technically, but he also knows how to create positive team dynamics. He\'s someone you can always count on, whether it\'s finding creative solutions or motivating colleagues. I recommend him without hesitation for any opportunity - he will make a difference!',
-                            fr: 'J\'ai eu la chance d\'étudier avec Abdellah à la National School of Artificial Intelligence and Digitization, et il a toujours impressionné par son sérieux, sa curiosité et son esprit innovant. Non seulement il excelle techniquement, mais il sait aussi créer une dynamique positive dans une équipe. C\'est quelqu\'un sur qui on peut toujours compter, que ce soit pour trouver des solutions créatives ou pour motiver ses collègues. Je le recommande sans hésiter pour toute opportunité – il saura faire la différence !'
-                        },
-                        relationship: 'First-degree connection',
-                        date: 'February 6, 2025',
-                        context: 'Yassine and Abdellah attended the same school',
-                        imgUrl: 'assets/images/testimonials/colleague2.jpg'
-                    },
-                    {
-                        quoteAuthor: { 
-                            en: 'Oussama ELHADJI',
-                            fr: 'Oussama ELHADJI'
-                        },
-                        jobTitle: { 
-                            en: 'AI Engineering Student | Tech Enthusiast, Innovator & Volunteer 💡',
-                            fr: 'Étudiant en Ingénierie de l\'IA | Passionné de Tech, Innovateur & Bénévole 💡'
-                        },
-                        quoteContent: { 
-                            en: 'I had the pleasure of working with Abdellah Ennajari on the same team, where he showed brilliant expertise in AI and Machine Learning. He was great at organizing such complex informatics projects, developing clear flows and goals. Abdellah would create animated presentations of the most vivid kind and of the highest quality documentation reports; these actually were part of our project deliverables. His problem-solving skills, creativity, and collaborative spirit made him an invaluable team member and an asset for any technical undertaking.',
-                            fr: 'I had the pleasure of working with Abdellah Ennajari on the same team, where he showed brilliant expertise in AI and Machine Learning. He was great at organizing such complex informatics projects, developing clear flows and goals. Abdellah would create animated presentations of the most vivid kind and of the highest quality documentation reports; these actually were part of our project deliverables. His problem-solving skills, creativity, and collaborative spirit made him an invaluable team member and an asset for any technical undertaking.'
-                        },
-                        relationship: 'First-degree connection',
-                        date: 'February 6, 2025',
-                        context: 'Oussama worked with Abdellah on the same team',
-                        imgUrl: 'assets/images/testimonials/teammate.jpg'
-                    }
-                ],
-                showEducationModal: false,
-                showAllProjects: false,
-                selectedProject: null,
-                showAITimeline: false,
-                aiJourney: [
-                    {
-                        year: '2025',
-                        title: {
-                            en: 'Advanced AI Research & Development',
-                            fr: 'Recherche & Développement IA Avancé'
-                        },
-                        description: {
-                            en: 'Researching foundation models for 3D understanding and building MLOps infrastructure for AI deployment.',
-                            fr: 'Recherche sur les modèles fondamentaux pour la compréhension 3D et construction d\'infrastructure MLOps pour le déploiement de l\'IA.'
-                        },
-                        achievements: [
-                            {
-                                en: 'Researching foundation models for 3D understanding',
-                                fr: 'Recherche sur les modèles fondamentaux pour la compréhension 3D'
+                        {
+                            title: { 
+                                en: 'BI System for Vehicle Sales Monitoring',
+                                fr: 'Système BI pour le Suivi des Ventes de Véhicules'
                             },
-                            {
-                                en: 'Building MLOps infrastructure for AI deployment',
-                                fr: 'Construction d\'infrastructure MLOps pour le déploiement de l\'IA'
+                            githubUrl: 'https://github.com/ennajari/BI',
+                            demoUrl: 'https://github.com/ennajari/BI',
+                             url: 'https://github.com/ennajari/BI',
+                            date: { 
+                                en: '2025',
+                                fr: '2025'
                             },
-                            {
-                                en: 'Exploring neural rendering for interactive applications',
-                                fr: 'Exploration du rendu neuronal pour les applications interactives'
-                            }
-                        ],
-                        technologies: ['PyTorch', 'TensorFlow', 'Kubernetes', 'MLflow', 'NeRF', '3D Vision']
-                    },
-                    {
-                        year: '2024',
-                        title: {
-                            en: '3D Vision & Multi-agent systemAI',
-                            fr: 'Vision 3D & IA Multi-agent system'
-                        },
-                        description: {
-                            en: 'Advanced research in 3D Vision and development of Multi-agent system RAG systems with 97% accuracy in dental modeling.',
-                            fr: 'Recherche avancée en Vision 3D et développement de systèmes RAG multimodaux avec 97% de précision dans la modélisation dentaire.'
-                        },
-                        achievements: [
-                            {
-                                en: 'Achieved 97% accuracy in dental 3D modeling',
-                                fr: 'Atteint 97% de précision dans la modélisation dentaire 3D'
-                            },
-                            {
-                                en: 'Developed Multi-agent system RAG systems',
-                                fr: 'Développé des systèmes RAG multimodaux'
-                            },
-                            {
-                                en: 'Applied diffusion models to medical imaging',
-                                fr: 'Appliqué des modèles de diffusion à l\'imagerie médicale'
-                            }
-                        ],
-                        technologies: ['PyTorch3D', 'Open3D', 'CLIP', 'Transformers', 'Diffusion Models', 'RAG']
-                    },
-                    {
-                        year: '2023',
-                        title: {
-                            en: 'AI Specialization at ENIAD',
-                            fr: 'Spécialisation en IA à l\'ENIAD'
-                        },
-                        description: {
-                            en: 'Specialized in AI & Data Science, implementing Computer Vision for dental classification and building first end-to-end ML pipeline.',
-                            fr: 'Spécialisé en IA & Science des Données, implémentation de la Vision par Ordinateur pour la classification dentaire et construction du premier pipeline ML end-to-end.'
-                        },
-                        achievements: [
-                            {
-                                en: 'Implemented Computer Vision for dental classification',
-                                fr: 'Implémenté la Vision par Ordinateur pour la classification dentaire'
-                            },
-                            {
-                                en: 'Built first end-to-end ML pipeline',
-                                fr: 'Construit le premier pipeline ML end-to-end'
-                            },
-                            {
-                                en: 'Specialized in AI & Data Science',
-                                fr: 'Spécialisé en IA & Science des Données'
-                            }
-                        ],
-                        technologies: ['TensorFlow', 'PyTorch', 'OpenCV', 'Scikit-learn', 'Docker', 'MLflow']
-                    },
-                    {
-                        year: '2022',
-                        title: {
-                            en: 'Foundation in AI & Deep Learning',
-                            fr: 'Fondations en IA & Deep Learning'
-                        },
-                        description: {
-                            en: 'Established foundation in Mathematics & Computer Science, completed first deep learning projects with TensorFlow.',
-                            fr: 'Établi les fondations en Mathématiques & Informatique, complété les premiers projets de deep learning avec TensorFlow.'
-                        },
-                        achievements: [
-                            {
-                                en: 'Completed first deep learning projects with TensorFlow',
-                                fr: 'Complété les premiers projets de deep learning avec TensorFlow'
-                            },
-                            {
-                                en: 'Established foundation in Mathematics & Computer Science',
-                                fr: 'Établi les fondations en Mathématiques & Informatique'
-                            }
-                        ],
-                        technologies: ['Python', 'TensorFlow', 'NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn']
-                    }
-                ],
-                highlightedProjects: [
-                                    {
-                        title: { 
-                            en: 'Article Generator with Data Flywheel',
-                            fr: 'Générateur d\'Articles avec Data Flywheel'
-                        },
-                        githubUrl: 'https://github.com/ennajari/article_generator',
-                        demoUrl: 'https://articlegenerator-mjivv4cekj2q9mtuud2usy.streamlit.app/',
-                        url: 'https://github.com/ennajari/article_generator',
-                        date: { 
-                            en: 'May 4, 2025',
-                            fr: '4 Mai 2025'
-                        },
-                        location: 'Academic Project',
-                        imgUrl: 'assets/images/dataFlywheel.png',
-                        description: {
-                            en: 'A powerful article generation system using a multi-agent architecture with a data flywheel to continuously improve content quality based on user feedback. The system integrates NLP models, semantic search, and generative AI tools to create high-quality articles.',
-                            fr: 'Un puissant système de génération d\'articles utilisant une architecture multi-agents avec un flywheel de données pour améliorer en continu la qualité du contenu basé sur les retours utilisateurs. Le système intègre des modèles NLP, la recherche sémantique et des outils d\'IA générative pour créer des articles de haute qualité.'
-                        },
-                        tags: ['Article Generation', 'Multi-agent System', 'Data Flywheel', 'NLP', 'AI', 'Streamlit']
-                    },
-
-                    {
-                        title: { 
-                            en: 'Intelligent Chatbot for ENIAD',
-                            fr: 'Chatbot Intelligent pour ENIAD'
-                        },
-                        githubUrl: 'https://github.com/ennajari/ENIAD-ASSISTANT',
-                        demoUrl: 'https://github.com/ennajari/ENIAD-ASSISTANT',
-                        url: 'https://github.com/ennajari/ENIAD-ASSISTANT',
-                        date: { 
-                            en: 'April 30, 2025',
-                            fr: '30 Avril 2025'
-                        },
-                        location: 'ENIAD (AI & Digital School)',
-                        imgUrl: 'assets/images/chatbot_eniad.png',
-                        description: {
-                            en: 'A smart chatbot designed for ENIAD students to improve academic communication. The project explores modern NLP and ML techniques including RAG, fine-tuning, HiFT, and Q-LoRA, with a detailed architecture and deployment strategy.',
-                            fr: 'Un chatbot intelligent conçu pour les étudiants de l\'ENIAD pour améliorer la communication académique. Le projet explore les techniques modernes de NLP et ML, notamment RAG, fine-tuning, HiFT et Q-LoRA, avec une architecture détaillée et une stratégie de déploiement.'
-                        },
-                        tags: ['Chatbot', 'NLP', 'Machine Learning', 'RAG', 'HiFT', 'Q-LoRA']
-                    },
-                    {
-                        title: {
-                            en: 'Automated Article Generation with CrewAI & RAG',
-                            fr: 'Génération Automatique d\'Articles avec CrewAI & RAG'
-                        },
-                        date: {
-                            en: '2025',
-                            fr: '2025'
-                        },
-                        githubUrl: 'https://github.com/ennajari/AI_Article_Generator',
-                        demoUrl: 'https://github.com/ennajari/AI_Article_Generator',
-                        location: 'Academic Project',
-                        imgUrl: 'assets/images/Automated Article Generation with CrewAI & RAG.png',
-                        url: 'https://github.com/ennajari/AI_Article_Generator',
-                        description: {
-                            en: 'This project explores the integration of Retrieval-Augmented Generation (RAG) and vector databases using the CrewAI framework to automate high-quality article creation with context-aware content generation.',
-                            fr: 'Ce projet explore l\'intégration de la Génération Augmentée par Récupération (RAG) et des bases de données vectorielles en utilisant le framework CrewAI pour automatiser la création d\'articles de haute qualité avec une génération de contenu contextuelle.'
-                        },
-                        tags: ['CrewAI', 'RAG', 'Vector Databases', 'LangChain', 'LLMs', 'AI Automation']
-                    },
-                    {
-                        title: { 
-                            en: 'BI System for Vehicle Sales Monitoring',
-                            fr: 'Système BI pour le Suivi des Ventes de Véhicules'
-                        },
-                        githubUrl: 'https://github.com/ennajari/BI',
-                        demoUrl: 'https://github.com/ennajari/BI',
-                         url: 'https://github.com/ennajari/BI',
-                        date: { 
-                            en: '2025',
-                            fr: '2025'
-                        },
-                        location: 'Academic Project',
-                        imgUrl: 'assets/images/BI.png',
-                        description: {
-                            en: 'Developed a Business Intelligence system for monitoring vehicle sales. Integrated dashboards, KPIs, and interactive visualizations to assist in data-driven decision making.',
-                            fr: 'Développement d\'un système de Business Intelligence pour le suivi des ventes de véhicules. Intégration de tableaux de bord, KPIs et visualisations interactives pour faciliter la prise de décision basée sur les données.'
+                            location: 'Academic Project',
+                            imgUrl: 'assets/images/BI.png',
+                            description: {
+                                en: 'Developed a Business Intelligence system for monitoring vehicle sales. Integrated dashboards, KPIs, and interactive visualizations to assist in data-driven decision making.',
+                                fr: 'Développement d\'un système de Business Intelligence pour le suivi des ventes de véhicules. Intégration de tableaux de bord, KPIs et visualisations interactives pour faciliter la prise de décision basée sur les données.'
                         },
                         tags: ['BI', 'Data Visualization', 'Dashboards', 'KPI', 'Power BI', 'Data Analysis']
                     },
@@ -3437,252 +3440,7 @@
             }
         });
 
-        // Remove the duplicate carouselMethods object and app.methods assignment
     </script>
-    <!-- Font Awesome pour l’icône -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /> -->
-
-<!-- <style>
-.bot-message {
-  background-color: #f1f1f1;
-  color: #000;
-  align-self: flex-start;
-  border-bottom-left-radius: 3px;
-}
-
-.user-message {
-  background-color: #e2f0ff;
-  color: #000; 
-  align-self: flex-end;
-  border-bottom-right-radius: 3px;
-}
-
-.typing-indicator {
-  color: #444; 
-}
-
-  #chatbot-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #4a6cf7;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #chatbot-container {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 350px;
-    max-height: 500px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    display: none;
-    flex-direction: column;
-  }
-
-  .chatbot-header {
-    background-color: #4a6cf7;
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .chatbot-header .close-btn {
-    font-size: 18px;
-    cursor: pointer;
-  }
-
-  .chatbot-messages {
-    height: 300px;
-    overflow-y: auto;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .chat-message {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 15px;
-    max-width: 80%;
-  }
-
-  .user-message {
-    background-color: #e2f0ff;
-    align-self: flex-end;
-    border-bottom-right-radius: 3px;
-  }
-
-  .bot-message {
-    background-color: #f1f1f1;
-    align-self: flex-start;
-    border-bottom-left-radius: 3px;
-  }
-
-  .chatbot-input {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #eee;
-  }
-
-  .chatbot-input input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    margin-right: 10px;
-  }
-
-  .chatbot-input button {
-    background-color: #4a6cf7;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-  }
-
-  .typing-indicator {
-    margin-left: 15px;
-    font-style: italic;
-    color: #888;
-    display: none;
-  }
-</style> -->
-
-<!-- Bouton toggle -->
-<!-- <button id="chatbot-toggle">
-  <i class="fas fa-comments"></i>
-</button> -->
-
-<!-- Chatbot Container -->
-<!-- <div id="chatbot-container">
-    <div class="chatbot-header">
-      <span>Assistant</span>
-      <span class="close-btn" id="chatbot-close">&times;</span>
-    </div>
-    <div class="chatbot-messages" id="chatbot-messages">
-      <div class="chat-message bot-message">
-        Bonjour ! Posez-moi une question sur le portfolio.
-      </div>
-    </div>
-    <div class="typing-indicator" id="typing-indicator">L'assistant écrit...</div>
-    <div class="chatbot-input">
-      <input type="text" id="user-input" placeholder="Posez votre question..." />
-      <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-    </div>
-  </div> -->
-  
-  <!-- Script JS -->
-  <!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const toggleBtn = document.getElementById('chatbot-toggle');
-      const chatbot = document.getElementById('chatbot-container');
-      const closeBtn = document.getElementById('chatbot-close');
-      const userInput = document.getElementById('user-input');
-      const sendBtn = document.getElementById('send-btn');
-      const messagesContainer = document.getElementById('chatbot-messages');
-      const typingIndicator = document.getElementById('typing-indicator');
-  
-      // IMPORTANT: Hard-coded API URL that works in all environments
-      // Change this to your deployed URL when you deploy to Railway
-      const API_URL = 'https://aiengineer-production-7f4a.up.railway.app/api/chat';
-      // For local testing, you might use:
-      // const API_URL = 'http://localhost:5000/api/chat';
-      // For testing on Railway, you might use:
-      // const API_URL = 'https://your-railway-app-name.up.railway.app/api/chat';
-      
-      // When you deploy to Railway, you'd change it to something like:
-      // const API_URL = 'https://your-railway-app-name.up.railway.app/api/chat';
-      
-      // Log the API URL for debugging
-      console.log('Chatbot using API URL:', API_URL);
-  
-      // Check if toggle button exists (it might not in some layouts)
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-          chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
-          if (chatbot.style.display === 'flex') userInput.focus();
-        });
-      }
-  
-      closeBtn.addEventListener('click', () => {
-        chatbot.style.display = 'none';
-      });
-  
-      sendBtn.addEventListener('click', sendMessage);
-  
-      userInput.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') sendMessage();
-      });
-  
-      function sendMessage() {
-        const message = userInput.value.trim();
-        if (message.length === 0) return;
-  
-        addMessage(message, 'user');
-        userInput.value = '';
-        typingIndicator.style.display = 'block';
-  
-        // Fetch with specific error handling
-        fetch(API_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message }),
-        })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then(data => {
-            typingIndicator.style.display = 'none';
-            if (data && data.response) {
-              addMessage(data.response, 'bot');
-            } else {
-              addMessage('Désolé, je n\'ai pas pu traiter votre demande.', 'bot');
-            }
-          })
-          .catch(error => {
-            typingIndicator.style.display = 'none';
-            console.error('API connection error:', error);
-            addMessage(`Erreur de connexion: Impossible de contacter le serveur API à ${API_URL}. Vérifiez que le serveur est en cours d'exécution.`, 'bot');
-          });
-      }
-  
-      function addMessage(message, sender) {
-        const div = document.createElement('div');
-        div.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
-        div.textContent = message;
-        messagesContainer.appendChild(div);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-      }
-    });
-  </script> -->
-
 </body>
 </html>
 
