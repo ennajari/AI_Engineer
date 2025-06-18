@@ -57,11 +57,59 @@
         body.dark {
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
             --border-color: #334155;
             --hover-bg: #1e293b;
             --card-bg: #1e293b;
+        }
+
+        /* Dark mode text color overrides */
+        .dark .text-gray-800 {
+            color: #ffffff !important;
+        }
+        
+        .dark .text-gray-700 {
+            color: #e2e8f0 !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #cbd5e1 !important;
+        }
+        
+        .dark .text-gray-500 {
+            color: #94a3b8 !important;
+        }
+        
+        .dark .text-gray-400 {
+            color: #94a3b8 !important;
+        }
+        
+        .dark .text-gray-300 {
+            color: #cbd5e1 !important;
+        }
+        
+        .dark .text-gray-200 {
+            color: #e2e8f0 !important;
+        }
+        
+        .dark .text-gray-100 {
+            color: #f1f5f9 !important;
+        }
+        
+        /* Ensure headings are white in dark mode */
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+            color: #ffffff !important;
+        }
+        
+        /* Ensure paragraphs are light in dark mode */
+        .dark p {
+            color: #e2e8f0 !important;
+        }
+        
+        /* Ensure labels are white in dark mode */
+        .dark label {
+            color: #ffffff !important;
         }
 
         /* Enhanced Typography */
@@ -1600,6 +1648,29 @@
                 padding-bottom: 20%;
             }
         }
+
+        /* DARK MODE CARD & BUTTON FIXES */
+        .dark .bg-white,
+        .dark .bg-gray-50 {
+            background-color: #1e293b !important;
+        }
+        .dark .border-gray-200,
+        .dark .border-gray-300,
+        .dark .border-gray-700 {
+            border-color: #334155 !important;
+        }
+        .dark .bg-gray-100,
+        .dark .bg-gray-200,
+        .dark .bg-gray-800 {
+            background-color: #334155 !important;
+            color: #fff !important;
+        }
+        .dark .text-gray-700,
+        .dark .text-gray-300,
+        .dark .text-gray-600,
+        .dark .text-gray-400 {
+            color: #e2e8f0 !important;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -2304,7 +2375,7 @@
                             <div v-for="(testimonial, index) in testimonialsItems" 
                                  :key="index"
                                  class="testimonial-card min-w-[280px] sm:w-[350px] flex-shrink-0">
-                                <div class="bg-[#1e2937] border border-gray-700 rounded-xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-[#3b82f6] h-full">
+                                <div class="bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-[#3b82f6] h-full">
                                     <div class="p-4 sm:p-6 flex flex-col h-full">
                                         <!-- Card Content -->
                                         <div class="flex items-start gap-3 sm:gap-4 mb-4">
@@ -2312,13 +2383,13 @@
                                                 {{ testimonial.quoteAuthor[currentLanguage].charAt(0) }}
                             </div>
                                             <div class="flex-1 min-w-0">
-                                                <h4 class="text-base sm:text-lg font-bold text-white truncate">
+                                                <h4 class="text-base sm:text-lg font-bold text-gray-800 dark:text-white truncate">
                                                     {{ testimonial.quoteAuthor[currentLanguage] }}
                                                 </h4>
-                                                <p class="text-xs sm:text-sm text-gray-400 truncate">
+                                                <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-300 truncate">
                                                     {{ testimonial.jobTitle[currentLanguage] }}
                                                 </p>
-                                                <div class="flex items-center text-xs text-gray-500 mt-1">
+                                                <div class="flex items-center text-xs text-gray-400 dark:text-gray-400 mt-1">
                                                     <span class="truncate">{{ testimonial.relationship }}</span>
                                                     <span class="mx-2">•</span>
                                                     <span class="truncate">{{ testimonial.date }}</span>
@@ -2326,14 +2397,14 @@
                         </div>
                                         </div>
                                         <div class="relative flex-grow">
-                                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
+                                            <p class="text-gray-600 dark:text-gray-200 text-xs sm:text-sm leading-relaxed mb-4">
                                                 "{{ testimonial.quoteContent[currentLanguage] }}"
                                             </p>
                                             <div class="absolute bottom-0 right-0 w-16 sm:w-24 h-16 sm:h-24 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
                                                 <i class="fas fa-quote-right text-4xl sm:text-6xl text-[#3b82f6]"></i>
                                             </div>
                                         </div>
-                                        <div class="flex items-center justify-between pt-4 border-t border-gray-700 mt-auto">
+                                        <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700 mt-auto">
                         <div class="flex text-yellow-400 text-xs sm:text-sm">
                                                 <i v-for="i in 5" :key="i" class="fas fa-star"></i>
                         </div>
@@ -3444,3 +3515,5 @@
 </body>
 </html>
 
+
+</rewritten_file>
