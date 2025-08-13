@@ -1946,6 +1946,442 @@
 
         /* Magnetic hover target helper */
         .magnetic { will-change: transform; transition: transform 0.15s ease; }
+
+        /* ============================================================
+           LIGHT MODE FIXES & IMPROVEMENTS
+           ============================================================ */
+
+        /* Light mode card & background fixes */
+        body:not(.dark) .bg-white {
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        body:not(.dark) .bg-gray-50 {
+            background-color: #f9fafb !important;
+        }
+        
+        body:not(.dark) .bg-gray-100 {
+            background-color: #f3f4f6 !important;
+        }
+        
+        body:not(.dark) .bg-gray-800 {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e7eb !important;
+        }
+
+        /* Light mode text colors */
+        body:not(.dark) .text-gray-800 {
+            color: #1f2937 !important;
+        }
+        
+        body:not(.dark) .text-gray-700 {
+            color: #374151 !important;
+        }
+        
+        body:not(.dark) .text-gray-600 {
+            color: #4b5563 !important;
+        }
+        
+        body:not(.dark) .text-gray-500 {
+            color: #6b7280 !important;
+        }
+        
+        body:not(.dark) .text-gray-400 {
+            color: #9ca3af !important;
+        }
+        
+        body:not(.dark) .text-gray-300 {
+            color: #6b7280 !important;
+        }
+        
+        body:not(.dark) .text-gray-200 {
+            color: #4b5563 !important;
+        }
+
+        /* Light mode card styling */
+        body:not(.dark) .card {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e7eb !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Light mode border colors */
+        body:not(.dark) .border-gray-200,
+        body:not(.dark) .border-gray-300,
+        body:not(.dark) .border-gray-700 {
+            border-color: #e5e7eb !important;
+        }
+
+        /* Light mode form elements */
+        body:not(.dark) input,
+        body:not(.dark) textarea,
+        body:not(.dark) select {
+            background-color: #ffffff !important;
+            border-color: #d1d5db !important;
+            color: #1f2937 !important;
+        }
+        
+        body:not(.dark) input:focus,
+        body:not(.dark) textarea:focus,
+        body:not(.dark) select:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+        }
+        
+        body:not(.dark) input::placeholder,
+        body:not(.dark) textarea::placeholder {
+            color: #9ca3af !important;
+        }
+
+        /* Light mode navigation */
+        body:not(.dark) nav a {
+            color: #4b5563 !important;
+        }
+        
+        body:not(.dark) nav a:hover {
+            color: #3b82f6 !important;
+        }
+
+        /* Light mode buttons */
+        body:not(.dark) .btn-outline {
+            background-color: #ffffff !important;
+            border-color: #3b82f6 !important;
+            color: #3b82f6 !important;
+        }
+        
+        body:not(.dark) .btn-outline:hover {
+            background-color: #3b82f6 !important;
+            color: #ffffff !important;
+        }
+
+        /* Light mode testimonials */
+        body:not(.dark) .testimonial-card {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e7eb !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        body:not(.dark) .testimonial-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Light mode project cards */
+        body:not(.dark) .project-card {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e7eb !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        body:not(.dark) .project-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Light mode skill cards */
+        body:not(.dark) .skill-card,
+        body:not(.dark) .ring-gradient {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e7eb !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Light mode experience/education cards */
+        body:not(.dark) .timeline-item .bg-gray-50,
+        body:not(.dark) .bg-gray-50 {
+            background-color: #f9fafb !important;
+        }
+
+        /* Light mode modal */
+        body:not(.dark) .modal,
+        body:not(.dark) .fixed .bg-white {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e7eb !important;
+        }
+
+        /* Light mode mobile menu */
+        body:not(.dark) .mobile-menu-bg {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        /* Light mode hover states */
+        body:not(.dark) .hover\:bg-gray-200:hover,
+        body:not(.dark) .hover\:bg-gray-700:hover {
+            background-color: #f3f4f6 !important;
+        }
+
+        /* Light mode backdrop blur elements */
+        body:not(.dark) .bg-white\/80 {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+        body:not(.dark) .bg-gray-800\/80 {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border: 1px solid #e5e7eb !important;
+        }
+
+        /* Light mode shadows */
+        body:not(.dark) .shadow-lg,
+        body:not(.dark) .shadow-xl,
+        body:not(.dark) .shadow-2xl {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Light mode gradient backgrounds for sections */
+        body:not(.dark) .bg-gradient-to-br.from-gray-50.to-blue-50 {
+            background: linear-gradient(to bottom right, #f9fafb, #eff6ff) !important;
+        }
+        
+        body:not(.dark) .bg-gradient-to-br.from-white.to-gray-50 {
+            background: linear-gradient(to bottom right, #ffffff, #f9fafb) !important;
+        }
+
+        /* Light mode header */
+        body:not(.dark) header {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px) !important;
+            border-bottom: 1px solid #e5e7eb !important;
+        }
+
+        /* Light mode footer */
+        body:not(.dark) footer {
+            background-color: #1f2937 !important;
+            color: #ffffff !important;
+        }
+        
+        body:not(.dark) footer .text-gray-300 {
+            color: #d1d5db !important;
+        }
+        
+        body:not(.dark) footer .text-gray-400 {
+            color: #9ca3af !important;
+        }
+
+        /* Light mode scroll indicator */
+        body:not(.dark) .scroll-down,
+        body:not(.dark) .scroll-indicator {
+            border-color: #3b82f6 !important;
+            background-color: #3b82f6 !important;
+        }
+
+        /* Light mode contact section improvements */
+        body:not(.dark) #contact .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #f9fafb, #eff6ff) !important;
+        }
+
+        /* Light mode hero section */
+        body:not(.dark) #home.bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #eff6ff, #ffffff, #ecfdf5) !important;
+        }
+
+        /* Light mode mobile menu overlay */
+        body:not(.dark) .mobile-menu-overlay {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        /* Light mode variable border colors */
+        body:not(.dark) {
+            --border-color: #e5e7eb;
+            --hover-bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+        }
+
+        /* Light mode specific element fixes */
+        body:not(.dark) .border-\[var\(--border-color\)\] {
+            border-color: var(--border-color) !important;
+        }
+
+        /* Light mode preloader */
+        body:not(.dark) .fixed.inset-0.z-50.bg-white {
+            background-color: #ffffff !important;
+        }
+
+        /* Light mode theme toggle button */
+        body:not(.dark) .bg-gray-100 {
+            background-color: #f3f4f6 !important;
+            color: #4b5563 !important;
+        }
+        
+        body:not(.dark) .hover\:bg-gray-200:hover {
+            background-color: #e5e7eb !important;
+        }
+
+        /* Light mode text improvements for better contrast */
+        body:not(.dark) .text-blue-700 {
+            color: #1d4ed8 !important;
+        }
+        
+        body:not(.dark) .text-blue-600 {
+            color: #2563eb !important;
+        }
+        
+        body:not(.dark) .text-emerald-600 {
+            color: #059669 !important;
+        }
+
+        /* Light mode card hover improvements */
+        body:not(.dark) .hover\:border-blue-500\/50:hover {
+            border-color: rgba(59, 130, 246, 0.5) !important;
+        }
+
+        /* Light mode skill progress bars */
+        body:not(.dark) .bg-gray-200 {
+            background-color: #e5e7eb !important;
+        }
+
+        /* Light mode timeline elements */
+        body:not(.dark) .timeline-dot {
+            background-color: #3b82f6 !important;
+            color: #ffffff !important;
+        }
+        
+        body:not(.dark) .timeline-item:before {
+            background-color: #3b82f6 !important;
+        }
+
+        /* Light mode notification */
+        body:not(.dark) .notification {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e7eb !important;
+            color: #1f2937 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Light mode back to top button */
+        body:not(.dark) .fixed.bottom-8.right-8 {
+            background-color: #3b82f6 !important;
+            color: #ffffff !important;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3) !important;
+        }
+
+        /* Light mode education/experience modals */
+        body:not(.dark) .max-w-4xl.bg-white {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e7eb !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        /* Light mode close button for modals */
+        body:not(.dark) .bg-gray-100.hover\:bg-gray-200 {
+            background-color: #f3f4f6 !important;
+            color: #4b5563 !important;
+        }
+        
+        body:not(.dark) .bg-gray-100.hover\:bg-gray-200:hover {
+            background-color: #e5e7eb !important;
+        }
+
+        /* Light mode testimonials specific */
+        body:not(.dark) .bg-\[\#1e293b\] {
+            background-color: #ffffff !important;
+        }
+        
+        body:not(.dark) .text-gray-900 {
+            color: #111827 !important;
+        }
+        
+        body:not(.dark) .text-gray-700 {
+            color: #374151 !important;
+        }
+
+        /* Light mode final polish */
+        body:not(.dark) .antialiased {
+            background-color: transparent;
+        }
+
+        /* Light mode hero section background elements */
+        body:not(.dark) .absolute.top-1\/4.left-1\/4 {
+            opacity: 0.6;
+        }
+
+        /* Light mode profile image container */
+        body:not(.dark) .profile-image::before {
+            opacity: 0.05;
+        }
+
+        /* Light mode skill category buttons */
+        body:not(.dark) .skill-category-buttons button:not(.bg-gradient-to-r) {
+            background-color: #ffffff !important;
+            color: #2563eb !important;
+            border: 2px solid #2563eb !important;
+        }
+        
+        body:not(.dark) .skill-category-buttons button:not(.bg-gradient-to-r):hover {
+            background-color: #2563eb !important;
+            color: #ffffff !important;
+        }
+
+        /* Light mode loading progress bar */
+        body:not(.dark) .bg-gray-200.rounded-full {
+            background-color: #e5e7eb !important;
+        }
+
+        /* Light mode gradient text fallback */
+        body:not(.dark) .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #059669 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Light mode hero buttons container */
+        body:not(.dark) .hero-buttons .group {
+            backdrop-filter: blur(10px);
+        }
+
+        /* Light mode section backgrounds */
+        body:not(.dark) .section {
+            background-color: var(--bg-primary);
+        }
+
+        /* Light mode experience cards border */
+        body:not(.dark) .timeline-item .bg-gray-50.dark\:bg-gray-700 {
+            background-color: #f9fafb !important;
+            border: 1px solid #e5e7eb !important;
+        }
+
+        /* Light mode contact form labels */
+        body:not(.dark) label {
+            color: #374151 !important;
+            font-weight: 600;
+        }
+
+        /* Light mode skill bars container */
+        body:not(.dark) .bg-gray-700 {
+            background-color: #e5e7eb !important;
+        }
+
+        /* Light mode testimonials track */
+        body:not(.dark) .testimonials-track {
+            background-color: transparent;
+        }
+
+        /* Light mode star ratings */
+        body:not(.dark) .text-yellow-400 {
+            color: #f59e0b !important;
+        }
+
+        /* Light mode verified badge */
+        body:not(.dark) .text-blue-600.text-sm {
+            color: #2563eb !important;
+        }
+
+        /* Light mode scroll progress bar */
+        body:not(.dark) .scroll-progress {
+            background: linear-gradient(90deg, #2563eb, #059669) !important;
+        }
+
+        /* Light mode custom cursor */
+        body:not(.dark) .custom-cursor {
+            border-color: #2563eb !important;
+        }
+        
+        body:not(.dark) .custom-cursor-dot {
+            background-color: #2563eb !important;
+        }
     </style>
 </head>
 <body class="antialiased bg-[var(--bg-primary)] text-[var(--text-primary)]">
@@ -2004,7 +2440,7 @@
         </header>
 
         <!-- Mobile Menu -->
-        <div class="antialiased" 
+        <div class="fixed inset-0 z-50 bg-white dark:bg-gray-900 mobile-menu-overlay" 
              :class="{'translate-x-0': isMobileMenuOpen, '-translate-x-full': !isMobileMenuOpen}"
              v-if="isMobileMenuOpen">
             <div class="container mx-auto px-6 py-20">
