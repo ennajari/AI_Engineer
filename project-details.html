@@ -3,42 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details - Abdellah Ennajari</title>
+    <title>Project Portfolio - Abdellah Ennajari</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="Detailed project information and portfolio showcase by Abdellah Ennajari - AI Engineer & Deep Learning Specialist">
+    <meta name="description" content="Portfolio of AI projects by Abdellah Ennajari - Deep Learning Specialist & AI Engineer">
     <meta name="keywords" content="AI Engineer, Deep Learning, Machine Learning, Computer Vision, NLP, Project Portfolio, Abdellah Ennajari">
     <meta name="author" content="Abdellah Ennajari">
     
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Project Details - Abdellah Ennajari">
-    <meta property="og:description" content="Detailed project information and portfolio showcase by Abdellah Ennajari - AI Engineer & Deep Learning Specialist">
+    <meta property="og:title" content="Project Portfolio - Abdellah Ennajari">
+    <meta property="og:description" content="Portfolio of AI projects by Abdellah Ennajari - Deep Learning Specialist & AI Engineer">
     <meta property="og:image" content="assets/images/hero-img.png">
-    <meta property="og:url" content="https://abdellah-ennajari.com/project-details">
-    
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Project Details - Abdellah Ennajari">
-    <meta name="twitter:description" content="Detailed project information and portfolio showcase by Abdellah Ennajari - AI Engineer & Deep Learning Specialist">
-    <meta name="twitter:image" content="assets/images/hero-img.png">
+    <meta property="og:url" content="https://abdellah-ennajari.com/projects">
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#3b82f6">
-    <meta name="msapplication-TileColor" content="#3b82f6">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Abdellah Ennajari">
-    <link rel="apple-touch-icon" href="assets/images/favicon.ico">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -70,6 +58,7 @@
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         }
         
         body {
@@ -83,6 +72,10 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
         body.dark {
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
@@ -92,7 +85,7 @@
             --hover-bg: #1e293b;
             --card-bg: #1e293b;
         }
-
+        
         /* Dark mode fixes */
         .dark .bg-white,
         .dark .bg-gray-50 {
@@ -115,213 +108,6 @@
             color: #e2e8f0 !important;
         }
         
-        /* Additional dark mode fixes */
-        .dark .bg-white\/80,
-        .dark .bg-white\/90 {
-            background-color: rgba(30, 41, 59, 0.8) !important;
-        }
-        
-        .dark .bg-gray-800\/80,
-        .dark .bg-gray-800\/90 {
-            background-color: rgba(30, 41, 59, 0.8) !important;
-        }
-        
-        .dark .bg-gray-900\/50 {
-            background-color: rgba(15, 23, 42, 0.5) !important;
-        }
-        
-        /* Fix for backdrop blur elements */
-        .dark .backdrop-blur-sm {
-            backdrop-filter: blur(4px);
-        }
-        
-        /* Fix for gradient backgrounds in dark mode */
-        .dark .from-gray-50 {
-            --tw-gradient-from: #0f172a;
-            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(15, 23, 42, 0));
-        }
-        
-        .dark .to-blue-50 {
-            --tw-gradient-to: #1e293b;
-        }
-        
-        .dark .from-white {
-            --tw-gradient-from: #0f172a;
-            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(15, 23, 42, 0));
-        }
-        
-        .dark .to-gray-50 {
-            --tw-gradient-to: #1e293b;
-        }
-        
-        /* Fix for text colors in dark mode */
-        .dark .text-gray-800 {
-            color: #f1f5f9 !important;
-        }
-        
-        .dark .text-gray-900 {
-            color: #ffffff !important;
-        }
-        
-        /* Fix for form elements in dark mode */
-        .dark input,
-        .dark textarea,
-        .dark select {
-            background-color: rgba(15, 23, 42, 0.5) !important;
-            border-color: #334155 !important;
-            color: #e2e8f0 !important;
-        }
-        
-        .dark input::placeholder,
-        .dark textarea::placeholder {
-            color: #94a3b8 !important;
-        }
-        
-        /* Fix for shadows in dark mode */
-        .dark .shadow-lg,
-        .dark .shadow-xl,
-        .dark .shadow-2xl {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
-        }
-        
-        /* Fix for glassmorphism effects in dark mode */
-        .dark .backdrop-blur-sm {
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-        
-        /* Fix for gradient text in dark mode */
-        .dark .bg-clip-text {
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-        
-        /* Fix for opacity classes in dark mode */
-        .dark .opacity-20 {
-            opacity: 0.3;
-        }
-        
-        .dark .opacity-30 {
-            opacity: 0.4;
-        }
-        
-        /* Fix for border colors in dark mode */
-        .dark .border-gray-200\/50,
-        .dark .border-gray-300\/50,
-        .dark .border-gray-700\/50 {
-            border-color: rgba(51, 65, 85, 0.5) !important;
-        }
-        
-        /* Fix for hover states in dark mode */
-        .dark .hover\:bg-gray-200:hover {
-            background-color: #475569 !important;
-        }
-        
-        .dark .hover\:bg-gray-700:hover {
-            background-color: #475569 !important;
-        }
-        
-        /* Fix for focus states in dark mode */
-        .dark .focus\:ring-blue-500:focus {
-            --tw-ring-color: #3b82f6;
-        }
-        
-        /* Fix for transition colors in dark mode */
-        .dark .transition-colors {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
-        }
-        
-        /* Fix for background gradients in dark mode */
-        .dark .bg-gradient-to-br {
-            background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
-        }
-        
-        .dark .from-blue-50 {
-            --tw-gradient-from: #0f172a;
-            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(15, 23, 42, 0));
-        }
-        
-        .dark .via-white {
-            --tw-gradient-stops: var(--tw-gradient-from), #1e293b, var(--tw-gradient-to, rgba(30, 41, 59, 0));
-        }
-        
-        .dark .to-emerald-50 {
-            --tw-gradient-to: #1e293b;
-        }
-        
-        /* Fix for text colors in specific sections */
-        .dark .text-gray-700 {
-            color: #e2e8f0 !important;
-        }
-        
-        .dark .text-gray-600 {
-            color: #cbd5e1 !important;
-        }
-        
-        .dark .text-gray-500 {
-            color: #94a3b8 !important;
-        }
-        
-        /* Fix for background colors in specific sections */
-        .dark .bg-gray-50 {
-            background-color: #1e293b !important;
-        }
-        
-        .dark .bg-gray-100 {
-            background-color: #334155 !important;
-        }
-        
-        .dark .bg-gray-200 {
-            background-color: #475569 !important;
-        }
-        
-        .dark .bg-gray-700 {
-            background-color: #334155 !important;
-        }
-        
-        .dark .bg-gray-800 {
-            background-color: #1e293b !important;
-        }
-        
-        .dark .bg-gray-900 {
-            background-color: #0f172a !important;
-        }
-        
-        /* Fix for border colors in dark mode */
-        .dark .border-gray-200 {
-            border-color: #334155 !important;
-        }
-        
-        .dark .border-gray-300 {
-            border-color: #475569 !important;
-        }
-        
-        .dark .border-gray-700 {
-            border-color: #475569 !important;
-        }
-        
-        /* Fix for hover states in dark mode */
-        .dark .hover\:bg-gray-200:hover {
-            background-color: #475569 !important;
-        }
-        
-        .dark .hover\:bg-gray-700:hover {
-            background-color: #475569 !important;
-        }
-        
-        /* Fix for focus states in dark mode */
-        .dark .focus\:ring-blue-500:focus {
-            --tw-ring-color: #3b82f6;
-        }
-        
-        /* Fix for backdrop blur in dark mode */
-        .dark .backdrop-blur-sm {
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -333,7 +119,6 @@
                 transform: translateY(0);
             }
         }
-
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
@@ -344,7 +129,6 @@
                 transform: translateX(0);
             }
         }
-
         @keyframes fadeInRight {
             from {
                 opacity: 0;
@@ -355,7 +139,6 @@
                 transform: translateX(0);
             }
         }
-
         @keyframes scaleIn {
             from {
                 opacity: 0;
@@ -366,7 +149,6 @@
                 transform: scale(1);
             }
         }
-
         @keyframes float {
             0%, 100% {
                 transform: translateY(0px);
@@ -375,7 +157,6 @@
                 transform: translateY(-20px);
             }
         }
-
         @keyframes gradient {
             0% {
                 background-position: 0% 50%;
@@ -387,54 +168,55 @@
                 background-position: 0% 50%;
             }
         }
-
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
         .animate-fade-in-up {
             animation: fadeInUp 0.6s ease-out;
         }
-
         .animate-fade-in-left {
             animation: fadeInLeft 0.6s ease-out;
         }
-
         .animate-fade-in-right {
             animation: fadeInRight 0.6s ease-out;
         }
-
         .animate-scale-in {
             animation: scaleIn 0.6s ease-out;
         }
-
         .animate-float {
             animation: float 6s ease-in-out infinite;
         }
-
         .animate-gradient {
             background-size: 200% 200%;
             animation: gradient 15s ease infinite;
         }
-
+        .animate-pulse-slow {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
-
         ::-webkit-scrollbar-track {
             background: #f1f5f9;
         }
-
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(135deg, #3b82f6, #10b981);
             border-radius: 4px;
         }
-
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(135deg, #2563eb, #059669);
         }
-
         .dark ::-webkit-scrollbar-track {
             background: #1e293b;
         }
-
+        
         /* Loading animation */
         .loading-spinner {
             border: 3px solid #f3f4f6;
@@ -444,62 +226,399 @@
             height: 40px;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* Project details specific styles */
+        
+        /* Project hero styles */
         .project-hero {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
         .dark .project-hero {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
         }
-
-        .tech-stack-item {
+        
+        .dark .project-hero::before {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Enhanced card styles */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        .dark .glass-card:hover {
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #10b981, #8b5cf6);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             background: linear-gradient(135deg, #3b82f6, #10b981);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
-
-        .project-image {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
         }
-
-        .project-image:hover {
-            transform: scale(1.05);
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.6);
+        }
+        
+        /* Project status badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-completed {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+        
+        .status-ongoing {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+        
+        .status-planning {
+            background-color: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+        
+        /* Enhanced project card */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-
-        .dark .project-image:hover {
+        
+        .dark .project-card:hover {
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        /* Feature card */
+        .feature-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .dark .feature-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Image modal */
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .image-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .image-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .image-modal.active img {
+            transform: scale(1);
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .image-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .image-modal-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .image-modal-prev {
+            left: 20px;
+        }
+        
+        .image-modal-next {
+            right: 20px;
+        }
+        
+        /* Team member styles */
+        .team-member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .team-member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+        
+        .team-member-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .team-member-info p {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .dark .team-member-info p {
+            color: #9ca3af;
+        }
+        
+        /* Social sharing buttons */
+        .social-share {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .social-share a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-share .twitter {
+            background: #1DA1F2;
+        }
+        
+        .social-share .linkedin {
+            background: #0077B5;
+        }
+        
+        .social-share .facebook {
+            background: #4267B2;
+        }
+        
+        .social-share a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .feature-card {
+                margin-bottom: 1rem;
+            }
         }
     </style>
 </head>
 <body class="antialiased">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
     <div id="app">
         <!-- Header -->
-        <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+        <header class="fixed top-0 left-0 right-0 z-50 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
                     <!-- Logo -->
-                    <a href="index.html" class="flex items-center space-x-2 text-xl font-bold text-gray-800 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                    <a href="index.html" class="flex items-center space-x-2 text-xl font-bold   dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                         <i class="fas fa-arrow-left text-blue-500"></i>
                         <span>Back to Portfolio</span>
                     </a>
-
-                    <!-- Theme Toggle -->
-                    <button @click="toggleTheme" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <i :class="{'fas fa-moon': isDarkMode, 'fas fa-sun': !isDarkMode}" class="text-lg"></i>
-                    </button>
+                    
+                    <!-- Language Toggle -->
+                    <div class="flex items-center space-x-4">
+                        <button @click="toggleLanguage" class="px-3 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            {{ currentLanguage === 'en' ? 'FR' : 'EN' }}
+                        </button>
+                        
+                        <!-- Theme Toggle -->
+                        <button @click="toggleTheme" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <i :class="{'fas fa-moon': isDarkMode, 'fas fa-sun': !isDarkMode}" class="text-lg"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
-
+        
         <!-- Project Details Content -->
         <main class="pt-16">
             <!-- Loading State -->
@@ -509,7 +628,7 @@
                     <p class="text-gray-600 dark:text-gray-300">Loading project details...</p>
                 </div>
             </div>
-
+            
             <!-- Project Content -->
             <div v-else class="animate-fade-in-up">
                 <!-- Project Hero Section -->
@@ -524,16 +643,25 @@
                                     <li class="text-blue-500 dark:text-blue-400">{{ project.title[currentLanguage] }}</li>
                                 </ol>
                             </nav>
-
+                            
                             <!-- Project Header -->
                             <div class="text-center mb-12">
-                                <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-emerald-500 text-white rounded-full text-sm font-medium mb-6">
-                                    <i class="fas fa-project-diagram mr-2"></i>
-                                    {{ project.category || 'AI Project' }}
+                                <!-- Project Status -->
+                                <div class="mb-6">
+                                    <span :class="`status-badge status-${project.status}`">
+                                        <i :class="{
+                                            'fas fa-check-circle': project.status === 'completed',
+                                            'fas fa-spinner animate-pulse-slow': project.status === 'ongoing',
+                                            'fas fa-calendar-alt': project.status === 'planning'
+                                        }" class="mr-2"></i>
+                                        {{ currentLanguage === 'en' ? project.status.charAt(0).toUpperCase() + project.status.slice(1) : 
+                                            project.status === 'completed' ? 'Terminé' : 
+                                            project.status === 'ongoing' ? 'En cours' : 'En planification' }}
+                                    </span>
                                 </div>
                                 
-                                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                                    <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
+                                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight heading-font">
+                                    <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent animate-gradient">
                                         {{ project.title[currentLanguage] }}
                                     </span>
                                 </h1>
@@ -541,32 +669,48 @@
                                 <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
                                     {{ project.description[currentLanguage] }}
                                 </p>
+                                
+                                <!-- Social Sharing -->
+                                <div class="social-share justify-center">
+                                    <a :href="`https://twitter.com/intent/tweet?text=${encodeURIComponent('Check out this project: ' + project.title[currentLanguage])}&url=${encodeURIComponent(window.location.href)}`" 
+                                       target="_blank" class="twitter" title="Share on Twitter">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`" 
+                                       target="_blank" class="linkedin" title="Share on LinkedIn">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`" 
+                                       target="_blank" class="facebook" title="Share on Facebook">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </div>
                             </div>
-
+                            
                             <!-- Project Meta -->
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                                <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg">
+                                <div class="glass-card rounded-xl p-6 text-center">
                                     <i class="fas fa-calendar text-3xl text-blue-500 mb-4"></i>
-                                    <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Date</h3>
+                                    <h3 class="font-semibold   dark:text-gray-200 mb-2">{{ currentLanguage === 'en' ? 'Date' : 'Date' }}</h3>
                                     <p class="text-gray-600 dark:text-gray-400">{{ project.date[currentLanguage] }}</p>
                                 </div>
                                 
-                                <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg">
+                                <div class="glass-card rounded-xl p-6 text-center">
                                     <i class="fas fa-map-marker-alt text-3xl text-emerald-500 mb-4"></i>
-                                    <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Location</h3>
+                                    <h3 class="font-semibold   dark:text-gray-200 mb-2">{{ currentLanguage === 'en' ? 'Location' : 'Lieu' }}</h3>
                                     <p class="text-gray-600 dark:text-gray-400">{{ project.location || 'Remote' }}</p>
                                 </div>
                                 
-                                <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg">
+                                <div class="glass-card rounded-xl p-6 text-center">
                                     <i class="fas fa-code text-3xl text-purple-500 mb-4"></i>
-                                    <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Category</h3>
+                                    <h3 class="font-semibold   dark:text-gray-200 mb-2">{{ currentLanguage === 'en' ? 'Category' : 'Catégorie' }}</h3>
                                     <p class="text-gray-600 dark:text-gray-400">{{ project.category || 'AI/ML' }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
+                
                 <!-- Project Details Section -->
                 <section class="py-20 bg-white dark:bg-gray-900">
                     <div class="container mx-auto px-4">
@@ -576,30 +720,30 @@
                                 <div class="animate-fade-in-left">
                                     <div class="relative rounded-2xl overflow-hidden shadow-2xl">
                                         <img :src="project.imgUrl" :alt="project.title[currentLanguage]" 
-                                             class="project-image w-full h-96 object-cover">
+                                             class="w-full h-96 object-cover">
                                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     </div>
                                 </div>
-
+                                
                                 <!-- Project Information -->
                                 <div class="animate-fade-in-right">
-                                    <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6">
+                                    <h2 class="text-3xl font-bold   dark:text-gray-200 mb-6 heading-font">
                                         {{ currentLanguage === 'en' ? 'Project Overview' : 'Aperçu du Projet' }}
                                     </h2>
                                     
                                     <div class="space-y-6">
                                         <div>
-                                            <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                                            <h3 class="text-xl font-semibold   dark:text-gray-200 mb-3">
                                                 {{ currentLanguage === 'en' ? 'Description' : 'Description' }}
                                             </h3>
                                             <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                                                 {{ project.description[currentLanguage] }}
                                             </p>
                                         </div>
-
+                                        
                                         <!-- Technologies Used -->
                                         <div v-if="project.technologies && project.technologies.length">
-                                            <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                                            <h3 class="text-xl font-semibold dark:text-gray-200 mb-3">
                                                 {{ currentLanguage === 'en' ? 'Technologies Used' : 'Technologies Utilisées' }}
                                             </h3>
                                             <div class="flex flex-wrap gap-2">
@@ -609,10 +753,10 @@
                                                 </span>
                                             </div>
                                         </div>
-
+                                        
                                         <!-- Project Links -->
                                         <div v-if="project.githubUrl || project.demoUrl" class="space-y-3">
-                                            <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                                            <h3 class="text-xl font-semibold dark:text-gray-200">
                                                 {{ currentLanguage === 'en' ? 'Project Links' : 'Liens du Projet' }}
                                             </h3>
                                             <div class="flex flex-wrap gap-4">
@@ -628,30 +772,46 @@
                                                 </a>
                                             </div>
                                         </div>
+                                        
+                                        <!-- Team Members -->
+                                        <div v-if="project.team && project.team.length">
+                                            <h3 class="text-xl font-semibold dark:text-gray-200 mb-3">
+                                                {{ currentLanguage === 'en' ? 'Team Members' : 'Membres de l\'Équipe' }}
+                                            </h3>
+                                            <div class="space-y-2">
+                                                <div v-for="member in project.team" class="team-member">
+                                                    <img :src="member.avatar" :alt="member.name" class="team-member-avatar">
+                                                    <div class="team-member-info">
+                                                        <h4 class="  dark:text-gray-200">{{ member.name }}</h4>
+                                                        <p class="text-gray-600 dark:text-gray-400">{{ member.role[currentLanguage] }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
+                
                 <!-- Project Features Section -->
                 <section v-if="project.features && project.features.length" class="py-20 bg-gray-50 dark:bg-gray-800">
                     <div class="container mx-auto px-4">
                         <div class="max-w-4xl mx-auto">
-                            <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-gray-200 mb-12">
+                            <h2 class="text-3xl font-bold text-center dark:text-gray-200 mb-12 heading-font">
                                 {{ currentLanguage === 'en' ? 'Key Features' : 'Fonctionnalités Clés' }}
                             </h2>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div v-for="(feature, index) in project.features" 
-                                     class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                                     class="feature-card bg-white dark:bg-gray-700 shadow-lg"
                                      :class="{'animate-fade-in-left': index % 2 === 0, 'animate-fade-in-right': index % 2 === 1}">
                                     <div class="flex items-center mb-4">
                                         <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
                                             {{ index + 1 }}
                                         </div>
-                                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                                        <h3 class="text-xl font-semibold   dark:text-gray-200">
                                             {{ feature.title[currentLanguage] }}
                                         </h3>
                                     </div>
@@ -663,23 +823,23 @@
                         </div>
                     </div>
                 </section>
-
+                
                 <!-- Project Gallery Section -->
                 <section v-if="project.gallery && project.gallery.length" class="py-20 bg-white dark:bg-gray-900">
                     <div class="container mx-auto px-4">
                         <div class="max-w-6xl mx-auto">
-                            <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-gray-200 mb-12">
+                            <h2 class="text-3xl font-bold text-center   dark:text-gray-200 mb-12 heading-font">
                                 {{ currentLanguage === 'en' ? 'Project Gallery' : 'Galerie du Projet' }}
                             </h2>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <div v-for="(image, index) in project.gallery" 
-                                     class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
-                                     @click="openImageModal(image)">
+                                     class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                     @click="openImageModal(index)">
                                     <img :src="image.url" :alt="image.caption[currentLanguage]" 
                                          class="w-full h-64 object-cover">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity">
-                                        <div class="absolute bottom-4 left-4 text-white">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+                                        <div class="p-4 text-white">
                                             <p class="font-semibold">{{ image.caption[currentLanguage] }}</p>
                                         </div>
                                     </div>
@@ -688,32 +848,79 @@
                         </div>
                     </div>
                 </section>
-
+                
+                <!-- Project Results Section -->
+                <section v-if="project.results" class="py-20 bg-gray-50 dark:bg-gray-800">
+                    <div class="container mx-auto px-4">
+                        <div class="max-w-4xl mx-auto">
+                            <h2 class="text-3xl font-bold text-center   dark:text-gray-200 mb-12 heading-font">
+                                {{ currentLanguage === 'en' ? 'Project Results' : 'Résultats du Projet' }}
+                            </h2>
+                            
+                            <div class="bg-white dark:bg-gray-700 rounded-xl p-8 shadow-lg">
+                                <p class="text-gray-600 dark:text-gray-400 mb-6">
+                                    {{ project.results[currentLanguage] }}
+                                </p>
+                                
+                                <div v-if="project.metrics" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                                    <div v-for="metric in project.metrics" class="text-center">
+                                        <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                                            {{ metric.value }}
+                                        </div>
+                                        <div class="text-gray-600 dark:text-gray-400">
+                                            {{ metric.label[currentLanguage] }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
                 <!-- Related Projects Section -->
-                <section class="py-20 bg-gray-50 dark:bg-gray-800">
+                <section class="py-20 bg-white dark:bg-gray-900">
                     <div class="container mx-auto px-4">
                         <div class="max-w-6xl mx-auto">
-                            <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-gray-200 mb-12">
-                                {{ currentLanguage === 'en' ? 'Related Projects' : 'Projets Similaires' }}
+                            <h2 class="text-3xl font-bold text-center   dark:text-gray-200 mb-12 heading-font">
+                                {{ currentLanguage === 'en' ? 'All Projects' : 'Tous les Projets' }}
                             </h2>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 <div v-for="relatedProject in relatedProjects" 
-                                     class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                                    <img :src="relatedProject.imgUrl" :alt="relatedProject.title[currentLanguage]" 
-                                         class="w-full h-48 object-cover">
+                                     class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg">
+                                    <div class="relative">
+                                        <img :src="relatedProject.imgUrl" :alt="relatedProject.title[currentLanguage]" 
+                                             class="w-full h-48 object-cover">
+                                        <div class="overlay">
+                                            <a :href="`project-details.html?id=${relatedProject.id}`" 
+                                               class="inline-flex items-center text-white font-semibold">
+                                                {{ currentLanguage === 'en' ? 'View Details' : 'Voir Détails' }}
+                                                <i class="fas fa-arrow-right ml-2"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                     <div class="p-6">
-                                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                                        <h3 class="text-xl font-semibold   dark:text-gray-200 mb-2">
                                             {{ relatedProject.title[currentLanguage] }}
                                         </h3>
                                         <p class="text-gray-600 dark:text-gray-400 mb-4">
                                             {{ relatedProject.description[currentLanguage].substring(0, 100) }}...
                                         </p>
-                                        <a :href="`project-details.html?id=${relatedProject.id}`" 
-                                           class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold">
-                                            {{ currentLanguage === 'en' ? 'View Details' : 'Voir Détails' }}
-                                            <i class="fas fa-arrow-right ml-2"></i>
-                                        </a>
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span v-for="tech in relatedProject.technologies.slice(0, 3)" 
+                                                  class="px-2 py-1 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-300 rounded text-xs">
+                                                {{ tech }}
+                                            </span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm text-gray-500 dark:text-gray-400">
+                                                {{ relatedProject.date[currentLanguage] }}
+                                            </span>
+                                            <a :href="`project-details.html?id=${relatedProject.id}`" 
+                                               class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
+                                                {{ currentLanguage === 'en' ? 'View Project' : 'Voir le Projet' }}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -722,20 +929,35 @@
                 </section>
             </div>
         </main>
-
+        
         <!-- Image Modal -->
-        <div v-if="selectedImage" @click="closeImageModal" 
-             class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-            <div class="relative max-w-4xl max-h-[90vh] mx-4">
-                <img :src="selectedImage.url" :alt="selectedImage.caption[currentLanguage]" 
-                     class="w-full h-auto max-h-[90vh] object-contain rounded-lg">
-                <button @click="closeImageModal" 
-                        class="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
-                    <i class="fas fa-times"></i>
-                </button>
+        <div class="image-modal" :class="{ active: selectedImage !== null }" @click.self="closeImageModal">
+            <button class="image-modal-close" @click="closeImageModal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <button v-if="selectedImage !== null && project.gallery.length > 1" 
+                    class="image-modal-nav image-modal-prev" @click="prevImage">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <button v-if="selectedImage !== null && project.gallery.length > 1" 
+                    class="image-modal-nav image-modal-next" @click="nextImage">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div v-if="selectedImage !== null" class="text-center">
+                <img :src="project.gallery[selectedImage].url" 
+                     :alt="project.gallery[selectedImage].caption[currentLanguage]">
+                <p class="text-white mt-4 text-lg">
+                    {{ project.gallery[selectedImage].caption[currentLanguage] }}
+                </p>
+                <p class="text-gray-400 mt-2">
+                    {{ selectedImage + 1 }} / {{ project.gallery.length }}
+                </p>
             </div>
         </div>
-
+        
         <!-- Footer -->
         <footer class="bg-gray-900 text-white py-12">
             <div class="container mx-auto px-4">
@@ -747,7 +969,7 @@
             </div>
         </footer>
     </div>
-
+    
     <script>
         new Vue({
             el: '#app',
@@ -784,6 +1006,11 @@
                     this.applyTheme();
                 },
                 
+                toggleLanguage() {
+                    this.currentLanguage = this.currentLanguage === 'en' ? 'fr' : 'en';
+                    localStorage.setItem('language', this.currentLanguage);
+                },
+                
                 getProjectById(id) {
                     // Complete project database
                     const projects = [
@@ -804,9 +1031,17 @@
                             },
                             location: 'Academic Project',
                             category: 'AI/ML',
+                            status: 'completed',
                             technologies: ['Python', 'NLP', 'Multi-agent System', 'Data Flywheel', 'Streamlit'],
                             githubUrl: 'https://github.com/ennajari/article_generator',
                             demoUrl: 'https://articlegenerator-mjivv4cekj2q9mtuud2usy.streamlit.app/',
+                            team: [
+                                {
+                                    name: 'Abdellah Ennajari',
+                                    role: { en: 'Lead Developer', fr: 'Développeur Principal' },
+                                    avatar: ' assets/images/enna.png'
+                                }
+                            ],
                             features: [
                                 {
                                     title: { en: 'Multi-Agent Architecture', fr: 'Architecture Multi-Agents' },
@@ -819,6 +1054,47 @@
                                 {
                                     title: { en: 'NLP Integration', fr: 'Intégration NLP' },
                                     description: { en: 'Advanced natural language processing capabilities', fr: 'Capacités avancées de traitement du langage naturel' }
+                                }
+                            ],
+                            results: {
+                                en: 'The article generator system successfully demonstrated a 40% improvement in content quality after implementing the data flywheel mechanism. User feedback integration led to a significant reduction in revision cycles and increased satisfaction rates.',
+                                fr: 'Le système de génération d\'articles a démontré avec succès une amélioration de 40% de la qualité du contenu après la mise en œuvre du mécanisme de flywheel de données. L\'intégration des retours utilisateurs a entraîné une réduction significative des cycles de révision et une augmentation des taux de satisfaction.'
+                            },
+                            metrics: [
+                                {
+                                    value: '40%',
+                                    label: { en: 'Quality Improvement', fr: 'Amélioration de la Qualité' }
+                                },
+                                {
+                                    value: '65%',
+                                    label: { en: 'User Satisfaction', fr: 'Satisfaction Utilisateur' }
+                                },
+                                {
+                                    value: '30%',
+                                    label: { en: 'Faster Generation', fr: 'Génération plus Rapide' }
+                                }
+                            ],
+                            gallery: [
+                                {
+                                    url: 'assets/images/dataFlywheel.png',
+                                    caption: { 
+                                        en: 'Article Generator System Architecture', 
+                                        fr: 'Architecture du Système de Génération d\'Articles' 
+                                    }
+                                },
+                                {
+                                    url: 'assets/images/DataFlywheel2.png',
+                                    caption: { 
+                                        en: 'User Interface Demo', 
+                                        fr: 'Démo de l\'Interface Utilisateur' 
+                                    }
+                                },
+                                {
+                                    url: 'assets/images/data-flywheel-diagram.png',
+                                    caption: { 
+                                        en: 'Data Flywheel Mechanism', 
+                                        fr: 'Mécanisme du Flywheel de Données' 
+                                    }
                                 }
                             ]
                         },
@@ -839,9 +1115,22 @@
                             },
                             location: 'ENIAD (AI & Digital School)',
                             category: 'NLP/Chatbot',
+                            status: 'ongoing',
                             technologies: ['Python', 'NLP', 'RAG', 'HiFT', 'Q-LoRA', 'Machine Learning'],
                             githubUrl: 'https://github.com/ennajari/ENIAD-ASSISTANT',
                             demoUrl: 'https://github.com/ennajari/ENIAD-ASSISTANT',
+                            team: [
+                                {
+                                    name: 'Abdellah Ennajari',
+                                    role: { en: 'AI Engineer', fr: 'Ingénieur IA' },
+                                    avatar: ' assets/images/enna.png'
+                                },
+                                {
+                                    name: 'Team Member',
+                                    role: { en: 'NLP Specialist', fr: 'Spécialiste NLP' },
+                                    avatar: 'assets/images/team-member.jpg'
+                                }
+                            ],
                             features: [
                                 {
                                     title: { en: 'RAG Implementation', fr: 'Implémentation RAG' },
@@ -854,6 +1143,40 @@
                                 {
                                     title: { en: 'Multi-modal Support', fr: 'Support Multi-modal' },
                                     description: { en: 'Support for text, image, and document inputs', fr: 'Support pour les entrées texte, image et document' }
+                                }
+                            ],
+                            results: {
+                                en: 'The chatbot has shown promising results in initial testing, with a 75% accuracy in answering academic queries. The RAG implementation significantly improved response relevance, and the fine-tuning process reduced hallucinations by 60%.',
+                                fr: 'Le chatbot a montré des résultats prometteurs lors des tests initiaux, avec une précision de 75% dans les réponses aux requêtes académiques. L\'implémentation RAG a considérablement amélioré la pertinence des réponses, et le processus de fine-tuning a réduit les hallucinations de 60%.'
+                            },
+                            metrics: [
+                                {
+                                    value: '75%',
+                                    label: { en: 'Query Accuracy', fr: 'Précision des Requêtes' }
+                                },
+                                {
+                                    value: '60%',
+                                    label: { en: 'Reduced Hallucinations', fr: 'Hallucinations Réduites' }
+                                },
+                                {
+                                    value: '85%',
+                                    label: { en: 'User Satisfaction', fr: 'Satisfaction Utilisateur' }
+                                }
+                            ],
+                            gallery: [
+                                {
+                                    url: 'assets/images/chatbot_eniad.png',
+                                    caption: { 
+                                        en: 'ENIAD Chatbot Interface', 
+                                        fr: 'Interface du Chatbot ENIAD' 
+                                    }
+                                },
+                                {
+                                    url: 'assets/images/Automated Article Generation with CrewAI & RAG.png',
+                                    caption: { 
+                                        en: 'RAG Architecture Diagram', 
+                                        fr: 'Diagramme d\'Architecture RAG' 
+                                    }
                                 }
                             ]
                         },
@@ -874,9 +1197,17 @@
                             },
                             location: 'Academic Project',
                             category: 'AI/Automation',
+                            status: 'completed',
                             technologies: ['CrewAI', 'RAG', 'Vector Databases', 'LangChain', 'LLMs', 'AI Automation'],
                             githubUrl: 'https://github.com/ennajari/AI_Article_Generator',
                             demoUrl: 'https://github.com/ennajari/AI_Article_Generator',
+                            team: [
+                                {
+                                    name: 'Abdellah Ennajari',
+                                    role: { en: 'Project Lead', fr: 'Chef de Projet' },
+                                    avatar: ' assets/images/enna.png'
+                                }
+                            ],
                             features: [
                                 {
                                     title: { en: 'CrewAI Integration', fr: 'Intégration CrewAI' },
@@ -889,6 +1220,40 @@
                                 {
                                     title: { en: 'Vector Database', fr: 'Base de Données Vectorielle' },
                                     description: { en: 'Efficient storage and retrieval of semantic embeddings', fr: 'Stockage et récupération efficaces des embeddings sémantiques' }
+                                }
+                            ],
+                            results: {
+                                en: 'The automated article generation system successfully produced high-quality articles with 80% content accuracy. The CrewAI framework enabled efficient collaboration between specialized agents, reducing generation time by 50% compared to single-agent systems.',
+                                fr: 'Le système de génération automatisée d\'articles a produit avec succès des articles de haute qualité avec 80% de précision du contenu. Le framework CrewAI a permis une collaboration efficace entre agents spécialisés, réduisant le temps de génération de 50% par rapport aux systèmes à agent unique.'
+                            },
+                            metrics: [
+                                {
+                                    value: '80%',
+                                    label: { en: 'Content Accuracy', fr: 'Précision du Contenu' }
+                                },
+                                {
+                                    value: '50%',
+                                    label: { en: 'Faster Generation', fr: 'Génération plus Rapide' }
+                                },
+                                {
+                                    value: '90%',
+                                    label: { en: 'Relevance Score', fr: 'Score de Pertinence' }
+                                }
+                            ],
+                            gallery: [
+                                {
+                                    url: 'assets/images/Automated Article Generation with CrewAI & RAG.png',
+                                    caption: { 
+                                        en: 'Automated Article Generation System', 
+                                        fr: 'Système de Génération Automatisée d\'Articles' 
+                                    }
+                                },
+                                {
+                                    url: 'assets/images/crewai-agents.png',
+                                    caption: { 
+                                        en: 'CrewAI Multi-Agent Architecture', 
+                                        fr: 'Architecture Multi-Agents CrewAI' 
+                                    }
                                 }
                             ]
                         },
@@ -909,9 +1274,17 @@
                             },
                             location: 'Academic Project',
                             category: 'Business Intelligence',
+                            status: 'completed',
                             technologies: ['BI', 'Data Visualization', 'Dashboards', 'KPI', 'Power BI', 'Data Analysis'],
                             githubUrl: 'https://github.com/ennajari/BI',
                             demoUrl: 'https://github.com/ennajari/BI',
+                            team: [
+                                {
+                                    name: 'Abdellah Ennajari',
+                                    role: { en: 'Data Analyst', fr: 'Analyste de Données' },
+                                    avatar: ' assets/images/enna.png'
+                                }
+                            ],
                             features: [
                                 {
                                     title: { en: 'Interactive Dashboards', fr: 'Tableaux de Bord Interactifs' },
@@ -924,6 +1297,40 @@
                                 {
                                     title: { en: 'Data Analysis', fr: 'Analyse de Données' },
                                     description: { en: 'Advanced analytics and reporting capabilities', fr: 'Capacités avancées d\'analyse et de reporting' }
+                                }
+                            ],
+                            results: {
+                                en: 'The BI system provided valuable insights into vehicle sales patterns, enabling the company to identify top-performing models and optimize inventory management. The interactive dashboards reduced report generation time by 70% and improved decision-making speed.',
+                                fr: 'Le système BI a fourni des informations précieuses sur les modèles de vente de véhicules, permettant à l\'entreprise d\'identifier les modèles les plus performants et d\'optimiser la gestion des stocks. Les tableaux de bord interactifs ont réduit le temps de génération de rapports de 70% et amélioré la vitesse de prise de décision.'
+                            },
+                            metrics: [
+                                {
+                                    value: '70%',
+                                    label: { en: 'Faster Reporting', fr: 'Rapports plus Rapides' }
+                                },
+                                {
+                                    value: '85%',
+                                    label: { en: 'Data Accuracy', fr: 'Précision des Données' }
+                                },
+                                {
+                                    value: '65%',
+                                    label: { en: 'Improved Decisions', fr: 'Décisions Améliorées' }
+                                }
+                            ],
+                            gallery: [
+                                {
+                                    url: 'assets/images/BI.png',
+                                    caption: { 
+                                        en: 'Vehicle Sales BI Dashboard', 
+                                        fr: 'Tableau de Bord BI des Ventes de Véhicules' 
+                                    }
+                                },
+                                {
+                                    url: 'assets/images/bi-kpi-dashboard.png',
+                                    caption: { 
+                                        en: 'KPI Monitoring Dashboard', 
+                                        fr: 'Tableau de Bord de Surveillance des KPI' 
+                                    }
                                 }
                             ]
                         },
@@ -944,9 +1351,17 @@
                             },
                             location: 'Academic Project',
                             category: 'NLP',
+                            status: 'completed',
                             technologies: ['Python', 'NLP', 'RoBERTa', 'XLNet', 'Sentiment Analysis', 'Streamlit'],
                             githubUrl: 'https://github.com/ennajari/Customer-Reviews-Classification',
                             demoUrl: 'https://customer-reviews-classification-az8wv9ajwr8ecea2taqzcl.streamlit.app/',
+                            team: [
+                                {
+                                    name: 'Abdellah Ennajari',
+                                    role: { en: 'NLP Engineer', fr: 'Ingénieur NLP' },
+                                    avatar: ' assets/images/enna.png'
+                                }
+                            ],
                             features: [
                                 {
                                     title: { en: 'Advanced NLP Models', fr: 'Modèles NLP Avancés' },
@@ -959,6 +1374,40 @@
                                 {
                                     title: { en: 'User-friendly Interface', fr: 'Interface Utilisateur' },
                                     description: { en: 'Streamlit-based web application for easy interaction', fr: 'Application web basée sur Streamlit pour une interaction facile' }
+                                }
+                            ],
+                            results: {
+                                en: 'The sentiment analysis tool achieved 92% accuracy in classifying customer reviews. The RoBERTa model outperformed traditional methods, and the user-friendly interface made it accessible to non-technical users for quick sentiment analysis.',
+                                fr: 'L\'outil d\'analyse de sentiments a atteint une précision de 92% dans la classification des avis clients. Le modèle RoBERTa a surpassé les méthodes traditionnelles, et l\'interface conviviale l\'a rendu accessible aux utilisateurs non techniques pour une analyse rapide des sentiments.'
+                            },
+                            metrics: [
+                                {
+                                    value: '92%',
+                                    label: { en: 'Classification Accuracy', fr: 'Précision de Classification' }
+                                },
+                                {
+                                    value: '85%',
+                                    label: { en: 'User Satisfaction', fr: 'Satisfaction Utilisateur' }
+                                },
+                                {
+                                    value: '75%',
+                                    label: { en: 'Processing Speed', fr: 'Vitesse de Traitement' }
+                                }
+                            ],
+                            gallery: [
+                                {
+                                    url: 'assets/images/Sentiment Analysis.png',
+                                    caption: { 
+                                        en: 'Sentiment Analysis Tool Interface', 
+                                        fr: 'Interface de l\'Outil d\'Analyse de Sentiments' 
+                                    }
+                                },
+                                {
+                                    url: 'assets/images/sentiment-analysis-results.png',
+                                    caption: { 
+                                        en: 'Sentiment Analysis Results Visualization', 
+                                        fr: 'Visualisation des Résultats d\'Analyse de Sentiments' 
+                                    }
                                 }
                             ]
                         },
@@ -979,9 +1428,17 @@
                             },
                             location: 'Academic Project',
                             category: 'Computer Vision',
+                            status: 'completed',
                             technologies: ['Deep Learning', 'Computer Vision', 'TensorFlow', 'CNN'],
                             githubUrl: 'https://github.com/ennajari/GANs_MNIST_Presentation_Implementation',
                             demoUrl: 'https://github.com/ennajari/GANs_MNIST_Presentation_Implementation',
+                            team: [
+                                {
+                                    name: 'Abdellah Ennajari',
+                                    role: { en: 'Computer Vision Engineer', fr: 'Ingénieur en Vision par Ordinateur' },
+                                    avatar: ' assets/images/enna.png'
+                                }
+                            ],
                             features: [
                                 {
                                     title: { en: 'Real-time Classification', fr: 'Classification en Temps Réel' },
@@ -994,6 +1451,40 @@
                                 {
                                     title: { en: 'High Accuracy', fr: 'Haute Précision' },
                                     description: { en: '95% accuracy in flower classification', fr: '95% de précision dans la classification de fleurs' }
+                                }
+                            ],
+                            results: {
+                                en: 'The flower recognition system achieved 95% accuracy in classifying different flower species. The CNN model was optimized for real-time performance, enabling classification in under 200ms per image on standard hardware.',
+                                fr: 'Le système de reconnaissance de fleurs a atteint une précision de 95% dans la classification de différentes espèces de fleurs. Le modèle CNN a été optimisé pour des performances en temps réel, permettant une classification en moins de 200ms par image sur du matériel standard.'
+                            },
+                            metrics: [
+                                {
+                                    value: '95%',
+                                    label: { en: 'Classification Accuracy', fr: 'Précision de Classification' }
+                                },
+                                {
+                                    value: '200ms',
+                                    label: { en: 'Processing Time', fr: 'Temps de Traitement' }
+                                },
+                                {
+                                    value: '15',
+                                    label: { en: 'Flower Species', fr: 'Espèces de Fleurs' }
+                                }
+                            ],
+                            gallery: [
+                                {
+                                    url: 'assets/images/Real-Time Flower Recognition System.png',
+                                    caption: { 
+                                        en: 'Flower Recognition System Interface', 
+                                        fr: 'Interface du Système de Reconnaissance de Fleurs' 
+                                    }
+                                },
+                                {
+                                    url: 'assets/images/flower-classification-results.png',
+                                    caption: { 
+                                        en: 'Flower Classification Results', 
+                                        fr: 'Résultats de Classification de Fleurs' 
+                                    }
                                 }
                             ]
                         },
@@ -1014,9 +1505,17 @@
                             },
                             location: 'BootCamp YouCode',
                             category: 'Web Development',
+                            status: 'completed',
                             technologies: ['Laravel', 'Genetic Algorithms', 'Web Development', 'Optimization', 'Time Management'],
                             githubUrl: 'https://github.com/ennajari/pfe1',
                             demoUrl: 'https://github.com/ennajari/pfe1',
+                            team: [
+                                {
+                                    name: 'Abdellah Ennajari',
+                                    role: { en: 'Full Stack Developer', fr: 'Développeur Full Stack' },
+                                    avatar: ' assets/images/enna.png'
+                                }
+                            ],
                             features: [
                                 {
                                     title: { en: 'Laravel Framework', fr: 'Framework Laravel' },
@@ -1029,6 +1528,41 @@
                                 {
                                     title: { en: 'Time Management', fr: 'Gestion du Temps' },
                                     description: { en: 'Intelligent task and schedule organization', fr: 'Organisation intelligente des tâches et horaires' }
+                                }
+                            ],
+                            results: {
+                                en: 'The time management application successfully optimized schedules for users, reducing time conflicts by 80% and improving overall productivity. The genetic algorithm approach outperformed traditional scheduling methods, especially for complex schedules with multiple constraints.',
+                                fr: 'L\'application de gestion du temps a optimisé avec succès les emplois du temps des utilisateurs, réduisant les conflits de temps de 80% et améliorant la productivité globale. L\'approche par algorithme génétique a surpassé les méthodes de planification traditionnelles, en particulier pour les emplois du temps complexes avec plusieurs contraintes.'
+                            },
+                            metrics: [
+                                {
+                                    value: '80%',
+                                    label: { en: 'Reduced Conflicts', fr: 'Conflits Réduits' }
+                                },
+                                {
+                                    value: '65%',
+                                    label: { en: 'Productivity Increase', fr: 'Augmentation de Productivité' }
+                                },
+                                {
+                                    value: '90%',
+                                    label: { en: 'User Satisfaction', fr: 'Satisfaction Utilisateur' }
+                                }
+                            ],
+                            gallery: [
+                                {
+                                    url: 'assets/images/emploi2.png',
+                                    caption: { 
+                                        en: 'Time Management Application Dashboard', 
+                                        fr: 'Tableau de Bord de l\'Application de Gestion du Temps' 
+                                    }
+                                },
+                                {
+                                    url: 'assets/images/emploi3.png',
+                                    caption: { 
+                                        en: 'Genetic Algorithm Visualization', 
+                                        fr: 'Visualisation de l\'Algorithme Génétique' 
+                                    }
+                                    
                                 }
                             ]
                         }
@@ -1048,57 +1582,73 @@
                     setTimeout(() => {
                         this.loading = false;
                         this.initializeAnimations();
+                        this.initializeScrollEffects();
                     }, 1000);
                 },
                 
                 loadRelatedProjects() {
-                    // Load related projects (excluding current project)
+                    // Load all projects except the current one
                     const allProjects = [
                         {
                             id: 'article-generator-with-data-flywheel',
                             title: { en: 'Article Generator with Data Flywheel', fr: 'Générateur d\'Articles avec Data Flywheel' },
-                            description: { en: 'A powerful article generation system using multi-agent architecture.', fr: 'Un système puissant de génération d\'articles utilisant une architecture multi-agents.' },
-                            imgUrl: 'assets/images/dataFlywheel.png'
+                            description: { en: 'A powerful article generation system using multi-agent architecture with a data flywheel to continuously improve content quality based on user feedback. The system integrates NLP models, semantic search, and generative AI tools to create high-quality articles.', fr: 'Un puissant système de génération d\'articles utilisant une architecture multi-agents avec un flywheel de données pour améliorer en continu la qualité du contenu basé sur les retours utilisateurs. Le système intègre des modèles NLP, la recherche sémantique et des outils d\'IA générative pour créer des articles de haute qualité.' },
+                            imgUrl: 'assets/images/dataFlywheel.png',
+                            date: { en: 'May 4, 2025', fr: '4 Mai 2025' },
+                            technologies: ['Python', 'NLP', 'Multi-agent System', 'Data Flywheel', 'Streamlit']
                         },
                         {
                             id: 'intelligent-chatbot-for-eniad',
                             title: { en: 'Intelligent Chatbot for ENIAD', fr: 'Chatbot Intelligent pour ENIAD' },
-                            description: { en: 'A smart chatbot designed for ENIAD students.', fr: 'Un chatbot intelligent conçu pour les étudiants de l\'ENIAD.' },
-                            imgUrl: 'assets/images/chatbot_eniad.png'
+                            description: { en: 'A smart chatbot designed for ENIAD students to improve academic communication. The project explores modern NLP and ML techniques including RAG, fine-tuning, HiFT, and Q-LoRA, with a detailed architecture and deployment strategy.', fr: 'Un chatbot intelligent conçu pour les étudiants de l\'ENIAD pour améliorer la communication académique. Le projet explore les techniques modernes de NLP et ML, notamment RAG, fine-tuning, HiFT et Q-LoRA, avec une architecture détaillée et une stratégie de déploiement.' },
+                            imgUrl: 'assets/images/chatbot_eniad.png',
+                            date: { en: 'April 30, 2025', fr: '30 Avril 2025' },
+                            technologies: ['Python', 'NLP', 'RAG', 'HiFT', 'Q-LoRA', 'Machine Learning']
                         },
                         {
                             id: 'automated-article-generation-with-crewai-rag',
                             title: { en: 'Automated Article Generation with CrewAI & RAG', fr: 'Génération Automatique d\'Articles avec CrewAI & RAG' },
-                            description: { en: 'Integration of RAG and vector databases using CrewAI framework.', fr: 'Intégration de RAG et bases de données vectorielles avec le framework CrewAI.' },
-                            imgUrl: 'assets/images/Automated Article Generation with CrewAI & RAG.png'
+                            description: { en: 'This project explores the integration of Retrieval-Augmented Generation (RAG) and vector databases using the CrewAI framework to automate high-quality article creation with context-aware content generation.', fr: 'Ce projet explore l\'intégration de la Génération Augmentée par Récupération (RAG) et des bases de données vectorielles en utilisant le framework CrewAI pour automatiser la création d\'articles de haute qualité avec une génération de contenu contextuelle.' },
+                            imgUrl: 'assets/images/Automated Article Generation with CrewAI & RAG.png',
+                            date: { en: '2025', fr: '2025' },
+                            technologies: ['CrewAI', 'RAG', 'Vector Databases', 'LangChain', 'LLMs', 'AI Automation']
                         },
                         {
                             id: 'bi-system-for-vehicle-sales-monitoring',
                             title: { en: 'BI System for Vehicle Sales Monitoring', fr: 'Système BI pour le Suivi des Ventes de Véhicules' },
-                            description: { en: 'Business Intelligence system for monitoring vehicle sales.', fr: 'Système de Business Intelligence pour le suivi des ventes de véhicules.' },
-                            imgUrl: 'assets/images/BI.png'
+                            description: { en: 'Developed a Business Intelligence system for monitoring vehicle sales. Integrated dashboards, KPIs, and interactive visualizations to assist in data-driven decision making.', fr: 'Développement d\'un système de Business Intelligence pour le suivi des ventes de véhicules. Intégration de tableaux de bord, KPIs et visualisations interactives pour faciliter la prise de décision basée sur les données.' },
+                            imgUrl: 'assets/images/BI.png',
+                            date: { en: '2025', fr: '2025' },
+                            technologies: ['BI', 'Data Visualization', 'Dashboards', 'KPI', 'Power BI', 'Data Analysis']
                         },
                         {
                             id: 'sentiment-analysis-tool',
                             title: { en: 'Sentiment Analysis Tool', fr: 'Outil d\'Analyse de Sentiments' },
-                            description: { en: 'NLP tool for analyzing customer reviews using RoBERTa and XLNet.', fr: 'Outil NLP pour analyser les avis clients avec RoBERTa et XLNet.' },
-                            imgUrl: 'assets/images/Sentiment Analysis.png'
+                            description: { en: 'An NLP tool for analyzing customer reviews using RoBERTa and XLNet models for sentiment classification.', fr: 'Outil NLP pour analyser les avis clients en utilisant les modèles RoBERTa et XLNet pour la classification des sentiments.' },
+                            imgUrl: 'assets/images/Sentiment Analysis.png',
+                            date: { en: '2024', fr: '2024' },
+                            technologies: ['Python', 'NLP', 'RoBERTa', 'XLNet', 'Sentiment Analysis', 'Streamlit']
                         },
                         {
                             id: 'flower-recognition-system',
                             title: { en: 'Flower Recognition System', fr: 'Système de Reconnaissance de Fleurs' },
-                            description: { en: 'Real-time flower classification system using CNN.', fr: 'Système de classification de fleurs en temps réel utilisant CNN.' },
-                            imgUrl: 'assets/images/Real-Time Flower Recognition System.png'
+                            description: { en: 'A real-time flower classification system using CNN with 95% accuracy.', fr: 'Un système de classification de fleurs en temps réel utilisant CNN avec une précision de 95%.' },
+                            imgUrl: 'assets/images/Real-Time Flower Recognition System.png',
+                            date: { en: '2024', fr: '2024' },
+                            technologies: ['Deep Learning', 'Computer Vision', 'TensorFlow', 'CNN']
                         },
                         {
                             id: 'time-management-web-application',
                             title: { en: 'Time Management Web Application', fr: 'Application Web de Gestion du Temps' },
-                            description: { en: 'Web application for time management using Laravel and genetic algorithms.', fr: 'Application web de gestion du temps utilisant Laravel et des algorithmes génétiques.' },
-                            imgUrl: 'assets/images/emploi.png'
+                            description: { en: 'Developed a web application for time management, utilizing the Laravel framework and optimizing schedules through genetic algorithms. The system aimed to improve productivity by intelligently organizing tasks and schedules.', fr: 'Développement d\'une application web de gestion du temps, utilisant le framework Laravel et optimisant les emplois du temps grâce aux algorithmes génétiques. Le système vise à améliorer la productivité en organisant intelligemment les tâches et les horaires.' },
+                            imgUrl: 'assets/images/emploi.png',
+                            date: { en: '2023', fr: '2023' },
+                            technologies: ['Laravel', 'Genetic Algorithms', 'Web Development', 'Optimization', 'Time Management']
                         }
                     ];
                     
-                    this.relatedProjects = allProjects.filter(p => p.id !== this.project.id).slice(0, 3);
+                    // Filter out the current project
+                    this.relatedProjects = allProjects.filter(p => p.id !== this.project.id);
                 },
                 
                 initializeAnimations() {
@@ -1132,14 +1682,56 @@
                     }
                 },
                 
-                openImageModal(image) {
-                    this.selectedImage = image;
+                initializeScrollEffects() {
+                    // Progress bar
+                    window.addEventListener('scroll', () => {
+                        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                        const scrollPercent = (scrollTop / scrollHeight) * 100;
+                        document.getElementById('progressBar').style.width = scrollPercent + '%';
+                        
+                        // Back to top button
+                        const backToTop = document.getElementById('backToTop');
+                        if (scrollTop > 300) {
+                            backToTop.classList.add('visible');
+                        } else {
+                            backToTop.classList.remove('visible');
+                        }
+                    });
+                    
+                    // Back to top functionality
+                    document.getElementById('backToTop').addEventListener('click', () => {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
+                },
+                
+                openImageModal(index) {
+                    this.selectedImage = index;
                     document.body.style.overflow = 'hidden';
                 },
                 
                 closeImageModal() {
                     this.selectedImage = null;
                     document.body.style.overflow = '';
+                },
+                
+                prevImage() {
+                    if (this.selectedImage > 0) {
+                        this.selectedImage--;
+                    } else {
+                        this.selectedImage = this.project.gallery.length - 1;
+                    }
+                },
+                
+                nextImage() {
+                    if (this.selectedImage < this.project.gallery.length - 1) {
+                        this.selectedImage++;
+                    } else {
+                        this.selectedImage = 0;
+                    }
                 }
             },
             mounted() {
@@ -1152,6 +1744,19 @@
                 } else if (navigator.language.startsWith('fr')) {
                     this.currentLanguage = 'fr';
                 }
+                
+                // Keyboard navigation for image modal
+                document.addEventListener('keydown', (e) => {
+                    if (this.selectedImage !== null) {
+                        if (e.key === 'Escape') {
+                            this.closeImageModal();
+                        } else if (e.key === 'ArrowLeft') {
+                            this.prevImage();
+                        } else if (e.key === 'ArrowRight') {
+                            this.nextImage();
+                        }
+                    }
+                });
             }
         });
     </script>
