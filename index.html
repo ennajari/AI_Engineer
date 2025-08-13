@@ -30,6 +30,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+      (function(){try{var saved=localStorage.getItem('darkMode');var isDark=saved!==null?saved==='true':window.matchMedia('(prefers-color-scheme: dark)').matches;if(isDark){document.documentElement.classList.add('dark');document.body.classList.add('dark');}}catch(e){}})();
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
@@ -77,7 +83,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
-        body.dark {
+        .dark {
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
             --text-primary: #ffffff;
@@ -182,7 +188,7 @@
 
         .hover-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 25px8 -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         /* Enhanced Button Styles */
@@ -1942,7 +1948,7 @@
         .magnetic { will-change: transform; transition: transform 0.15s ease; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased bg-[var(--bg-primary)] text-[var(--text-primary)]">
         <div id="scrollProgress" class="scroll-progress"></div>
     <div id="app">
         <!-- Preloader -->
@@ -1959,7 +1965,7 @@
         </div>
 
         <!-- Header -->
-        <header class="antialiased" :class="{'py-2': !isHeaderBig, 'py-4': isHeaderBig}">
+        <header class="antialiased fixed top-0 inset-x-0 z-50 backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/60 dark:border-gray-700/60 transition-all" :class="{'py-2 shadow-sm': !isHeaderBig, 'py-4': isHeaderBig}">
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between">
                     <!-- Logo -->
@@ -2039,7 +2045,7 @@
         </div>
 
         <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 md:pt-28 bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
             <!-- Animated Background Elements -->
             <div class="absolute inset-0 overflow-hidden">
                 <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-full blur-3xl animate-float"></div>
@@ -2848,7 +2854,7 @@
         </section>
 
         <!-- Footer -->
-        <footer class="antialiased">
+        <footer class="antialiased bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100">
             <div class="container mx-auto px-6 py-16">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     <!-- Brand Section -->
@@ -2856,25 +2862,25 @@
                         <div class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4">
                             Ennajari
                         </div>
-                        <p class="text-gray-300 leading-relaxed">
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
                             {{ currentLanguage === 'en' ? 'Pioneering the future of AI with cutting-edge deep learning solutions, computer vision systems, and intelligent automation.' : 'Pionnier du futur de l\'IA avec des solutions de deep learning de pointe, des systèmes de vision par ordinateur et une automatisation intelligente.' }}
                         </p>
                     </div>
                     
                     <!-- Quick Links -->
                     <div class="text-center md:text-left">
-                        <h3 class="text-xl font-bold mb-6 text-white">{{ currentLanguage === 'en' ? 'Quick Links' : 'Liens Rapides' }}</h3>
+                        <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white">{{ currentLanguage === 'en' ? 'Quick Links' : 'Liens Rapides' }}</h3>
                         <ul class="space-y-3">
-                            <li><a href="#about" class="text-gray-300 hover:text-blue-400 transition-colors">{{ currentLanguage === 'en' ? 'About' : 'À Propos' }}</a></li>
-                            <li><a href="#skills" class="text-gray-300 hover:text-blue-400 transition-colors">{{ currentLanguage === 'en' ? 'Skills' : 'Compétences' }}</a></li>
-                            <li><a href="#portfolio" class="text-gray-300 hover:text-blue-400 transition-colors">{{ currentLanguage === 'en' ? 'Portfolio' : 'Portefeuille' }}</a></li>
-                            <li><a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors">{{ currentLanguage === 'en' ? 'Contact' : 'Contact' }}</a></li>
+                            <li><a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{{ currentLanguage === 'en' ? 'About' : 'À Propos' }}</a></li>
+                            <li><a href="#skills" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{{ currentLanguage === 'en' ? 'Skills' : 'Compétences' }}</a></li>
+                            <li><a href="#portfolio" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{{ currentLanguage === 'en' ? 'Portfolio' : 'Portefeuille' }}</a></li>
+                            <li><a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{{ currentLanguage === 'en' ? 'Contact' : 'Contact' }}</a></li>
                         </ul>
                     </div>
                     
                     <!-- Social Links -->
                     <div class="text-center md:text-left">
-                        <h3 class="text-xl font-bold mb-6 text-white">{{ currentLanguage === 'en' ? 'Connect' : 'Connecter' }}</h3>
+                        <h3 class="text-xl font-bold mb-6 text-gray-900 dark:text-white">{{ currentLanguage === 'en' ? 'Connect' : 'Connecter' }}</h3>
                         <div class="flex justify-center md:justify-start space-x-4">
                             <a v-for="social in socialLinks" :href="social.url" target="_blank" 
                                class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
@@ -2885,8 +2891,8 @@
                 </div>
                 
                 <!-- Bottom Section -->
-                <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 md:mb-0">
                         &copy; {{ new Date().getFullYear() }} Abdellah Ennajari. {{ currentLanguage === 'en' ? 'All rights reserved.' : 'Tous droits réservés.' }}
                     </p>
                     <div class="flex space-x-6">
@@ -3700,20 +3706,18 @@
                 },
                 
                 applyTheme() {
+                    const htmlEl = document.documentElement;
+                    const bodyEl = document.body;
                     if (this.isDarkMode) {
-                        document.body.classList.add('dark');
-                    // Update meta theme-color
-                    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-                    if (metaThemeColor) {
-                            metaThemeColor.setAttribute('content', '#0f172a');
-                        }
-                    } else {
-                        document.body.classList.remove('dark');
-                        // Update meta theme-color
+                        htmlEl.classList.add('dark');
+                        bodyEl.classList.add('dark');
                         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-                        if (metaThemeColor) {
-                            metaThemeColor.setAttribute('content', '#3b82f6');
-                        }
+                        if (metaThemeColor) metaThemeColor.setAttribute('content', '#0f172a');
+                    } else {
+                        htmlEl.classList.remove('dark');
+                        bodyEl.classList.remove('dark');
+                        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+                        if (metaThemeColor) metaThemeColor.setAttribute('content', '#3b82f6');
                     }
                 },
                 
