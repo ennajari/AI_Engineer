@@ -2661,39 +2661,42 @@
         </section>
 
         <!-- AI Specialization Section -->
-        <section id="ai-specialization" class="antialiased py-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <span class="subtitle bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent font-bold">
-                        {{ currentLanguage === 'en' ? 'AI SPECIALIZATION' : 'SPÉCIALISATIONS IA' }}
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-                        {{ currentLanguage === 'en' ? 'AI Specialization Areas' : 'Domaines de Spécialisation en IA' }}
-                    </h2>
-                    <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                        {{ currentLanguage === 'en' ? 'Focus on Deep Learning, Computer Vision, Generative AI, Foundation Models, and MLOps with hands-on, production-grade experience.' : 'Focus sur le Deep Learning, la Vision par Ordinateur, l’IA Générative, les Modèles Fondamentaux et le MLOps avec une expérience pratique de production.' }}
-                    </p>
-                </div>
+        <!-- AI Specialization Section -->
+<section id="ai-specialization" class="antialiased py-12 md:py-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-8 md:mb-12">
+            <span class="subtitle bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent font-bold">
+                {{ currentLanguage === 'en' ? 'AI SPECIALIZATION' : 'SPÉCIALISATIONS IA' }}
+            </span>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 md:mb-6">
+                {{ currentLanguage === 'en' ? 'AI Specialization Areas' : 'Domaines de Spécialisation en IA' }}
+            </h2>
+            <p class="text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                {{ currentLanguage === 'en' ? 'Focus on Deep Learning, Computer Vision, Generative AI, Foundation Models, and MLOps with hands-on, production-grade experience.' : 'Focus sur le Deep Learning, la Vision par Ordinateur, l\'IA Générative, les Modèles Fondamentaux et le MLOps avec une expérience pratique de production.' }}
+            </p>
+        </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Mindmap</h3>
-                        <div id="mindmapChart" class="w-full h-80 sm:h-96"></div>
-                    </div>
-
-                    <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Skills Breakdown</h3>
-                        <div id="skillsPieChart" class="w-full h-80 sm:h-96"></div>
-                    </div>
-                </div>
-
-                <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-                    <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">AI Engineering Journey</h3>
-                    <div id="journeyTimelineChart" class="w-full h-[28rem] sm:h-[32rem]"></div>
-                </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
+            <!-- Mindmap Card -->
+            <div class="bg-white/80 dark:bg-gray-800/80 p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+                <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-gray-800 dark:text-gray-100">Mindmap</h3>
+                <div id="mindmapChart" class="w-full h-64 sm:h-80 md:h-96"></div>
             </div>
-        </section>
 
+            <!-- Skills Breakdown Card -->
+            <div class="bg-white/80 dark:bg-gray-800/80 p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+                <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-gray-800 dark:text-gray-100">Skills Breakdown</h3>
+                <div id="skillsPieChart" class="w-full h-64 sm:h-80 md:h-96"></div>
+            </div>
+        </div>
+
+        <!-- AI Engineering Journey Card -->
+        <div class="bg-white/80 dark:bg-gray-800/80 p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+            <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-gray-800 dark:text-gray-100">AI Engineering Journey</h3>
+            <div id="journeyTimelineChart" class="w-full h-72 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[32rem]"></div>
+        </div>
+    </div>
+</section>
         <!-- About Section -->
         <section id="about" class="antialiased">
             <div class="container mx-auto px-6">
