@@ -43,6 +43,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <style>
         :root {
             --primary: #3b82f6;
@@ -2382,21 +2384,396 @@
         body:not(.dark) .custom-cursor-dot {
             background-color: #2563eb !important;
         }
+
+        /* =============================================
+           ENHANCED ANIMATIONS & EFFECTS
+           ============================================= */
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        /* Enhanced Loading Animation */
+        .enhanced-loader {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #10b981, #f59e0b);
+            background-size: 300% 300%;
+            animation: gradientShift 2s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enhanced-loader::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Stagger Animation */
+        .stagger-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: staggerFadeIn 0.8s ease-out forwards;
+        }
+
+        .stagger-animate:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-animate:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-animate:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-animate:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-animate:nth-child(5) { animation-delay: 0.5s; }
+        .stagger-animate:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes staggerFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Morphing Cards */
+        .morph-card {
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .morph-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+
+        .morph-card:hover::before {
+            left: 100%;
+        }
+
+        .morph-card:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.02);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Enhanced Skill Progress */
+        .skill-progress-enhanced {
+            position: relative;
+            height: 12px;
+            background: linear-gradient(90deg, #e5e7eb, #f3f4f6);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .skill-progress-enhanced .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #10b981 100%);
+            border-radius: 50px;
+            position: relative;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .skill-progress-enhanced .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: progressShimmer 2s infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Text Reveal Animation */
+        .text-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: textReveal 1.2s ease-out forwards;
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        /* Animated Gradient Text */
+        .gradient-text-animated {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #10b981, #f59e0b);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientText 4s ease infinite;
+        }
+
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Enhanced Button Micro-Interactions */
+        .btn-micro {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-micro::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-micro:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-micro:active {
+            transform: scale(0.95);
+        }
+
+        /* Enhanced Cursor */
+        .custom-cursor {
+            mix-blend-mode: difference;
+            transition: all 0.3s ease;
+        }
+
+        .custom-cursor.cursor-hover {
+            transform: scale(3);
+            background: rgba(59, 130, 246, 0.2);
+            border: 2px solid #3b82f6;
+        }
+
+        .custom-cursor-dot.cursor-hover {
+            opacity: 0;
+        }
+
+        /* Floating Elements */
+        .float-element {
+            animation: floatSmooth 6s ease-in-out infinite;
+        }
+
+        .float-element:nth-child(odd) {
+            animation-direction: reverse;
+            animation-delay: -3s;
+        }
+
+        @keyframes floatSmooth {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% { 
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .ripple:hover::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glow Effect */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .glow-effect:hover::before {
+            opacity: 1;
+        }
+
+        /* Pulse Glow */
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        /* Loading Dots */
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .loading-dots .dot {
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            animation: loadingDots 1.4s ease-in-out infinite both;
+        }
+
+        .loading-dots .dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes loadingDots {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* Interactive Particles */
+        .interactive-particle {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%);
+            animation: particleFloat 3s ease-out forwards;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translateY(-100px);
+            }
+        }
+
+        /* 3D Card Effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .card-3d:hover {
+            transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.05);
+        }
+
+        /* Enhanced Hero Background */
+        .hero-enhanced-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.2) 0%, transparent 50%);
+            animation: heroBackgroundShift 10s ease infinite;
+        }
+
+        @keyframes heroBackgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
     </style>
 </head>
 <body class="antialiased bg-[var(--bg-primary)] text-[var(--text-primary)]">
         <div id="scrollProgress" class="scroll-progress"></div>
     <div id="app">
-        <!-- Preloader -->
+        <!-- Enhanced Preloader -->
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900 transition-all duration-500" v-if="!isLoaded">
             <div class="text-center">
-                <div class="w-24 h-24 mx-auto mb-6">
-                    <img src="assets/images/favicon.gif" alt="Loading" class="w-full h-full object-contain">
+                <div class="w-24 h-24 mx-auto mb-6 glow-effect">
+                    <img src="assets/images/favicon.gif" alt="Loading" class="w-full h-full object-contain animate-float">
                 </div>
-                <div class="w-64 h-1 bg-gray-200 rounded-full overflow-hidden mx-auto">
-                    <div class="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full" :style="{width: loadingProgress + '%'}"></div>
+                <div class="w-64 h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mx-auto enhanced-loader">
+                    <div class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 rounded-full transition-all duration-300" :style="{width: loadingProgress + '%'}"></div>
                 </div>
-                <p class="mt-4 text-gray-600 dark:text-gray-300">Loading Portfolio...</p>
+                <p class="mt-6 text-gray-600 dark:text-gray-300 text-lg font-medium">
+                    Loading Portfolio
+                    <span class="loading-dots ml-2">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </span>
+                </p>
+                <div class="mt-4 text-sm text-gray-500 dark:text-gray-400">{{ loadingProgress }}%</div>
             </div>
         </div>
 
@@ -2482,11 +2859,17 @@
 
         <!-- Hero Section -->
         <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 md:pt-28 bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+            <!-- Particle Background -->
+            <div id="particles-js" class="absolute inset-0"></div>
+            
+            <!-- Enhanced Background Elements -->
+            <div class="hero-enhanced-bg"></div>
+            
             <!-- Animated Background Elements -->
             <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-full blur-3xl animate-float"></div>
-                <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-br from-emerald-400/20 to-emerald-600/20 rounded-full blur-3xl animate-float-delayed"></div>
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-400/10 to-purple-600/10 rounded-full blur-3xl animate-pulse-slow"></div>
+                <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-full blur-3xl animate-float float-element"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-br from-emerald-400/20 to-emerald-600/20 rounded-full blur-3xl animate-float-delayed float-element"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-400/10 to-purple-600/10 rounded-full blur-3xl animate-pulse-slow float-element"></div>
             </div>
             
             <!-- Custom cursor elements -->
@@ -2506,9 +2889,9 @@
                                 </div>
                                 
                                 <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 lg:mb-8">
-                                    <span class="hero-gradient animate-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">Abdellah Ennajari</span>
+                                    <span class="gradient-text-animated text-reveal glow-effect">Abdellah Ennajari</span>
                                     <br>
-                                    <div id="typed-text" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-700 dark:text-gray-300 mt-4 inline-block font-medium"></div>
+                                    <div id="typed-text" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-700 dark:text-gray-300 mt-4 inline-block font-medium text-reveal" style="animation-delay: 0.3s;"></div>
                                 </h1>
                                 
                                 <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-8 lg:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
@@ -2517,19 +2900,19 @@
                                 
                                 <!-- Hero Section Buttons -->
                                 <div class="hero-buttons flex flex-wrap gap-4 justify-center lg:justify-start">
-                                    <a href="#contact" class="group bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white px-8 py-4 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl">
+                                    <a href="#contact" class="group stagger-animate btn-micro glow-effect bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white px-8 py-4 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl pulse-glow">
                                         <i class="fas fa-paper-plane mr-2 group-hover:translate-x-1 transition-transform"></i>
                                         {{ currentLanguage === 'en' ? 'Hire Me' : 'Engagez-moi' }}
                                     </a>
-                                    <a href="#portfolio" class="group bg-white/90 dark:bg-gray-800/90 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl backdrop-blur-sm">
+                                    <a href="#portfolio" class="group stagger-animate btn-micro ripple bg-white/90 dark:bg-gray-800/90 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl backdrop-blur-sm">
                                         <i class="fas fa-eye mr-2 group-hover:rotate-12 transition-transform"></i>
                                         {{ currentLanguage === 'en' ? 'View Projects' : 'Voir les Projets' }}
                                     </a>
-                                    <a href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" download class="group bg-white/90 dark:bg-gray-800/90 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white px-8 py-4 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl backdrop-blur-sm" target="_blank">
+                                    <a href="https://drive.google.com/file/d/171NNyZHynXGDVgMLGyGQm8pcyubZNP5F/view?usp=sharing" download class="group stagger-animate btn-micro ripple bg-white/90 dark:bg-gray-800/90 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white px-8 py-4 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl backdrop-blur-sm" target="_blank">
                                         <i class="fas fa-download mr-2 group-hover:-translate-y-1 transition-transform"></i>
                                         {{ currentLanguage === 'en' ? 'Download CV' : 'Télécharger CV' }}
                                     </a>
-                                    <a href="https://github.com/ennajari" target="_blank" class="group bg-white/90 dark:bg-gray-800/90 border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-8 py-4 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl backdrop-blur-sm">
+                                    <a href="https://github.com/ennajari" target="_blank" class="group stagger-animate btn-micro ripple bg-white/90 dark:bg-gray-800/90 border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white px-8 py-4 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl backdrop-blur-sm">
                                         <i class="fab fa-github mr-2 group-hover:scale-110 transition-transform"></i>
                                         GitHub
                                     </a>
@@ -2832,7 +3215,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     <div v-for="(skill, sIdx) in skills[activeSkillTab]" 
                          :key="skill.name"
-                         class="group ring-gradient animate-on-scroll bg-white/80 dark:bg-gray-800/80 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50"
+                         class="group morph-card card-3d scroll-reveal glow-effect bg-white/80 dark:bg-gray-800/80 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50"
                          :style="{ transitionDelay: (sIdx * 60) + 'ms' }">
                         <div class="flex items-center mb-6">
                             <div class="relative">
@@ -2845,10 +3228,8 @@
                         </div>
                         </div>
                         
-                        <div class="relative h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                            <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full transition-all duration-1000 ease-out skill-bar"
-                                 :data-level="skill.level" :style="{ width: '0%' }"></div>
-                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+                        <div class="skill-progress-enhanced">
+                            <div class="progress-fill skill-bar" :data-level="skill.level" :style="{ width: '0%' }"></div>
                         </div>
                         
                         <div class="mt-4 flex justify-between items-center">
@@ -2887,7 +3268,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-12">
                         <div v-for="(project, index) in highlightedProjects" 
                              :key="index"
-                             class="group project-card ring-gradient animate-on-scroll bg-white/80 dark:bg-gray-800/80 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+                             class="group project-card morph-card scroll-reveal glow-effect bg-white/80 dark:bg-gray-800/80 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
                             <!-- Project Image with Overlay -->
                             <div class="relative overflow-hidden h-64 group">
                                 <img :src="project.imgUrl" :alt="project.title[currentLanguage]" 
@@ -3109,7 +3490,7 @@
                 <article
                   v-for="(t, i) in testimonialsItems"
                   :key="i"
-                  class="testimonial-card min-w-[280px] sm:w-[350px] flex-shrink-0 animate-on-scroll"
+                  class="testimonial-card morph-card scroll-reveal min-w-[280px] sm:w-[350px] flex-shrink-0"
                 >
                   <div class="card bg-white dark:bg-[#1e293b] border border-[var(--border-color)] rounded-xl overflow-hidden hover:border-blue-500/50 h-full">
                     <div class="p-5 md:p-6 flex flex-col h-full">
@@ -4262,12 +4643,126 @@
                     });
                 },
                 
+                initializeParticles() {
+                    // Initialize particles.js
+                    if (window.particlesJS) {
+                        particlesJS('particles-js', {
+                            particles: {
+                                number: { value: 80, density: { enable: true, value_area: 800 } },
+                                color: { value: ["#3b82f6", "#8b5cf6", "#10b981"] },
+                                shape: { 
+                                    type: "circle",
+                                    stroke: { width: 0, color: "#000000" }
+                                },
+                                opacity: { 
+                                    value: 0.5, 
+                                    random: true,
+                                    anim: { enable: true, speed: 1, opacity_min: 0.1 }
+                                },
+                                size: { 
+                                    value: 3, 
+                                    random: true,
+                                    anim: { enable: true, speed: 2, size_min: 0.1 }
+                                },
+                                line_linked: {
+                                    enable: true,
+                                    distance: 150,
+                                    color: "#3b82f6",
+                                    opacity: 0.2,
+                                    width: 1
+                                },
+                                move: {
+                                    enable: true,
+                                    speed: 1,
+                                    direction: "none",
+                                    random: true,
+                                    straight: false,
+                                    out_mode: "out",
+                                    bounce: false,
+                                    attract: { enable: false, rotateX: 600, rotateY: 1200 }
+                                }
+                            },
+                            interactivity: {
+                                detect_on: "canvas",
+                                events: {
+                                    onhover: { enable: true, mode: "repulse" },
+                                    onclick: { enable: true, mode: "push" },
+                                    resize: true
+                                },
+                                modes: {
+                                    grab: { distance: 140, line_linked: { opacity: 1 } },
+                                    bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+                                    repulse: { distance: 100, duration: 0.4 },
+                                    push: { particles_nb: 4 },
+                                    remove: { particles_nb: 2 }
+                                }
+                            },
+                            retina_detect: true
+                        });
+                    }
+                },
+                
+                initializeScrollReveal() {
+                    // Enhanced scroll reveal animation
+                    const scrollElements = document.querySelectorAll('.scroll-reveal');
+                    
+                    const elementInView = (el, dividend = 1) => {
+                        const elementTop = el.getBoundingClientRect().top;
+                        return (
+                            elementTop <= 
+                            (window.innerHeight || document.documentElement.clientHeight) / dividend
+                        );
+                    };
+                    
+                    const displayScrollElement = (element) => {
+                        element.classList.add('revealed');
+                    };
+                    
+                    const hideScrollElement = (element) => {
+                        element.classList.remove('revealed');
+                    };
+                    
+                    const handleScrollAnimation = () => {
+                        scrollElements.forEach((el) => {
+                            if (elementInView(el, 1.25)) {
+                                displayScrollElement(el);
+                            } else {
+                                hideScrollElement(el);
+                            }
+                        })
+                    }
+                    
+                    window.addEventListener('scroll', () => {
+                        handleScrollAnimation();
+                    });
+                    
+                    // Initial check
+                    handleScrollAnimation();
+                },
+                
+                createInteractiveParticles(e) {
+                    // Create particles on click
+                    const particle = document.createElement('div');
+                    particle.className = 'interactive-particle';
+                    particle.style.left = e.clientX + 'px';
+                    particle.style.top = e.clientY + 'px';
+                    particle.style.width = Math.random() * 10 + 5 + 'px';
+                    particle.style.height = particle.style.width;
+                    
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 3000);
+                },
+
                 initializeCustomCursor() {
                     const cursor = document.querySelector('.custom-cursor');
                     const cursorDot = document.querySelector('.custom-cursor-dot');
                     
                     if (cursor && cursorDot) {
                         let ticking = false;
+                        
                         document.addEventListener('mousemove', (e) => {
                             if (!ticking) {
                                 requestAnimationFrame(() => {
@@ -4280,6 +4775,23 @@
                                 ticking = true;
                             }
                         }, { passive: true });
+                        
+                        // Enhanced cursor hover effects
+                        const hoverElements = document.querySelectorAll('a, button, .btn-micro, .morph-card');
+                        hoverElements.forEach(el => {
+                            el.addEventListener('mouseenter', () => {
+                                cursor.classList.add('cursor-hover');
+                                cursorDot.classList.add('cursor-hover');
+                            });
+                            
+                            el.addEventListener('mouseleave', () => {
+                                cursor.classList.remove('cursor-hover');
+                                cursorDot.classList.remove('cursor-hover');
+                            });
+                        });
+                        
+                        // Create particles on click
+                        document.addEventListener('click', this.createInteractiveParticles);
                     }
 
                     // Magnetic hover for buttons/links
@@ -4437,16 +4949,20 @@
                             this.isLoaded = true;
                             document.body.classList.add('loaded');
                             
-                            // Initialize animations with performance optimization
+                            // Initialize all animations with performance optimization
                             this.initializeAnimations();
+                            this.initializeParticles();
+                            this.initializeScrollReveal();
                             
                             // Add tilt effect to project cards with error handling
                             try {
-                            VanillaTilt.init(document.querySelectorAll(".project-card"), {
-                                max: 5,
+                            VanillaTilt.init(document.querySelectorAll(".project-card, .morph-card"), {
+                                max: 8,
                                 speed: 400,
                                 glare: true,
-                                "max-glare": 0.2,
+                                "max-glare": 0.3,
+                                perspective: 1000,
+                                scale: 1.02
                             });
                             } catch (error) {
                                 console.warn('VanillaTilt initialization failed:', error);
@@ -4484,26 +5000,78 @@
                 window.addEventListener('scroll', updateProgress, { passive: true });
                 updateProgress();
                 
-                // Initialize GSAP animations
+                // Initialize Enhanced GSAP animations
                 if (typeof gsap !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
                 
-                // Animate hero text
-                gsap.from(".hero-gradient", {
-                    duration: 1,
-                    y: 50,
+                // Enhanced hero text animation
+                gsap.from(".gradient-text-animated", {
+                    duration: 1.5,
+                    y: 100,
                     opacity: 0,
-                    ease: "power3.out"
+                    scale: 0.8,
+                    ease: "power3.out",
+                    delay: 0.5
                 });
                 
-                // Animate hero buttons
-                gsap.from(".btn-primary, .btn-outline", {
-                    duration: 1,
-                    y: 50,
+                // Staggered button animation
+                gsap.from(".stagger-animate", {
+                    duration: 1.2,
+                    y: 60,
                     opacity: 0,
                     ease: "power3.out",
-                    stagger: 0.2,
-                    delay: 0.3
+                    stagger: 0.15,
+                    delay: 1
+                });
+                
+                // Scroll-triggered card animations
+                gsap.utils.toArray(".morph-card").forEach((card, i) => {
+                    gsap.from(card, {
+                        duration: 0.8,
+                        y: 100,
+                        opacity: 0,
+                        scale: 0.9,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none reverse"
+                        }
+                    });
+                });
+                
+                // Parallax background elements
+                gsap.utils.toArray(".float-element").forEach(element => {
+                    gsap.to(element, {
+                        yPercent: -30,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: true
+                        }
+                    });
+                });
+                
+                // Skills progress animation
+                ScrollTrigger.create({
+                    trigger: "#skills",
+                    start: "top 80%",
+                    onEnter: () => {
+                        this.animateSkillBars();
+                    }
+                });
+                
+                // Text reveal animations
+                gsap.utils.toArray(".text-reveal").forEach((text, i) => {
+                    gsap.from(text, {
+                        duration: 1,
+                        y: 50,
+                        opacity: 0,
+                        ease: "power2.out",
+                        delay: i * 0.1
+                    });
                 });
                 }
                 
@@ -4514,28 +5082,34 @@
                     this.currentLanguage = 'fr';
                 }
                 
-                // Initialize Typed.js with error handling
+                // Initialize Enhanced Typed.js with error handling
                 try {
                 new Typed('#typed-text', {
                        strings: [
-                                  'AI Engineering Student',
-                                  'Machine Learning Engineer',
-                                  'Deep Learning Specialist',
-                                  'LLM and NLP Expert',
-                                  'Generative AI Innovator',
-                                  'Multi-Agent Systems Developer',
-                                  'Computer Vision Architect'
+                                  '🤖 AI Engineering Student',
+                                  '⚡ Machine Learning Engineer',
+                                  '🧠 Deep Learning Specialist',
+                                  '💬 LLM and NLP Expert',
+                                  '✨ Generative AI Innovator',
+                                  '🤝 Multi-Agent Systems Developer',
+                                  '👁️ Computer Vision Architect',
+                                  '🚀 Future AI Pioneer'
                                   ],
-                    typeSpeed: 50,
-                    backSpeed: 30,
-                    backDelay: 2000,
+                    typeSpeed: 60,
+                    backSpeed: 40,
+                    backDelay: 2500,
                     loop: true,
                     showCursor: true,
                     cursorChar: '|',
-                    cursorClassName: 'typed-cursor'
+                    cursorClassName: 'typed-cursor',
+                    fadeOut: true,
+                    fadeOutClass: 'typed-fade-out',
+                    fadeOutDelay: 500
                 });
                 } catch (error) {
                     console.warn('Typed.js initialization failed:', error);
+                    // Fallback text if Typed.js fails
+                    document.getElementById('typed-text').textContent = '🤖 AI Engineering Student';
                 }
                 
                 // Custom cursor with performance optimization
